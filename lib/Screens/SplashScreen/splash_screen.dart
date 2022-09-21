@@ -108,7 +108,8 @@ Future<void> checkInterNet(context) async {
   print("122   :  $isOnline");
 
   if(isOnline){
-    getReseller(context);
+    // getReseller(context);
+    getMaintainance(context);
   }
   else{
 
@@ -139,21 +140,31 @@ void getReseller(context) async{
     if(statuscode==true){
       var items = status['data'] as List;
       await SharedPreferencesHelper.setId(items[0]['id']?? (throw ArgumentError("id is required")));
-      await SharedPreferencesHelper.setdescription(items[0]['description']?? (throw ArgumentError("id is description")));
-      await SharedPreferencesHelper.setfacebook(items[0]['facebook']?? (throw ArgumentError("id is facebook")));
-      await SharedPreferencesHelper.setinstagram(items[0]['instagram']?? (throw ArgumentError("id is instagram")));
-      await SharedPreferencesHelper.setlogo(items[0]['logo']?? (throw ArgumentError("id is logo")));
-      await SharedPreferencesHelper.setmobile(items[0]['mobile']?? (throw ArgumentError("id is mobile")));
-      await SharedPreferencesHelper.setaddress(items[0]['address']?? (throw ArgumentError("id is address")));
-      await SharedPreferencesHelper.setemail(items[0]['email']?? (throw ArgumentError("id is email")));
-      await SharedPreferencesHelper.setis_deleted(items[0]['is_deleted']?? (throw ArgumentError("id is is_deleted")));
-      await SharedPreferencesHelper.setcreated_by(items[0]['created_by']?? (throw ArgumentError("id is created_by")));
-      await SharedPreferencesHelper.setcreated_at(items[0]['created_at']?? (throw ArgumentError("id is created_at")));
+      await SharedPreferencesHelper.setdescription(items[0]['description']?? (throw ArgumentError("description is required")));
+      await SharedPreferencesHelper.setfacebook(items[0]['facebook']?? (throw ArgumentError("facebook is required")));
+      await SharedPreferencesHelper.setinstagram(items[0]['instagram']?? (throw ArgumentError("instagram is required")));
+      await SharedPreferencesHelper.setlogo(items[0]['logo']?? (throw ArgumentError("logo is required")));
+      await SharedPreferencesHelper.setmobile(items[0]['mobile']?? (throw ArgumentError("mobile is required")));
+      await SharedPreferencesHelper.setaddress(items[0]['address']?? (throw ArgumentError("address is required")));
+      await SharedPreferencesHelper.setemail(items[0]['email']?? (throw ArgumentError("email is required")));
+      await SharedPreferencesHelper.setis_deleted(items[0]['is_deleted']?? (throw ArgumentError("is_deleted is required")));
+
       // NO need
+      // await SharedPreferencesHelper.setcreated_by(items[0]['created_by']?? (throw ArgumentError("created_by is required")));
+      // await SharedPreferencesHelper.setcreated_at(items[0]['created_at']?? (throw ArgumentError("created_at is required")));
+
       // await SharedPreferencesHelper.setupdated_at(items[0]['updated_at']?? (throw ArgumentError("id is updated_at")));
       // await SharedPreferencesHelper.setcreator(items[0]['creator']?? (throw ArgumentError("id is creator")));
 
-      getMaintainance(context);
+      //getMaintainance(context);
+
+      Future.delayed(Duration(seconds: 10), () async {
+        Navigator.pushReplacement(context, MaterialPageRoute(
+            builder: (context){
+              return IntroScreen();
+            }));
+      });
+
     }
     else{
       print("FALSE  123     ");
@@ -189,17 +200,13 @@ void getMaintainance(context) async {
       var maintain_type = maintain[0]['maintain_type']?? (throw ArgumentError("maintain_type is required"));
       if(maintain_type == '0'){
         print("1671   : $maintain_type");
-        Future.delayed(Duration(seconds: 0), () async {
-          Navigator.pushReplacement(context, MaterialPageRoute(
-              builder: (context){
-                return IntroScreen();
-              }));
-        });
+
+        getReseller(context);
+
       }
       else if(maintain_type == 1) {
         print("1672   : $maintain_type");
-        openCustomDialog(context,image,description,maintain_type);
-        //  openCustomDialogClose(context,image,description,maintain_type);
+        openCustomDialogClose(context,image,description,maintain_type);
       }
       else{
         openCustomDialog(context,image,description,maintain_type);
@@ -279,7 +286,7 @@ void openCustomDialog(context,image,description,maintain_type) {
                               },
                               style: ElevatedButton.styleFrom(
                                 primary:ColorUtility().colorNo,
-                                 fixedSize: Size(100, 40),
+                                 fixedSize: Size(MediaQuery.of(context).size.width, 40),
                               ),
                               child: Text(
                                 "No",
@@ -300,21 +307,25 @@ void openCustomDialog(context,image,description,maintain_type) {
                                //  Navigator.of(context).pop();
                                  if(maintain_type == 2){
                                    //Warning
-                                   Future.delayed(Duration(seconds: 1), () async {
-                                     Navigator.pushReplacement(context, MaterialPageRoute(
-                                         builder: (context){
-                                           return IntroScreen();
-                                         }));
-                                   });
+                                   // Future.delayed(Duration(seconds: 1), () async {
+                                   //   Navigator.pushReplacement(context, MaterialPageRoute(
+                                   //       builder: (context){
+                                   //         return IntroScreen();
+                                   //       }));
+                                   // });
+
+
+                                   getReseller(context);
                                  }
                                  else if(maintain_type == 3){
                                     // Updation
-                                   Future.delayed(Duration(seconds: 1), () async {
-                                     Navigator.pushReplacement(context, MaterialPageRoute(
-                                         builder: (context){
-                                           return IntroScreen();
-                                         }));
-                                   });
+                                   // Future.delayed(Duration(seconds: 1), () async {
+                                   //   Navigator.pushReplacement(context, MaterialPageRoute(
+                                   //       builder: (context){
+                                   //         return IntroScreen();
+                                   //       }));
+                                   // });
+                                   getReseller(context);
                                  }
                                  // else {
                                  //   // Updation
@@ -329,8 +340,9 @@ void openCustomDialog(context,image,description,maintain_type) {
                                },
                                style: ElevatedButton.styleFrom(
                                  primary: ColorUtility().colorYes,
-                                 fixedSize: Size(100, 40),
+                                 fixedSize: Size(MediaQuery.of(context).size.width, 40),
                                ),
+
                                child: Text(
                                  "Yes",
                                ),
