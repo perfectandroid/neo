@@ -1,0 +1,9 @@
+
+import 'dart:ui';
+
+class ColorUtility {
+
+   var colorNo = Color.fromARGB(0xFF, 0xDB, 0x6D, 0x53);
+   var colorYes = Color.fromARGB(0xFF, 0x86, 0xD5, 0x2B);
+
+}
