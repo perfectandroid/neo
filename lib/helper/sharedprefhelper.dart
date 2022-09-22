@@ -155,6 +155,84 @@ class SharedPreferencesHelper {
 
   ////////////
 
+  static Future<bool> settesting_url(String value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("testing_url", value);
+  }
+
+  static Future<String>gettesting_url() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("testing_url");
+  }
+
+  static Future<bool>removetesting_url() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("testing_url");
+  }
+
+
+  ////////////
+
+  static Future<bool> setimage_storing_url(String value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("image_storing_url", value);
+  }
+
+  static Future<String>getimage_storing_url() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("image_storing_url");
+  }
+
+  static Future<bool>removeimage_storing_url() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("image_storing_url");
+  }
+
+
+  ////////////
+
+  static Future<bool> setusername(String value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("username", value);
+  }
+
+  static Future<String>getusername() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("username");
+  }
+
+  static Future<bool>removeusername() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("username");
+  }
+
+
+
+  ////////////
+
+  static Future<bool> setpassword(String value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("password", value);
+  }
+
+  static Future<String>getpassword() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("password");
+  }
+
+  static Future<bool>removepassword() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("password");
+  }
+
+
+
+  ////////////
+
   static Future<bool> setis_deleted(bool value) async {
     print('values :  $value');
     final SharedPreferences prefs = await SharedPreferences.getInstance();

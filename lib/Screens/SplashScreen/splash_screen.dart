@@ -147,6 +147,10 @@ void getReseller(context) async{
       await SharedPreferencesHelper.setmobile(items[0]['mobile']?? (throw ArgumentError("mobile is required")));
       await SharedPreferencesHelper.setaddress(items[0]['address']?? (throw ArgumentError("address is required")));
       await SharedPreferencesHelper.setemail(items[0]['email']?? (throw ArgumentError("email is required")));
+      await SharedPreferencesHelper.settesting_url(items[0]['testing_url']?? (throw ArgumentError("testing_url is required")));
+      await SharedPreferencesHelper.setimage_storing_url(items[0]['image_storing_url']?? (throw ArgumentError("image_storing_url is required")));
+      await SharedPreferencesHelper.setusername(items[0]['username']?? (throw ArgumentError("username is required")));
+      await SharedPreferencesHelper.setpassword(items[0]['password']?? (throw ArgumentError("Password is required")));
       await SharedPreferencesHelper.setis_deleted(items[0]['is_deleted']?? (throw ArgumentError("is_deleted is required")));
 
       // NO need
