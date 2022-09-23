@@ -4,6 +4,34 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async' show Future;
 class SharedPreferencesHelper {
 
+  ////////// CLEAR DATA
+
+  static Future<bool> logout() async {
+    print('Logout : ');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.clear();
+  }
+
+  ////////// SESSION DATA DATA
+
+  static Future<bool> set_is_login(bool value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setBool("is_login", value);
+  }
+
+  static Future<bool>get_is_login() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool("is_login");
+  }
+
+  static Future<bool>remove_is_login() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("is_login");
+  }
+
+  ////////// RESELLER DATA
+
   static Future<bool> setId(int value) async {
     print('values :  $value');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -49,7 +77,8 @@ class SharedPreferencesHelper {
 
   static Future<String>getfacebook() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString("facebook");
+    String value = prefs.getString("facebook") ?? "";
+    return value;
   }
 
   static Future<bool>removefacebook() async {
@@ -236,12 +265,12 @@ class SharedPreferencesHelper {
   static Future<bool> setis_deleted(bool value) async {
     print('values :  $value');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.setBool("facebook", value);
+    return prefs.setBool("is_deleted", value);
   }
 
   static Future<bool>getis_deleted() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool("facebook");
+    return prefs.getBool("is_deleted");
   }
 
   static Future<bool>removeis_deleted() async {
@@ -251,27 +280,144 @@ class SharedPreferencesHelper {
 
 
 
+  ////////////   Agent LoginDetails
+
+
+  static Future<bool> setAgent_id(int value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt("id", value);
+  }
+
+  static Future<int>getAgent_id() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getInt("id");
+  }
+
+  static Future<bool>removeAgent_id() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("id");
+  }
+
+
+
+
+
   ////////////
 
-  // static Future<bool> setcreated_by(String value) async {
-  //   print('values :  $value');
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   return prefs.setString("created_by", value);
-  // }
-  //
-  // static Future<String>getcreated_by() async {
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   return prefs.getString("created_by");
-  // }
-  //
-  // static Future<bool>removecreated_by() async {
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   return prefs.remove("created_by");
-  // }
+  static Future<bool> setAgent_name(String value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("name", value);
+  }
 
+  static Future<String>getAgent_name() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("name");
+  }
+
+  static Future<bool>removeAgent_name() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("name");
+  }
+
+  ////////////
+
+  static Future<bool> setAgent_mobile_number(String value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("mobile_number", value);
+  }
+
+  static Future<String>getAgent_mobile_number() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("mobile_number");
+  }
+
+  static Future<bool>removeAgent_mobile_number() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("mobile_number");
+  }
 
 
   ////////////
+
+  static Future<bool> setAgent_email(String value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("email", value);
+  }
+
+  static Future<String>getAgent_email() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("email");
+  }
+
+  static Future<bool>removeAgent_email() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("email");
+  }
+
+
+  ////////////
+
+  static Future<bool> setAgent_token(String value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("token", value);
+  }
+
+  static Future<String>getAgent_token() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("token");
+  }
+
+  static Future<bool>removeAgent_token() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("token");
+  }
+
+
+  ////////////
+
+  static Future<bool> setAgent_user_type(String value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("user_type", value);
+  }
+
+  static Future<String>getAgent_user_type() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("user_type");
+  }
+
+  static Future<bool>removeAgent_user_type() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("user_type");
+  }
+
+  ////////////
+
+  static Future<bool> setAgent_image(String value) async {
+    print('values :  $value');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString("image", value);
+  }
+
+  static Future<String>getAgent_image() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("image");
+  }
+
+  static Future<bool>removeAgent_image() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove("image");
+  }
+
+
+
+
+////////////
 
   // static Future<bool> setcreated_at(String value) async {
   //   print('values :  $value');

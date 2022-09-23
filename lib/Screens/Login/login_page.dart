@@ -26,6 +26,9 @@ class LoginController extends GetxController {
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     final res = await response.stream.bytesToString();
+
+    print(res.toString());
+    print("300   : $response");
     final status =jsonDecode(res);
     final statuscode = status['success'] as bool;
     final errors = status['errors'] as String;

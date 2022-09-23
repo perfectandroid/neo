@@ -1,18 +1,19 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'dart:js';
+import 'dart:js';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:neo/Screens/Login/mpin_verification_page.dart';
 import 'dart:convert';
 import 'package:neo/Screens/WelcomeSlider/welcomeintroslider.dart';
 import 'package:neo/helper/colorutility.dart';
 import 'package:neo/helper/config.dart';
 import 'package:neo/helper/showDialogs.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../helper/networkutitlity.dart';
 import '../../helper/sharedprefhelper.dart';
+import '../Home/home_activity.dart';
 
 bool isOnline = false;
 class SplashScreen extends StatefulWidget{
@@ -25,21 +26,18 @@ class SplashScreen extends StatefulWidget{
 
 class _SplashScreen extends State<SplashScreen>{
   int splashtime = 5;
-
-
-
   @override
   initState(){
 
     // Future.delayed(Duration(seconds: splashtime), () async {
-    //   Navigator.pushReplacement(context, MaterialPageRoute(
+    //   Navigator.pushReplacement(this.context, MaterialPageRoute(
     //       builder: (context){
     //         return IntroScreen();
     //       }));
     // });
 
     super.initState();
-    checkInterNet(context);
+    checkInterNet(this.context);
 
 
    // getReseller(context);
@@ -140,9 +138,10 @@ void getReseller(context) async{
     if(statuscode==true){
       var items = status['data'] as List;
       await SharedPreferencesHelper.setId(items[0]['id']?? (throw ArgumentError("id is required")));
-      await SharedPreferencesHelper.setdescription(items[0]['description']?? (throw ArgumentError("description is required")));
-      await SharedPreferencesHelper.setfacebook(items[0]['facebook']?? (throw ArgumentError("facebook is required")));
-      await SharedPreferencesHelper.setinstagram(items[0]['instagram']?? (throw ArgumentError("instagram is required")));
+       await SharedPreferencesHelper.setdescription(items[0]['description']?? (throw ArgumentError("description is required")));
+       await SharedPreferencesHelper.setfacebook(items[0]['facebook']?? (throw ArgumentError("facebook is required")));
+      //
+       await SharedPreferencesHelper.setinstagram(items[0]['instagram']?? (throw ArgumentError("instagram is required")));
       await SharedPreferencesHelper.setlogo(items[0]['logo']?? (throw ArgumentError("logo is required")));
       await SharedPreferencesHelper.setmobile(items[0]['mobile']?? (throw ArgumentError("mobile is required")));
       await SharedPreferencesHelper.setaddress(items[0]['address']?? (throw ArgumentError("address is required")));
@@ -153,6 +152,37 @@ void getReseller(context) async{
       await SharedPreferencesHelper.setpassword(items[0]['password']?? (throw ArgumentError("Password is required")));
       await SharedPreferencesHelper.setis_deleted(items[0]['is_deleted']?? (throw ArgumentError("is_deleted is required")));
 
+
+      bool isLogin = await SharedPreferencesHelper.get_is_login();
+      print("RESELLER  1591   :  $isLogin");
+      if(isLogin==true){
+        print("RESELLER  1592   :  $isLogin");
+
+        var Username = await SharedPreferencesHelper.getAgent_mobile_number();
+
+        Future.delayed(Duration(seconds: 5), () async {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MPINVerification(text: Username,),
+              ));
+        });
+
+
+
+      }else{
+
+        print("RESELLER  1593   :  $isLogin");
+        Future.delayed(Duration(seconds: 5), () async {
+          Navigator.pushReplacement(context, MaterialPageRoute(
+              builder: (context){
+                return IntroScreen();
+              }));
+        });
+
+      }
+
+
       // NO need
       // await SharedPreferencesHelper.setcreated_by(items[0]['created_by']?? (throw ArgumentError("created_by is required")));
       // await SharedPreferencesHelper.setcreated_at(items[0]['created_at']?? (throw ArgumentError("created_at is required")));
@@ -162,12 +192,8 @@ void getReseller(context) async{
 
       //getMaintainance(context);
 
-      Future.delayed(Duration(seconds: 10), () async {
-        Navigator.pushReplacement(context, MaterialPageRoute(
-            builder: (context){
-              return IntroScreen();
-            }));
-      });
+
+
 
     }
     else{
@@ -180,6 +206,8 @@ void getReseller(context) async{
     ShowDialogs().showAlertDialog(context, e.toString());
   }
 }
+
+
 
 void getMaintainance(context) async {
 

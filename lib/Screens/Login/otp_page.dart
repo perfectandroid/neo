@@ -29,6 +29,8 @@ class OTPController extends GetxController {
     http.StreamedResponse response = await request.send();
     final res = await response.stream.bytesToString();
 
+    print("INPUT  322   :  $Username   $Password");
+    print(res.toString());
     final status =jsonDecode(res);
     final statuscode = status['success'] as bool;
     final errors = status['errors'] as String;

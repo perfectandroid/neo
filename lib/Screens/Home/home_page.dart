@@ -5,6 +5,7 @@ import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
 import '../../constants.dart';
+import '../../helper/sharedprefhelper.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, this.title}) : super(key: key);
@@ -14,6 +15,8 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
+
+
 
   /*List<HomeList> toplist = [
     HomeList(name: 'Pendings', profileImg: 'assets/images/logo.png', bio: "Software Developer"),
@@ -156,5 +159,19 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+
+    getData();
+    super.initState();
+  }
+
+  Future<void> getData() async {
+    String namess = await SharedPreferencesHelper.getfacebook();
+    print("HOME  16811   :  $namess");
+
+   // await SharedPreferencesHelper.logout();
   }
 }
