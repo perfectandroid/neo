@@ -14,10 +14,81 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
+class PhotoItem {
+  final String title;
+  final String image;
+
+  PhotoItem({
+    required this.title,
+    required this.image,
+  });
+}
+class Grid2 {
+  final String title;
+  final String image;
+
+  Grid2({
+    required this.title,
+    required this.image,
+  });
+}
 class _HomePageState extends State<HomePage> {
 
+  final List <Grid2>myImageAndCaption = [
+    Grid2(title: "Stock",image: "assets/images/stock.png"),
+    Grid2(title: "Dashboard",image: "assets/images/dashboard.png"),
+    Grid2(title: "Report",image: "assets/images/report.png"),
+    Grid2(title: "Notification",image: "assets/images/notifctn.png"),
 
 
+  ];
+
+  final List<PhotoItem> liste = [
+    PhotoItem(title: "Pendings", image: "assets/images/pending.png"),
+    PhotoItem(title: "Confirmed", image: "assets/images/confirm.png"),
+    PhotoItem(title: "Packed", image: "assets/images/confirm.png"),
+    PhotoItem(title: "Dispatch", image: "assets/images/confirm.png"),
+    PhotoItem(title: "Delivered", image: "assets/images/confirm.png"),
+  ];
+
+  /*List<PhotoItem> _items = [
+    PhotoItem(
+        ("assets/images/confirm.jpg"),
+        "Pending/Return"),
+    PhotoItem(
+        ("assets/images/confirm.jpg"),
+        "Confirm"),
+    PhotoItem(
+        ("assets/images/confirm.jpg"),
+        "Packed"),
+    PhotoItem(
+        ("assets/images/confirm.jpg"),
+        "Dispatch"),
+    PhotoItem(
+        ("assets/images/confirm.jpg"),
+        "Delivered"),
+  ];*/
+
+
+/*  List<PhotoItem> _items = [
+    PhotoItem(
+        "https://images.pexels.com/photos/1772973/pexels-photo-1772973.png?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "Pending/Return"),
+    PhotoItem(
+        "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "Confirm"),
+    PhotoItem(
+        "https://images.pexels.com/photos/1130847/pexels-photo-1130847.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "Packed"),
+    PhotoItem(
+        "https://images.pexels.com/photos/45900/landscape-scotland-isle-of-skye-old-man-of-storr-45900.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "Dispatch"),
+    PhotoItem(
+        "https://images.pexels.com/photos/165779/pexels-photo-165779.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "Delivered"),
+  ];*/
+  int _selectedIndex = 0;
+  final ScrollController _homeController = ScrollController();
   /*List<HomeList> toplist = [
     HomeList(name: 'Pendings', profileImg: 'assets/images/logo.png', bio: "Software Developer"),
     HomeList(name: 'Confirmed', profileImg: 'assets/images/logo.png', bio: "UI Designer"),
@@ -76,10 +147,83 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: Column(
           children: <Widget>[
+            ListView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                GridView.builder(
+
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    crossAxisCount: 5,
+                    childAspectRatio: 1 / 1.5,
+                  ),
+                  itemCount: liste.length,
+                  itemBuilder: (context, index) {
+                    return new GestureDetector(
+                      onTap: () {
+                        /*  Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RouteTwo(
+                      image: _items[index].image, name: _items[index].name),
+                ),
+              );*/
+                      },
+                      child: Container(
+                        /* width: 90.0,
+              height: 90.0,*/
+                        margin: const EdgeInsets.only(top: 3.0),
+
+                        decoration: BoxDecoration(
+
+                         // shape: BoxShape.circle,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(liste[index].image),
+
+                          ),
+
+                        ),
+                        child:Container(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          alignment: Alignment.bottomCenter,
+                          child: new Text(liste[index].title,
+                              style: new TextStyle(
+                                fontWeight: FontWeight.normal,
+
+                                fontSize: 10.0,
+
+
+                              )
+                          ),
+                        ),
+
+                        /*  child: Stack(
+                children: [
+                  RichText(text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(text: _items[index].name,style: TextStyle(color: Colors.black)),
+                       // TextSpan(text: "Kalpesh\n",style: TextStyle(color: Colors.white))
+                      ]
+                  ))
+                ],
+              ),*/
+                      ),
+
+                    );
+                  },
+                ),
+              ],
+            ),
             Container(
               height: 300,
 
@@ -88,10 +232,10 @@ class _HomePageState extends State<HomePage> {
                 boxFit: BoxFit.cover,
                 images: [
 
-                  AssetImage('assets/images/introslider1.png'),
-                  AssetImage('assets/images/introslider2.png'),
-                  AssetImage('assets/images/introslider3.png'),
-                  AssetImage('assets/images/introslider1.png'),
+                  AssetImage('assets/images/banner.jpg'),
+                  AssetImage('assets/images/banner.jpg'),
+                  AssetImage('assets/images/banner.jpg'),
+                  AssetImage('assets/images/banner.jpg'),
 
                 ],
 
@@ -102,65 +246,268 @@ class _HomePageState extends State<HomePage> {
                 dotSpacing: 20.0,
               ),
             ),
+           /* GridView.builder(
+              itemCount: myImageAndCaption.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 5.0,
+                mainAxisSpacing: 5.0,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                return Image.asset(liste[index]);
+              },
+            ),*/
 
-            GridView.count(
+            GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              itemCount: 4,
+              itemBuilder: (ctx, i) {
+                return Card(
+                  child: Container(
+                    height: 290,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20)),
+                    margin: EdgeInsets.all(5),
+                    padding: EdgeInsets.all(5),
+                    child: Stack(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                       //     SizedBox.expand(
+
+                                Container(
+                                  /* width: 90.0,
+              height: 90.0,*/
+                                //  margin: const EdgeInsets.only(top: 55.0),
+                                  padding: const EdgeInsets.only(top: 85.0),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+
+                                    // shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: AssetImage(myImageAndCaption[i].image),
+
+                                    ),
+
+                                  ),
+                                  child:Container(
+                                    padding: const EdgeInsets.only(top: 35.0),
+                                    alignment: Alignment.bottomCenter,
+                                    child: new Text(myImageAndCaption[i].title,
+                                        style: new TextStyle(
+                                          fontWeight: FontWeight.normal,
+
+
+                                          fontSize: 10.0,
+
+
+                                        )
+                                    ),
+                                  ),
+
+                                  /*  Expanded(
+                              child: Image.network(
+                                'https://tech.pelmorex.com/wp-content/uploads/2020/10/flutter.png',
+                                fit: BoxFit.fill,
+                              ),
+                              fit: BoxFit.cover,
+                              image: AssetImage(liste[index].image),
+                            ),
+                            Text(
+                              'Title',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Subtitle',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ],
+                            )*/
+                             //   ),
+                              ),
+
+                          //  ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.0,
+                crossAxisSpacing: 0.0,
+                mainAxisSpacing: 5,
+                mainAxisExtent: 160,
+              ),
+            ),
+           /* GridView.count(
+
               primary: false,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               crossAxisSpacing: 10,
-
-               mainAxisSpacing: 10,
+              childAspectRatio: (1 / .9),
+              mainAxisSpacing: 10,
               crossAxisCount: 2,
               physics: NeverScrollableScrollPhysics(), // to disable GridView's scrolling
               shrinkWrap: true, // You won't se
               children: <Widget>[
 
-                Container(
-                padding: const EdgeInsets.all(8),
-        color: Colors.teal[100],
-        child: const Text("Report", textAlign: TextAlign.center),
-      ),
-      Container(
-        padding: const EdgeInsets.all(8),
-        color: Colors.teal[200],
-        child: const Text('Stock', textAlign: TextAlign.center),
-      ),
-      Container(
-        padding: const EdgeInsets.all(8),
-        color: Colors.teal[300],
-        child: const Text('Dashboard', textAlign: TextAlign.center),
-      ),
-      Container(
-        padding: const EdgeInsets.all(8),
-        color: Colors.teal[400],
-        child: const Text('Reports', textAlign: TextAlign.center),
-      ),
 
-              ],
-            )
-            /*Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Icon(Icons.menu, size: 35, color: Colors.white),
-                Text('Notifications',
-                  style: TextStyle (
-                      color: Colors.white,
-                      fontSize: 25
+                Container(
+                *//*  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[200],*//*
+                 // child: const Text('Stock', textAlign: TextAlign.end),
+                  child: Center(child: Text('Stock'),),
+                  height: 50.0,
+                  width: MediaQuery.of(context).size.width - 100.0,
+                  decoration: BoxDecoration(
+                     // borderRadius: BorderRadius.circular(5),
+                      color: Colors.blue,
+                      image: DecorationImage(
+                          image: AssetImage(
+                              "assets/images/stock.png"
+                          ),
+                          fit: BoxFit.fill
+                      )
                   ),
                 ),
-                Icon(Icons.notifications_none, size: 35, color: Colors.white)
+                Container(
+                 *//* padding: const EdgeInsets.all(8),
+                  color: Colors.teal[300],
+                  child: const Text('Dashboard', textAlign: TextAlign.center),*//*
+                  child: Center(child: Text('Dashboard'),),
+                  height: 50.0,
+                  width: MediaQuery.of(context).size.width - 100.0,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.blue,
+                      image: DecorationImage(
+                          image: AssetImage(
+                              "assets/images/dashboard.png"
+                          ),
+                          fit: BoxFit.fill
+                      )
+                  ),
+                ),
+                Container(
+                *//*  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[100],
+                  child: const Text("Report", textAlign: TextAlign.center),*//*
+
+                  child: Center(child: Text('Report'),),
+                  height: 50.0,
+                  width: MediaQuery.of(context).size.width - 100.0,
+                  decoration: BoxDecoration(
+                     // borderRadius: BorderRadius.circular(5),
+                      color: Colors.blue,
+                      image: DecorationImage(
+                          image: AssetImage(
+                              "assets/images/report.png"
+                          ),
+                          fit: BoxFit.fill
+                      )
+                  ),
+                ),
+                Container(
+                *//*  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[400],
+                  child: const Text('Notification', textAlign: TextAlign.center),*//*
+                  child: Center(child: Text('Notification'),),
+                  height: 50.0,
+                  width: MediaQuery.of(context).size.width - 100.0,
+                  decoration: BoxDecoration(
+                    //  borderRadius: BorderRadius.circular(5),
+                      color: Colors.blue,
+                      image: DecorationImage(
+                          image: AssetImage(
+                              "assets/images/notifctn.png"
+                          ),
+                          fit: BoxFit.fill
+                      )
+                  ),
+                ),
+
               ],
-            ),*/
-          /*  Column(
-                children: toplist.map((p) {
-                  return personDetailCard(p);
-                }).toList()
             )*/
+
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: (int index) {
+          switch (index) {
+            case 0:
+            // only scroll to top when current index is selected.
+              if (_selectedIndex == index) {
+                _homeController.animateTo(
+                  0.0,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeOut,
+                );
+              }
+              break;
+            case 1:
+              showModal(context);
+              break;
+          }
+          setState(
+                () {
+              _selectedIndex = index;
+            },
+          );
+        },
+      ),
+
+    );
+
+  }
+  void showModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        content: const Text('Test'),
+        actions: <TextButton>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Close'),
+          )
+        ],
+      ),
     );
   }
-
   @override
   void initState() {
 
