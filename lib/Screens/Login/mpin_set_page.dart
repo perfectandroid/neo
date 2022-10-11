@@ -71,6 +71,10 @@ showSuccessAlertDialog(BuildContext context, String Username,status) {
 
         //SESSION
         await SharedPreferencesHelper.set_is_login(true);
+
+        var token = await SharedPreferencesHelper.getAgent_token();
+        print("TOKEN MPIN"+token);
+
         Navigator.push(
             context,
             MaterialPageRoute(

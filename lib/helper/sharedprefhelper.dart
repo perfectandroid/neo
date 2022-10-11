@@ -368,8 +368,8 @@ class SharedPreferencesHelper {
   }
 
   static Future<String>getAgent_token() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString("token");
+    final SharedPreferences tokn = await SharedPreferences.getInstance();
+    return tokn.getString("token");
   }
 
   static Future<bool>removeAgent_token() async {

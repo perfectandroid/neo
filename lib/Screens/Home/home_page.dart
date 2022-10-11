@@ -6,7 +6,9 @@ import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+import '../Status/pendinglist.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key? key, this.title}) : super(key: key);
   final String? title;
@@ -33,7 +35,13 @@ class Grid2 {
   });
 }
 class _HomePageState extends State<HomePage> {
-
+ /* void tapped(int index){
+    if(index == 1){
+      print("huray 1");
+    } else {
+      print("not the one :(");
+    }
+  }*/
   final List <Grid2>myImageAndCaption = [
     Grid2(title: "Stock",image: "assets/images/stock.png"),
     Grid2(title: "Dashboard",image: "assets/images/dashboard.png"),
@@ -170,14 +178,21 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     return new GestureDetector(
                       onTap: () {
-                        /*  Navigator.push(
+                        goToDetailsPage(context, liste[index]);
+                        print(liste[index].title);
+                      },
+                    /*  onTap: () {
+
+                        print("tapped");*/
+
+                       /*  Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => RouteTwo(
-                      image: _items[index].image, name: _items[index].name),
+                      image: liste[index].image, name: liste[index].name),
                 ),
               );*/
-                      },
+                  //    },
                       child: Container(
                         /* width: 90.0,
               height: 90.0,*/
@@ -222,6 +237,8 @@ class _HomePageState extends State<HomePage> {
                     );
                   },
                 ),
+
+
               ],
             ),
             Container(
@@ -266,6 +283,7 @@ class _HomePageState extends State<HomePage> {
               itemCount: 4,
               itemBuilder: (ctx, i) {
                 return Card(
+
                   child: Container(
                     height: 290,
                     decoration: BoxDecoration(
@@ -345,6 +363,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
+
                 );
               },
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -492,6 +511,67 @@ class _HomePageState extends State<HomePage> {
     );
 
   }
+  goToDetailsPage(BuildContext context, PhotoItem album) {
+   print(album.title);
+   if(album.title=="Pendings")
+     {
+       Navigator.push(
+         context,
+         MaterialPageRoute(
+           fullscreenDialog: true,
+           builder: (BuildContext context) => PendingScreen(
+             //  liste: album,
+           ),
+         ),
+       );
+     }
+   else if(album.title=="Confirmed")
+     {
+       Fluttertoast.showToast(
+         msg: "Confirmed",
+         textColor: Colors.white,
+         toastLength: Toast.LENGTH_SHORT,
+         timeInSecForIosWeb: 1,
+         gravity: ToastGravity.BOTTOM,
+         backgroundColor: Colors.indigo,
+       );
+     }
+   else if(album.title=="Packed")
+   {
+     Fluttertoast.showToast(
+       msg: "Packed",
+       textColor: Colors.white,
+       toastLength: Toast.LENGTH_SHORT,
+       timeInSecForIosWeb: 1,
+       gravity: ToastGravity.BOTTOM,
+       backgroundColor: Colors.indigo,
+     );
+   }
+   else if(album.title=="Dispatch")
+   {
+     Fluttertoast.showToast(
+       msg: "Dispatch",
+       textColor: Colors.white,
+       toastLength: Toast.LENGTH_SHORT,
+       timeInSecForIosWeb: 1,
+       gravity: ToastGravity.BOTTOM,
+       backgroundColor: Colors.indigo,
+     );
+   }
+   else if(album.title=="Delivered")
+   {
+     Fluttertoast.showToast(
+       msg: "Delivered",
+       textColor: Colors.white,
+       toastLength: Toast.LENGTH_SHORT,
+       timeInSecForIosWeb: 1,
+       gravity: ToastGravity.BOTTOM,
+       backgroundColor: Colors.indigo,
+     );
+   }
+  }
+
+
   void showModal(BuildContext context) {
     showDialog(
       context: context,
@@ -521,4 +601,6 @@ class _HomePageState extends State<HomePage> {
 
    // await SharedPreferencesHelper.logout();
   }
+
+
 }

@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:neo/Screens/Login/otp_page.dart';
 import 'package:neo/constants.dart';
 
+import '../../helper/sharedprefhelper.dart';
+
 class LoginController extends GetxController {
 
   var isLoading = false.obs;
@@ -27,14 +29,15 @@ class LoginController extends GetxController {
     http.StreamedResponse response = await request.send();
     final res = await response.stream.bytesToString();
 
-    print(res.toString());
+    print("LOGIN"+res.toString());
     print("300   : $response");
     final status =jsonDecode(res);
     final statuscode = status['success'] as bool;
     final errors = status['errors'] as String;
     if(statuscode==true){
       print(statuscode);
-      showSuccessAlertDialog(context, Username);
+      print(status['data']['id']);
+      showSuccessAlertDialog(context, Username,status);
     }else{
       print(statuscode);
      // showSuccessAlertDialog(context, Username);
@@ -65,17 +68,48 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
   );
 }
 
-showSuccessAlertDialog(BuildContext context, String Username) {
+showSuccessAlertDialog(BuildContext context, String Username, status) {
+
+
+
+
+
   Widget okButton = TextButton(
     child: Text("Continue"),
-    onPressed: () {
-     // Navigator.push(context, MaterialPageRoute(builder: (_) => const OTPVerification()));
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => OTPVerification(text: Username,),
-          ));
+    onPressed: () async{
+      try {
 
+        var ss = status['data']["id"];
+        print('login  :   $ss');
+
+
+        await SharedPreferencesHelper.setAgent_id(status['data']["id"]?? (throw ArgumentError("id is required")));
+        await SharedPreferencesHelper.setAgent_name(status['data']["name"]?? (throw ArgumentError("name is required")));
+        await SharedPreferencesHelper.setAgent_mobile_number(status['data']["mobile_number"]?? (throw ArgumentError("mobile_number  is required")));
+        await SharedPreferencesHelper.setAgent_email(status['data']["email"]?? (throw ArgumentError("email is required")));
+        await SharedPreferencesHelper.setAgent_token(status['data']["token"]?? (throw ArgumentError("token is required")));
+        await SharedPreferencesHelper.setAgent_user_type(status['data']["user_type"]?? (throw ArgumentError("user_type is required")));
+        await SharedPreferencesHelper.setAgent_image(status['data']["image"]?? (throw ArgumentError("image is required")));
+
+
+        //SESSION
+      //  await SharedPreferencesHelper.set_is_login(true);
+
+        var token = await SharedPreferencesHelper.getAgent_token();
+        print("TOKEN LOGIN"+token);
+
+
+        // Navigator.push(context, MaterialPageRoute(builder: (_) => const OTPVerification()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => OTPVerification(text: Username,),
+            ));
+      }
+      catch(e)
+      {
+
+      }
     },
   );
   AlertDialog alert = AlertDialog(

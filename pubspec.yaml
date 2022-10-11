@@ -31,7 +31,9 @@ dependencies:
     sdk: flutter
   get: ^4.6.5
   http: ^0.13.4
+  lottie: ^1.4.3
   another_flushbar: ^1.10.28
+  json_annotation: ^4.0.1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -43,12 +45,15 @@ dependencies:
   connectivity_plus: ^2.0.2
   internet_connection_checker: ^0.0.1+4
   connectivity: ^0.4.6+2
-
+  fluttertoast: ^8.0.9
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  json_to_model: ^3.0.1
+  build_runner: ^1.0.0
+  json_serializable: ^4.0.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

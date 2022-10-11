@@ -126,7 +126,7 @@ void getReseller(context) async{
     final res = await response.stream.bytesToString();
 
 
-    //  print("RESULT  123     "+res.toString());
+      print("RESELLER     "+res.toString());
     final status =jsonDecode(res);
     final statuscode = status['success'] as bool;
 
@@ -156,7 +156,8 @@ void getReseller(context) async{
       if(isLogin==true){
         print("RESELLER  1592   :  $isLogin");
 
-        var Username = await SharedPreferencesHelper.getAgent_mobile_number();
+        var Username = await SharedPreferencesHelper.getmobile();
+        print("USER"+Username);
 
         Future.delayed(Duration(seconds: 5), () async {
           Navigator.push(
