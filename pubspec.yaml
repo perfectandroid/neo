@@ -31,7 +31,7 @@ dependencies:
     sdk: flutter
   get: ^4.6.5
   http: ^0.13.4
-  lottie: ^1.4.3
+#  lottie: ^1.4.3
   another_flushbar: ^1.10.28
   json_annotation: ^4.0.1
   # The following adds the Cupertino Icons font to your application.

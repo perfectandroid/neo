@@ -8,6 +8,7 @@ import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+
 import '../Status/pendinglist.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key? key, this.title}) : super(key: key);
@@ -176,8 +177,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                   itemCount: liste.length,
                   itemBuilder: (context, index) {
-                    return new GestureDetector(
-                      onTap: () {
+                    return GestureDetector(
+                      onTap: () async {
+
+
+                        String token = await SharedPreferencesHelper.getAgent_token();
+                        print("tToken 176   : $token");
                         goToDetailsPage(context, liste[index]);
                         print(liste[index].title);
                       },

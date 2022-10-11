@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/constants.dart';
 
+import '../../helper/config.dart';
 import '../../helper/sharedprefhelper.dart';
 import '../../helper/showDialogs.dart';
 
@@ -25,9 +26,15 @@ class MPINVerificationController extends GetxController {
   }
 
   static Future mpin(Username, Password, BuildContext context) async {
+
+    print(Username);
+    print(Password);
+    print("gjjghjghjghjghj");
+
+
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
-        'POST', Uri.parse('http://202.164.150.222:8000/customer_api/confirm/mpin/'));
+        'POST', Uri.parse(Config().BASE_URL+'/customer_api/confirm/mpin/'));
     request.body = json.encode({"username": '$Username', "mpin": '$Password'});
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -231,8 +238,9 @@ class MPINVerification extends GetView<MPINVerificationController> {
 
                   const SizedBox(height: 30),
                   ElevatedButton(
-                      onPressed: () {
-                        controller.checkUserInputs(text,context);
+                      onPressed: () async {
+                        String username = await SharedPreferencesHelper.getAgent_mobile_number();
+                        controller.checkUserInputs(username,context);
                       },
                       child: const Text("Submit"))
                 ],

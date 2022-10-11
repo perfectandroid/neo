@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:neo/Screens/Login/otp_page.dart';
 import 'package:neo/constants.dart';
 
+import '../../helper/config.dart';
 import '../../helper/sharedprefhelper.dart';
 
 class LoginController extends GetxController {
@@ -23,7 +24,7 @@ class LoginController extends GetxController {
 
   static Future login(Username, Password,BuildContext context ) async {
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request('POST', Uri.parse('http://202.164.150.222:8000/customer_api/login/'));
+    var request = http.Request('POST', Uri.parse(Config().BASE_URL+'/customer_api/login/'));
     request.body = json.encode({"username": "$Username", "password": '$Password'});
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
