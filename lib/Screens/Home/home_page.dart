@@ -8,7 +8,7 @@ import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../Status/pendinglist.dart';
+import '../Status/pendinglist2.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key? key, this.title}) : super(key: key);
   final String? title;
@@ -519,7 +519,7 @@ class _HomePageState extends State<HomePage> {
          context,
          MaterialPageRoute(
            fullscreenDialog: true,
-           builder: (BuildContext context) => PendingScreen(
+           builder: (BuildContext context) => MyApp(
              //  liste: album,
            ),
          ),
