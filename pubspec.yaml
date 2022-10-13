@@ -46,6 +46,9 @@ dependencies:
   internet_connection_checker: ^0.0.1+4
   connectivity: ^0.4.6+2
   fluttertoast: ^8.0.9
+  progress_dialog: ^1.2.4
+  loading_progress: ^1.0.2
+  overlay_progress_indicator: ^0.0.2
 
 
 dev_dependencies:

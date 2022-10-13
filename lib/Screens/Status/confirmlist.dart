@@ -4,17 +4,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loading_progress/loading_progress.dart';
 import 'package:neo/helper/sharedprefhelper.dart';
 import 'package:neo/helper/showDialogs.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:overlay_progress_indicator/overlay_progress_indicator.dart';
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
 import '../../helper/networkutitlity.dart';
 import '../../helper/sizeconfig.dart';
 import '../SplashScreen/splash_screen.dart';
 import 'dart:async';
+import 'package:progress_dialog/progress_dialog.dart';
 
+// ProgressDialog progressDialog ;
 class ConfirmScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -84,6 +88,8 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                },
              )
          ),
+
+
 
           Align(
               alignment: Alignment.bottomCenter,
@@ -467,6 +473,8 @@ class _ConfirmScreen extends State<ConfirmScreen>{
   void getConfirmList(context) async {
     try {
 
+      ShowDialogs().showProgressDialog(context,"Loading....",true);
+
       String token = await SharedPreferencesHelper.getAgent_token();
       var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
       var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/seller_api/order_list_verified/'));
@@ -481,20 +489,27 @@ class _ConfirmScreen extends State<ConfirmScreen>{
       final errors = status['errors'] as String;
 
       if(statuscode==true){
+        await Future.delayed(const Duration(seconds: 5));
+        ShowDialogs().showProgressDialog(context,"Loading....",false);
         var items = json.decode(res.toString())['data'];
         print(items);
         setState(() {
+          // showProgress(context,"message",false);
+          //progressDialog.hide();
           _isChecked = List<bool>.filled(items.length, false);
           confirmList = items;
+
         });
 
       }else{
+        ShowDialogs().showProgressDialog(context,"Loading....",false);
         setState(() {
           confirmList = [];
         });
         showFaliureAlertDialog(context, errors);
       }
     }catch(e) {
+      ShowDialogs().showProgressDialog(context,"Loading....",false);
       ShowDialogs().showAlertDialog(context, e.toString());
     }
   }
@@ -646,4 +661,24 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     },
   );
 }
+
+// showProgress(BuildContext context, String message, bool isDismissible) async {
+//   progressDialog = new ProgressDialog(context,
+//       type: ProgressDialogType.Normal, isDismissible: isDismissible);
+//   progressDialog.style(
+//       message: message,
+//       borderRadius: 10.0,
+//       backgroundColor: ColorUtility().colorAppbar,
+//       progressWidget: Container(
+//           padding: EdgeInsets.all(8.0),
+//           child: CircularProgressIndicator(
+//             backgroundColor: Colors.white,
+//           )),
+//       elevation: 10.0,
+//       insetAnimCurve: Curves.easeInOut,
+//       messageTextStyle: TextStyle(
+//           color: Colors.white, fontSize: 19.0, fontWeight: FontWeight.w600));
+//   await progressDialog.show();
+// }
+
 
