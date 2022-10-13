@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:neo/constants.dart';
 
+import '../../helper/config.dart';
+
 class MPINController extends GetxController {
 
   var isLoading = false.obs;
@@ -22,7 +24,7 @@ class MPINController extends GetxController {
   static Future mpin(/*Username,*/ Password) async {
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
-        'POST', Uri.parse('http://202.164.150.222:8000/customer_api/login/'));
+        'POST', Uri.parse(Config().BASE_URL+'/customer_api/login/'));
     request.body = json.encode({/*"username": "$Username",*/ "password": '$Password'});
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

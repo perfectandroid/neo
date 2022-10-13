@@ -7,6 +7,8 @@ import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/mpin_set_page.dart';
 import 'package:neo/constants.dart';
 
+import '../../helper/config.dart';
+
 class OTPController extends GetxController {
 
   var isLoading = false.obs;
@@ -23,7 +25,7 @@ class OTPController extends GetxController {
   static Future otp(Username, Password, BuildContext context) async {
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
-        'POST', Uri.parse('http://202.164.150.222:8000/customer_api/verify_otp/'));
+        'POST', Uri.parse(Config().BASE_URL+'/customer_api/verify_otp/'));
     request.body = json.encode({"username": '$Username', "otp": '$Password'});
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

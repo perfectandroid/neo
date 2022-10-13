@@ -7,6 +7,7 @@ import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/mpin_verification_page.dart';
 import 'package:neo/constants.dart';
 
+import '../../helper/config.dart';
 import '../../helper/sharedprefhelper.dart';
 import '../../helper/showDialogs.dart';
 
@@ -26,7 +27,7 @@ class MPINSetController extends GetxController {
   static Future mpin(Username, Password, BuildContext context) async {
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
-        'POST', Uri.parse('http://202.164.150.222:8000/customer_api/mpin/'));
+        'POST', Uri.parse(Config().BASE_URL+'/customer_api/mpin/'));
     request.body = json.encode({"username": '$Username', "mpin": '$Password'});
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
