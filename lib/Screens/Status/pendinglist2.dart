@@ -26,7 +26,7 @@ class GetUsers {
   int id;
   String status;
   String payment;
-  String tot;
+  double tot;
 
   GetUsers({
     required this.id,
@@ -40,7 +40,7 @@ class GetUsers {
         id: json['id'],
         status: json['status'],
         payment: json['payment_method'],
-        tot: json['payment_method'],
+        tot: json['total_amount'],
         //name: json['name'],
         //email: json['email'],
         //phoneNumber: json['phone']
@@ -133,7 +133,7 @@ class CustomJSONListView extends State {
                         Container(
                           width: 50,
                           height: 50,
-                          child: Image(image: AssetImage('assets/images/time.png')),
+                          child: Image(image: AssetImage('images/time.png')),
                          /* child: Image(
 
                               Asse("assets/images/time.png",
