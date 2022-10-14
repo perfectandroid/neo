@@ -5,6 +5,7 @@ import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
 import 'package:neo/Screens/Status/confirmlist.dart';
+import 'package:neo/Screens/Status/packedlist.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -533,20 +534,19 @@ class _HomePageState extends State<HomePage> {
          MaterialPageRoute(
            fullscreenDialog: true,
            builder: (BuildContext context) => ConfirmScreen(
-             //  liste: album,
            ),
          ),
        );
      }
    else if(album.title=="Packed")
    {
-     Fluttertoast.showToast(
-       msg: "Packed",
-       textColor: Colors.white,
-       toastLength: Toast.LENGTH_SHORT,
-       timeInSecForIosWeb: 1,
-       gravity: ToastGravity.BOTTOM,
-       backgroundColor: Colors.indigo,
+     Navigator.push(
+       context,
+       MaterialPageRoute(
+         fullscreenDialog: true,
+         builder: (BuildContext context) => PackedScreen(
+         ),
+       ),
      );
    }
    else if(album.title=="Dispatch")

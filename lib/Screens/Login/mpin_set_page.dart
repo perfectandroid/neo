@@ -40,7 +40,7 @@ class MPINSetController extends GetxController {
     print(statuscode);
     if(statuscode==true){
       print(statuscode);
-      print(status['data']['id']);
+     // print(status['data']['id']);
       showSuccessAlertDialog(context, Username,status);
     }else{
       showFaliureAlertDialog(context, errors);
