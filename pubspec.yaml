@@ -47,6 +47,11 @@ dependencies:
   connectivity: ^0.4.6+2
   fluttertoast: ^8.0.9
   faker: ^1.2.1
+  progress_dialog: ^1.2.4
+  loading_progress: ^1.0.2
+  overlay_progress_indicator: ^0.0.2
+  flutter_svg: ^0.22.0
+
 
 
 dev_dependencies:

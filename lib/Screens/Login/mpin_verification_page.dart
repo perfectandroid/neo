@@ -46,7 +46,7 @@ class MPINVerificationController extends GetxController {
     print(Username);
     print(statuscode);
     if(statuscode==true){
-      print("1234568");
+      print("1234568eee");
       var items = status['data']["name"];
       print(items);
      // await SharedPreferencesHelper.setId(items[0]['id']?? (throw ArgumentError("id is required")));

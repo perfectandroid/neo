@@ -286,6 +286,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  flutter_svg:
+    dependency: "direct main"
+    description:
+      name: flutter_svg
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.22.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -408,6 +415,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  loading_progress:
+    dependency: "direct main"
+    description:
+      name: loading_progress
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   logging:
     dependency: transitive
     description:
@@ -450,6 +464,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.0"
+  overlay_progress_indicator:
+    dependency: "direct main"
+    description:
+      name: overlay_progress_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   package_config:
     dependency: transitive
     description:
@@ -464,6 +485,21 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.2"
+    version: "1.8.1"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.1+1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   path_provider:
     dependency: transitive
     description:
@@ -555,6 +591,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  progress_dialog:
+    dependency: "direct main"
+    description:
+      name: progress_dialog
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.4"
   pub_semver:
     dependency: transitive
     description:

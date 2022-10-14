@@ -3,66 +3,50 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:loading_progress/loading_progress.dart';
-import 'package:neo/helper/sharedprefhelper.dart';
-import 'package:neo/helper/showDialogs.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
-import 'package:overlay_progress_indicator/overlay_progress_indicator.dart';
+import 'package:get/get.dart';
+
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
 import '../../helper/networkutitlity.dart';
-import '../../helper/sizeconfig.dart';
+import '../../helper/sharedprefhelper.dart';
+import '../../helper/showDialogs.dart';
 import '../Home/home_page.dart';
 import '../SplashScreen/splash_screen.dart';
-import 'dart:async';
-import 'package:progress_dialog/progress_dialog.dart';
+import 'package:http/http.dart' as http;
 
-// ProgressDialog progressDialog ;
-class ConfirmScreen extends StatefulWidget{
+class DispatchedScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return _ConfirmScreen();
+    return _DispatchedScreen();
   }
 
 }
 
-
-class _ConfirmScreen extends State<ConfirmScreen>{
+class _DispatchedScreen extends State<DispatchedScreen>{
   @override
-  var _token="";
-  late var h ;
-  List confirmList = [];
+  List dispatchedList = [];
   late List<bool> _isChecked;
 
   initState(){
-
     checkInterNet(this.context);
-
     super.initState();
-
-
   }
 
-  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.07,
-        automaticallyImplyLeading: true,
-        backgroundColor: ColorUtility().colorAppbar,
-        title: Text("Confirm List"),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context,true);
-          },
-          icon: Icon(Icons.arrow_back),
-        ),
+        appBar: AppBar(
+          toolbarHeight: MediaQuery.of(context).size.height * 0.07,
+          automaticallyImplyLeading: true,
+          backgroundColor: ColorUtility().colorAppbar,
+          title: Text("Dispatched List"),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context,true);
+            },
+            icon: Icon(Icons.arrow_back),
+          ),
 
-      ),
+        ),
 
 
         body: getBody()
@@ -71,113 +55,60 @@ class _ConfirmScreen extends State<ConfirmScreen>{
     );
   }
 
-
   Widget getBody(){
     return Stack(
         children: <Widget>[
 
-         new Container(
-             height: MediaQuery.of(context).size.height * 0.9,
-             width: double.infinity,
-             padding: EdgeInsets.fromLTRB(0,0,0,MediaQuery.of(context).size.height * 0.06),
-             child :ListView.builder(
-              // padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.04,0,MediaQuery.of(context).size.height * 0.04),
-               shrinkWrap: true,
-               itemCount: confirmList.length,
-               itemBuilder: (context,index){
-                 return getCard(confirmList,index);
-               },
-             )
-         ),
+          new Container(
+              height: MediaQuery.of(context).size.height * 0.9,
+              width: double.infinity,
+              padding: EdgeInsets.fromLTRB(0,0,0,MediaQuery.of(context).size.height * 0.06),
+              child :ListView.builder(
+                // padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.04,0,MediaQuery.of(context).size.height * 0.04),
+                shrinkWrap: true,
+                itemCount: dispatchedList.length,
+                itemBuilder: (context,index){
+                  return getCard(dispatchedList,index);
+                },
+              )
+          ),
 
           Align(
-              alignment: Alignment.bottomCenter,
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
+            alignment: Alignment.bottomCenter,
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
 
-                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.06,
-                        width: MediaQuery.of(context).size.width / 2.0091, // <-- match_parent
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                              primary: Colors.white,fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
-                              backgroundColor: ColorUtility().colorAppbar,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.zero))
-                          ),
-                          onPressed: () {
-                            print('List :  $_isChecked');
-                            for (var i = 0; i < confirmList.length; i++){
-                              if(_isChecked[i]){
-                                print("Packed List 96");
-                                print(confirmList[i]['id'].toString());
-                              }
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: MediaQuery.of(context).size.width, // <-- match_parent
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                            primary: Colors.white,fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+                            backgroundColor: ColorUtility().colorAppbar,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.zero))
+                        ),
+                        onPressed: () {
+                          print('List :  $_isChecked');
+                          for (var i = 0; i < dispatchedList.length; i++){
+                            if(_isChecked[i]){
+                              print("Packed List 96");
+                              print(dispatchedList[i]['id'].toString());
                             }
+                          }
 
-                          },
-                          child: Text('DELETE'),
-                        )
-                    ),
-                    SizedBox(width:MediaQuery.of(context).size.width /250),
-                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.06,
-                        width: MediaQuery.of(context).size.width /2.0091, // <-- match_paren
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                              primary: Colors.white,fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
-                              backgroundColor: ColorUtility().colorAppbar,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.zero))
-                          ),
-                          onPressed: () {
-                            print('List :  $_isChecked');
-                            for (var i = 0; i < confirmList.length; i++){
-                              if(_isChecked[i]){
-                                print("Packed List 96");
-                                print(confirmList[i]['id'].toString());
-                              }
-                            }
+                        },
+                        child: Text('DELETE'),
+                      )
+                  ),
 
-                          },
-                          child: Text('VERIFY'),
-                        )
-                    )
-                  ]
-              ),
+                ]
+            ),
           )
 
 
 
-
-
-          // Align(
-          //     alignment: Alignment.bottomCenter,
-          //     child: SizedBox(
-          //         height: MediaQuery.of(context).size.height * 0.06,
-          //         width: double.infinity, // <-- match_parent
-          //         child: TextButton(
-          //           style: TextButton.styleFrom(
-          //               primary: Colors.white,fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
-          //               backgroundColor: ColorUtility().colorAppbar,
-          //               shape: const RoundedRectangleBorder(
-          //                   borderRadius: BorderRadius.all(Radius.zero))
-          //           ),
-          //           onPressed: () {
-          //             print('List :  $_isChecked');
-          //             for (var i = 0; i < confirmList.length; i++){
-          //               if(_isChecked[i]){
-          //                 print("Packed List 96");
-          //                 print(confirmList[i]['id'].toString());
-          //               }
-          //             }
-          //
-          //
-          //           },
-          //           child: Text('VERIFY'),
-          //         )
-          //     )
-          // )
 
         ]
     );
@@ -185,68 +116,31 @@ class _ConfirmScreen extends State<ConfirmScreen>{
 
   }
 
-  // Widget getBody(){
-  //   return Stack(
-  //       children: <Widget>[
-  //         ListView.builder(
-  //           shrinkWrap: true,
-  //           itemCount: confirmList.length,
-  //           itemBuilder: (context,index){
-  //             return getCard(confirmList[index]);
-  //           },
-  //         ),
-  //
-  //       Align(
-  //         alignment: Alignment.bottomCenter,
-  //         child: SizedBox(
-  //         height: MediaQuery.of(context).size.height * 0.06,
-  //         width: double.infinity, // <-- match_parent
-  //           child: TextButton(
-  //             style: TextButton.styleFrom(
-  //                 primary: Colors.white,fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
-  //                 backgroundColor: Colors.green,
-  //                 shape: const RoundedRectangleBorder(
-  //                 borderRadius: BorderRadius.all(Radius.zero)),
-  //             ),
-  //             onPressed: () {
-  //
-  //             },
-  //             child: Text('Verify'),
-  //           )
-  //       )
-  //       )
-  //
-  //       ]
-  //   );
-  //
-  //
-  // }
-
   Widget getCard(item,index){
 
     print("147893");
     print(item);
     return Card(
-         // margin: EdgeInsets.zero,
-          margin: EdgeInsets.all(2.0),
-          color: ColorUtility().colorLightGrey,
-          shape: RoundedRectangleBorder(
+      // margin: EdgeInsets.zero,
+        margin: EdgeInsets.all(2.0),
+        color: ColorUtility().colorLightGrey,
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(2.0),),
-          elevation: 5,
+        elevation: 5,
 
-          child: Padding(
+        child: Padding(
             padding: const EdgeInsets.all(5.0),
-              child: Column(
+            child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Center(
+                children: <Widget>[
+                  Center(
                       child: Container(
                           child: Padding(
                               padding: const EdgeInsets.fromLTRB(5,0,0,0),
                               child: Row(
+                                  mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-
 
                                     Center(
                                       child: Container(
@@ -269,7 +163,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.8,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['customer_name'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                        child:Text(""+item[index]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05,letterSpacing: .1,color: ColorUtility().colorAppbar),),
 
                                                                       )
                                                                   ),
@@ -304,7 +198,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                         width: MediaQuery.of(context).size.width * 0.6,
                                                                         alignment: Alignment.centerLeft,
                                                                         child:Text(""+item[index]['fk_shipping_address'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-                                                                       //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
                                                                   ),
@@ -374,7 +268,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                         alignment: Alignment.centerLeft,
                                                                         decoration: BoxDecoration(
                                                                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                                                                          color: ColorUtility().colorVerified,
+                                                                          color: ColorUtility().colorDispatched,
                                                                         ),
                                                                         child:Text(""+item[index]['delivery_status'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),),
                                                                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
@@ -514,7 +408,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                           padding: const EdgeInsets.fromLTRB(0,10,10,10),
                                           width: MediaQuery.of(context).size.width * 0.08,
                                           height: MediaQuery.of(context).size.width * 0.15,
-                                          alignment: Alignment.center,
+                                          alignment: Alignment.centerRight,
                                           child: Transform.scale(
                                               scale: 1,
                                               child: Checkbox(
@@ -550,40 +444,40 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                               )
                           )
                       )
-                    ),
+                  ),
 
-                    // Center(
-                    //     child: Container(
-                    //         child: Padding(
-                    //             padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                    //             child: Column(
-                    //                 crossAxisAlignment: CrossAxisAlignment.start,
-                    //                 children: <Widget>[
-                    //                   Center(
-                    //                     child: Container(
-                    //                         padding: const EdgeInsets.all(0.0),
-                    //                         width: MediaQuery.of(context).size.width,
-                    //                         child: Column(
-                    //                             crossAxisAlignment: CrossAxisAlignment.end,
-                    //                             children: <Widget>[
-                    //                               Text("Ordered On : "+item['created_at'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.02,letterSpacing: .1,color: ColorUtility().colorBlack),),
-                    //                               SizedBox(height: 5,),
-                    //
-                    //
-                    //                             ]
-                    //                         )
-                    //                     ),
-                    //                   )
-                    //
-                    //
-                    //                 ]
-                    //             )
-                    //         )
-                    //     )
-                    // )
-                  ]
-              )
-          )
+                  // Center(
+                  //     child: Container(
+                  //         child: Padding(
+                  //             padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                  //             child: Column(
+                  //                 crossAxisAlignment: CrossAxisAlignment.start,
+                  //                 children: <Widget>[
+                  //                   Center(
+                  //                     child: Container(
+                  //                         padding: const EdgeInsets.all(0.0),
+                  //                         width: MediaQuery.of(context).size.width,
+                  //                         child: Column(
+                  //                             crossAxisAlignment: CrossAxisAlignment.end,
+                  //                             children: <Widget>[
+                  //                               Text("Ordered On : "+item['created_at'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.02,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                  //                               SizedBox(height: 5,),
+                  //
+                  //
+                  //                             ]
+                  //                         )
+                  //                     ),
+                  //                   )
+                  //
+                  //
+                  //                 ]
+                  //             )
+                  //         )
+                  //     )
+                  // )
+                ]
+            )
+        )
 
 
 
@@ -598,23 +492,21 @@ class _ConfirmScreen extends State<ConfirmScreen>{
     print("122   :  $isOnline");
 
     if(isOnline){
-      getConfirmList(context);
+      getDispatchedList(context);
     }
     else{
-
       checkOnlineAlert(context);
     }
-
   }
 
-  void getConfirmList(context) async {
+  void getDispatchedList(context) async {
     try {
 
       ShowDialogs().showProgressDialog(context,"Loading....",true);
 
       String token = await SharedPreferencesHelper.getAgent_token();
       var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
-      var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/seller_api/order_list_verified/'));
+      var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/seller_api/order_list_dispatched/'));
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
       final res = await response.stream.bytesToString();
@@ -630,15 +522,12 @@ class _ConfirmScreen extends State<ConfirmScreen>{
         ShowDialogs().showProgressDialog(context,"Loading....",false);
         var items = json.decode(res.toString())['data'];
         print(items);
-
         if (items.length == 0) {
           print('List is empty11.');
           print("4542  :$errors");
           showFaliureAlertDialog(context, errors.toString());
           setState(() {
-            // showProgress(context,"message",false);
-            //progressDialog.hide();
-            confirmList = [];
+            dispatchedList = [];
           });
         } else {
           print("4541");
@@ -646,18 +535,17 @@ class _ConfirmScreen extends State<ConfirmScreen>{
             // showProgress(context,"message",false);
             //progressDialog.hide();
             _isChecked = List<bool>.filled(items.length, false);
-            confirmList = items;
+            dispatchedList = items;
 
           });
         }
 
 
 
-
       }else{
         ShowDialogs().showProgressDialog(context,"Loading....",false);
         setState(() {
-          confirmList = [];
+          dispatchedList = [];
         });
         showFaliureAlertDialog(context, errors.toString());
       }
@@ -667,12 +555,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
     }
   }
 
-
 }
-
-
-
-
 
 void checkOnlineAlert(context) {
   print('openCustomDialog  174   :');
@@ -797,13 +680,14 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
   Widget okButton = TextButton(
     child: Text("OK"),
     onPressed: () {
-     // Navigator.pop(context,true);
-      //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
+      //Navigator.pop(context,true);
+      //Navigator.pop(context);
       Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+         // Navigator.push(context, MaterialPageRoute(builder: (_) => const HomePage()));
     },
   );
   AlertDialog alert = AlertDialog(
-    title: Text("LOGIN FAILURE" ),
+    title: Text("" ),
     content: Text(errorMsg),
     actions: [
       okButton,
@@ -817,24 +701,3 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     },
   );
 }
-
-// showProgress(BuildContext context, String message, bool isDismissible) async {
-//   progressDialog = new ProgressDialog(context,
-//       type: ProgressDialogType.Normal, isDismissible: isDismissible);
-//   progressDialog.style(
-//       message: message,
-//       borderRadius: 10.0,
-//       backgroundColor: ColorUtility().colorAppbar,
-//       progressWidget: Container(
-//           padding: EdgeInsets.all(8.0),
-//           child: CircularProgressIndicator(
-//             backgroundColor: Colors.white,
-//           )),
-//       elevation: 10.0,
-//       insetAnimCurve: Curves.easeInOut,
-//       messageTextStyle: TextStyle(
-//           color: Colors.white, fontSize: 19.0, fontWeight: FontWeight.w600));
-//   await progressDialog.show();
-// }
-
-

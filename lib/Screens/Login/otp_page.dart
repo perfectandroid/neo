@@ -18,8 +18,13 @@ class OTPController extends GetxController {
   void checkUserInputs(String Username,BuildContext context) async {
     print(passWordController.text);
     isLoading.value = true;
-    var users = await otp(Username, passWordController.text, context);
-    isLoading.value = false;
+    if(passWordController.text.length == 0){
+      showFaliureAlertDialog1(context, "Please Enter OTP");
+    }else{
+      var users = await otp(Username, passWordController.text, context);
+      isLoading.value = false;
+    }
+
   }
 
   static Future otp(Username, Password, BuildContext context) async {
@@ -44,7 +49,7 @@ class OTPController extends GetxController {
     }else{
       print(statuscode);
       //showSuccessAlertDialog(context, Username);
-      showFaliureAlertDialog(context, errors);
+      showFaliureAlertDialog1(context, errors);
     }
 
   }
@@ -95,6 +100,30 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     ],
   );
   showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+showFaliureAlertDialog1(BuildContext context, String errorMsg) {
+  Widget okButton = TextButton(
+    child: Text("OK"),
+    onPressed: () {
+    //  Navigator.push(context, MaterialPageRoute(builder: (_) => DrawerActivity()));
+      Navigator.pop(context);
+    },
+  );
+  AlertDialog alert = AlertDialog(
+    title: Text("OTP VERIFICATION FAILURE" ),
+    content: Text(errorMsg),
+    actions: [
+      okButton,
+    ],
+  );
+  showDialog(
+    barrierDismissible: false,
     context: context,
     builder: (BuildContext context) {
       return alert;
