@@ -4,6 +4,7 @@ import 'package:neo/Model/HomeList.dart';
 import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
+import 'package:neo/Screens/Tabs/tab.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -519,7 +520,7 @@ class _HomePageState extends State<HomePage> {
          context,
          MaterialPageRoute(
            fullscreenDialog: true,
-           builder: (BuildContext context) => MyApp(
+           builder: (BuildContext context) => PendingTab(
              //  liste: album,
            ),
          ),
