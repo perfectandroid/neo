@@ -269,7 +269,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.8,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                        child:Text(""+item[index]['customer_name'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05,letterSpacing: .1,color: ColorUtility().colorAppbar),),
 
                                                                       )
                                                                   ),
@@ -329,6 +329,41 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.2,
                                                                         alignment: Alignment.centerLeft,
+                                                                        child:Text("Order ID ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+
+                                                                      )
+                                                                  ),
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.6,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text(""+item[index]['order_id'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+
+                                                                      )
+                                                                  ),
+
+                                                                ]
+                                                            )
+                                                        )
+
+                                                    )
+                                                ),
+
+                                                Center(
+                                                    child: Container(
+                                                        child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                            child: Row(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: <Widget>[
+
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        alignment: Alignment.centerLeft,
                                                                         child:Text("Status ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
 
                                                                       )
@@ -342,6 +377,41 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                           color: ColorUtility().colorVerified,
                                                                         ),
                                                                         child:Text(""+item[index]['delivery_status'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),),
+                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+
+                                                                      )
+                                                                  ),
+
+                                                                ]
+                                                            )
+                                                        )
+
+                                                    )
+                                                ),
+
+                                                Center(
+                                                    child: Container(
+                                                        child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                            child: Row(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: <Widget>[
+
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text("Order Count ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+
+                                                                      )
+                                                                  ),
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.6,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text(""+item[index]['quantity'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
@@ -444,7 +514,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                           padding: const EdgeInsets.fromLTRB(0,10,10,10),
                                           width: MediaQuery.of(context).size.width * 0.08,
                                           height: MediaQuery.of(context).size.width * 0.15,
-                                          alignment: Alignment.centerRight,
+                                          alignment: Alignment.center,
                                           child: Transform.scale(
                                               scale: 1,
                                               child: Checkbox(

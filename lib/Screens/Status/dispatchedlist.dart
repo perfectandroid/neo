@@ -138,9 +138,9 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                           child: Padding(
                               padding: const EdgeInsets.fromLTRB(5,0,0,0),
                               child: Row(
+                                  mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-
 
                                     Center(
                                       child: Container(
@@ -223,6 +223,41 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.2,
                                                                         alignment: Alignment.centerLeft,
+                                                                        child:Text("Order ID ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+
+                                                                      )
+                                                                  ),
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.6,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text(""+item[index]['order_id'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+
+                                                                      )
+                                                                  ),
+
+                                                                ]
+                                                            )
+                                                        )
+
+                                                    )
+                                                ),
+
+                                                Center(
+                                                    child: Container(
+                                                        child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                            child: Row(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: <Widget>[
+
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        alignment: Alignment.centerLeft,
                                                                         child:Text("Status ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
 
                                                                       )
@@ -233,9 +268,44 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                                                                         alignment: Alignment.centerLeft,
                                                                         decoration: BoxDecoration(
                                                                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                                                                          color: ColorUtility().colorVerified,
+                                                                          color: ColorUtility().colorDispatched,
                                                                         ),
                                                                         child:Text(""+item[index]['delivery_status'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),),
+                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+
+                                                                      )
+                                                                  ),
+
+                                                                ]
+                                                            )
+                                                        )
+
+                                                    )
+                                                ),
+
+                                                Center(
+                                                    child: Container(
+                                                        child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                            child: Row(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: <Widget>[
+
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text("Order Count ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+
+                                                                      )
+                                                                  ),
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.6,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text(""+item[index]['quantity'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
