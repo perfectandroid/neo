@@ -9,6 +9,7 @@ import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
 import '../../helper/networkutitlity.dart';
 import '../../helper/showDialogs.dart';
+import '../Home/home_page.dart';
 import '../SplashScreen/splash_screen.dart';
 import 'package:http/http.dart' as http;
 
@@ -558,20 +559,36 @@ class _PackedScreen extends State<PackedScreen>{
         ShowDialogs().showProgressDialog(context,"Loading....",false);
         var items = json.decode(res.toString())['data'];
         print(items);
-        setState(() {
-          // showProgress(context,"message",false);
-          //progressDialog.hide();
-          _isChecked = List<bool>.filled(items.length, false);
-          packedList = items;
 
-        });
+        if (items.length == 0) {
+          print('List is empty11.');
+          print("4542  :$errors");
+          print("4542  :$errors");
+          showFaliureAlertDialog(context, errors.toString());
+          setState(() {
+            // showProgress(context,"message",false);
+            //progressDialog.hide();
+            packedList = [];
+          });
+        }else{
+          setState(() {
+            // showProgress(context,"message",false);
+            //progressDialog.hide();
+            _isChecked = List<bool>.filled(items.length, false);
+            packedList = items;
+
+          });
+        }
+
+
+
 
       }else{
         ShowDialogs().showProgressDialog(context,"Loading....",false);
         setState(() {
           packedList = [];
         });
-        showFaliureAlertDialog(context, errors);
+        showFaliureAlertDialog(context, errors.toString());
       }
     }catch(e) {
       ShowDialogs().showProgressDialog(context,"Loading....",false);
@@ -585,16 +602,19 @@ class _PackedScreen extends State<PackedScreen>{
       child: Text("OK"),
       onPressed: () {
         //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
+      //  Navigator.pop(context,true);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
       },
     );
     AlertDialog alert = AlertDialog(
-      title: Text("LOGIN FAILURE" ),
+      title: Text("" ),
       content: Text(errorMsg),
       actions: [
         okButton,
       ],
     );
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return alert;

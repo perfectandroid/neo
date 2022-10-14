@@ -5,6 +5,7 @@ import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
 import 'package:neo/Screens/Status/confirmlist.dart';
+import 'package:neo/Screens/Status/dispatchedlist.dart';
 import 'package:neo/Screens/Status/packedlist.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
@@ -551,13 +552,13 @@ class _HomePageState extends State<HomePage> {
    }
    else if(album.title=="Dispatch")
    {
-     Fluttertoast.showToast(
-       msg: "Dispatch",
-       textColor: Colors.white,
-       toastLength: Toast.LENGTH_SHORT,
-       timeInSecForIosWeb: 1,
-       gravity: ToastGravity.BOTTOM,
-       backgroundColor: Colors.indigo,
+     Navigator.push(
+       context,
+       MaterialPageRoute(
+         fullscreenDialog: true,
+         builder: (BuildContext context) => DispatchedScreen(
+         ),
+       ),
      );
    }
    else if(album.title=="Delivered")
