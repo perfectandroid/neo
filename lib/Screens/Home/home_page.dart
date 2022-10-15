@@ -6,9 +6,6 @@ import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
 import 'package:neo/Screens/Status/confirmlist.dart';
-import 'package:neo/Screens/Status/deliverylist.dart';
-import 'package:neo/Screens/Status/dispatchedlist.dart';
-import 'package:neo/Screens/Status/packedlist.dart';
 import 'package:neo/Screens/Tabs/tab.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
@@ -552,41 +549,46 @@ class _HomePageState extends State<HomePage> {
            ),
          ),
        );
+       /*Fluttertoast.showToast(
+         msg: "Confirmed",
+         textColor: Colors.white,
+         toastLength: Toast.LENGTH_SHORT,
+         timeInSecForIosWeb: 1,
+         gravity: ToastGravity.BOTTOM,
+         backgroundColor: Colors.indigo,
+       );*/
      }
    else if(album.title=="Packed")
    {
-     Navigator.push(
-       context,
-       MaterialPageRoute(
-         fullscreenDialog: true,
-         builder: (BuildContext context) => PackedScreen(
-           //  liste: album,
-         ),
-       ),
+     Fluttertoast.showToast(
+       msg: "Packed",
+       textColor: Colors.white,
+       toastLength: Toast.LENGTH_SHORT,
+       timeInSecForIosWeb: 1,
+       gravity: ToastGravity.BOTTOM,
+       backgroundColor: Colors.indigo,
      );
    }
    else if(album.title=="Dispatch")
    {
-     Navigator.push(
-       context,
-       MaterialPageRoute(
-         fullscreenDialog: true,
-         builder: (BuildContext context) => DispatchedScreen(
-           //  liste: album,
-         ),
-       ),
+     Fluttertoast.showToast(
+       msg: "Dispatch",
+       textColor: Colors.white,
+       toastLength: Toast.LENGTH_SHORT,
+       timeInSecForIosWeb: 1,
+       gravity: ToastGravity.BOTTOM,
+       backgroundColor: Colors.indigo,
      );
    }
    else if(album.title=="Delivered")
    {
-     Navigator.push(
-       context,
-       MaterialPageRoute(
-         fullscreenDialog: true,
-         builder: (BuildContext context) => DeliveryScreen(
-           //  liste: album,
-         ),
-       ),
+     Fluttertoast.showToast(
+       msg: "Delivered",
+       textColor: Colors.white,
+       toastLength: Toast.LENGTH_SHORT,
+       timeInSecForIosWeb: 1,
+       gravity: ToastGravity.BOTTOM,
+       backgroundColor: Colors.indigo,
      );
    }
   }

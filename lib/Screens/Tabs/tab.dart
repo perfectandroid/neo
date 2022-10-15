@@ -68,7 +68,7 @@ class TabPageState extends State<PendingTab> with SingleTickerProviderStateMixin
       appBar: AppBar(
         backgroundColor: Colors.blue,
         elevation: 0,
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
        // title: Text('Flutter Tab'),
         bottom: TabBar(
           labelColor: Colors.blue,
