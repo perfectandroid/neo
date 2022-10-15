@@ -160,11 +160,16 @@ void getReseller(context) async{
         print("USER"+Username);
 
         Future.delayed(Duration(seconds: 5), () async {
-          Navigator.push(
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => MPINVerification(text: Username,),
+          //     ));
+
+          Navigator.pushReplacement(
               context,
-              MaterialPageRoute(
-                builder: (context) => MPINVerification(text: Username,),
-              ));
+              new MaterialPageRoute(
+                  builder: (BuildContext context) => MPINVerification(text: Username,)));
         });
 
 

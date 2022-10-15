@@ -1,5 +1,6 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:neo/Model/HomeList.dart';
 import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
@@ -154,12 +155,22 @@ class _HomePageState extends State<HomePage> {
 */
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () {
+          print('Backbutton pressed (device or appbar button), do whatever you want.');
+
+          //trigger leaving and use own data
+          SystemNavigator.pop();
+          //we need to return a future
+          return Future.value(false);
+        },
+    child: Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: Column(
           children: <Widget>[
+
             ListView(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
@@ -509,7 +520,7 @@ class _HomePageState extends State<HomePage> {
         },
       ),
 
-    );
+    ));
 
   }
   goToDetailsPage(BuildContext context, PhotoItem album) {
@@ -601,6 +612,26 @@ class _HomePageState extends State<HomePage> {
     print("HOME  16811   :  $namess");
 
    // await SharedPreferencesHelper.logout();
+  }
+
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('Are you sure?'),
+        content: new Text('Do you want to exit an App'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('No'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: new Text('Yes'),
+          ),
+        ],
+      ),
+    )) ?? false;
   }
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo/Screens/Home/home_page.dart';
 import 'package:overlay_progress_indicator/overlay_progress_indicator.dart';
 
 import 'colorutility.dart';
@@ -107,8 +108,86 @@ class ShowDialogs {
       OverlayProgressIndicator.hide();
     }
 
+  }
+
+  void Warning(context, String heading, String message, HomePage homePage) {
+
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext cxt) {
+        return Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Material(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15)),
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Padding(
+                        padding:  EdgeInsets.all(15.0),
+                        child: Text(message, style: TextStyle(color: Colors.black,fontWeight: FontWeight.normal),),
+                      ),
 
 
+
+                    ]
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
+    // Widget okButton = FlatButton(
+    //   child: Text("OK"),
+    //   onPressed: () {
+    //     Navigator.push(context, MaterialPageRoute(builder: (context) => homePage,));
+    //   },
+    // );  // set up the AlertDialog
+    // AlertDialog alert = AlertDialog(
+    //   title: Text(""+heading),
+    //   content: Text(""+message),
+    //   actions: [
+    //     okButton,
+    //   ],
+    // );  // show the dialog
+    // showDialog(
+    //   barrierDismissible: false,
+    //   context: context,
+    //   builder: (BuildContext context) {
+    //     return alert;
+    //   },
+    // );
+
+    // Widget okButton = TextButton(
+    //   child: Text("OK"),
+    //   onPressed: () {
+    //     // Navigator.pop(context,true);
+    //     //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
+    //     Navigator.push(context, MaterialPageRoute(builder: (context) => homePage,));
+    //   },
+    // );
+    // AlertDialog alert = AlertDialog(
+    //   title: Text(heading),
+    //   content: Text(message),
+    //   actions: [
+    //     okButton,
+    //   ],
+    // );
+    // showDialog(
+    //   barrierDismissible: false,
+    //   context: context,
+    //   builder: (BuildContext context) {
+    //     return alert;
+    //   },
+    // );
 
   }
 

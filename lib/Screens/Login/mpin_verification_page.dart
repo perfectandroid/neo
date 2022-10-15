@@ -65,12 +65,16 @@ class MPINVerificationController extends GetxController {
 
         //SESSION
         await SharedPreferencesHelper.set_is_login(true);
-
-        Navigator.push(
+        Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (context) => DrawerActivity(),
-            ));
+            new MaterialPageRoute(
+                builder: (BuildContext context) => new DrawerActivity()));
+
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) => DrawerActivity(),
+        //     ));
       }catch(e) {
         ShowDialogs().showAlertDialog(context, e.toString());
       }
@@ -102,12 +106,16 @@ showSuccessAlertDialog(BuildContext context, String Username,status) {
 
         //SESSION
         await SharedPreferencesHelper.set_is_login(true);
-
-        Navigator.push(
+        Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (context) => DrawerActivity(),
-            ));
+            new MaterialPageRoute(
+                builder: (BuildContext context) => new DrawerActivity()));
+
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) => DrawerActivity(),
+        //     ));
       }catch(e) {
         ShowDialogs().showAlertDialog(context, e.toString());
       }
