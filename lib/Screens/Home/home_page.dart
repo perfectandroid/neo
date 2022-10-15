@@ -5,6 +5,7 @@ import 'package:neo/Model/HomeList.dart';
 import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
+import 'package:neo/Screens/Status/confirmlist.dart';
 import 'package:neo/Screens/Tabs/tab.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
@@ -539,14 +540,23 @@ class _HomePageState extends State<HomePage> {
      }
    else if(album.title=="Confirmed")
      {
-       Fluttertoast.showToast(
+       Navigator.push(
+         context,
+         MaterialPageRoute(
+           fullscreenDialog: true,
+           builder: (BuildContext context) => ConfirmScreen(
+             //  liste: album,
+           ),
+         ),
+       );
+       /*Fluttertoast.showToast(
          msg: "Confirmed",
          textColor: Colors.white,
          toastLength: Toast.LENGTH_SHORT,
          timeInSecForIosWeb: 1,
          gravity: ToastGravity.BOTTOM,
          backgroundColor: Colors.indigo,
-       );
+       );*/
      }
    else if(album.title=="Packed")
    {
