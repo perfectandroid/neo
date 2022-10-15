@@ -535,7 +535,7 @@ class _HomePageState extends State<HomePage> {
          context,
          MaterialPageRoute(
            fullscreenDialog: true,
-           builder: (BuildContext context) => MyApp(
+           builder: (BuildContext context) => PendingTab(
              //  liste: album,
            ),
          ),
