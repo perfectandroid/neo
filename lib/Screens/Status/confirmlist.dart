@@ -635,6 +635,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
           print('List is empty11.');
           print("4542  :$errors");
           showFaliureAlertDialog(context, errors.toString());
+         // ShowDialogs().Warning(context, "",errors.toString(),HomePage());
           setState(() {
             // showProgress(context,"message",false);
             //progressDialog.hide();
@@ -803,7 +804,7 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     },
   );
   AlertDialog alert = AlertDialog(
-    title: Text("LOGIN FAILURE" ),
+    title: Text("" ),
     content: Text(errorMsg),
     actions: [
       okButton,
