@@ -1,4 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo/Model/HomeList.dart';
@@ -268,6 +269,31 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             Container(
+              child:CarouselSlider(
+                  options: CarouselOptions(height:200,autoPlay: true),
+                  items: [
+                    MyImageView("assets/images/banner.jpg"),
+                    MyImageView("assets/images/banner.jpg"),
+                    MyImageView("assets/images/banner.jpg"),
+                    MyImageView("assets/images/banner.jpg"),
+                  ]
+
+               /* images: [
+
+                  AssetImage('assets/images/banner.jpg'),
+                  AssetImage('assets/images/banner.jpg'),
+                  AssetImage('assets/images/banner.jpg'),
+                  AssetImage('assets/images/banner.jpg'),
+
+                ],
+                //Slider Container properties
+                options: CarouselOptions(
+                  autoPlay: true,
+                ),*/
+
+              ),
+            ),
+           /* Container(
               height: 250,
 
               child: Carousel(
@@ -283,12 +309,12 @@ class _HomePageState extends State<HomePage> {
                 ],
 
                 autoplay: true,
-                dotColor: Colors.yellow,
-                dotBgColor: Colors.black,
-                dotSize: 5.0,
-                dotSpacing: 20.0,
+               // dotColor: Colors.yellow,
+             //   dotBgColor: Colors.black,
+               // dotSize: 5.0,
+             //   dotSpacing: 20.0,
               ),
-            ),
+            ),*/
            /* GridView.builder(
               itemCount: myImageAndCaption.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -327,21 +353,22 @@ class _HomePageState extends State<HomePage> {
                     child: Stack(
                       children: [
                         Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                        //     SizedBox.expand(
 
                                 Container(
-/*
-                                   width: 20.0,
-                                   height: 20.0,*/
-                                //  margin: const EdgeInsets.only(top: 55.0),
-                                  padding: const EdgeInsets.only(top: 85.0),
+                                  alignment: Alignment.center,
+                                  width: 55.0,
+                                  height: 90.0,
+                                  margin: const EdgeInsets.only(top: 10.0,left: 25.0,bottom: 10.0),
+                                  //padding: const EdgeInsets.only(top: 85.0),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
 
                                     // shape: BoxShape.circle,
                                     image: DecorationImage(
+                                      scale: 1.5,
                                       fit: BoxFit.cover,
                                       image: AssetImage(myImageAndCaption[i].image),
 
@@ -349,13 +376,11 @@ class _HomePageState extends State<HomePage> {
 
                                   ),
                                   child:Container(
-                                    padding: const EdgeInsets.only(top: 35.0),
+                                    padding: const EdgeInsets.only(top: 80.0),
                                     alignment: Alignment.bottomCenter,
                                     child: new Text(myImageAndCaption[i].title,
                                         style: new TextStyle(
                                           fontWeight: FontWeight.normal,
-
-
                                           fontSize: 10.0,
 
 
@@ -731,5 +756,25 @@ class _HomePageState extends State<HomePage> {
   }
 
 
+
+}
+
+class MyImageView extends StatelessWidget{
+
+  String imgPath;
+
+  MyImageView(this.imgPath);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+        margin: EdgeInsets.symmetric(horizontal: 5),
+        child: FittedBox(
+          fit: BoxFit.cover,
+          child: Image.asset(imgPath,),
+        )
+    );
+  }
 
 }
