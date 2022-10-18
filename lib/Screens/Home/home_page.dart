@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:neo/Model/HomeList.dart';
 import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
+import 'package:neo/Screens/Notification/NotificationList.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
 import 'package:neo/Screens/Status/confirmlist.dart';
 import 'package:neo/Screens/Status/deliverylist.dart';
@@ -159,6 +160,12 @@ class _HomePageState extends State<HomePage> {
 */
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
+    /*24 is for notification bar on Android*/
+    final double itemHeight = (size.height - kToolbarHeight - 54) / 2;
+    final double itemWidth = size.width / 2;
+
     return WillPopScope(
         onWillPop: () {
           print('Backbutton pressed (device or appbar button), do whatever you want.');
@@ -188,7 +195,9 @@ class _HomePageState extends State<HomePage> {
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
                     crossAxisCount: 5,
-                    childAspectRatio: 1 / 1.5,
+                    childAspectRatio: MediaQuery.of(context).size.width /
+                        (MediaQuery.of(context).size.height / 2),
+                    //childAspectRatio: 1 / 1.5,
                   ),
                   itemCount: liste.length,
                   itemBuilder: (context, index) {
@@ -210,6 +219,7 @@ class _HomePageState extends State<HomePage> {
               );*/
                   //    },
                       child: Container(
+                          height: 90.0,
                         /* width: 90.0,
               height: 90.0,*/
                         margin: const EdgeInsets.only(top: 3.0),
@@ -225,11 +235,11 @@ class _HomePageState extends State<HomePage> {
 
                         ),
                         child:Container(
-                          padding: const EdgeInsets.only(top: 10.0),
+                         // padding: const EdgeInsets.only(top: 10.0),
                           alignment: Alignment.bottomCenter,
                           child: new Text(liste[index].title,
                               style: new TextStyle(
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.bold,
 
                                 fontSize: 10.0,
 
@@ -258,7 +268,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             Container(
-              height: 300,
+              height: 250,
 
               child: Carousel(
 
@@ -296,9 +306,17 @@ class _HomePageState extends State<HomePage> {
               physics: NeverScrollableScrollPhysics(),
 
               padding: const EdgeInsets.symmetric(horizontal: 30),
-              itemCount: 4,
+              itemCount: myImageAndCaption.length,
               itemBuilder: (ctx, i) {
-                return Card(
+
+                return  Card(
+                    child: new InkWell(
+                      onTap: () {
+//
+                       goToDetailsPage2(i.toString());
+
+                        print("Title"+i.toString());
+                      },
 
                   child: Container(
                     height: 290,
@@ -314,8 +332,9 @@ class _HomePageState extends State<HomePage> {
                        //     SizedBox.expand(
 
                                 Container(
-                                  /* width: 90.0,
-              height: 90.0,*/
+/*
+                                   width: 20.0,
+                                   height: 20.0,*/
                                 //  margin: const EdgeInsets.only(top: 55.0),
                                   padding: const EdgeInsets.only(top: 85.0),
                                   decoration: BoxDecoration(
@@ -378,13 +397,17 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                  ),
 
+                  ),
+                    ),
                 );
+
               },
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+
                 crossAxisCount: 2,
-                childAspectRatio: 1.0,
+                childAspectRatio: (itemWidth / itemHeight),
+               // childAspectRatio: 1.0,
                 crossAxisSpacing: 0.0,
                 mainAxisSpacing: 5,
                 mainAxisExtent: 160,
@@ -486,15 +509,17 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: ImageIcon(AssetImage("assets/images/home.png")),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: ImageIcon(AssetImage("assets/images/home.png")),
+           // icon: Icon(Icons.search),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: ImageIcon(AssetImage("assets/images/chat.png")),
+           // icon: Icon(Icons.person),
             label: 'Profile',
           ),
         ],
@@ -649,6 +674,62 @@ class _HomePageState extends State<HomePage> {
       ),
     )) ?? false;
   }
+
+  void goToDetailsPage2(String index) {
+    print("Index"+index);
+
+    if(index=="0")
+    {
+     /* Navigator.push(
+        context,
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (BuildContext context) => PendingTab(
+            //  liste: album,
+          ),
+        ),
+      );*/
+    }
+    else if(index=="1")
+    {
+      /*Navigator.push(
+        context,
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (BuildContext context) => ConfirmScreen(
+            //  liste: album,
+          ),
+        ),
+      );*/
+
+    }
+    else if(index=="2")
+    {
+     /* Navigator.push(
+        context,
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (BuildContext context) => PackedScreen(
+            //  liste: album,
+          ),
+        ),
+      );*/
+    }
+    else if(index=="3")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (BuildContext context) => Notificationlist(
+            //  liste: album,
+          ),
+        ),
+      );
+    }
+
+  }
+
 
 
 }
