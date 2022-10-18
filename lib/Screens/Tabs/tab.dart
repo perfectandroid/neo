@@ -383,7 +383,7 @@ class CustomJSONListView1 extends State {
                           Container(
                             width: 50,
                             height: 50,
-                            child: Image(image: AssetImage('assets/images/time.png')),
+                          //  child: Image(image: AssetImage('assets/images/time.png')),
                             /* child: Image(
 
                               Asse("assets/images/time.png",
