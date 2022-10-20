@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo/Model/DeliveryDetailModel.dart';
+import 'package:neo/Screens/Status/deliverylist.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
@@ -544,7 +545,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
             );
           }
           else{
-            return CircularProgressIndicator();;
+            return Container();;
           }
         }
     );
@@ -879,25 +880,47 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
 
   Future<DeliveryDetailModel> fetchPost(context) async {
-    ShowDialogs().showProgressDialog(context,"Loading....",true);
-    String token = await SharedPreferencesHelper.getAgent_token();
-    var headerss = {"Authorization": "Token "+token,"Content-Type": "application/json"};
-    final response = await http.get(Uri.parse(Config().BASE_URL+'/customer_api/order/'+widget.id+'/'),headers: headerss);
-    //final response = await http.get(Uri.parse(Config().BASE_URL+'/customer_api/order/29/'),headers: headerss);
-    ShowDialogs().showProgressDialog(context,"Loading....",false);
-    if (response.statusCode == 200) {
 
-      print("HLLO");
-      print(response.body);
-      return deliveryModel = DeliveryDetailModel.fromJson(json.decode(response.body));
 
-    } else {
-     // ShowDialogs().showProgressDialog(context,"Loading....",false);
-      ShowDialogs().showAlertDialog(context, "Failed to load post");
-      throw Exception('Failed to load post');
+   //  ShowDialogs().showProgressDialog(context,"Loading....",true);
+   //  String token = await SharedPreferencesHelper.getAgent_token();
+   //  var headerss = {"Authorization": "Token "+token,"Content-Type": "application/json"};
+   // // final response = await http.get(Uri.parse(Config().BASE_URL+'/customer_api/order/'+widget.id+'/'),headers: headerss);
+   //  final response = await http.get(Uri.parse(Config().BASE_URL+'/customer_api/order/2/'),headers: headerss);
+   //  ShowDialogs().showProgressDialog(context,"Loading....",false);
+   //  if (response.statusCode == 200) {
+   //
+   //    return deliveryModel = DeliveryDetailModel.fromJson(json.decode(response.body));
+   //
+   //  } else {
+   //    showFaliureAlertDialog(context, "Failed to load post");
+   //    throw Exception('Failed to load post');
+   //
+   //  }
 
+    try{
+      String token = await SharedPreferencesHelper.getAgent_token();
+      var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
+        // var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/customer_api/order/291/'));
+      var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/customer_api/order/'+widget.id+'/'));
+      request.headers.addAll(headers);
+      http.StreamedResponse response = await request.send();
+      final res = await response.stream.bytesToString();
+
+      print("getConfirmList  149     "+res.toString());
+
+      final status =jsonDecode(res);
+      final statuscode = status['success'] as bool;
+      final errors = status['errors'] as String;
+      if(statuscode==true){
+        return deliveryModel = DeliveryDetailModel.fromJson(status);
+      }else{
+        return showFaliureAlertDialog(context,errors);
+
+      }
+    }catch (e){
+      return showFaliureAlertDialog(context,"Some technical issues");
     }
-
 
 
   }
@@ -1028,7 +1051,9 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     onPressed: () {
       //Navigator.pop(context,true);
       //Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+      Navigator.pop(context,true);
+      Navigator.pop(context,true);
+     // Navigator.push(context, MaterialPageRoute(builder: (context) => DeliveryScreen(),));
       // Navigator.push(context, MaterialPageRoute(builder: (_) => const HomePage()));
     },
   );
