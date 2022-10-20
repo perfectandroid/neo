@@ -882,8 +882,8 @@ class _DeliveryDetails extends State<DeliveryDetails>{
     ShowDialogs().showProgressDialog(context,"Loading....",true);
     String token = await SharedPreferencesHelper.getAgent_token();
     var headerss = {"Authorization": "Token "+token,"Content-Type": "application/json"};
-    //final response = await http.get(Uri.parse(Config().BASE_URL+'/customer_api/order/'+widget.id+'/'),headers: headerss);
-    final response = await http.get(Uri.parse(Config().BASE_URL+'/customer_api/order/29/'),headers: headerss);
+    final response = await http.get(Uri.parse(Config().BASE_URL+'/customer_api/order/'+widget.id+'/'),headers: headerss);
+    //final response = await http.get(Uri.parse(Config().BASE_URL+'/customer_api/order/29/'),headers: headerss);
     ShowDialogs().showProgressDialog(context,"Loading....",false);
     if (response.statusCode == 200) {
 
