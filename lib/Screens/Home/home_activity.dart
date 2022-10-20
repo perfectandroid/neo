@@ -5,6 +5,8 @@ import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Login/mpin_page.dart';
 import 'package:neo/Screens/Login/otp_page.dart';
 
+import '../../helper/colorutility.dart';
+
 
 class DrawerItem {
   String title;
@@ -70,20 +72,28 @@ class DrawerActivityState extends State<DrawerActivity> {
 
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: ColorUtility().colorAppbar,
         title: new Text(widget._draweItems[_selectedIndex].title),
       ),
       drawer: new Drawer(
+
         child: new Column(
+
           children: <Widget>[
             UserAccountsDrawerHeader(
+
               accountEmail: new Text("email@gmail.com", style: TextStyle(fontSize: 18),),
               accountName: new Text("Your Name", style: TextStyle(fontSize: 16),),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(0xFF, 0x89, 0x34, 0x8E)),
+
               currentAccountPicture: new GestureDetector(
                 child: new CircleAvatar(
                   backgroundImage: new NetworkImage(picsUrl),
                 ),
                 onTap: () => print("This is your current account."),
               ),
+
             ),
             Column(children: drawerOpts)
           ],
