@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:neo/Screens/Status/deliverydetails.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
@@ -49,6 +50,7 @@ class _DeliveryScreen extends State<DeliveryScreen>{
         ),
 
 
+
         body: getBody()
 
 
@@ -68,7 +70,23 @@ class _DeliveryScreen extends State<DeliveryScreen>{
                 shrinkWrap: true,
                 itemCount: deliveryList.length,
                 itemBuilder: (context,index){
-                  return getCard(deliveryList,index);
+                  return new GestureDetector(
+                      onTap: () {
+                        print(index);
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DeliveryDetails(
+                                id: deliveryList[index]['id'].toString(),
+                              )),
+                        );
+
+                      },
+                      child :getCard(deliveryList,index)
+                  );
+                  // return
+
                 },
               )
           ),
