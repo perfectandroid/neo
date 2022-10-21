@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_progress/loading_progress.dart';
+import 'package:neo/Screens/Status/dispatchdetails.dart';
+import 'package:neo/Screens/Status/dispatchedlist.dart';
 import 'package:neo/helper/sharedprefhelper.dart';
 import 'package:neo/helper/showDialogs.dart';
 import 'package:http/http.dart' as http;
@@ -71,13 +73,13 @@ class _ConfirmScreen extends State<ConfirmScreen>{
     );
   }
 
-
   Widget getBody(){
     return Stack(
         children: <Widget>[
 
          new Container(
              height: MediaQuery.of(context).size.height * 0.9,
+             margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
              width: double.infinity,
              padding: EdgeInsets.fromLTRB(0,0,0,MediaQuery.of(context).size.height * 0.06),
              child :ListView.builder(
@@ -85,7 +87,21 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                shrinkWrap: true,
                itemCount: confirmList.length,
                itemBuilder: (context,index){
-                 return getCard(confirmList,index);
+                 return new GestureDetector(
+                     onTap: () {
+                       print(index);
+
+                       Navigator.push(
+                         context,
+                         MaterialPageRoute(
+                             builder: (context) => DispatchDetails(
+                                 id: confirmList[index]['id'].toString(),delivery_status: confirmList[index]['delivery_status'].toString(),heading :'Confirm Details'
+                             )),
+                       );
+
+                     },
+                     child :getCard(confirmList,index)
+                 );
                },
              )
          ),

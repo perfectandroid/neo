@@ -65,6 +65,7 @@ class _DeliveryScreen extends State<DeliveryScreen>{
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.fromLTRB(0,0,0,5),
+              margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
               child :ListView.builder(
                 // padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.04,0,MediaQuery.of(context).size.height * 0.04),
                 shrinkWrap: true,
@@ -78,7 +79,7 @@ class _DeliveryScreen extends State<DeliveryScreen>{
                           context,
                           MaterialPageRoute(
                               builder: (context) => DeliveryDetails(
-                                id: deliveryList[index]['id'].toString(),
+                                id: deliveryList[index]['id'].toString(),status: deliveryList[index]['status'].toString()
                               )),
                         );
 

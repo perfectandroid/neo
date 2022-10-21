@@ -13,6 +13,8 @@ import '../Home/home_page.dart';
 import '../SplashScreen/splash_screen.dart';
 import 'package:http/http.dart' as http;
 
+import 'dispatchdetails.dart';
+
 class PackedScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -65,13 +67,28 @@ class _PackedScreen extends State<PackedScreen>{
           new Container(
               height: MediaQuery.of(context).size.height * 0.9,
               width: double.infinity,
+              margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
               padding: EdgeInsets.fromLTRB(0,0,0,MediaQuery.of(context).size.height * 0.06),
               child :ListView.builder(
                 // padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.04,0,MediaQuery.of(context).size.height * 0.04),
                 shrinkWrap: true,
                 itemCount: packedList.length,
                 itemBuilder: (context,index){
-                  return getCard(packedList,index);
+                  return new GestureDetector(
+                      onTap: () {
+                        print(index);
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DispatchDetails(
+                                  id: packedList[index]['id'].toString(),delivery_status: packedList[index]['delivery_status'].toString(),heading :'Packed Details'
+                              )),
+                        );
+
+                      },
+                      child :getCard(packedList,index)
+                  );
                 },
               )
           ),
