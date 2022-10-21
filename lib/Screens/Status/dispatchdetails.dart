@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 import '../../Model/DeliveryDetailModel.dart';
 import '../../helper/colorutility.dart';
@@ -847,7 +848,30 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: <Widget>[
 
-                                                    Text("Status")
+                                                    ListView.builder(
+                                                      // padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.04,0,MediaQuery.of(context).size.height * 0.04),
+                                                      shrinkWrap: true,
+                                                      itemCount: deliveryModel?.data?.status?.length,
+                                                      itemBuilder: (context,index){
+                                                        return new GestureDetector(
+                                                            onTap: () {
+                                                              print(index);
+                                                              // Navigator.push(
+                                                              //   context,
+                                                              //   MaterialPageRoute(
+                                                              //       builder: (context) => DeliveryDetails(
+                                                              //         id: (deliveryModel?.data?.items?.length).toString(),
+                                                              //       )),
+                                                              // );
+
+                                                            },
+                                                            // child :getCardStatus(deliveryModel,index)
+                                                            child :_buildTimelineTile(deliveryModel,index)
+                                                        );
+                                                        // return
+
+                                                      },
+                                                    )
 
                                                   ]
                                               ),
@@ -1125,6 +1149,80 @@ class _DispatchDetails extends State<DispatchDetails>{
 
     );
 
+  }
+
+  Widget _buildTimelineTile(item,index){
+    return TimelineTile(
+      alignment: TimelineAlign.start,
+      lineXY: 0.3,
+      isFirst: index == 0 ? true : false,
+      isLast: index == 5 - 1 ? true : false,
+      indicatorStyle: IndicatorStyle(width: 20, height: 20, indicator: _buildIndicator(),),
+      afterLineStyle: LineStyle(thickness: 1, color: Colors.green,),
+      beforeLineStyle: LineStyle(thickness: 1, color: Colors.green,),
+      // startChild: Container(
+      //   padding: EdgeInsets.all(20),
+      //   child: Column(
+      //     crossAxisAlignment: CrossAxisAlignment.end,
+      //     children: [
+      //       Text(
+      //         "date",
+      //         style: TextStyle(
+      //           fontSize: 16,
+      //           fontWeight: index == 0 ? FontWeight.bold : FontWeight.normal,
+      //           color: Colors.lightBlue,
+      //         ),
+      //       ),
+      //       SizedBox(height: 5),
+      //       Text(
+      //         "time",
+      //         style: TextStyle(
+      //           fontSize: 15,
+      //           fontWeight: FontWeight.normal,
+      //           color: Colors.lightBlue,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
+      endChild: Container(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            Text((deliveryModel?.data?.status?[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((deliveryModel?.data?.status?[index].statusMessage).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((deliveryModel?.data?.status?[index].updatedAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildIndicator() {
+    return Container(
+      child: Material(
+        elevation: 5,
+        borderRadius: BorderRadius.circular(5),
+        child: Container(
+          width: 20,
+          height: 20,
+          decoration: BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Center(
+            child: Icon(
+              Icons.check,
+              color: Colors.white,
+              size: 15,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
 

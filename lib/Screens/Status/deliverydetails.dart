@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo/Model/DeliveryDetailModel.dart';
 import 'package:neo/Screens/Status/deliverylist.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
@@ -36,6 +37,10 @@ class _DeliveryDetails extends State<DeliveryDetails>{
   var deliveryDetailListNew;
  // Future<DeliveryDetailModel> post;
    Future<DeliveryDetailModel>? futureAlbum;
+   List<Step> steps =[
+
+   ];
+
 
   DeliveryDetailModel deliveryModel = DeliveryDetailModel();
 
@@ -822,7 +827,33 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: <Widget>[
 
-                                                    Text("Status")
+                                                    ListView.builder(
+                                                      // padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.04,0,MediaQuery.of(context).size.height * 0.04),
+                                                      shrinkWrap: true,
+                                                      itemCount: deliveryModel?.data?.status?.length,
+                                                      itemBuilder: (context,index){
+                                                        return new GestureDetector(
+                                                            onTap: () {
+                                                              print(index);
+                                                              // Navigator.push(
+                                                              //   context,
+                                                              //   MaterialPageRoute(
+                                                              //       builder: (context) => DeliveryDetails(
+                                                              //         id: (deliveryModel?.data?.items?.length).toString(),
+                                                              //       )),
+                                                              // );
+
+                                                            },
+                                                           // child :getCardStatus(deliveryModel,index)
+                                                            child :_buildTimelineTile(deliveryModel,index)
+                                                        );
+                                                        // return
+
+                                                      },
+                                                    )
+                                                 //   Text(""+(deliveryModel?.data?.status?[0].deliveryStatus).toString())
+
+
 
                                                   ]
                                               ),
@@ -1609,7 +1640,6 @@ class _DeliveryDetails extends State<DeliveryDetails>{
   }
 
   Widget getCard(item,index){
-
     print("147893");
     print(item);
     return Card(
@@ -1836,6 +1866,281 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
   }
 
+  Widget getCardStatus(item,index){
+
+    print("147893");
+    print(item);
+    return Card(
+      // margin: EdgeInsets.zero,
+        margin: EdgeInsets.fromLTRB(1,2,1,0),
+        color: ColorUtility().colorLightGrey,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0.0),),
+        elevation: 0,
+
+        child: Padding(
+            padding: const EdgeInsets.all(5),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Center(
+                      child: Container(
+                          child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                              child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+
+                                    Center(
+                                      child: Container(
+                                          padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                          width: MediaQuery.of(context).size.width * 0.90,
+                                          child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: <Widget>[
+
+                                                Center(
+                                                    child: Container(
+                                                        child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                            child: Row(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: <Widget>[
+
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        alignment: Alignment.center,
+                                                                        child:Text("Item ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+
+                                                                      )
+                                                                  ),
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.01,
+                                                                        alignment: Alignment.center,
+                                                                        child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+
+                                                                      )
+                                                                  ),
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.68,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text((deliveryModel?.data?.status?[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+
+                                                                      )
+                                                                  ),
+
+
+                                                                ]
+                                                            )
+                                                        )
+
+                                                    )
+                                                ),
+
+                                                Center(
+                                                    child: Container(
+                                                        child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                            child: Row(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: <Widget>[
+
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text("Quantity ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+
+                                                                      )
+                                                                  ),
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.01,
+                                                                        alignment: Alignment.center,
+                                                                        child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+
+                                                                      )
+                                                                  ),
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.68,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text((deliveryModel?.data?.status?[index].statusMessage).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+
+                                                                      )
+                                                                  ),
+
+
+                                                                ]
+                                                            )
+                                                        )
+
+                                                    )
+                                                ),
+
+                                                Center(
+                                                    child: Container(
+                                                        child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                            child: Row(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: <Widget>[
+
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text("Amount ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+
+                                                                      )
+                                                                  ),
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.01,
+                                                                        alignment: Alignment.center,
+                                                                        child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+
+                                                                      )
+                                                                  ),
+                                                                  Center(
+                                                                      child: Container(
+                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                                        width: MediaQuery.of(context).size.width * 0.68,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        child:Text((deliveryModel?.data?.status?[index].updatedAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+
+                                                                      )
+                                                                  ),
+
+
+                                                                ]
+                                                            )
+                                                        )
+
+                                                    )
+                                                ),
+
+
+
+
+
+                                              ]
+                                          )
+                                      ),
+                                    ),
+
+                                  ]
+                              )
+                          )
+                      )
+                  ),
+
+
+                ]
+            )
+        )
+
+
+
+
+
+    );
+
+  }
+
+  Widget _buildTimelineTile(item,index){
+    return TimelineTile(
+      alignment: TimelineAlign.start,
+      lineXY: 0.3,
+      isFirst: index == 0 ? true : false,
+      isLast: index == 5 - 1 ? true : false,
+      indicatorStyle: IndicatorStyle(width: 20, height: 20, indicator: _buildIndicator(),),
+      afterLineStyle: LineStyle(thickness: 1, color: Colors.green,),
+      beforeLineStyle: LineStyle(thickness: 1, color: Colors.green,),
+      // startChild: Container(
+      //   padding: EdgeInsets.all(20),
+      //   child: Column(
+      //     crossAxisAlignment: CrossAxisAlignment.end,
+      //     children: [
+      //       Text(
+      //         "date",
+      //         style: TextStyle(
+      //           fontSize: 16,
+      //           fontWeight: index == 0 ? FontWeight.bold : FontWeight.normal,
+      //           color: Colors.lightBlue,
+      //         ),
+      //       ),
+      //       SizedBox(height: 5),
+      //       Text(
+      //         "time",
+      //         style: TextStyle(
+      //           fontSize: 15,
+      //           fontWeight: FontWeight.normal,
+      //           color: Colors.lightBlue,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
+      endChild: Container(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            Text((deliveryModel?.data?.status?[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((deliveryModel?.data?.status?[index].statusMessage).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((deliveryModel?.data?.status?[index].updatedAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildIndicator() {
+    return Container(
+      child: Material(
+        elevation: 5,
+        borderRadius: BorderRadius.circular(5),
+        child: Container(
+          width: 20,
+          height: 20,
+          decoration: BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Center(
+            child: Icon(
+              Icons.check,
+              color: Colors.white,
+              size: 15,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+
   Future<void> checkInterNet(context) async {
     isOnline =  await NetworkUtility().checkInternet();
     print("122   :  $isOnline");
@@ -1957,7 +2262,8 @@ class _DeliveryDetails extends State<DeliveryDetails>{
     try{
       String token = await SharedPreferencesHelper.getAgent_token();
       var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
-        // var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/customer_api/order/29/'));
+      //  var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/customer_api/order/29/'));
+       // var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/customer_api/order/19/'));
       var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/customer_api/order/'+widget.id+'/'));
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
