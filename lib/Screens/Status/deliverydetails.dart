@@ -2242,23 +2242,6 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
   Future<DeliveryDetailModel> fetchPost(context) async {
 
-
-   //  ShowDialogs().showProgressDialog(context,"Loading....",true);
-   //  String token = await SharedPreferencesHelper.getAgent_token();
-   //  var headerss = {"Authorization": "Token "+token,"Content-Type": "application/json"};
-   // // final response = await http.get(Uri.parse(Config().BASE_URL+'/customer_api/order/'+widget.id+'/'),headers: headerss);
-   //  final response = await http.get(Uri.parse(Config().BASE_URL+'/customer_api/order/2/'),headers: headerss);
-   //  ShowDialogs().showProgressDialog(context,"Loading....",false);
-   //  if (response.statusCode == 200) {
-   //
-   //    return deliveryModel = DeliveryDetailModel.fromJson(json.decode(response.body));
-   //
-   //  } else {
-   //    showFaliureAlertDialog(context, "Failed to load post");
-   //    throw Exception('Failed to load post');
-   //
-   //  }
-
     try{
       String token = await SharedPreferencesHelper.getAgent_token();
       var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
