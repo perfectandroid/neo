@@ -19,5 +19,6 @@ class ColorUtility {
 
    var colorDroptab =  Color.fromARGB(0xFF, 0xFF, 0xE3, 0xFF);
    var colorDetailTop =  Color.fromARGB(0xFF, 0xFF, 0xCF, 0xFF);
+   var colorWarning =  Color.fromARGB(0xFF, 0xFA, 0x4D, 0x4D);
 
 }

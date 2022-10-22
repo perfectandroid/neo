@@ -2,6 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import '../../helper/colorutility.dart';
 import 'package:http/http.dart' as http;
@@ -10,18 +14,26 @@ import '../../helper/config.dart';
 import '../../helper/sharedprefhelper.dart';
 import '../../helper/showDialogs.dart';
 import 'otp_page.dart';
+class LoginController extends GetxController {
+  final eMailController = TextEditingController();
+  final passWordController = TextEditingController();
+}
 
 class LoginPage extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return _LoginPage();
   }
 }
 
 class _LoginPage extends State<LoginPage>{
-  TextEditingController eMailController = TextEditingController();
-  TextEditingController passWordController = TextEditingController();
-  bool boolPass = true;
+  // TextEditingController eMailController = TextEditingController();
+  // TextEditingController passWordController = TextEditingController();
+  bool boolPass = false;
   @override
   initState(){
     super.initState();
@@ -29,6 +41,7 @@ class _LoginPage extends State<LoginPage>{
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Scaffold(
       body: SingleChildScrollView(
           child: Container(
@@ -45,8 +58,8 @@ class _LoginPage extends State<LoginPage>{
                 children: [
 
                   Container(
-                    width: MediaQuery.of(context).size.height/4,
-                    height: MediaQuery.of(context).size.height/4,
+                    width: MediaQuery.of(context).size.height/5,
+                    height: MediaQuery.of(context).size.height/5,
                     margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
                     child: CircleAvatar(
                         backgroundColor: Colors.black,
@@ -77,7 +90,7 @@ class _LoginPage extends State<LoginPage>{
                           ),
                         ),
                         obscureText: false,
-                        controller: eMailController,
+                        controller: controller.eMailController,
                       )
                   ),//Text
 
@@ -121,7 +134,7 @@ class _LoginPage extends State<LoginPage>{
                           ),
                         ),
                         obscureText: boolPass,
-                        controller: passWordController,
+                        controller: controller.passWordController,
                       )
                   ),//Text
 
@@ -150,6 +163,26 @@ class _LoginPage extends State<LoginPage>{
 
                   ),
 
+                  Container(
+                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/90,MediaQuery.of(context).size.width/10,0),
+                      child: Column(
+                          children: [
+                            Align(
+                                alignment: Alignment.centerRight, child:
+                                new GestureDetector(
+                                  onTap: () {
+                                   validateMessage(context, "Forgot Password Not working");
+                                  },
+                                  child: new Text('Forgot Password ?', textAlign: TextAlign.right, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: ColorUtility().colorAppbar))
+                                )
+
+                            )
+                          ]
+                      )
+                  )
+
+
+
 
                 ],
               ),
@@ -160,13 +193,13 @@ class _LoginPage extends State<LoginPage>{
   }
 
   Future<void> validator() async {
-
-    if(eMailController.text.isEmpty){
-     validateMessage(context,"Enter Username");
-    }else if(passWordController.text.isEmpty){
+    final controller = Get.put(LoginController());
+    if(controller.eMailController.text.isEmpty){
+     validateMessage(context,"Enter User Name");
+    }else if(controller.passWordController.text.isEmpty){
       validateMessage(context,"Enter password");
     }else{
-      var users = await login(eMailController.text, passWordController.text, context);
+      var users = await login(controller.eMailController.text, controller.passWordController.text, context);
     }
   }
 
@@ -196,7 +229,7 @@ class _LoginPage extends State<LoginPage>{
 
         print(statuscode);
         // showSuccessAlertDialog(context, Username);
-        showFaliureAlertDialog(context, errors);
+        showFaliureAlertDialog(context, errors.toString());
       }
     }catch(e){
       ShowDialogs().showProgressDialog(context,"Loading....",false);
@@ -207,9 +240,9 @@ class _LoginPage extends State<LoginPage>{
 
   void validateMessage(BuildContext context, String message) {
     final snackBar = SnackBar(
-      content:  Text(''+message,style: TextStyle(color: Colors.white),),
-      backgroundColor: ColorUtility().colorAppbar,
-      behavior: SnackBarBehavior.floating,
+      content:  Text(''+message,style: TextStyle(color: Colors.white),textAlign: TextAlign.center,),
+      backgroundColor: ColorUtility().colorWarning,
+      behavior: SnackBarBehavior.fixed,
       action: SnackBarAction(
         label: '',
         onPressed: () {
@@ -218,6 +251,33 @@ class _LoginPage extends State<LoginPage>{
       ),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  static void showFaliureAlertDialog(BuildContext context, String errorMsg) {
+    final controller = Get.put(LoginController());
+    Widget okButton = TextButton(
+      child: Text("OK",style: TextStyle(color: ColorUtility().colorAppbar,fontWeight: FontWeight.bold)),
+      onPressed: () {
+        //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
+        controller.eMailController.clear();
+        controller.passWordController.clear();
+        Navigator.pop(context);
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: Text("LOGIN FAILURE",style :TextStyle( color: Colors.black),textAlign:TextAlign.center),
+      content: Text(errorMsg,style : TextStyle( color: Colors.grey),textAlign:TextAlign.center),
+      actions: [
+        okButton,
+      ],
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
 
@@ -254,24 +314,3 @@ OtpPage(BuildContext context, String Username, status) async {
   }
 }
 
-showFaliureAlertDialog(BuildContext context, String errorMsg) {
-  Widget okButton = TextButton(
-    child: Text("OK"),
-    onPressed: () {
-      //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
-    },
-  );
-  AlertDialog alert = AlertDialog(
-    title: Text("LOGIN FAILURE" ),
-    content: Text(errorMsg),
-    actions: [
-      okButton,
-    ],
-  );
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}

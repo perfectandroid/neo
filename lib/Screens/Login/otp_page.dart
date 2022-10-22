@@ -214,6 +214,8 @@ class OTPVerification extends GetView<OTPController> {
                   ),
                   SizedBox(height: 16,),
 
+
+
                   const SizedBox(height: 30),
                   ElevatedButton(
                       onPressed: () {
