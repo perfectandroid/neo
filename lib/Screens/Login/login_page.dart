@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:neo/Screens/Login/otp_page.dart';
 import 'package:neo/constants.dart';
+import 'package:neo/helper/colorutility.dart';
 
 import '../../helper/config.dart';
 import '../../helper/sharedprefhelper.dart';
@@ -131,89 +132,145 @@ showSuccessAlertDialog(BuildContext context, String Username, status) {
 
 class Login extends GetView<LoginController> {
   const Login({Key? key}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
+    bool boolPass = true;
+
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
           child: Container(
             // color: Colors.white,
             // height: double.infinity,
             // width: double.infinity,
-            padding: EdgeInsets.only(left: 16,right: 16),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Colors.grey.shade200,
-                      offset: Offset(2, 4),
-                      blurRadius: 5,
-                      spreadRadius: 2)
-                ],
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [PrimaryColor, PrimaryLightColor])),
+            height: MediaQuery.of(context).size.height,
+            decoration: new BoxDecoration(image: new DecorationImage(image: new AssetImage("assets/images/loginbg.png"), fit: BoxFit.fill)),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: "Username",
-                      labelStyle: TextStyle(fontSize: 14,color: Colors.grey.shade400),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                          )
-                      ),
-                    ),
-                    obscureText: true,
-                    controller: controller.eMailController,
+
+                  Container(
+                    width: MediaQuery.of(context).size.height/4,
+                    height: MediaQuery.of(context).size.height/4,
+                    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
+                    child: CircleAvatar(
+                        backgroundColor: Colors.black,
+                        radius: 100,
+                        child: Image.asset('assets/images/logo.png')),//Text
                   ),
-                  SizedBox(height: 16,),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: "Password",
-                      labelStyle: TextStyle(fontSize: 14,color: Colors.grey.shade400),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
+
+                  Container(
+                    margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/10,0),
+                    height: MediaQuery.of(context).size.height/16,
+                    child:  TextField(
+                      cursorColor: ColorUtility().colorAppbar,
+                      decoration: InputDecoration(
+                        labelText: "Username",
+                        labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
+                        prefixIcon: Icon(Icons.person, size: 24,color: Colors.grey),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(2),
+                          borderSide: BorderSide(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(2),
+                            borderSide: BorderSide(
+                              color: ColorUtility().colorAppbar,
+                            )
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                          )
-                      ),
-                    ),
-                    obscureText: true,
-                    controller: controller.passWordController,
+                      obscureText: false,
+                      controller: controller.eMailController,
+                    )
+                  ),//Text
+
+                  Container(
+                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/10,0),
+                      height: MediaQuery.of(context).size.height/16,
+                      child:  TextField(
+                        cursorColor: ColorUtility().colorAppbar,
+                        decoration: InputDecoration(
+                          labelText: "Password",
+                          labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
+                          prefixIcon: Icon(Icons.lock, size: 24,color: Colors.grey),
+                          // suffixIcon: IconButton(
+                          //     icon: Icon(Icons.remove_red_eye),
+                          //     onPressed: () {
+                          //       controller.passWordController.clear();
+                          //
+                          //     }
+                          // ),
+
+                          suffixIcon: IconButton(
+                              icon: Icon(boolPass == true?Icons.remove_red_eye:Icons.password),
+                              onPressed: () {
+                                  if(boolPass){ //if passenable == true, make it false
+                                    boolPass = false;
+                                  }else{
+                                    boolPass = true; //if passenable == false, make it true
+                                  }
+
+                              }
+                          ),
+
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(2),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(2),
+                              borderSide: BorderSide(
+                                color: ColorUtility().colorAppbar,
+                              )
+                          ),
+                        ),
+                        obscureText: false,
+                        controller: controller.passWordController,
+                      )
+                  ),//Text
+
+
+                  Container(
+                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/10,0),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            new SizedBox(
+                              height: MediaQuery.of(context).size.height/16,
+                              width: MediaQuery.of(context).size.width,
+                              child: ElevatedButton(
+                                child: Text('Login',style:TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04)),
+                                style: ElevatedButton.styleFrom(primary: ColorUtility().colorAppbar),
+                                onPressed: () {
+                                  // controller.checkUserInputs(context);
+                                  controller.checkUserInputs(context);
+                                },
+                              ),
+                            ),
+                          ]
+                      )
 
                   ),
-                  SizedBox(height: 16,),
-                  const SizedBox(height: 30),
-                  ElevatedButton(
-                      onPressed: () {
-                        controller.checkUserInputs(context);
-                      },
-                      child: const Text("Login"))
+
+
                 ],
               ),
             ),
           )),
+
     );
   }
 
 }
+
+

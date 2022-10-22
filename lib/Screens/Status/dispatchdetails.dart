@@ -109,7 +109,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                                           Center(
                                                                             child: Container(
                                                                                 padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                                width: MediaQuery.of(context).size.width * 0.90,
+                                                                                width: MediaQuery.of(context).size.width * 0.85,
                                                                                 child: Column(
                                                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                                                     children: <Widget>[

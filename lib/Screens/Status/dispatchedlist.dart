@@ -162,7 +162,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                                     Center(
                                       child: Container(
                                           padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                          width: MediaQuery.of(context).size.width * 0.85,
+                                          width: MediaQuery.of(context).size.width * 0.81,
                                           child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: <Widget>[
