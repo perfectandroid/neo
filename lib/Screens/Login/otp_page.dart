@@ -78,7 +78,7 @@ class _OTPVerification extends State<OTPVerification>{
                     child: CircleAvatar(
                         backgroundColor: Colors.white,
                         radius: MediaQuery.of(context).size.height/15,
-                        child: Image.asset('assets/images/iconotp.png',width: 75,height: 75,))//Text
+                        child: Image.asset('assets/images/iconotp.png',width: MediaQuery.of(context).size.height/12,height: MediaQuery.of(context).size.height/12,))//Text
                   ),
                  //Text
 

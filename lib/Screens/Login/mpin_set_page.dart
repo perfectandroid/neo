@@ -79,7 +79,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                       child: CircleAvatar(
                           backgroundColor: Colors.white,
                           radius: MediaQuery.of(context).size.height/15,
-                          child: Image.asset('assets/images/iconotp.png',width: 75,height: 75,))//Text
+                          child: Image.asset('assets/images/iconmpin.png',width: MediaQuery.of(context).size.height/12,height: MediaQuery.of(context).size.height/12,))//Text
                   ),
                   //Text
 
@@ -94,7 +94,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                   ),
                   Center(
                       child: Container(
-                        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/10,0),
+                        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/15,MediaQuery.of(context).size.height/30,MediaQuery.of(context).size.width/15,0),
                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                         alignment: Alignment.center,
                         child:Text("Please provide a 6 digit  numaric MPIN to protect your account", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.center),
