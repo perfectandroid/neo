@@ -39,6 +39,7 @@ class _OTPVerification extends State<OTPVerification>{
 
   @override
   initState(){
+
     super.initState();
 
   }
@@ -68,7 +69,7 @@ class _OTPVerification extends State<OTPVerification>{
                     margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
                     padding: EdgeInsets.all(1),
                     decoration: new BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
+                        borderRadius: BorderRadius.circular( MediaQuery.of(context).size.height/10),
                         boxShadow: [new BoxShadow(
                             color: Colors.grey,
                         )]
@@ -76,8 +77,8 @@ class _OTPVerification extends State<OTPVerification>{
 
                     child: CircleAvatar(
                         backgroundColor: Colors.white,
-                        radius: 100,
-                        child: Image.asset('assets/images/iconotp.png')),//Text
+                        radius: MediaQuery.of(context).size.height/15,
+                        child: Image.asset('assets/images/iconotp.png',width: 75,height: 75,))//Text
                   ),
                  //Text
 
@@ -221,11 +222,20 @@ class _OTPVerification extends State<OTPVerification>{
       if(statuscode==true){
         print(statuscode);
         //showSuccessAlertDialog(context, Username);
-        Navigator.push(
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) => MPINCREATION(text: Username,),
+        //     ));
+
+        Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => MPINCREATION(text: Username,),
-            ));
+                builder: (context) => MPINCREATION(text: Username)
+            ),
+                (route) => false
+        );
+
       }else{
         print(statuscode);
         //showSuccessAlertDialog(context, Username);

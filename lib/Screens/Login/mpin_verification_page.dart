@@ -88,12 +88,9 @@ class MPINVerificationController extends GetxController {
 }
 
 
-showSuccessAlertDialog(BuildContext context, String Username,status) {
-  Widget okButton = TextButton(
-    child: Text("Continue"),
-    onPressed: () async {
+showSuccessAlertDialog(BuildContext context, String Username,status) async {
 
-      try{
+     try{
 
         await SharedPreferencesHelper.setAgent_id(status['data']["id"]?? (throw ArgumentError("id is required")));
         await SharedPreferencesHelper.setAgent_name(status['data']["name"]?? (throw ArgumentError("name is required")));
@@ -106,10 +103,18 @@ showSuccessAlertDialog(BuildContext context, String Username,status) {
 
         //SESSION
         await SharedPreferencesHelper.set_is_login(true);
-        Navigator.pushReplacement(
+
+        Navigator.pushAndRemoveUntil(
             context,
-            new MaterialPageRoute(
-                builder: (BuildContext context) => new DrawerActivity()));
+            MaterialPageRoute(
+                builder: (context) => new DrawerActivity()
+            ),
+                (route) => false
+        );
+        // Navigator.pushReplacement(
+        //     context,
+        //     new MaterialPageRoute(
+        //         builder: (BuildContext context) => new DrawerActivity()));
 
         // Navigator.push(
         //     context,
@@ -121,22 +126,6 @@ showSuccessAlertDialog(BuildContext context, String Username,status) {
       }
       // Navigator.push(context, MaterialPageRoute(builder: (_) => const OTPVerification()));
 
-
-    },
-  );
-  AlertDialog alert = AlertDialog(
-    title: Text("MPIN VERIFIED SUCCESSFULLY"),
-    //content: Text(""),
-    actions: [
-      okButton,
-    ],
-  );
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
 }
 
 showFaliureAlertDialog(BuildContext context, String errorMsg) {
