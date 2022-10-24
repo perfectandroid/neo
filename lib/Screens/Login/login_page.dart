@@ -99,13 +99,14 @@ showSuccessAlertDialog(BuildContext context, String Username, status) {
 
         var token = await SharedPreferencesHelper.getAgent_token();
         print("TOKEN LOGIN"+token);
+        String mobileNo = status['data']["mobile_number"].toString();
 
 
         // Navigator.push(context, MaterialPageRoute(builder: (_) => const OTPVerification()));
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => OTPVerification(text: Username,),
+              builder: (context) => OTPVerification(text: Username,mobileNo : mobileNo),
             ));
       }
       catch(e)

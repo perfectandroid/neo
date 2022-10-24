@@ -16,9 +16,17 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget _submitButton() {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            //context, MaterialPageRoute(builder: (context) => Login()/*DrawerActivity()*/));
-            context, MaterialPageRoute(builder: (context) => LoginPage()/*DrawerActivity()*/));
+        // Navigator.push(
+        //     //context, MaterialPageRoute(builder: (context) => Login()/*DrawerActivity()*/));
+        //     context, MaterialPageRoute(builder: (context) => LoginPage()/*DrawerActivity()*/));
+
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => LoginPage()
+            ),
+            (route) => false
+        );
 
       },
       child: Container(

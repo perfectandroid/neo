@@ -54,6 +54,7 @@ dependencies:
   flutter_svg: ^0.22.0
   flutter_swiper: 1.1.6
   timeline_tile: ^2.0.0
+  pin_code_fields: ^7.4.0
 
 
 dev_dependencies:

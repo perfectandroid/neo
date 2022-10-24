@@ -36,6 +36,7 @@ class _LoginPage extends State<LoginPage>{
   bool boolPass = false;
   @override
   initState(){
+
     super.initState();
   }
 
@@ -224,6 +225,7 @@ class _LoginPage extends State<LoginPage>{
 
         print(statuscode);
         print(status['data']['id']);
+        String mobileNum = status['data']['mobile_number'];
         OtpPage(context, Username,status);
       }else{
 
@@ -285,8 +287,9 @@ class _LoginPage extends State<LoginPage>{
 }
 
 OtpPage(BuildContext context, String Username, status) async {
-  try {
 
+  try {
+    final controller = Get.put(LoginController());
     var ss = status['data']["id"];
     print('login  :   $ss');
 
@@ -302,11 +305,22 @@ OtpPage(BuildContext context, String Username, status) async {
 
     var token = await SharedPreferencesHelper.getAgent_token();
     print("TOKEN LOGIN"+token);
-    Navigator.push(
+    String mobileNo = status['data']["mobile_number"].toString();
+    // Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => OTPVerification(text: Username,mobileNo : mobileNo),
+    //     ));
+    controller.eMailController.clear();
+    controller.passWordController.clear();
+    Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (context) => OTPVerification(text: Username,),
-        ));
+            builder: (context) => OTPVerification(text: Username,mobileNo : mobileNo)
+        ),
+            (route) => true
+    );
+
   }
   catch(e)
   {
