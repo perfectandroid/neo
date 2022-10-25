@@ -28,6 +28,7 @@ class Pending {
     required this.updatedAt,
     required this.fkUser,
     required this.fkShippingAddress,
+    required this.isCheck,
   });
 
   int id;
@@ -48,7 +49,7 @@ class Pending {
   DateTime updatedAt;
   String fkUser;
   int fkShippingAddress;
-
+  bool isCheck;
   factory Pending.fromJson(Map<String, dynamic> json) => Pending(
     id: json["id"],
     orderId: json["order_id"],
@@ -68,6 +69,7 @@ class Pending {
     updatedAt: DateTime.parse(json["updated_at"]),
     fkUser: json["fk_user"],
     fkShippingAddress: json["fk_shipping_address"],
+    isCheck: json["false"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -89,5 +91,6 @@ class Pending {
     "updated_at": updatedAt.toIso8601String(),
     "fk_user": fkUser,
     "fk_shipping_address": fkShippingAddress,
+    "false": isCheck,
   };
 }

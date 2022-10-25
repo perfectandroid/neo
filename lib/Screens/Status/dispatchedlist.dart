@@ -417,12 +417,11 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                                                 onChanged: (value) {
                                                   setState(() {
                                                     _isChecked[index] = value!;
-                                                    print(value);
+
                                                   });
                                                 },
                                               )
-                                          )
-                                          ,
+                                          ),
                                         )
                                     ),
 

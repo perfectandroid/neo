@@ -27,7 +27,7 @@ class MPINVerificationController extends GetxController {
 
   static Future mpin(Username, Password, BuildContext context) async {
 
-    print(Username);
+    print("USERNAME"+Username);
     print(Password);
     print("gjjghjghjghjghj");
 

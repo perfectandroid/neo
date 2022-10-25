@@ -11,12 +11,11 @@ import 'package:neo/Screens/Status/confirmlist.dart';
 import 'package:neo/Screens/Status/deliverylist.dart';
 import 'package:neo/Screens/Status/dispatchedlist.dart';
 import 'package:neo/Screens/Status/packedlist.dart';
-import 'package:neo/Screens/Tabs/tab.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../Status/pendinglist2.dart';
+import '../Tabs/tab1.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key? key, this.title}) : super(key: key);
   final String? title;
@@ -585,7 +584,7 @@ class _HomePageState extends State<HomePage> {
          context,
          MaterialPageRoute(
            fullscreenDialog: true,
-           builder: (BuildContext context) => PendingTab(
+           builder: (BuildContext context) => Test2(
              //  liste: album,
            ),
          ),
@@ -709,7 +708,7 @@ class _HomePageState extends State<HomePage> {
         context,
         MaterialPageRoute(
           fullscreenDialog: true,
-          builder: (BuildContext context) => PendingTab(
+          builder: (BuildContext context) => Testcheckbox(
             //  liste: album,
           ),
         ),
@@ -717,11 +716,11 @@ class _HomePageState extends State<HomePage> {
     }
     else if(index=="1")
     {
-      /*Navigator.push(
+     /* Navigator.push(
         context,
         MaterialPageRoute(
           fullscreenDialog: true,
-          builder: (BuildContext context) => ConfirmScreen(
+          builder: (BuildContext context) => Test2(
             //  liste: album,
           ),
         ),
