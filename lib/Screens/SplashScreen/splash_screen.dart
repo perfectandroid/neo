@@ -44,6 +44,7 @@ class _SplashScreen extends State<SplashScreen>{
 
   @override
   Widget build(BuildContext context) {
+    FocusManager.instance.primaryFocus?.unfocus();
     return Scaffold(
         body:Container(
             //decoration: new BoxDecoration(color: Colors.red),

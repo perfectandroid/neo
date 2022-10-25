@@ -6,6 +6,8 @@ import 'package:overlay_progress_indicator/overlay_progress_indicator.dart';
 import 'colorutility.dart';
 class ShowDialogs {
 
+
+
   showAlertDialog(BuildContext context,String messsage) {
 
     // set up the button
@@ -34,6 +36,8 @@ class ShowDialogs {
       },
     );
   }
+
+
 
   showProgressDialog(BuildContext context,String msg,bool isLoading) {
 
