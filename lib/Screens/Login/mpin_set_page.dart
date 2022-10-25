@@ -4,15 +4,13 @@ import 'dart:convert';
 import 'package:get/get.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:neo/Screens/Home/home_activity.dart';
-import 'package:neo/Screens/Login/mpin_verification_page.dart';
-import 'package:neo/constants.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
 import '../../helper/sharedprefhelper.dart';
 import '../../helper/showDialogs.dart';
+import '../Home/home_activity.dart';
 
 class MPINSetController extends GetxController {
 
@@ -218,6 +216,48 @@ class _MPINCREATION extends State<MPINCREATION>{
     );
   }
 
+
+
+
+}
+
+showSuccessAlertDialog(BuildContext context, String Username,status) async {
+
+  try{
+
+    await SharedPreferencesHelper.setAgent_id(status['data']["id"]?? (throw ArgumentError("id is required")));
+    await SharedPreferencesHelper.setAgent_name(status['data']["name"]?? (throw ArgumentError("name is required")));
+    await SharedPreferencesHelper.setAgent_mobile_number(status['data']["mobile_number"]?? (throw ArgumentError("mobile_number  is required")));
+    await SharedPreferencesHelper.setAgent_email(status['data']["email"]?? (throw ArgumentError("email is required")));
+    await SharedPreferencesHelper.setAgent_token(status['data']["token"]?? (throw ArgumentError("token is required")));
+    await SharedPreferencesHelper.setAgent_user_type(status['data']["user_type"]?? (throw ArgumentError("user_type is required")));
+    await SharedPreferencesHelper.setAgent_image(status['data']["image"]?? (throw ArgumentError("image is required")));
+
+
+    //SESSION
+    await SharedPreferencesHelper.set_is_login(true);
+
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (context) => new DrawerActivity()
+        ),
+            (route) => false
+    );
+    // Navigator.pushReplacement(
+    //     context,
+    //     new MaterialPageRoute(
+    //         builder: (BuildContext context) => new DrawerActivity()));
+
+    // Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => DrawerActivity(),
+    //     ));
+  }catch(e) {
+    ShowDialogs().showAlertDialog(context, e.toString());
+  }
+  // Navigator.push(context, MaterialPageRoute(builder: (_) => const OTPVerification()));
 
 }
 
