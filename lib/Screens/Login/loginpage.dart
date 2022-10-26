@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../helper/colorutility.dart';
 import 'package:http/http.dart' as http;
@@ -13,10 +15,12 @@ import 'package:http/http.dart' as http;
 import '../../helper/config.dart';
 import '../../helper/sharedprefhelper.dart';
 import '../../helper/showDialogs.dart';
+import 'forgot_password.dart';
 import 'otp_page.dart';
 class LoginController extends GetxController {
   final eMailController = TextEditingController();
   final passWordController = TextEditingController();
+  final textEditingController = TextEditingController();
 }
 
 class LoginPage extends StatefulWidget{
@@ -39,6 +43,15 @@ class _LoginPage extends State<LoginPage>{
 
     super.initState();
   }
+
+  // @override
+  // void dispose() {
+  //   final controller = Get.put(LoginController());
+  //   controller.eMailController.dispose();
+  //   controller.passWordController.dispose();
+  //   controller.textEditingController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -165,16 +178,24 @@ class _LoginPage extends State<LoginPage>{
                   ),
 
                   Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/90,MediaQuery.of(context).size.width/10,0),
+                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/70,MediaQuery.of(context).size.width/10,0),
                       child: Column(
                           children: [
                             Align(
                                 alignment: Alignment.centerRight, child:
                                 new GestureDetector(
                                   onTap: () {
-                                   validateMessage(context, "Forgot Password Not working");
+                                    // Navigator.pushAndRemoveUntil(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) => ForgotPassword()
+                                    //     ),
+                                    //         (route) => true
+                                    // );
+
+                                    confirmOtpPopup(context);
                                   },
-                                  child: new Text('Forgot Password ?', textAlign: TextAlign.right, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: ColorUtility().colorAppbar))
+                                  child: new Text('Forgot Password ?', textAlign: TextAlign.right, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05,color: ColorUtility().colorAppbar))
                                 )
 
                             )
@@ -280,6 +301,159 @@ class _LoginPage extends State<LoginPage>{
         return alert;
       },
     );
+  }
+
+  void confirmOtpPopup(context) {
+    final controller = Get.put(LoginController());
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  20.0,
+                ),
+              ),
+            ),
+            contentPadding: EdgeInsets.only(
+              top: 10.0,
+            ),
+
+            content: Container(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(0.0),
+                      child:SizedBox(
+                          height:100,width:100,
+                          // child:Image.asset("assets/images/logo.png")
+                          child:Image.asset("assets/images/iconotp.png")
+
+                      ),
+                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.fromLTRB(10,20,10,0),
+                        child:SizedBox(
+                          child:Text("OTP Verification", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.025,letterSpacing: .1,color: Colors.black),),                        )
+
+                    ),
+
+                    Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.fromLTRB(10,5,10,0),
+                        child:SizedBox(
+                          child:Text("Please enter your 4 digit OTP Code ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.00,letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.center,),                        )
+
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/10,0),
+                      height: MediaQuery.of(context).size.height/16,
+                      child: PinCodeTextField(
+                        length: 4,
+                        obscureText: true,
+                        autoFocus: true,
+                        animationType: AnimationType.fade,
+                        keyboardType: TextInputType.number,
+                        pinTheme: PinTheme(
+                            shape: PinCodeFieldShape.box,
+                            borderRadius: BorderRadius.circular(5),
+                            fieldHeight: MediaQuery.of(context).size.height/25,
+                            fieldWidth: MediaQuery.of(context).size.height/25,
+                            activeFillColor: Colors.white,
+                            activeColor: ColorUtility().colorAppbar,
+                            inactiveColor: Colors.grey,
+                            inactiveFillColor: Colors.grey,
+                            selectedFillColor: Colors.grey,
+                            selectedColor: Colors.grey,
+                        ),
+                        animationDuration: const Duration(milliseconds: 300),
+                        backgroundColor: Colors.white,
+                        enableActiveFill: false,
+                        controller: controller.textEditingController,
+                        onCompleted: (v) async {
+                          debugPrint("Completed");
+                        //  var users = await otp(widget.text, controller.textEditingController.text, context);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ForgotPassword()
+                              ),
+                                  (route) => true
+                          );
+                        },
+                        onChanged: (value) {
+                          debugPrint(value);
+                          setState(() {
+                            //  currentText = value;
+                          });
+                        },
+                        beforeTextPaste: (text) {
+                          return true;
+                        },
+                        appContext: context,
+                      ),
+                    ),
+
+                    Center(
+                        child: Container(
+                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/80,MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/40),
+                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                            alignment: Alignment.center,
+                            // child:Text("OTP not received? ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: ColorUtility().colorAppbar),textAlign: TextAlign.right),
+                            child: RichText(
+                              text: TextSpan(
+                                text: "Didn't receive the verification OTP ?" ,
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: MediaQuery.of(context).size.height * 0.014,
+                                ),
+                                children: [
+                                  TextSpan(
+                                      text: ' Resend again',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: MediaQuery.of(context).size.height * 0.014,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () =>
+
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(builder: (context) =>  LoginPage()),
+                                            )
+
+
+                                  ),
+
+                                ],
+                              ),textAlign: TextAlign.center,
+                            )
+
+
+                        )
+                    )
+
+
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+
+
   }
 
 
