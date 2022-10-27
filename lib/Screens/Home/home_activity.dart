@@ -7,10 +7,12 @@ import 'package:neo/Screens/Home/home_page.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Login/mpin_page.dart';
 import 'package:neo/Screens/Login/otp_page.dart';
+import 'package:neo/Screens/Sidemenu/about_us.dart';
 import 'package:neo/helper/config.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/sharedprefhelper.dart';
+import '../Sidemenu/contact_us.dart';
 import '../Sidemenu/user_profile.dart';
 
 class DrawerController extends GetxController {
@@ -67,7 +69,11 @@ class DrawerActivityState extends State<DrawerActivity> {
       case 1:
         return new UserProfile();
       case 2:
-        return new MPINVerification();
+       // return new MPINVerification();
+        return new AboutUs();
+      case 3:
+      // return new MPINVerification();
+        return new ContactUs();
 
       default:
         return new Text("Error While");
