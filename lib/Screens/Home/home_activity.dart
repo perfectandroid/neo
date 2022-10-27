@@ -11,6 +11,7 @@ import 'package:neo/helper/config.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/sharedprefhelper.dart';
+import '../Sidemenu/user_profile.dart';
 
 class DrawerController extends GetxController {
   String _email = "";
@@ -64,7 +65,7 @@ class DrawerActivityState extends State<DrawerActivity> {
       case 0:
         return new HomePage();
       case 1:
-      //  return new OTPVerification();
+        return new UserProfile();
       case 2:
         return new MPINVerification();
 
