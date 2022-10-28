@@ -272,7 +272,7 @@ class _MPINVerification extends State<MPINVerification>{
     print("USERNAME"+Username);
     print(Password);
     print("gjjghjghjghjghj");
-
+    try{
 
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
@@ -294,7 +294,7 @@ class _MPINVerification extends State<MPINVerification>{
       // await SharedPreferencesHelper.setId(items[0]['id']?? (throw ArgumentError("id is required")));
       //  showSuccessAlertDialog(context, errors,status);
 
-      try{
+
 
         await SharedPreferencesHelper.setAgent_id(status['data']["id"]?? (throw ArgumentError("id is required")));
         await SharedPreferencesHelper.setAgent_name(status['data']["name"]?? (throw ArgumentError("name is required")));
@@ -317,12 +317,13 @@ class _MPINVerification extends State<MPINVerification>{
         //     MaterialPageRoute(
         //       builder: (context) => DrawerActivity(),
         //     ));
-      }catch(e) {
-        ShowDialogs().showAlertDialog(context, e.toString());
-      }
+
 
     }else{
       showFaliureAlertDialog(context, errors);
+    }
+    }catch(e) {
+      ShowDialogs().showAlertDialog(context, e.toString());
     }
 
   }
