@@ -142,8 +142,8 @@ class DrawerActivityState extends State<DrawerActivity> {
                       child: Container(
                         child: CircleAvatar(
                           child: CircleAvatar(
-                            // child: Image.network(Config().BASE_URL+controller._imagePath),backgroundColor: Colors.white
-                              child: Image.network(picsUrl),backgroundColor: Colors.white
+                             child: Image.network(Config().BASE_URL+controller._imagePath),backgroundColor: Colors.white
+                            //  child: Image.network(picsUrl),backgroundColor: Colors.white
                             // child: Image.network(picsUrl),
                           ),backgroundColor: Colors.white,
                         ),padding: EdgeInsets.zero,

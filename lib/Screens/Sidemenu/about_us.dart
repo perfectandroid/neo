@@ -66,10 +66,27 @@ class _AboutUs extends State<AboutUs>{
                                         Center(
                                           child: Container(
                                               padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                              child: CircleAvatar(
-                                                  backgroundColor: Colors.white,
-                                                  radius: MediaQuery.of(context).size.height/12,
-                                                  child: Image.asset('assets/images/logo.png'))//Text
+                                              // child: CircleAvatar(
+                                              //     backgroundColor: Colors.white,
+                                              //     radius: MediaQuery.of(context).size.height/12,
+                                              //     child: Image.asset('assets/images/logo.png'))//Text
+
+                                           child : Container(
+                                              child:SizedBox(
+                                                  height:200,width:200,
+                                                  // child:Image.asset("assets/images/aboutus.png")
+                                                   child: Image.network(Config().BASE_URL+(aboutUsModel.data?[0].image).toString())
+                                              ),
+                                            ),
+
+                                            // child: CircleAvatar(
+                                            //         child: Image.network(Config().BASE_URL+(aboutUsModel.data?[0].image).toString()),
+                                            //         backgroundColor: Colors.white,
+                                            //         radius: 100,
+                                            //       //  child: Image.network(picsUrl),backgroundColor: Colors.white
+                                            //       // child: Image.network(picsUrl),
+                                            // ),
+
                                           ),
                                         )
                                       ]
@@ -82,7 +99,7 @@ class _AboutUs extends State<AboutUs>{
                               flex: 7,
                               child: Container(
                                   decoration: new BoxDecoration(
-                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(MediaQuery.of(context).size.height/13),topRight: Radius.circular(MediaQuery.of(context).size.height/13)),
+                                     // borderRadius: BorderRadius.only(topLeft: Radius.circular(MediaQuery.of(context).size.height/13),topRight: Radius.circular(MediaQuery.of(context).size.height/13)),
                                       boxShadow: [new BoxShadow(
                                         color: Colors.white,
                                       )]
@@ -130,7 +147,7 @@ class _AboutUs extends State<AboutUs>{
 
             // decoration: new BoxDecoration(image: new DecorationImage(image: new AssetImage("assets/images/loginbg.png"), fit: BoxFit.fill)),
 
-          )),
+          ))
     );
   }
 
