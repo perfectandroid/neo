@@ -13,6 +13,7 @@ import '../../helper/config.dart';
 import '../../helper/networkutitlity.dart';
 import '../../helper/sharedprefhelper.dart';
 import '../Home/home_activity.dart';
+import '../Login/login_page.dart';
 import '../Login/otp_page.dart';
 import '../SplashScreen/splash_screen.dart';
 import '../../helper/showDialogs.dart';
@@ -170,13 +171,13 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
                                 borderRadius: BorderRadius.all(Radius.zero))
                         ),
                         onPressed: () {
-                       /*   print('List :  $_isChecked');
-                          for (var i = 0; i < dispatchedList.length; i++){
-                            if(_isChecked[i]){
+                          print('List :  $userStatus');
+                          for (var i = 0; i < userStatus.length; i++){
+                            if(userStatus[i]){
                               print("Packed List 96");
-                              print(dispatchedList[i]['id'].toString());
+                              print(pendings1[i]['status'].toString());
                             }
-                          }*/
+                          }
 
                         },
                         child: Text('SAVE'),
