@@ -8,6 +8,8 @@ import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Login/mpin_page.dart';
 import 'package:neo/Screens/Login/otp_page.dart';
 import 'package:neo/Screens/Sidemenu/about_us.dart';
+import 'package:neo/Screens/Sidemenu/change_mpin.dart';
+import 'package:neo/Screens/Sidemenu/change_password.dart';
 import 'package:neo/helper/config.dart';
 
 import '../../helper/colorutility.dart';
@@ -36,7 +38,7 @@ class DrawerActivity extends StatefulWidget {
     new DrawerItem("Privacy Policy", Icons.privacy_tip_outlined),
     new DrawerItem("Terms & Conditions", Icons.fact_check_outlined),
     new DrawerItem("Faq", Icons.question_answer_outlined),
-    new DrawerItem("Rate Us", Icons.image_aspect_ratio),
+    //new DrawerItem("Rate Us", Icons.image_aspect_ratio),
     new DrawerItem("Change Mpin", Icons.pin_outlined),
     new DrawerItem("Change Password", Icons.lock_outline),
     new DrawerItem("Quit", Icons.dangerous_outlined),
@@ -74,6 +76,26 @@ class DrawerActivityState extends State<DrawerActivity> {
       case 3:
       // return new MPINVerification();
         return new ContactUs();
+
+      case 4:
+      // return new MPINVerification();
+        return new ContactUs();
+
+      case 5:
+      // return new MPINVerification();
+       // return new ContactUs();
+
+      case 6:
+      // return new MPINVerification();
+       // return new ContactUs();
+
+      case 7:
+      // return new MPINVerification();
+        return new ChangeMpin();
+
+      case 8:
+      // return new MPINVerification();
+        return new ChangePassword();
 
       default:
         return new Text("Error While");
