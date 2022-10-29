@@ -171,13 +171,13 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
                                 borderRadius: BorderRadius.all(Radius.zero))
                         ),
                         onPressed: () {
-                       /*   print('List :  $_isChecked');
-                          for (var i = 0; i < dispatchedList.length; i++){
-                            if(_isChecked[i]){
+                          print('List :  $userStatus');
+                          for (var i = 0; i < userStatus.length; i++){
+                            if(userStatus[i]){
                               print("Packed List 96");
-                              print(dispatchedList[i]['id'].toString());
+                              print(pendings1[i]['status'].toString());
                             }
-                          }*/
+                          }
 
                         },
                         child: Text('SAVE'),

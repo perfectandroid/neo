@@ -29,6 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  syncfusion_flutter_charts: ^18.1.36
   get: ^4.6.5
   http: ^0.13.4
 #  lottie: ^1.4.3

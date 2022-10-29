@@ -11,6 +11,7 @@ import 'package:neo/Screens/Status/confirmlist.dart';
 import 'package:neo/Screens/Status/deliverylist.dart';
 import 'package:neo/Screens/Status/dispatchedlist.dart';
 import 'package:neo/Screens/Status/packedlist.dart';
+import '../../chart/subsciberchart.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -716,16 +717,16 @@ class _HomePageState extends State<HomePage> {
     }
     else if(index=="1")
     {
-     /* Navigator.push(
+
+      Navigator.push(
         context,
         MaterialPageRoute(
           fullscreenDialog: true,
-          builder: (BuildContext context) => Test2(
+          builder: (BuildContext context) => Barchart(
             //  liste: album,
           ),
         ),
-      );*/
-
+      );
     }
     else if(index=="2")
     {
