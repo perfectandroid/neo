@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:neo/Screens/Login/send_otp.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../helper/colorutility.dart';
@@ -185,15 +186,16 @@ class _LoginPage extends State<LoginPage>{
                                 alignment: Alignment.centerRight, child:
                                 new GestureDetector(
                                   onTap: () {
-                                    // Navigator.pushAndRemoveUntil(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) => ForgotPassword()
-                                    //     ),
-                                    //         (route) => true
-                                    // );
 
-                                    confirmOtpPopup(context);
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => SendOtp()
+                                        ),
+                                            (route) => false
+                                    );
+
+                                 //   confirmOtpPopup(context);
                                   },
                                   child: new Text('Forgot Password ?', textAlign: TextAlign.right, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05,color: ColorUtility().colorAppbar))
                                 )
@@ -251,6 +253,7 @@ class _LoginPage extends State<LoginPage>{
       }else{
 
         print(statuscode);
+
         // showSuccessAlertDialog(context, Username);
         showFaliureAlertDialog(context, errors.toString());
       }
@@ -404,6 +407,13 @@ class _LoginPage extends State<LoginPage>{
                       ),
                     ),
 
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: UnderlineInputBorder(),
+                        labelText: 'Enter your username',
+                      ),
+                    ),
+
                     Center(
                         child: Container(
                             margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/80,MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/40),
@@ -455,8 +465,6 @@ class _LoginPage extends State<LoginPage>{
 
 
   }
-
-
 
 }
 
