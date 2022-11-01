@@ -618,6 +618,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.4.0"
+  pin_code_view:
+    dependency: "direct main"
+    description:
+      name: pin_code_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0+1"
   platform:
     dependency: transitive
     description:

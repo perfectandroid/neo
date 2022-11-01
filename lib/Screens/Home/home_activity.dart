@@ -7,11 +7,13 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:neo/Screens/Home/home_page.dart';
 import 'package:neo/Screens/Login/login_page.dart';
+import 'package:neo/Screens/Login/loginpage.dart';
 import 'package:neo/Screens/Login/mpin_page.dart';
 import 'package:neo/Screens/Login/otp_page.dart';
 import 'package:neo/Screens/Sidemenu/about_us.dart';
 import 'package:neo/Screens/Sidemenu/change_mpin.dart';
 import 'package:neo/Screens/Sidemenu/change_password.dart';
+import 'package:neo/Screens/SplashScreen/splash_screen.dart';
 import 'package:neo/helper/config.dart';
 
 import '../../helper/colorutility.dart';
@@ -112,6 +114,10 @@ class DrawerActivityState extends State<DrawerActivity> {
     if(index == 9 ){
       Navigator.of(context).pop(); //
       quitAlert(context);
+    }
+    else if(index == 10 ){
+      Navigator.of(context).pop(); //
+      logOutAlert(context);
     }else{
       setState(() => _selectedIndex = index);
       Navigator.of(context).pop(); // close the drawer
@@ -339,6 +345,131 @@ class DrawerActivityState extends State<DrawerActivity> {
                                           },
                                           child: Text(
                                             'Quit', //title
+                                            textAlign: TextAlign.end, //aligment
+                                          ),
+                                        ))
+
+                                ),
+                              )
+                            ]
+                        )
+
+                    )
+
+
+
+
+
+
+                  ],
+                ),
+              ),
+            ),
+
+
+          );
+        }
+    );
+  }
+
+  void logOutAlert(BuildContext context) {
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  20.0,
+                ),
+              ),
+            ),
+            contentPadding: EdgeInsets.only(
+              top: 10.0,
+            ),
+            content: Container(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(0.0),
+                      child:SizedBox(
+                          height:75,width:75,
+                          // child:Image.asset("assets/images/logo.png")
+                          child:Image.asset("assets/images/logo.png")
+
+                      ),
+                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.fromLTRB(10,20,10,20),
+                        child:SizedBox(
+                          child: Text("Are you sure you want to quit ?",textAlign: TextAlign.center,),
+                        )
+
+                    ),
+
+                    Divider(color: Colors.grey,
+                        thickness: 1),
+
+                    Container(
+                        height: 40,
+                        width: double.infinity,
+                        margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child:Row(
+                            children:<Widget>[
+                              Expanded(
+                                flex: 5,
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      //action
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(
+                                      'Cancel', //title
+                                      textAlign: TextAlign.end, //aligment
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              VerticalDivider(
+                                  color: Colors.grey, thickness: 1),
+
+                              Expanded(
+                                flex: 5,
+                                child: Center(
+                                    child: Visibility(
+                                        visible: true,
+                                        child: TextButton(
+                                          onPressed: () async {
+                                            //action
+                                           // SystemNavigator.pop();
+                                            // exit(0);
+                                            //  window.close();
+                                           bool logOut =  await SharedPreferencesHelper.logout();
+                                           print(logOut);
+                                           if(logOut){
+                                             Navigator.pushAndRemoveUntil(
+                                                 context,
+                                                 MaterialPageRoute(
+                                                     builder: (context) => LoginPage()
+                                                 ),
+                                                     (route) => false
+                                             );
+                                           }
+
+                                          },
+                                          child: Text(
+                                            'Log Out', //title
                                             textAlign: TextAlign.end, //aligment
                                           ),
                                         ))
