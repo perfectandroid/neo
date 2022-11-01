@@ -42,38 +42,56 @@ class _ConfirmScreen extends State<ConfirmScreen>{
   late List _confirmSaveList = [];
 
   initState(){
-
     checkInterNet(this.context);
-
     super.initState();
-
-
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.07,
-        automaticallyImplyLeading: true,
-        backgroundColor: ColorUtility().colorAppbar,
-        title: Text("Confirm List"),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context,true);
-          },
-          icon: Icon(Icons.arrow_back),
-        ),
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: MediaQuery.of(context).size.height * 0.07,
+            automaticallyImplyLeading: true,
+            backgroundColor: ColorUtility().colorAppbar,
+            title: Text("Confirm List"),
+            leading: IconButton(
+              onPressed: () {
+                // Navigator.pop(context,true);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomePage()
+                    ),
+                        (route) => false
+                );
+              },
+              icon: Icon(Icons.arrow_back),
+            ),
 
-      ),
+          ),
 
 
-        body: getBody()
+          body: getBody()
 
 
+      )
     );
+
+  }
+
+  Future<bool> _onBackPressed() async  {
+    return (await  Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (context) => HomePage()
+        ),
+            (route) => false
+    )) ??
+        false;
   }
 
   Widget getBody(){
@@ -743,6 +761,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
       final status =jsonDecode(res);
       final statuscode = status['success'] as bool;
       final errors = status['errors'] as String;
+      final message = status['mesaage'] as String;
 
       if(statuscode==true){
         await Future.delayed(const Duration(seconds: 1));
@@ -751,7 +770,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
         print(items);
 
 
-        showSuccessAlert(context, errors.toString());
+        showSuccessAlert(context, message.toString());
         // setState(() {
         //  checkInterNet(context);
         // });

@@ -35,27 +35,50 @@ class _DispatchedScreen extends State<DispatchedScreen>{
     super.initState();
   }
 
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: MediaQuery.of(context).size.height * 0.07,
-          automaticallyImplyLeading: true,
-          backgroundColor: ColorUtility().colorAppbar,
-          title: Text("Dispatched List"),
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context,true);
-            },
-            icon: Icon(Icons.arrow_back),
-          ),
-
+  Future<bool> _onBackPressed() async  {
+    return (await  Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (context) => HomePage()
         ),
+            (route) => false
+    )) ??
+        false;
+  }
+
+  Widget build(BuildContext context) {
+
+    return WillPopScope(
+        onWillPop: _onBackPressed,
+        child: Scaffold(
+            appBar: AppBar(
+              toolbarHeight: MediaQuery.of(context).size.height * 0.07,
+              automaticallyImplyLeading: true,
+              backgroundColor: ColorUtility().colorAppbar,
+              title: Text("Dispatched List"),
+              leading: IconButton(
+                onPressed: () {
+                  // Navigator.pop(context,true);
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomePage()
+                      ),
+                          (route) => false
+                  );
+                },
+                icon: Icon(Icons.arrow_back),
+              ),
+
+            ),
 
 
-        body: getBody()
+            body: getBody()
 
 
+        )
     );
+
   }
 
   Widget getBody(){
@@ -607,7 +630,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
       final status =jsonDecode(res);
       final statuscode = status['success'] as bool;
       final errors = status['errors'] as String;
-
+      final message = status['mesaage'] as String;
       if(statuscode==true){
         await Future.delayed(const Duration(seconds: 1));
         ShowDialogs().showProgressDialog(context,"Loading....",false);
@@ -615,7 +638,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
         print(items);
 
 
-        showSuccessAlert(context, errors.toString());
+        showSuccessAlert(context, message.toString());
         // setState(() {
         //  checkInterNet(context);
         // });

@@ -59,6 +59,7 @@ dependencies:
   flutter_gif: ^0.0.4
   flutter_pin_code_fields: ^1.1.0
   pin_code_view: 0.3.0+1
+  pin_view: ^1.0.1
 
 
 dev_dependencies:

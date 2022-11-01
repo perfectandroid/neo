@@ -137,8 +137,8 @@ class _MPINCREATION extends State<MPINCREATION>{
                                     margin: EdgeInsets.fromLTRB(0,0,0,0),
                                     padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                     alignment: Alignment.center,
-                                    width: 30,
-                                    height: 30,
+                                    width: 35,
+                                    height: 35,
                                     child :TextField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead1,
@@ -151,6 +151,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                         FilteringTextInputFormatter.digitsOnly,
                                         LengthLimitingTextInputFormatter(1)
                                       ],
+                                      style: TextStyle(color: Colors.black,fontSize: 5),
                                       decoration: new InputDecoration(
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
@@ -177,11 +178,11 @@ class _MPINCREATION extends State<MPINCREATION>{
                                 ),
                                 Center(
                                   child: Container(
-                                    margin: EdgeInsets.fromLTRB(5,0,0,0),
+                                    margin: EdgeInsets.fromLTRB(2,0,0,0),
                                     padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                     alignment: Alignment.center,
-                                    width: 30,
-                                    height: 30,
+                                    width: 35,
+                                    height: 35,
                                     child :TextField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead2,
@@ -226,11 +227,11 @@ class _MPINCREATION extends State<MPINCREATION>{
                                 ),
                                 Center(
                                   child: Container(
-                                    margin: EdgeInsets.fromLTRB(5,0,0,0),
+                                    margin: EdgeInsets.fromLTRB(2,0,0,0),
                                     padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                     alignment: Alignment.center,
-                                    width: 30,
-                                    height: 30,
+                                    width: 35,
+                                    height: 35,
                                     child :TextField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead3,
@@ -275,11 +276,11 @@ class _MPINCREATION extends State<MPINCREATION>{
                                 ),
                                 Center(
                                   child: Container(
-                                    margin: EdgeInsets.fromLTRB(5,0,0,0),
+                                    margin: EdgeInsets.fromLTRB(2,0,0,0),
                                     padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                     alignment: Alignment.center,
-                                    width: 30,
-                                    height: 30,
+                                    width: 35,
+                                    height: 35,
                                     child :TextField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead4,
@@ -329,11 +330,11 @@ class _MPINCREATION extends State<MPINCREATION>{
 
                                 Center(
                                   child: Container(
-                                    margin: EdgeInsets.fromLTRB(5,0,0,0),
+                                    margin: EdgeInsets.fromLTRB(2,0,0,0),
                                     padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                     alignment: Alignment.center,
-                                    width: 30,
-                                    height: 30,
+                                    width: 35,
+                                    height: 35,
                                     child :TextField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead5,
@@ -383,11 +384,11 @@ class _MPINCREATION extends State<MPINCREATION>{
 
                                 Center(
                                   child: Container(
-                                    margin: EdgeInsets.fromLTRB(5,0,0,0),
+                                    margin: EdgeInsets.fromLTRB(2,0,0,0),
                                     padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                     alignment: Alignment.center,
-                                    width: 30,
-                                    height: 30,
+                                    width: 35,
+                                    height: 35,
                                     child :TextField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead6,
