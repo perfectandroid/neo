@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:neo/Screens/Home/home_activity.dart';
+import 'package:neo/Screens/Login/send_mpin_otp.dart';
 import 'package:neo/constants.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -189,6 +190,33 @@ class _MPINVerification extends State<MPINVerification>{
                           ),
                         ),
 
+
+                        // Container(
+                        //     margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/10,0),
+                        //     child: Column(
+                        //         children: [
+                        //           Align(
+                        //               alignment: Alignment.center, child:
+                        //           new GestureDetector(
+                        //               onTap: () {
+                        //
+                        //                 Navigator.pushAndRemoveUntil(
+                        //                     context,
+                        //                     MaterialPageRoute(
+                        //                         builder: (context) => SendMpinOtp()
+                        //                     ),
+                        //                         (route) => false
+                        //                 );
+                        //
+                        //                 //   confirmOtpPopup(context);
+                        //               },
+                        //               child: new Text('Forgot Mpin ?', textAlign: TextAlign.right, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05,color: ColorUtility().colorAppbar))
+                        //           )
+                        //
+                        //           )
+                        //         ]
+                        //     )
+                        // )
 
                       ],
                     )
