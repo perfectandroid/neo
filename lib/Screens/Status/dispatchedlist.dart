@@ -28,6 +28,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
   @override
   List dispatchedList = [];
   late List<bool> _isChecked;
+  late List _dispatchedSaveList = [];
 
   initState(){
     checkInterNet(this.context);
@@ -108,15 +109,17 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                         ),
                         onPressed: () {
                           print('List :  $_isChecked');
+                          _dispatchedSaveList.clear();
                           for (var i = 0; i < dispatchedList.length; i++){
                             if(_isChecked[i]){
                               print("Packed List 96");
                               print(dispatchedList[i]['id'].toString());
+                              _dispatchedSaveList.add(dispatchedList[i]['id'].toString());
                             }
                           }
-
+                          validateList(_dispatchedSaveList);
                         },
-                        child: Text('DELETE'),
+                        child: Text('DISPATCHED'),
                       )
                   ),
 
@@ -570,6 +573,107 @@ class _DispatchedScreen extends State<DispatchedScreen>{
       ShowDialogs().showAlertDialog(context, e.toString());
     }
   }
+
+  Future<void> validateList(List dispatchedSaveList) async {
+
+    if(dispatchedSaveList.length == 0){
+      validateMessage(context,"Select Atleast one order");
+    }else{
+      isOnline =  await NetworkUtility().checkInternet();
+      if(isOnline){
+        dispatchedOrder(dispatchedSaveList);
+      }
+      else{
+        checkOnlineAlert(context);
+      }
+    }
+
+  }
+
+  Future<void> dispatchedOrder(List dispatchedSaveList) async {
+
+    try{
+      ShowDialogs().showProgressDialog(context,"Loading....",true);
+      String token = await SharedPreferencesHelper.getAgent_token();
+      var headerss = {"Authorization": "Token "+token,"Content-Type": "application/json"};
+      var url =  Uri.parse(Config().BASE_URL+'/seller_api/order/update/'+'?order_ids=$dispatchedSaveList');
+      var request = http.Request('PUT', url);
+      request.headers.addAll(headerss);
+      http.StreamedResponse response = await request.send();
+      final res = await response.stream.bytesToString();
+
+      print("795  packedOrder");
+      print(res.toString());
+      final status =jsonDecode(res);
+      final statuscode = status['success'] as bool;
+      final errors = status['errors'] as String;
+
+      if(statuscode==true){
+        await Future.delayed(const Duration(seconds: 1));
+        ShowDialogs().showProgressDialog(context,"Loading....",false);
+        var items = json.decode(res.toString())['data'];
+        print(items);
+
+
+        showSuccessAlert(context, errors.toString());
+        // setState(() {
+        //  checkInterNet(context);
+        // });
+
+      }else{
+        ShowDialogs().showProgressDialog(context,"Loading....",false);
+        showFaliureAlertDialog(context, errors.toString());
+      }
+    }catch(e){
+      ShowDialogs().showProgressDialog(context,"Loading....",false);
+      ShowDialogs().showAlertDialog(context, e.toString());
+    }
+
+  }
+
+  void validateMessage(BuildContext context, String message) {
+    final snackBar = SnackBar(
+      content:  Text(''+message,style: TextStyle(color: Colors.white),textAlign: TextAlign.center,),
+      backgroundColor: ColorUtility().colorWarning,
+      behavior: SnackBarBehavior.fixed,
+      action: SnackBarAction(
+        label: '',
+        onPressed: () {
+          // Some code to undo the change.
+
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void showSuccessAlert(BuildContext context, String errorMsg) {
+
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+        setState(() {
+          checkInterNet(context);
+        });
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: Text("Dispatched",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),textAlign: TextAlign.center),
+      content: Text(errorMsg,style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey),textAlign: TextAlign.center),
+      actions: [
+        okButton,
+      ],
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 
 }
 
