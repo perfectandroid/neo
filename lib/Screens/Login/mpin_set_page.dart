@@ -139,7 +139,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                     alignment: Alignment.center,
                                     width: 35,
                                     height: 35,
-                                    child :TextField(
+                                    child :TextFormField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead1,
                                       textAlign: TextAlign.center,
@@ -151,7 +151,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                         FilteringTextInputFormatter.digitsOnly,
                                         LengthLimitingTextInputFormatter(1)
                                       ],
-                                      style: TextStyle(color: Colors.black,fontSize: 5),
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
                                       decoration: new InputDecoration(
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
@@ -183,7 +183,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                     alignment: Alignment.center,
                                     width: 35,
                                     height: 35,
-                                    child :TextField(
+                                    child :TextFormField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead2,
                                       textAlign: TextAlign.center,
@@ -195,6 +195,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                         FilteringTextInputFormatter.digitsOnly,
                                         LengthLimitingTextInputFormatter(1)
                                       ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
                                       decoration: new InputDecoration(
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
@@ -232,7 +233,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                     alignment: Alignment.center,
                                     width: 35,
                                     height: 35,
-                                    child :TextField(
+                                    child :TextFormField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead3,
                                       textAlign: TextAlign.center,
@@ -244,6 +245,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                         FilteringTextInputFormatter.digitsOnly,
                                         LengthLimitingTextInputFormatter(1)
                                       ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
                                       decoration: new InputDecoration(
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
@@ -281,7 +283,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                     alignment: Alignment.center,
                                     width: 35,
                                     height: 35,
-                                    child :TextField(
+                                    child :TextFormField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead4,
                                       textAlign: TextAlign.center,
@@ -293,6 +295,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                         FilteringTextInputFormatter.digitsOnly,
                                         LengthLimitingTextInputFormatter(1)
                                       ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
                                       decoration: new InputDecoration(
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
@@ -335,7 +338,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                     alignment: Alignment.center,
                                     width: 35,
                                     height: 35,
-                                    child :TextField(
+                                    child :TextFormField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead5,
                                       textAlign: TextAlign.center,
@@ -347,6 +350,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                         FilteringTextInputFormatter.digitsOnly,
                                         LengthLimitingTextInputFormatter(1)
                                       ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
                                       decoration: new InputDecoration(
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
@@ -389,7 +393,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                     alignment: Alignment.center,
                                     width: 35,
                                     height: 35,
-                                    child :TextField(
+                                    child :TextFormField(
                                       autofocus: true,
                                       readOnly: controller.mpinRead6,
                                       textAlign: TextAlign.center,
@@ -401,6 +405,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                         FilteringTextInputFormatter.digitsOnly,
                                         LengthLimitingTextInputFormatter(1)
                                       ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
                                       decoration: new InputDecoration(
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),

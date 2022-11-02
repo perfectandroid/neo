@@ -49,8 +49,8 @@ class MPINController extends GetxController {
 
 }
 
-class MPINVerification extends GetView<MPINController> {
-  const MPINVerification({Key? key}) : super(key: key);
+class MPINVerifications extends GetView<MPINController> {
+  const MPINVerifications({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(MPINController());

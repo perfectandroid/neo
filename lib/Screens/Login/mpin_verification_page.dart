@@ -8,7 +8,6 @@ import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/send_mpin_otp.dart';
 import 'package:neo/constants.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:pin_view/pin_view.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
@@ -20,7 +19,6 @@ var TAG = "MPINVerificationController";
 
 class MPINVerificationController extends GetxController {
   TextEditingController textEditingController = TextEditingController();
-  PinView pinviewController = PinView();
 
 }
 
@@ -174,8 +172,9 @@ class _MPINVerification extends State<MPINVerification>{
                                 String Username = await SharedPreferencesHelper.getAgent_mobile_number();
                                 print(Username);
                                 print(controller.textEditingController.text);
-
-                                var users = await mpin(Username, controller.textEditingController.text, context);
+                                var mpinStr = controller.textEditingController.text;
+                                controller.textEditingController.clear();
+                                var users = await mpin(Username, mpinStr, context);
                               },
                               onChanged: (value) {
                                 debugPrint(value);
@@ -192,29 +191,6 @@ class _MPINVerification extends State<MPINVerification>{
                           ),
                         ),
 
-                       // Center(
-                       //   child: Container(
-                       //     padding: const EdgeInsets.all(5.0),
-                       //     margin: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height/70,0,0),
-                       //     child: PinView (
-                       //         count: 6, // count of the fields, excluding dashes
-                       //         autoFocusFirstField: false,
-                       //         dashPositions: [3],
-                       //         style: TextStyle(color: Colors.black),// describes the dash positions (not indexes)
-                       //         submit: (String pin){
-                       //           showDialog (
-                       //               context: context,
-                       //               builder: (BuildContext context) {
-                       //                 return AlertDialog (
-                       //                     title: Text("Pin received successfully."),
-                       //                     content: Text("Entered pin is: $pin")
-                       //                 );
-                       //               }
-                       //           );
-                       //         } // gets triggered when all the fields are filled
-                       //     ),
-                       //   )
-                       // )
 
 
                         // Container(
