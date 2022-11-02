@@ -1,11 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:neo/Screens/Login/loginpage.dart';
 
 import '../../helper/colorutility.dart';
+import '../../helper/config.dart';
+import '../../helper/sharedprefhelper.dart';
+import '../../helper/showDialogs.dart';
+import 'package:http/http.dart' as http;
 
 class ChangePasswordController extends GetxController {
 
@@ -243,13 +250,8 @@ class _ChangePassword extends State<ChangePassword>{
       validateMessage(context,"Password Mismatch");
     }
     else{
-      // var users = await login(controller.textUserName.text, controller.textNewPaasword.text, context);
-      // Navigator.pushAndRemoveUntil(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (context) => LoginPage()
-      //     ), (route) => false
-      // );
+      //String Username = await SharedPreferencesHelper.getAgent_mobile_number();
+      var users = await changePassword(controller.textOldPassword.text.toString(), controller.textNewPassword.text.toString(), context);
     }
   }
 
@@ -267,5 +269,79 @@ class _ChangePassword extends State<ChangePassword>{
       ),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  static Future changePassword(oldPass, Password,BuildContext context ) async {
+
+    try{
+      print(oldPass);
+      print(Password);
+
+      ShowDialogs().showProgressDialog(context,"Loading....",true);
+      String token = await SharedPreferencesHelper.getAgent_token();
+      var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
+      var request = http.Request('PUT', Uri.parse(Config().BASE_URL+'/customer_api/change_password/'));
+      request.body = json.encode({"current_password": "$oldPass", "new_password": "$Password"});
+      request.headers.addAll(headers);
+      http.StreamedResponse response = await request.send();
+      final res = await response.stream.bytesToString();
+
+      print("sendOtp  319     "+res.toString());
+
+      final status =jsonDecode(res);
+      final statuscode = status['success'] as bool;
+      final errors = status['errors'] as String;
+
+      ShowDialogs().showProgressDialog(context,"Loading....",false);
+      if(statuscode==true){
+        String Username = await SharedPreferencesHelper.getAgent_mobile_number();
+        print(statuscode);
+        //  print(status['data']['id']);
+        bool logOut =  await SharedPreferencesHelper.logout();
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => LoginPage()
+            ), (route) => false
+        );
+      }else{
+
+        print(statuscode);
+        // showSuccessAlertDialog(context, Username);
+        showFaliureAlertDialog(context, errors.toString());
+      }
+    }catch(e){
+      ShowDialogs().showProgressDialog(context,"Loading....",false);
+      showFaliureAlertDialog(context, e.toString());
+    }
+
+  }
+
+  static void showFaliureAlertDialog(BuildContext context, String errorMsg) {
+    final controller = Get.put(ChangePasswordController());
+    Widget okButton = TextButton(
+      child: Text("OK",style: TextStyle(color: ColorUtility().colorAppbar,fontWeight: FontWeight.bold)),
+      onPressed: () {
+        //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
+        controller.textOldPassword.clear();
+        controller.textNewPassword.clear();
+        controller.textConfirPassword.clear();
+        Navigator.pop(context);
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: Text("CHANGE PASSWORD",style :TextStyle( color: Colors.black),textAlign:TextAlign.center),
+      content: Text(errorMsg,style : TextStyle( color: Colors.grey),textAlign:TextAlign.center),
+      actions: [
+        okButton,
+      ],
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }

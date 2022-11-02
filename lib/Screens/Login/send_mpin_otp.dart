@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:neo/Screens/Login/forgot_mpin.dart';
 import 'package:neo/Screens/Login/send_otp.dart';
 
 import '../../helper/colorutility.dart';
@@ -182,6 +183,7 @@ class _SendMpinOtp extends State<SendMpinOtp>{
       print(controller.userNameController.text);
       var otp = await sendOtpFrogot(context,controller.userNameController.text.toString());
 
+
     }
 
 
@@ -197,7 +199,7 @@ class _SendMpinOtp extends State<SendMpinOtp>{
     print(Username);
     print("14789325");
     try {
-      // ShowDialogs().showProgressDialog(context,"Loading....",true);
+       ShowDialogs().showProgressDialog(context,"Loading....",true);
       var headers = {'Content-Type': 'application/json'};
       var request = http.Request('POST', Uri.parse(Config().BASE_URL+'/customer_api/forgot_otp/'));
       request.body = json.encode({"username": "$Username"});
@@ -212,13 +214,13 @@ class _SendMpinOtp extends State<SendMpinOtp>{
       final errors = status['errors'] as String;
 
       if(statuscode==true){
-        // ShowDialogs().showProgressDialog(context,"Loading....",false);
+         ShowDialogs().showProgressDialog(context,"Loading....",false);
         print("229");
         confirmForgotOtpPopup(context);
         print("231");
 
       }else{
-        // ShowDialogs().showProgressDialog(context,"Loading....",false);
+         ShowDialogs().showProgressDialog(context,"Loading....",false);
       }
     }catch(e){
       ShowDialogs().showProgressDialog(context,"Loading....",false);
@@ -388,6 +390,7 @@ class _SendMpinOtp extends State<SendMpinOtp>{
 
                                           // controller.textEditingController.clear(),
                                           controller.userNameController.clear(),
+                                          controller.eMailController.clear(),
                                           // Navigator.pop(context),
                                           Navigator.pushAndRemoveUntil(
                                               context,
@@ -456,8 +459,9 @@ class _SendMpinOtp extends State<SendMpinOtp>{
     controller.eMailController.clear();
     print('sendOtp');
     print(Username);
+    print(otp);
     try {
-      //  ShowDialogs().showProgressDialog(context,"Loading....",true);
+      ShowDialogs().showProgressDialog(context,"Loading....",true);
       var headers = {'Content-Type': 'application/json'};
       var request = http.Request('POST', Uri.parse(Config().BASE_URL+'/customer_api/verify_forgot_otp/'));
       request.body = json.encode({"username": "$Username","fpassotp": "$otp"});
@@ -474,13 +478,13 @@ class _SendMpinOtp extends State<SendMpinOtp>{
       if(statuscode==true){
         ShowDialogs().showProgressDialog(context,"Loading....",false);
 
-        // Navigator.pushAndRemoveUntil(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => ForgotPassword()
-        //     ),
-        //         (route) => false
-        // );
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ForgotMpin()
+            ),
+                (route) => false
+        );
 
       }else{
         ShowDialogs().showProgressDialog(context,"Loading....",false);

@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:neo/Screens/Login/mpin_verification_page.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
@@ -14,42 +13,37 @@ import '../../helper/sharedprefhelper.dart';
 import '../../helper/showDialogs.dart';
 import 'package:http/http.dart' as http;
 
-class ChangeMpinController extends GetxController {
+import 'mpin_verification_page.dart';
 
+class ForgotMpinController extends GetxController {
 
-  TextEditingController textOldMpin = TextEditingController();
+  TextEditingController textUserName = TextEditingController();
   TextEditingController textNewMpin = TextEditingController();
   TextEditingController textConfirmMpin = TextEditingController();
-
-
 }
 
-class ChangeMpin extends StatefulWidget{
+class ForgotMpin extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return _ChangeMpin();
+    return _ForgotMpin();
   }
 }
 
-class _ChangeMpin extends State<ChangeMpin>{
+class _ForgotMpin extends State<ForgotMpin>{
+  final controller = Get.put(ForgotMpinController());
 
-  bool boolOld = false;
   bool boolNew = false;
   bool boolConfirm = false;
-
   @override
   initState(){
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ChangeMpinController());
-
     return Scaffold(
       body: SingleChildScrollView(
           child: Container(
@@ -72,36 +66,14 @@ class _ChangeMpin extends State<ChangeMpin>{
                       child: Image.asset('assets/images/forgot_password.png')),
 
                   Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/10,0),
+                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/10,0),
                       height: MediaQuery.of(context).size.height/16,
                       child:  TextFormField(
                         cursorColor: ColorUtility().colorAppbar,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          LengthLimitingTextInputFormatter(6)
-                        ],
-
                         decoration: InputDecoration(
-                          labelText: "Old Mpin",
+                          labelText: "User Name",
                           labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
-                          prefixIcon: Icon(Icons.lock, size: 24,color: Colors.grey),
-                          suffixIcon: IconButton(
-                              icon: Icon(boolOld == true?Icons.visibility_off:Icons.visibility),
-                              color: Colors.grey,
-                              onPressed: () {
-                                if(boolOld){ //if passenable == true, make it false
-                                  setState(() {
-                                    boolOld = false;
-                                  });
-                                }else{
-                                  setState(() {
-                                    boolOld = true;
-                                  });
-                                }
-
-                              }
-                          ),
+                          prefixIcon: Icon(Icons.person, size: 24,color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(2),
                             borderSide: BorderSide(
@@ -115,12 +87,9 @@ class _ChangeMpin extends State<ChangeMpin>{
                               )
                           ),
                         ),
-                        onChanged: (value) {
-                        },
-                        obscureText: boolOld,
-                        controller: controller.textOldMpin,
-                      ),
-
+                        obscureText: false,
+                        controller: controller.textUserName,
+                      )
                   ),
 
                   Container(
@@ -128,11 +97,6 @@ class _ChangeMpin extends State<ChangeMpin>{
                       height: MediaQuery.of(context).size.height/16,
                       child:  TextFormField(
                         cursorColor: ColorUtility().colorAppbar,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          LengthLimitingTextInputFormatter(6)
-                        ],
                         decoration: InputDecoration(
                           labelText: "New Mpin",
                           labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
@@ -176,11 +140,6 @@ class _ChangeMpin extends State<ChangeMpin>{
                       height: MediaQuery.of(context).size.height/16,
                       child:  TextField(
                         cursorColor: ColorUtility().colorAppbar,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          LengthLimitingTextInputFormatter(6)
-                        ],
                         decoration: InputDecoration(
                           labelText: "Confirm Mpin",
                           labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
@@ -253,21 +212,26 @@ class _ChangeMpin extends State<ChangeMpin>{
   }
 
   Future<void> validator() async {
-    final controller = Get.put(ChangeMpinController());
-    if(controller.textOldMpin.text.isEmpty || controller.textOldMpin.text.length != 6){
-      validateMessage(context,"Enter 6 digit old mpin");
-    }else if(controller.textNewMpin.text.isEmpty || controller.textNewMpin.text.length != 6){
-      validateMessage(context,"Enter 6 digit new mpin");
+    final controller = Get.put(ForgotMpinController());
+    if(controller.textUserName.text.isEmpty){
+      validateMessage(context,"Enter User Name");
+    }else if(controller.textNewMpin.text.isEmpty){
+      validateMessage(context,"Enter New Mpin");
     }
-    else if(controller.textConfirmMpin.text.isEmpty || controller.textConfirmMpin.text.length != 6){
-      validateMessage(context,"Enter 6 digit confirm mpin");
+    else if(controller.textConfirmMpin.text.isEmpty){
+      validateMessage(context,"Enter Confirm Mpin");
     }
     else if(controller.textNewMpin.text.toString().compareTo(controller.textConfirmMpin.text.toString()) != 0){
       validateMessage(context,"Mpin Mismatch");
     }
     else{
-      String Username = await SharedPreferencesHelper.getAgent_mobile_number();
-      var users = await changeMpin(Username,controller.textOldMpin.text.toString(), controller.textNewMpin.text.toString(), context);
+      var users = await forgotMpin(controller.textUserName.text.toString(), controller.textNewMpin.text.toString(), context);
+      // Navigator.pushAndRemoveUntil(
+      //     context,
+      //     MaterialPageRoute(
+      //         builder: (context) => LoginPage()
+      //     ), (route) => false
+      // );
     }
   }
 
@@ -287,26 +251,27 @@ class _ChangeMpin extends State<ChangeMpin>{
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  static Future changeMpin(Username,oldMpin, newMpin,BuildContext context ) async {
+
+  static Future forgotMpin(Username, Password,BuildContext context ) async {
 
     try{
-      print(oldMpin);
-      print(newMpin);
+      print(Username);
+      print(Password);
 
       ShowDialogs().showProgressDialog(context,"Loading....",true);
-      String token = await SharedPreferencesHelper.getAgent_token();
-      var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
-      var request = http.Request('POST', Uri.parse(Config().BASE_URL+'/customer_api/change_mpin/'));
-      request.body = json.encode({"username": "$Username", "old_mpin": "$oldMpin", "new_mpin": "$newMpin"});
+      var headers = {'Content-Type': 'application/json'};
+      var request = http.Request('PUT', Uri.parse(Config().BASE_URL+'/seller_api/forgot/mpin/'));
+      request.body = json.encode({"username": "$Username", "new_mpin": "$Password"});
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
       final res = await response.stream.bytesToString();
 
-      print("changeMpin  319     "+res.toString());
+      print("sendOtp  319     "+res.toString());
 
       final status =jsonDecode(res);
       final statuscode = status['success'] as bool;
       final errors = status['errors'] as String;
+
 
       ShowDialogs().showProgressDialog(context,"Loading....",false);
       if(statuscode==true){
@@ -333,12 +298,12 @@ class _ChangeMpin extends State<ChangeMpin>{
   }
 
   static void showFaliureAlertDialog(BuildContext context, String errorMsg) {
-    final controller = Get.put(ChangeMpinController());
+    final controller = Get.put(ForgotMpinController());
     Widget okButton = TextButton(
       child: Text("OK",style: TextStyle(color: ColorUtility().colorAppbar,fontWeight: FontWeight.bold)),
       onPressed: () {
         //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
-        controller.textOldMpin.clear();
+        controller.textUserName.clear();
         controller.textNewMpin.clear();
         controller.textConfirmMpin.clear();
         Navigator.pop(context);
