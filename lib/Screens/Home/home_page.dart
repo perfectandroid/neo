@@ -5,16 +5,17 @@ import 'package:flutter/services.dart';
 import 'package:neo/Model/HomeList.dart';
 import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
-import 'package:neo/Screens/Notification/NotificationList.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
 import 'package:neo/Screens/Status/confirmlist.dart';
 import 'package:neo/Screens/Status/deliverylist.dart';
 import 'package:neo/Screens/Status/dispatchedlist.dart';
 import 'package:neo/Screens/Status/packedlist.dart';
+import '../../chart/dashboard.dart';
 import '../../chart/subsciberchart.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../Notification/notifictn_list.dart';
 import '../Status/pendinglist2.dart';
 import '../Tabs/tab1.dart';
 class HomePage extends StatefulWidget {
@@ -722,7 +723,7 @@ class _HomePageState extends State<HomePage> {
         context,
         MaterialPageRoute(
           fullscreenDialog: true,
-          builder: (BuildContext context) => Barchart(
+          builder: (BuildContext context) => ChartApp(
             //  liste: album,
           ),
         ),

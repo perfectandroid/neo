@@ -57,7 +57,8 @@ dependencies:
   timeline_tile: ^2.0.0
   pin_code_fields: ^7.4.0
   flutter_gif: ^0.0.4
-
+  standard_dialogs: ^2.0.0
+  flutter_just_toast: ^1.0.1
 
 dev_dependencies:
   flutter_test:

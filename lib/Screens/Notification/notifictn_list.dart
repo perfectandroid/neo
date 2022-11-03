@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:neo/Screens/Home/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../Model/pendings.dart';
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
 import '../../helper/sharedprefhelper.dart';
@@ -16,6 +16,7 @@ class Notificationlist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: Center(
               child: JSONListView()
@@ -26,30 +27,50 @@ class Notificationlist extends StatelessWidget {
 
 class GetUsers {
   int id;
-  String status;
-  String payment;
-  double tot;
+  String order;
+  String user;
+  String product;
+  /* String isread;
+  String created;
+  String fkorder;
+  String fkprdct;
+*/
 
   GetUsers({
     required this.id,
-    required this.status,
-    required this.payment,
-    required this.tot
+   required this.order,
+    required this.user,
+    required this.product,
+    /*  required this.isread,
+    required this.created,
+    required this.fkorder,
+    required this.fkprdct,*/
+
+
+
+  /*  required this.payment,
+    required this.tot*/
   });
 
   factory GetUsers.fromJson(Map<String, dynamic> json) {
     return GetUsers(
       id: json['id'],
-      status: json['status'],
-      payment: json['payment_method'],
-      tot: json['total_amount'],
+     order: json['order'],
+      user: json['user'],
+      product: json['product'],
+      /* isread: json['is_read'],
+      created: json['created_at'],
+      fkorder: json['fk_order'],
+      fkprdct: json['fk_product'],*/
+
+
+ //    tot: json['total_amount'],
       //name: json['name'],
       //email: json['email'],
       //phoneNumber: json['phone']
     );
   }
 }
-
 class JSONListView extends StatefulWidget {
   CustomJSONListView createState() => CustomJSONListView();
 }
@@ -68,12 +89,12 @@ class CustomJSONListView extends State {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token="Token "+_token;
     var headers = {'Content-Type': 'application/json', 'Authorization': token,};
-    var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/seller_api/order_list_pending/'));
+    var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/seller_api/order/notification/list/'));
     // request.body = json.encode({});
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     final res = await response.stream.bytesToString();
-    // print("getPendinglist 200     "+res.toString());
+     print("data     "+res.toString());
     final status =jsonDecode(res);
     final statuscode = status['success'] as bool;
     if(statuscode==true) {
@@ -110,7 +131,6 @@ class CustomJSONListView extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
         backgroundColor: ColorUtility().colorAppbar,
         title: Text('Notification List'),
         leading: IconButton(
@@ -124,6 +144,7 @@ class CustomJSONListView extends State {
                 ),
               ),
             );
+            // Navigator.pop(context,true);
           },
           icon: Icon(Icons.arrow_back),
         ),
@@ -134,11 +155,6 @@ class CustomJSONListView extends State {
 
           if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
           return Container(
-              decoration: BoxDecoration(
-              image: DecorationImage(
-              image: AssetImage("assets/images/rect.png"),
-          fit: BoxFit.cover,
-          ),),
             child: ListView.builder(
                 padding: const EdgeInsets.all(8),
                 itemCount: usersList2 == null ? 0 : usersList2.length,
@@ -156,7 +172,7 @@ class CustomJSONListView extends State {
                           Container(
                             width: 50,
                             height: 50,
-                            child: Image(image: AssetImage('assets/images/baskt.png')),
+                            child: Image(image: AssetImage('images/alarm.png')),
                             /* child: Image(
 
                               Asse("assets/images/time.png",
@@ -175,28 +191,39 @@ class CustomJSONListView extends State {
 
 
                                 children: [
-                                  Padding(
+                                /*  Padding(
                                     padding: EdgeInsets.only(left: 8, right: 8),
-                                    child: Text("Order Id :"+
+                                    child: Text("Id :"+
                                         usersList2[index].id.toString(),
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold),
 
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 8, right: 8),
-                                    child:Text("Status :"+usersList2[index].status.toString(), style: TextStyle(fontWeight: FontWeight.normal,letterSpacing: .1),),
-
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 8, right: 8),
-                                    child: Text("Payment :"+usersList2[index].payment.toString()),
-                                  ), Padding(
-                                    padding: EdgeInsets.only(left: 8, right: 8),
-                                    child: Text("Total Amount :"+usersList2[index].tot.toString()),
                                   )
+                                  ,*/
+                                Padding(
+                                    padding: EdgeInsets.only(left: 8, right: 8),
+                                    child: Text("Order Id  :"+usersList2[index].order.toString()),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 8, right: 8),
+                                    child: Text("Contact :"+usersList2[index].user.toString()),
+                                  ),
+                                   Padding(
+                                    padding: EdgeInsets.only(left: 8, right: 8),
+                                    child: Text("Product :"+usersList2[index].product.toString()),
+                                  )
+                                  /*,
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 8, right: 8),
+                                    child: Text("User :"+usersList2[index].user.toString()),
+                                  )
+                                  ,
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 8, right: 8),
+                                    child: Text("Product :"+usersList2[index].product.toString()),
+                                  )*/
                                 ],
                               ),
                             ),

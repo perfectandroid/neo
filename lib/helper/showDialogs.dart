@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:neo/Screens/Home/home_page.dart';
 import 'package:overlay_progress_indicator/overlay_progress_indicator.dart';
 
+import '../Screens/Home/home_activity.dart';
+import '../Screens/Tabs/tab1.dart';
 import 'colorutility.dart';
 class ShowDialogs {
-
 
 
   showAlertDialog(BuildContext context,String messsage) {
@@ -15,6 +17,35 @@ class ShowDialogs {
       child: Text("OK"),
       onPressed: () {
         Navigator.pop(context);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      // title: Text("My title"),
+
+      content: Text(""+messsage),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+  showAlertDialog1(BuildContext context,String messsage) {
+
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+     //   Navigator.of(context, rootNavigator: true).pop(context);
+        SystemNavigator.pop();
       },
     );
 

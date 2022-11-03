@@ -1,12 +1,13 @@
 import 'dart:collection';
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+//import 'package:flutter_just_toast/flutter_just_toast.dart';
+import 'package:standard_dialogs/classes/dialog_action.dart';
 import '../../Model/pendings.dart';
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
@@ -127,16 +128,18 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
 
   @override
   Widget build(BuildContext context) {
+    List<int> _ids = [];
     // TODO: implement build
     return Scaffold(
 
-        body: getPending()
+        body: getPending(_ids)
 
 
     );
   }
 
-  getPending() {
+  getPending(List<int> ids) {
+
     return Stack(
         children: <Widget>[
 
@@ -148,7 +151,8 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
                 // padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.04,0,MediaQuery.of(context).size.height * 0.04),
                 shrinkWrap: true,
                 itemCount: pendings1.length,
-                itemBuilder: (context,index){
+                itemBuilder: (context, index){
+                  ids.add(pendings1[index]['id']);
                   return getPendinglist(pendings1,index);
                 },
               )
@@ -172,11 +176,40 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
                         ),
                         onPressed: () {
                           print('List :  $userStatus');
+                          print('List2 :'+ids.toString());
+
+                          List<int> _ids2 = [];
                           for (var i = 0; i < userStatus.length; i++){
                             if(userStatus[i]){
                               print("Packed List 96");
-                              print(pendings1[i]['status'].toString());
+                              _ids2.add(ids[i]);
+
                             }
+                            AlertDialog(
+                              title: Text("Success"),
+                              titleTextStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),
+                              actions: [
+                                ElevatedButton(onPressed: (){
+                                  Navigator.of(context).pop();
+                                }, child: Text("Close")),
+                              ],
+                              content: Text("Saved successfully"),
+                            );
+
+                           // ShowDialogs().showAlertDialog1(context, "TEST");
+                            savePending(context,_ids2.toString());
+
+                            print('Listin :  '+_ids2.toString());
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                fullscreenDialog: true,
+                                builder: (BuildContext context) => DrawerActivity(
+                                  //  liste: album,
+                                ),
+                              ),
+                            );
                           }
 
                         },
@@ -310,7 +343,7 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
       final res = await response.stream.bytesToString();
-       print("getPendinglist 200     "+res.toString());
+       print("getPendinglist 200     "+request.toString());
       final status =jsonDecode(res);
       final statuscode = status['success'] as bool;
       print("statuscode"+statuscode.toString());
@@ -323,7 +356,15 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
         if (items.length == 0) {
           print('List is empty11.');
           print("4542  :$errors");
-          showFaliureAlertDialog(context, errors.toString());
+          Fluttertoast.showToast(
+              msg: errors.toString(),
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.yellow
+          );
+         // showAlertDialog(context, errors.toString());
           setState(() {
             pendings1 = [];
           });
@@ -345,15 +386,77 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
         setState(() {
           pendings1 = [];
         });
-        showFaliureAlertDialog(context, errors.toString());
+        Fluttertoast.showToast(
+            msg: errors.toString(),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.yellow
+        );
+     //   showAlertDialog(context, errors.toString());
       }
     }catch(e) {
       ShowDialogs().showProgressDialog(context,"Loading....",false);
-      ShowDialogs().showAlertDialog(context, e.toString());
+    //  ShowDialogs().showAlertDialog(context, e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.yellow
+      );;
     }
   }
 
 }
+
+void savePending(BuildContext context,String id) async{
+
+
+
+  print('Test Ids :  $id');
+  var _token = await SharedPreferencesHelper.getAgent_token();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var token = "Token " + _token;
+  var headers = {'Content-Type': 'application/json', 'Authorization': token,};
+  var params={"order_ids": "$id"};
+  var request = http.Request('PUT', Uri.parse(Config().BASE_URL + '/seller_api/order/update/'+"?order_ids="+id));
+
+
+  request.headers.addAll(headers);
+  request.body = json.encode(params);
+
+  http.StreamedResponse response = await request.send();
+
+  print("Res1"+request.toString());
+
+
+
+
+  final res = await response.stream.bytesToString();
+
+ print("Save data     "+res.toString());
+  final status = jsonDecode(res);
+  final statuscode = status['success'] as bool;
+  final msg = status[id]['mesaage'] as String;
+  if (statuscode == true) {
+    Fluttertoast.showToast(
+        msg: 'This is toast notification',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.yellow
+    );
+
+    // ShowDialogs().showAlertDialog1(context, message);
+
+  }
+}
+
+
 
 
 class _ChkbxjsonreturnListViewState  extends State<Chkbxreturn> {
@@ -378,7 +481,7 @@ class _ChkbxjsonreturnListViewState  extends State<Chkbxreturn> {
     // print("getPendinglist 200     "+res.toString());
     final status = jsonDecode(res);
     final statuscode = status['success'] as bool;
-
+    final errors = status['errors'] as String;
     if (statuscode == true) {
       final jsonItems1 = json.decode(res)['data'].cast<Map<String, dynamic>>();
       usersList2 = jsonItems1.map<GetUsers>((json) {
@@ -387,14 +490,24 @@ class _ChkbxjsonreturnListViewState  extends State<Chkbxreturn> {
       //  print("json2"+jsonItems1);
     }
     else {
-      throw Exception(
-          'Failed to load data from internet' + usersList2.toString());
+      ShowDialogs().showProgressDialog(context,"Loading....",false);
+      Fluttertoast.showToast(
+          msg: errors.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.yellow
+      );     // duration
+
+    //  showAlertDialog(context, errors.toString());
     }
     return usersList2;
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       /* appBar: AppBar(
         title: Text('Pending List'),
@@ -411,6 +524,7 @@ class _ChkbxjsonreturnListViewState  extends State<Chkbxreturn> {
                 padding: const EdgeInsets.all(8),
                 itemCount: usersList2 == null ? 0 : usersList2.length,
                 itemBuilder: (BuildContext context, int index) {
+
                   return Card(
                     elevation: 5,
                     margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
