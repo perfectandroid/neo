@@ -247,7 +247,7 @@ class DrawerActivityState extends State<DrawerActivity> {
             ),
           ),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text('Approve'),
               onPressed: () {
                 Navigator.of(context).pop();

@@ -723,7 +723,7 @@ class _HomePageState extends State<HomePage> {
         context,
         MaterialPageRoute(
           fullscreenDialog: true,
-          builder: (BuildContext context) => ChartApp(
+          builder: (BuildContext context) => Barchart(
             //  liste: album,
           ),
         ),
