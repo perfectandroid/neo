@@ -29,35 +29,59 @@ class _PackedScreen extends State<PackedScreen>{
   late var h ;
   List packedList = [];
   late List<bool> _isChecked;
+  late List _packedSaveList = [];
 
   initState(){
     checkInterNet(this.context);
     super.initState();
   }
 
+  Future<bool> _onBackPressed() async  {
+    return (await  Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (context) => HomePage()
+        ),
+            (route) => false
+    )) ??
+        false;
+  }
+
   @override
   Widget build(BuildContext context) {
     h = MediaQuery.of(context).size.height * 01;
-    return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: MediaQuery.of(context).size.height * 0.07,
-          automaticallyImplyLeading: true,
-          backgroundColor: ColorUtility().colorAppbar,
-          title: Text("Packed List"),
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context,true);
-            },
-            icon: Icon(Icons.arrow_back),
+
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: MediaQuery.of(context).size.height * 0.07,
+            automaticallyImplyLeading: true,
+            backgroundColor: ColorUtility().colorAppbar,
+            title: Text("Packed List"),
+            leading: IconButton(
+              onPressed: () {
+                // Navigator.pop(context,true);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomePage()
+                    ),
+                        (route) => false
+                );
+              },
+              icon: Icon(Icons.arrow_back),
+            ),
+
           ),
 
-        ),
+
+          body: getBody()
 
 
-        body: getBody()
-
-
+      )
     );
+
   }
 
   Widget getBody(){
@@ -109,16 +133,18 @@ class _PackedScreen extends State<PackedScreen>{
                     ),
                     onPressed: () {
                       print('List :  $_isChecked');
+                      _packedSaveList.clear();
                       for (var i = 0; i < packedList.length; i++){
                         if(_isChecked[i]){
                           print("Packed List 96");
                           print(packedList[i]['id'].toString());
+                          _packedSaveList.add(packedList[i]['id'].toString());
                         }
                       }
-
+                      validateList(_packedSaveList);
 
                     },
-                    child: Text('DELETE'),
+                    child: Text('PACKED'),
                   )
               )
           )
@@ -708,6 +734,111 @@ class _PackedScreen extends State<PackedScreen>{
       },
     );
   }
+
+  Future<void> validateList(List packedSaveList) async {
+
+    if(packedSaveList.length == 0){
+      validateMessage(context,"Select Atleast one order");
+    }else{
+      isOnline =  await NetworkUtility().checkInternet();
+      if(isOnline){
+        packedOrder(packedSaveList);
+      }
+      else{
+        checkOnlineAlert(context);
+      }
+    }
+
+  }
+
+  void validateMessage(BuildContext context, String message) {
+    final snackBar = SnackBar(
+      content:  Text(''+message,style: TextStyle(color: Colors.white),textAlign: TextAlign.center,),
+      backgroundColor: ColorUtility().colorWarning,
+      behavior: SnackBarBehavior.fixed,
+      action: SnackBarAction(
+        label: '',
+        onPressed: () {
+          // Some code to undo the change.
+
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  Future<void> packedOrder(List packedSaveList) async {
+
+    try{
+      ShowDialogs().showProgressDialog(context,"Loading....",true);
+      String token = await SharedPreferencesHelper.getAgent_token();
+      var headerss = {"Authorization": "Token "+token,"Content-Type": "application/json"};
+      var url =  Uri.parse(Config().BASE_URL+'/seller_api/order/update/'+'?order_ids=$packedSaveList');
+      var request = http.Request('PUT', url);
+      request.headers.addAll(headerss);
+      http.StreamedResponse response = await request.send();
+      final res = await response.stream.bytesToString();
+
+      print("795  packedOrder");
+      print(res.toString());
+      final status =jsonDecode(res);
+      final statuscode = status['success'] as bool;
+      final errors = status['errors'] as String;
+      final message = status['mesaage'] as String;
+      if(statuscode==true){
+        await Future.delayed(const Duration(seconds: 1));
+        ShowDialogs().showProgressDialog(context,"Loading....",false);
+        var items = json.decode(res.toString())['data'];
+        print(items);
+
+
+        showSuccessAlert(context, message.toString());
+        // setState(() {
+        //  checkInterNet(context);
+        // });
+
+      }else{
+        ShowDialogs().showProgressDialog(context,"Loading....",false);
+        showFaliureAlertDialog(context, errors.toString());
+      }
+    }catch(e){
+      ShowDialogs().showProgressDialog(context,"Loading....",false);
+      ShowDialogs().showAlertDialog(context, e.toString());
+    }
+
+
+
+
+
+  }
+
+  void showSuccessAlert(BuildContext context, String errorMsg) {
+
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+        setState(() {
+          checkInterNet(context);
+        });
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: Text("Packed",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),textAlign: TextAlign.center),
+      content: Text(errorMsg,style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey),textAlign: TextAlign.center),
+      actions: [
+        okButton,
+      ],
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 }
 
 

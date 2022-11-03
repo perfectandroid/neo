@@ -223,7 +223,7 @@ class _ForgotPassword extends State<ForgotPassword>{
       validateMessage(context,"Password Mismatch");
     }
     else{
-      var users = await login(controller.textUserName.text, controller.textNewPaasword.text, context);
+      var users = await login(controller.textUserName.text.toString(), controller.textNewPaasword.text.toString(), context);
       // Navigator.pushAndRemoveUntil(
       //     context,
       //     MaterialPageRoute(
@@ -252,20 +252,24 @@ class _ForgotPassword extends State<ForgotPassword>{
   static Future login(Username, Password,BuildContext context ) async {
 
     try{
+      print(Username);
+      print(Password);
+
       ShowDialogs().showProgressDialog(context,"Loading....",true);
-      String token = await SharedPreferencesHelper.getAgent_token();
-      var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
+      var headers = {'Content-Type': 'application/json'};
       var request = http.Request('PUT', Uri.parse(Config().BASE_URL+'/customer_api/set_forgot_password/'));
-      request.body = json.encode({"username": "$Username", "password": '$Password'});
+      request.body = json.encode({"username": "$Username", "new_password": "$Password"});
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
       final res = await response.stream.bytesToString();
 
-      print("FORGOT PASSWORD"+res.toString());
-      print("300   : $response");
+      print("sendOtp  319     "+res.toString());
+
       final status =jsonDecode(res);
       final statuscode = status['success'] as bool;
       final errors = status['errors'] as String;
+
+
       ShowDialogs().showProgressDialog(context,"Loading....",false);
       if(statuscode==true){
 
@@ -300,12 +304,13 @@ class _ForgotPassword extends State<ForgotPassword>{
         controller.textNewPaasword.clear();
         controller.textConfirmPaasword.clear();
        // Navigator.pop(context);
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (context) => LoginPage()
-            ), (route) => false
-        );
+       //  Navigator.pushAndRemoveUntil(
+       //      context,
+       //      MaterialPageRoute(
+       //          builder: (context) => LoginPage()
+       //      ), (route) => false
+       //  );
+        Navigator.pop(context);
       },
     );
     AlertDialog alert = AlertDialog(

@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_progress/loading_progress.dart';
+import 'package:neo/Screens/Login/mpin_set_page.dart';
 import 'package:neo/Screens/Status/dispatchdetails.dart';
 import 'package:neo/Screens/Status/dispatchedlist.dart';
 import 'package:neo/helper/sharedprefhelper.dart';
@@ -37,40 +39,59 @@ class _ConfirmScreen extends State<ConfirmScreen>{
   late var h ;
   List confirmList = [];
   late List<bool> _isChecked;
+  late List _confirmSaveList = [];
 
   initState(){
-
     checkInterNet(this.context);
-
     super.initState();
-
-
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.07,
-        automaticallyImplyLeading: true,
-        backgroundColor: ColorUtility().colorAppbar,
-        title: Text("Confirm List"),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context,true);
-          },
-          icon: Icon(Icons.arrow_back),
-        ),
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: MediaQuery.of(context).size.height * 0.07,
+            automaticallyImplyLeading: true,
+            backgroundColor: ColorUtility().colorAppbar,
+            title: Text("Confirm List"),
+            leading: IconButton(
+              onPressed: () {
+                // Navigator.pop(context,true);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomePage()
+                    ),
+                        (route) => false
+                );
+              },
+              icon: Icon(Icons.arrow_back),
+            ),
 
-      ),
+          ),
 
 
-        body: getBody()
+          body: getBody()
 
 
+      )
     );
+
+  }
+
+  Future<bool> _onBackPressed() async  {
+    return (await  Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (context) => HomePage()
+        ),
+            (route) => false
+    )) ??
+        false;
   }
 
   Widget getBody(){
@@ -123,14 +144,16 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                   borderRadius: BorderRadius.all(Radius.zero))
                           ),
                           onPressed: () {
+                            _confirmSaveList.clear();
                             print('List :  $_isChecked');
                             for (var i = 0; i < confirmList.length; i++){
                               if(_isChecked[i]){
                                 print("Packed List 96");
                                 print(confirmList[i]['id'].toString());
+                                _confirmSaveList.add(confirmList[i]['id'].toString());
                               }
                             }
-
+                            print("Packed List 96");
                           },
                           child: Text('DELETE'),
                         )
@@ -147,14 +170,18 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                   borderRadius: BorderRadius.all(Radius.zero))
                           ),
                           onPressed: () {
+                            _confirmSaveList.clear();
                             print('List :  $_isChecked');
                             for (var i = 0; i < confirmList.length; i++){
                               if(_isChecked[i]){
                                 print("Packed List 96");
                                 print(confirmList[i]['id'].toString());
+                                _confirmSaveList.add(confirmList[i]['id'].toString());
                               }
                             }
 
+                            print(_confirmSaveList);
+                            validateList(_confirmSaveList);
                           },
                           child: Text('VERIFY'),
                         )
@@ -682,6 +709,112 @@ class _ConfirmScreen extends State<ConfirmScreen>{
       ShowDialogs().showProgressDialog(context,"Loading....",false);
       ShowDialogs().showAlertDialog(context, e.toString());
     }
+  }
+
+  Future<void> validateList(List confirmSaveList) async {
+
+    if(confirmSaveList.length == 0){
+      validateMessage(context,"Select Atleast one order");
+    }else{
+      isOnline =  await NetworkUtility().checkInternet();
+      if(isOnline){
+       verifyOrder(confirmSaveList);
+      }
+      else{
+        checkOnlineAlert(context);
+      }
+    }
+
+  }
+
+  void validateMessage(BuildContext context, String message) {
+    final snackBar = SnackBar(
+      content:  Text(''+message,style: TextStyle(color: Colors.white),textAlign: TextAlign.center,),
+      backgroundColor: ColorUtility().colorWarning,
+      behavior: SnackBarBehavior.fixed,
+      action: SnackBarAction(
+        label: '',
+        onPressed: () {
+          // Some code to undo the change.
+
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+
+  Future<void> verifyOrder(List confirmSaveList) async {
+
+    try{
+      ShowDialogs().showProgressDialog(context,"Loading....",true);
+      String token = await SharedPreferencesHelper.getAgent_token();
+      var headerss = {"Authorization": "Token "+token,"Content-Type": "application/json"};
+      var url =  Uri.parse(Config().BASE_URL+'/seller_api/order/update/'+'?order_ids=$confirmSaveList');
+      var request = http.Request('PUT', url);
+      request.headers.addAll(headerss);
+      http.StreamedResponse response = await request.send();
+      final res = await response.stream.bytesToString();
+
+      print("795  verifyOrder");
+      print(res.toString());
+      final status =jsonDecode(res);
+      final statuscode = status['success'] as bool;
+      final errors = status['errors'] as String;
+      final message = status['mesaage'] as String;
+
+      if(statuscode==true){
+        await Future.delayed(const Duration(seconds: 1));
+        ShowDialogs().showProgressDialog(context,"Loading....",false);
+        var items = json.decode(res.toString())['data'];
+        print(items);
+
+
+        showSuccessAlert(context, message.toString());
+        // setState(() {
+        //  checkInterNet(context);
+        // });
+
+      }else{
+        ShowDialogs().showProgressDialog(context,"Loading....",false);
+        showFaliureAlertDialog(context, errors.toString());
+      }
+    }catch(e){
+      ShowDialogs().showProgressDialog(context,"Loading....",false);
+      ShowDialogs().showAlertDialog(context, e.toString());
+    }
+
+
+
+
+
+  }
+
+  void showSuccessAlert(BuildContext context, String errorMsg) {
+
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+        setState(() {
+          checkInterNet(context);
+        });
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: Text("Verify",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),textAlign: TextAlign.center),
+      content: Text(errorMsg,style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey),textAlign: TextAlign.center),
+      actions: [
+        okButton,
+      ],
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
 

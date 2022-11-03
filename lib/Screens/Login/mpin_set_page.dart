@@ -15,6 +15,28 @@ import '../Home/home_activity.dart';
 class MPINSetController extends GetxController {
 
   TextEditingController textEditingController = TextEditingController();
+  final mpin1 = TextEditingController();
+  final mpin2 = TextEditingController();
+  final mpin3 = TextEditingController();
+  final mpin4 = TextEditingController();
+  final mpin5 = TextEditingController();
+  final mpin6 = TextEditingController();
+
+  final FocusNode mpinFocus1 = FocusNode();
+  final FocusNode mpinFocus2 = FocusNode();
+  final FocusNode mpinFocus3 = FocusNode();
+  final FocusNode mpinFocus4 = FocusNode();
+  final FocusNode mpinFocus5 = FocusNode();
+  final FocusNode mpinFocus6 = FocusNode();
+
+
+  late bool mpinRead1 = false;
+  late bool mpinRead2 = false;
+  late bool mpinRead3 = false;
+  late bool mpinRead4 = false;
+  late bool mpinRead5 = false;
+  late bool mpinRead6 = false;
+
 
 }
 
@@ -100,48 +122,375 @@ class _MPINCREATION extends State<MPINCREATION>{
                       )
                   ),
 
+                  Center(
+                      child: Container(
+                          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/6,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/6,0),
+                          padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                          alignment: Alignment.center,
+                          child:Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children:<Widget>[
 
-                  Container(
-                    margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/15,MediaQuery.of(context).size.width/10,0),
-                    height: MediaQuery.of(context).size.height/16,
-                    child: PinCodeTextField(
-                      length: 6,
-                      obscureText: true,
-                      autoFocus: true,
-                      animationType: AnimationType.fade,
-                      keyboardType: TextInputType.number,
-                      pinTheme: PinTheme(
-                          shape: PinCodeFieldShape.box,
-                          borderRadius: BorderRadius.circular(5),
-                          fieldHeight: MediaQuery.of(context).size.height/20,
-                          fieldWidth: MediaQuery.of(context).size.height/20,
-                          activeFillColor: Colors.white,
-                          activeColor: ColorUtility().colorAppbar,
-                          inactiveColor: Colors.grey,
-                          inactiveFillColor: Colors.grey,
-                          selectedFillColor: Colors.grey,
-                          selectedColor: Colors.grey
-                      ),
-                      animationDuration: const Duration(milliseconds: 300),
-                      backgroundColor: Colors.grey.shade50,
-                      enableActiveFill: false,
-                      controller: controller.textEditingController,
-                      onCompleted: (v) async {
-                        debugPrint("Completed");
-                        var users = await mpin(widget.text, controller.textEditingController.text, context);
-                      },
-                      onChanged: (value) {
-                        debugPrint(value);
-                        setState(() {
-                          //  currentText = value;
-                        });
-                      },
-                      beforeTextPaste: (text) {
-                        return true;
-                      },
-                      appContext: context,
-                    ),
+                                Center(
+                                  child: Container(
+                                    margin: EdgeInsets.fromLTRB(0,0,0,0),
+                                    padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                    alignment: Alignment.center,
+                                    width: 35,
+                                    height: 35,
+                                    child :TextFormField(
+                                      autofocus: true,
+                                      readOnly: controller.mpinRead1,
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number,
+                                      controller: controller.mpin1,
+                                      textInputAction:TextInputAction.next,
+                                      focusNode: controller.mpinFocus1,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LengthLimitingTextInputFormatter(1)
+                                      ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
+                                      decoration: new InputDecoration(
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.grey, width: 1),
+                                          )
+                                      ),
+                                      onChanged: (text) {
+                                        print('First text field: $text');
+                                        if(text.length == 1){
+
+                                          setState(() {
+                                            controller.mpinRead1 = true;
+                                            controller.mpinRead2 = false;
+                                          });
+                                          _fieldFocusChange(context, controller.mpinFocus1, controller.mpinFocus2);
+
+                                        }
+
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                Center(
+                                  child: Container(
+                                    margin: EdgeInsets.fromLTRB(2,0,0,0),
+                                    padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                    alignment: Alignment.center,
+                                    width: 35,
+                                    height: 35,
+                                    child :TextFormField(
+                                      autofocus: true,
+                                      readOnly: controller.mpinRead2,
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number,
+                                      controller: controller.mpin2,
+                                      textInputAction:TextInputAction.next,
+                                      focusNode: controller.mpinFocus2,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LengthLimitingTextInputFormatter(1)
+                                      ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
+                                      decoration: new InputDecoration(
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.grey, width: 1),
+                                          )
+                                      ),
+                                      onChanged: (text) {
+                                        print('First text field: $text');
+                                        if(text.length == 0){
+                                          setState(() {
+                                            controller.mpinRead1 = false;
+                                            controller.mpinRead2 = true;
+                                          });
+                                          _fieldFocusChange(context, controller.mpinFocus2, controller.mpinFocus1);
+
+                                        }
+                                        if(text.length == 1){
+                                          setState(() {
+                                            controller.mpinRead2 = true;
+                                            controller.mpinRead3 = false;
+                                          });
+                                          _fieldFocusChange(context, controller.mpinFocus2, controller.mpinFocus3);
+
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                Center(
+                                  child: Container(
+                                    margin: EdgeInsets.fromLTRB(2,0,0,0),
+                                    padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                    alignment: Alignment.center,
+                                    width: 35,
+                                    height: 35,
+                                    child :TextFormField(
+                                      autofocus: true,
+                                      readOnly: controller.mpinRead3,
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number,
+                                      controller: controller.mpin3,
+                                      textInputAction:TextInputAction.next,
+                                      focusNode: controller.mpinFocus3,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LengthLimitingTextInputFormatter(1)
+                                      ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
+                                      decoration: new InputDecoration(
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.grey, width: 1),
+                                          )
+                                      ),
+                                      onChanged: (text) {
+                                        print('First text field: $text');
+                                        if(text.length == 0){
+                                          setState(() {
+                                            controller.mpinRead2 = false;
+                                            controller.mpinRead3 = true;
+                                          });
+                                          _fieldFocusChange(context, controller.mpinFocus3, controller.mpinFocus2);
+
+                                        }
+                                        if(text.length == 1){
+                                          setState(() {
+                                            controller.mpinRead3 = true;
+                                            controller.mpinRead4 = false;
+                                          });
+                                          _fieldFocusChange(context, controller.mpinFocus3, controller.mpinFocus4);
+
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                Center(
+                                  child: Container(
+                                    margin: EdgeInsets.fromLTRB(2,0,0,0),
+                                    padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                    alignment: Alignment.center,
+                                    width: 35,
+                                    height: 35,
+                                    child :TextFormField(
+                                      autofocus: true,
+                                      readOnly: controller.mpinRead4,
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number,
+                                      controller: controller.mpin4,
+                                      textInputAction:TextInputAction.next,
+                                      focusNode: controller.mpinFocus4,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LengthLimitingTextInputFormatter(1)
+                                      ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
+                                      decoration: new InputDecoration(
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.grey, width: 1),
+                                          )
+                                      ),
+                                      onChanged: (text) async {
+                                        print('First text field: $text');
+
+
+                                        if(text.length == 0){
+                                          setState(() {
+                                            controller.mpinRead3 = false;
+                                            controller.mpinRead4 = true;
+                                          });
+                                          _fieldFocusChange(context, controller.mpinFocus4, controller.mpinFocus3);
+
+                                        }
+                                        if(text.length == 1){
+                                          setState(() {
+                                            controller.mpinRead4 = true;
+                                            controller.mpinRead5 = false;
+                                          });
+                                          _fieldFocusChange(context, controller.mpinFocus4, controller.mpinFocus5);
+
+                                        }
+
+
+                                      },
+                                    ),
+                                  ),
+                                ),
+
+                                Center(
+                                  child: Container(
+                                    margin: EdgeInsets.fromLTRB(2,0,0,0),
+                                    padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                    alignment: Alignment.center,
+                                    width: 35,
+                                    height: 35,
+                                    child :TextFormField(
+                                      autofocus: true,
+                                      readOnly: controller.mpinRead5,
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number,
+                                      controller: controller.mpin5,
+                                      textInputAction:TextInputAction.next,
+                                      focusNode: controller.mpinFocus5,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LengthLimitingTextInputFormatter(1)
+                                      ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
+                                      decoration: new InputDecoration(
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.grey, width: 1),
+                                          )
+                                      ),
+                                      onChanged: (text) async {
+                                        print('First text field: $text');
+
+
+                                        if(text.length == 0){
+                                          setState(() {
+                                            controller.mpinRead4 = false;
+                                            controller.mpinRead5 = true;
+                                          });
+                                          _fieldFocusChange(context, controller.mpinFocus5, controller.mpinFocus4);
+
+                                        }
+                                        if(text.length == 1){
+                                          setState(() {
+                                            controller.mpinRead5 = true;
+                                            controller.mpinRead6 = false;
+                                          });
+                                          _fieldFocusChange(context, controller.mpinFocus5, controller.mpinFocus6);
+
+                                        }
+
+
+                                      },
+                                    ),
+                                  ),
+                                ),
+
+                                Center(
+                                  child: Container(
+                                    margin: EdgeInsets.fromLTRB(2,0,0,0),
+                                    padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                    alignment: Alignment.center,
+                                    width: 35,
+                                    height: 35,
+                                    child :TextFormField(
+                                      autofocus: true,
+                                      readOnly: controller.mpinRead6,
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number,
+                                      controller: controller.mpin6,
+                                      textInputAction:TextInputAction.next,
+                                      focusNode: controller.mpinFocus6,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LengthLimitingTextInputFormatter(1)
+                                      ],
+                                      style: TextStyle(color: Colors.black,fontSize: 12),
+                                      decoration: new InputDecoration(
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.grey, width: 1),
+                                          )
+                                      ),
+                                      onChanged: (text) async {
+                                        print('First text field  66  : $text');
+
+                                        String mpinStr = (controller.mpin1.text+controller.mpin2.text+controller.mpin3.text+controller.mpin4.text+controller.mpin5.text+controller.mpin6.text).toString();
+                                        setState(() {
+                                          controller.mpin1.clear();
+                                          controller.mpin2.clear();
+                                          controller.mpin3.clear();
+                                          controller.mpin4.clear();
+                                          controller.mpin5.clear();
+                                          controller.mpin6.clear();
+
+                                          controller.mpinRead1 = false;
+                                          controller.mpinRead2 = true;
+                                          controller.mpinRead3 = true;
+                                          controller.mpinRead4 = true;
+                                          controller.mpinRead5 = true;
+                                          controller.mpinRead6 = true;
+                                        });
+
+                                        var users = await mpin(widget.text, mpinStr, context);
+
+                                      },
+                                    ),
+                                  ),
+                                )
+
+
+
+
+                              ]
+                          )
+
+                      )
                   ),
+
+                  // Container(
+                  //   margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/15,MediaQuery.of(context).size.width/10,0),
+                  //   height: MediaQuery.of(context).size.height/16,
+                  //   child: PinCodeTextField(
+                  //     length: 6,
+                  //     obscureText: true,
+                  //     autoFocus: true,
+                  //     animationType: AnimationType.fade,
+                  //     keyboardType: TextInputType.number,
+                  //     pinTheme: PinTheme(
+                  //         shape: PinCodeFieldShape.box,
+                  //         borderRadius: BorderRadius.circular(5),
+                  //         fieldHeight: MediaQuery.of(context).size.height/20,
+                  //         fieldWidth: MediaQuery.of(context).size.height/20,
+                  //         activeFillColor: Colors.white,
+                  //         activeColor: ColorUtility().colorAppbar,
+                  //         inactiveColor: Colors.grey,
+                  //         inactiveFillColor: Colors.grey,
+                  //         selectedFillColor: Colors.grey,
+                  //         selectedColor: Colors.grey
+                  //     ),
+                  //     animationDuration: const Duration(milliseconds: 300),
+                  //     backgroundColor: Colors.grey.shade50,
+                  //     enableActiveFill: false,
+                  //     controller: controller.textEditingController,
+                  //     onCompleted: (v) async {
+                  //       debugPrint("Completed");
+                  //       var users = await mpin(widget.text, controller.textEditingController.text, context);
+                  //     },
+                  //     onChanged: (value) {
+                  //       debugPrint(value);
+                  //       setState(() {
+                  //         //  currentText = value;
+                  //       });
+                  //     },
+                  //     beforeTextPaste: (text) {
+                  //       return true;
+                  //     },
+                  //     appContext: context,
+                  //   ),
+                  // ),
 
 
 
@@ -155,6 +504,11 @@ class _MPINCREATION extends State<MPINCREATION>{
 
 
 
+  }
+
+  _fieldFocusChange(BuildContext context, FocusNode currentFocus,FocusNode nextFocus) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
   }
 
   static Future mpin(Username, Password, BuildContext context) async {

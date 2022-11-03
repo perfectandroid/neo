@@ -1,15 +1,19 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:neo/Screens/Home/home_page.dart';
 import 'package:neo/Screens/Login/login_page.dart';
+import 'package:neo/Screens/Login/loginpage.dart';
 import 'package:neo/Screens/Login/mpin_page.dart';
 import 'package:neo/Screens/Login/otp_page.dart';
 import 'package:neo/Screens/Sidemenu/about_us.dart';
 import 'package:neo/Screens/Sidemenu/change_mpin.dart';
 import 'package:neo/Screens/Sidemenu/change_password.dart';
+import 'package:neo/Screens/SplashScreen/splash_screen.dart';
 import 'package:neo/helper/config.dart';
 
 import '../../helper/colorutility.dart';
@@ -79,16 +83,17 @@ class DrawerActivityState extends State<DrawerActivity> {
 
       case 4:
       // return new MPINVerification();
-        return new ContactUs();
+        return Container();
 
       case 5:
       // return new MPINVerification();
        // return new ContactUs();
+        return Container();
 
       case 6:
       // return new MPINVerification();
        // return new ContactUs();
-
+        return Container();
       case 7:
       // return new MPINVerification();
         return new ChangeMpin();
@@ -97,15 +102,28 @@ class DrawerActivityState extends State<DrawerActivity> {
       // return new MPINVerification();
         return new ChangePassword();
 
+      case 9:
+
       default:
         return new Text("Error While");
     }
   }
 
   _onSelectItem(int index) {
-    setState(() => _selectedIndex = index);
 
-    Navigator.of(context).pop(); // close the drawer
+    if(index == 9 ){
+      Navigator.of(context).pop(); //
+      quitAlert(context);
+    }
+    else if(index == 10 ){
+      Navigator.of(context).pop(); //
+      logOutAlert(context);
+    }else{
+      setState(() => _selectedIndex = index);
+      Navigator.of(context).pop(); // close the drawer
+    }
+
+
   }
 
 
@@ -121,7 +139,10 @@ class DrawerActivityState extends State<DrawerActivity> {
             leading: new Icon(d.icon),
             title: new Text(d.title,style: TextStyle(fontWeight: FontWeight.bold)),selectedTileColor:  ColorUtility().colorSideSelected,selectedColor:  ColorUtility().colorAppbar,
             selected: i == _selectedIndex,
-            onTap: () => _onSelectItem(i),
+            onTap: () => {
+              _onSelectItem(i)
+
+            }
          )
       );
     }
@@ -200,6 +221,8 @@ class DrawerActivityState extends State<DrawerActivity> {
     print(controller._imagePath);
   }
 
+
+
   // Future loadData() async {
   //   final controller = Get.put(DrawerController());
   //
@@ -208,5 +231,275 @@ class DrawerActivityState extends State<DrawerActivity> {
   //   });
   // }
 
+  Future<void> _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('AlertDialog Title'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('This is a demo alert dialog.'),
+                Text('Would you like to approve of this message?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void quitAlert(BuildContext context) {
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    20.0,
+                  ),
+                ),
+              ),
+              contentPadding: EdgeInsets.only(
+                top: 10.0,
+              ),
+            content: Container(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(0.0),
+                      child:SizedBox(
+                          height:75,width:75,
+                          // child:Image.asset("assets/images/logo.png")
+                          child:Image.asset("assets/images/logo.png")
+
+                      ),
+                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.fromLTRB(10,20,10,20),
+                        child:SizedBox(
+                          child: Text("Are you sure you want to quit ?",textAlign: TextAlign.center,),
+                        )
+
+                    ),
+
+                    Divider(color: Colors.grey,
+                      thickness: 1),
+
+                    Container(
+                        height: 40,
+                        width: double.infinity,
+                        margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child:Row(
+                            children:<Widget>[
+                              Expanded(
+                                flex: 5,
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      //action
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(
+                                      'Cancel', //title
+                                      textAlign: TextAlign.end, //aligment
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              VerticalDivider(
+                                color: Colors.grey, thickness: 1),
+
+                              Expanded(
+                                flex: 5,
+                                child: Center(
+                                    child: Visibility(
+                                        visible: true,
+                                        child: TextButton(
+                                          onPressed: () {
+                                            //action
+                                             SystemNavigator.pop();
+                                            // exit(0);
+                                          //  window.close();
+                                          },
+                                          child: Text(
+                                            'Quit', //title
+                                            textAlign: TextAlign.end, //aligment
+                                          ),
+                                        ))
+
+                                ),
+                              )
+                            ]
+                        )
+
+                    )
+
+
+
+
+
+
+                  ],
+                ),
+              ),
+            ),
+
+
+          );
+        }
+    );
+  }
+
+  void logOutAlert(BuildContext context) {
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  20.0,
+                ),
+              ),
+            ),
+            contentPadding: EdgeInsets.only(
+              top: 10.0,
+            ),
+            content: Container(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(0.0),
+                      child:SizedBox(
+                          height:75,width:75,
+                          // child:Image.asset("assets/images/logo.png")
+                          child:Image.asset("assets/images/logo.png")
+
+                      ),
+                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.fromLTRB(10,20,10,20),
+                        child:SizedBox(
+                          child: Text("Are you sure you want to quit ?",textAlign: TextAlign.center,),
+                        )
+
+                    ),
+
+                    Divider(color: Colors.grey,
+                        thickness: 1),
+
+                    Container(
+                        height: 40,
+                        width: double.infinity,
+                        margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child:Row(
+                            children:<Widget>[
+                              Expanded(
+                                flex: 5,
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      //action
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(
+                                      'Cancel', //title
+                                      textAlign: TextAlign.end, //aligment
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              VerticalDivider(
+                                  color: Colors.grey, thickness: 1),
+
+                              Expanded(
+                                flex: 5,
+                                child: Center(
+                                    child: Visibility(
+                                        visible: true,
+                                        child: TextButton(
+                                          onPressed: () async {
+                                            //action
+                                           // SystemNavigator.pop();
+                                            // exit(0);
+                                            //  window.close();
+                                           bool logOut =  await SharedPreferencesHelper.logout();
+                                           print(logOut);
+                                           if(logOut){
+                                             Navigator.pushAndRemoveUntil(
+                                                 context,
+                                                 MaterialPageRoute(
+                                                     builder: (context) => LoginPage()
+                                                 ),
+                                                     (route) => false
+                                             );
+                                           }
+
+                                          },
+                                          child: Text(
+                                            'Log Out', //title
+                                            textAlign: TextAlign.end, //aligment
+                                          ),
+                                        ))
+
+                                ),
+                              )
+                            ]
+                        )
+
+                    )
+
+
+
+
+
+
+                  ],
+                ),
+              ),
+            ),
+
+
+          );
+        }
+    );
+  }
+
 
 }
+
+
+
+
