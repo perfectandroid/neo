@@ -493,7 +493,7 @@ class _OTPVerification extends State<OTPVerification>{
       child: Text("OK",style: TextStyle(color: ColorUtility().colorAppbar,fontWeight: FontWeight.bold)),
       onPressed: () {
         //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
-      //  controller.textEditingController.clear();
+        controller.textEditingController.clear();
         Navigator.pop(context);
       },
     );
