@@ -19,6 +19,7 @@ import 'package:neo/helper/config.dart';
 import '../../helper/colorutility.dart';
 import '../../helper/sharedprefhelper.dart';
 import '../Sidemenu/contact_us.dart';
+import '../Sidemenu/set_reminder.dart';
 import '../Sidemenu/user_profile.dart';
 
 class DrawerController extends GetxController {
@@ -47,6 +48,7 @@ class DrawerActivity extends StatefulWidget {
     new DrawerItem("Change Password", Icons.lock_outline),
     new DrawerItem("Quit", Icons.dangerous_outlined),
     new DrawerItem("Log Out", Icons.logout),
+    new DrawerItem("Reminder", Icons.alarm),
   ];
 
   @override
@@ -102,8 +104,8 @@ class DrawerActivityState extends State<DrawerActivity> {
       // return new MPINVerification();
         return new ChangePassword();
 
-      case 9:
-
+      case 11:
+        return new SetReminder();
       default:
         return new Text("Error While");
     }
