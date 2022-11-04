@@ -28,6 +28,7 @@ class LoginController extends GetxController {
     var request = http.Request('POST', Uri.parse(Config().BASE_URL+'/customer_api/login/'));
     request.body = json.encode({"username": "$Username", "password": '$Password'});
     request.headers.addAll(headers);
+    print("LOGs"+request.toString());
     http.StreamedResponse response = await request.send();
     final res = await response.stream.bytesToString();
 
