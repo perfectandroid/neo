@@ -43,8 +43,8 @@ class _StockEdit extends State<StockEdit>{
     controller.stockModel  = widget.model;
     controller.index  = widget.pos;
 
-    controller.textQtyController.text = (widget.model?.data?[widget.pos].curQty).toString();
-    controller.textMrpController.text = (widget.model?.data?[widget.pos].stkMrp).toString();
+    controller.textQtyController.text = (widget!.model?.data?[widget.pos].curQty).toString();
+    controller.textMrpController.text = (widget!.model?.data?[widget.pos].stkMrp).toString();
 
     super.initState();
   }
@@ -553,8 +553,8 @@ class _StockEdit extends State<StockEdit>{
       child: Text("OK",style: TextStyle(color: ColorUtility().colorAppbar,fontWeight: FontWeight.bold)),
       onPressed: () {
         Navigator.pop(context);
-        controller.textQtyController.text = (controller.stockModel?.data?[controller.index].curQty).toString();
-        controller.textMrpController.text = (controller.stockModel?.data?[controller.index].stkMrp).toString();
+        controller.textQtyController.text = (controller?.stockModel!.data?[controller.index].curQty).toString();
+        controller.textMrpController.text = (controller?.stockModel!.data?[controller.index].stkMrp).toString();
       },
     );
     AlertDialog alert = AlertDialog(
