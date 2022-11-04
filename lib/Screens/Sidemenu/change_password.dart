@@ -47,6 +47,15 @@ class _ChangePassword extends State<ChangePassword>{
   }
 
   @override
+  void dispose() {
+    final controller = Get.put(ChangePasswordController());
+    controller.textOldPassword.clear();
+    controller.textNewPassword.clear();
+    controller.textConfirPassword.clear();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final controller = Get.put(ChangePasswordController());
 
