@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/send_mpin_otp.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
 import '../../helper/sharedprefhelper.dart';
