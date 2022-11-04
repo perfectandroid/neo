@@ -11,6 +11,8 @@ import 'package:neo/Screens/Status/confirmlist.dart';
 import 'package:neo/Screens/Status/deliverylist.dart';
 import 'package:neo/Screens/Status/dispatchedlist.dart';
 import 'package:neo/Screens/Status/packedlist.dart';
+import 'package:neo/Screens/Stocks/report_stock.dart';
+import 'package:neo/Screens/Stocks/stock_list.dart';
 import '../../chart/subsciberchart.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
@@ -705,15 +707,16 @@ class _HomePageState extends State<HomePage> {
 
     if(index=="0")
     {
-     /* Navigator.push(
+      Navigator.push(
         context,
         MaterialPageRoute(
           fullscreenDialog: true,
-          builder: (BuildContext context) => Testcheckbox(
+         // builder: (BuildContext context) => StockList(
+          builder: (BuildContext context) => ReportStock(
             //  liste: album,
           ),
         ),
-      );*/
+      );
     }
     else if(index=="1")
     {

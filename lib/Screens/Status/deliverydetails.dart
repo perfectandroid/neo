@@ -2354,7 +2354,7 @@ void checkOnlineAlert(context) {
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                           // checkInterNet(context);
-                                          Navigator.of(context).push(new MaterialPageRoute(builder: (_)=>new SplashScreen()),);
+                                         // Navigator.of(context).push(new MaterialPageRoute(builder: (_)=>new SplashScreen()),);
                                         },
                                         style: ElevatedButton.styleFrom(
                                           primary: ColorUtility().colorYes,
