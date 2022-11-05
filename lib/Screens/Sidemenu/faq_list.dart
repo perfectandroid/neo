@@ -121,39 +121,8 @@ class _Faq extends State<Faq>{
                                                                                 child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
 
                                                                               )
-                                                                          ),
-                                                                          Center(
-                                                                              child: Container(
-                                                                                alignment: Alignment.centerLeft,
-                                                                                padding: const EdgeInsets.fromLTRB(10,0,10,10),
-                                                                                child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
+                                                                          )
 
-                                                                              )
-                                                                          ),
-                                                                          Center(
-                                                                              child: Container(
-                                                                                alignment: Alignment.centerLeft,
-                                                                                padding: const EdgeInsets.fromLTRB(10,0,10,10),
-                                                                                child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
-
-                                                                              )
-                                                                          ),
-                                                                          Center(
-                                                                              child: Container(
-                                                                                alignment: Alignment.centerLeft,
-                                                                                padding: const EdgeInsets.fromLTRB(10,0,10,10),
-                                                                                child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
-
-                                                                              )
-                                                                          ),
-                                                                          Center(
-                                                                              child: Container(
-                                                                                alignment: Alignment.centerLeft,
-                                                                                padding: const EdgeInsets.fromLTRB(10,0,10,10),
-                                                                                child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
-
-                                                                              )
-                                                                          ),
 
                                                                         ]
                                                                     )
