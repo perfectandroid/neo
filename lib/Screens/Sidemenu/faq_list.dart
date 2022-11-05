@@ -39,20 +39,23 @@ class _Faq extends State<Faq>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
+        body: Card(
+            elevation: 15,
+            shadowColor: Colors.black,
+            color: Colors.white,
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                color: ColorUtility().colorAboutsUs,
-                child : FutureBuilder<FaqModel>(
-                    future:  fetchPost(context),
-                    builder: (context, snapshot) {
-                      if (faqModel.success == true) {
-                        return Padding(
-                            padding: const EdgeInsets.all(5),
-                                child: Card(
-                                    elevation: 15,
-                                    shadowColor: Colors.black,
-                                    color: Colors.white,
+              height: MediaQuery.of(context).size.height,
+              color: ColorUtility().colorAboutsUs,
+                child :SingleChildScrollView(
+                    child: Container(
+                        color: ColorUtility().colorAboutsUs,
+                        child : FutureBuilder<FaqModel>(
+                            future:  fetchPost(context),
+                            builder: (context, snapshot) {
+                              if (faqModel.success == true) {
+                                return Padding(
+                                    padding: const EdgeInsets.all(5),
+
                                     child: Container(
                                         margin: EdgeInsets.all(10),
                                         padding: EdgeInsets.fromLTRB(0,0,0,0),
@@ -81,14 +84,16 @@ class _Faq extends State<Faq>{
                                                           color: Colors.white,
                                                           padding:EdgeInsets.all(0),
                                                           child:  ListView.builder(
+
+                                                              physics: BouncingScrollPhysics(),
                                                               shrinkWrap: true,
                                                               itemCount: faqModel?.data?.length,
                                                               itemBuilder: (context,index){
 
                                                                 return   Container(
-                                                                  margin: EdgeInsets.fromLTRB(0, 0, 0, 2),
-                                                                  padding: EdgeInsets.all(0),
-                                                                  alignment: Alignment.center,
+                                                                    margin: EdgeInsets.fromLTRB(0, 0, 0, 2),
+                                                                    padding: EdgeInsets.all(0),
+                                                                    alignment: Alignment.center,
                                                                     decoration: BoxDecoration(
                                                                         border: Border.all(
                                                                             color: ColorUtility().colorReportHead,
@@ -96,30 +101,62 @@ class _Faq extends State<Faq>{
                                                                         ),
                                                                         borderRadius: BorderRadius.all(Radius.circular(5))
                                                                     ),
-                                                                  child: ExpansionTile(
-                                                                    initiallyExpanded: false,
-                                                                    title: Text(""+(faqModel?.data?[index].question).toString(),textAlign: TextAlign.left,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.025,color: Colors.black),),
-                                                                    collapsedBackgroundColor: ColorUtility().colorReportHead,
-                                                                    collapsedIconColor: Colors.black,
-                                                                    iconColor: Colors.black,
-                                                                    backgroundColor: Colors.white,
-                                                                    children: [
-                                                                      Container(
-                                                                          padding: const EdgeInsets.fromLTRB(10,0,10,10),
-                                                                        child: Divider(color: ColorUtility().colorReportHead,height: 1)
-                                                                      ),
+                                                                    child: ExpansionTile(
+                                                                        initiallyExpanded: false,
+                                                                        title: Text(""+(faqModel?.data?[index].question).toString(),textAlign: TextAlign.left,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.025,color: Colors.black),),
+                                                                        collapsedBackgroundColor: ColorUtility().colorReportHead,
+                                                                        collapsedIconColor: Colors.black,
+                                                                        iconColor: Colors.black,
+                                                                        backgroundColor: Colors.white,
+                                                                        children: [
+                                                                          Container(
+                                                                              padding: const EdgeInsets.fromLTRB(10,0,10,10),
+                                                                              child: Divider(color: ColorUtility().colorReportHead,height: 1)
+                                                                          ),
 
-                                                                      Center(
-                                                                          child: Container(
-                                                                            alignment: Alignment.centerLeft,
-                                                                            padding: const EdgeInsets.fromLTRB(10,0,10,10),
-                                                                            child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
+                                                                          Center(
+                                                                              child: Container(
+                                                                                alignment: Alignment.centerLeft,
+                                                                                padding: const EdgeInsets.fromLTRB(10,0,10,10),
+                                                                                child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
 
-                                                                          )
-                                                                      ),
+                                                                              )
+                                                                          ),
+                                                                          Center(
+                                                                              child: Container(
+                                                                                alignment: Alignment.centerLeft,
+                                                                                padding: const EdgeInsets.fromLTRB(10,0,10,10),
+                                                                                child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
 
-                                                                    ]
-                                                                )
+                                                                              )
+                                                                          ),
+                                                                          Center(
+                                                                              child: Container(
+                                                                                alignment: Alignment.centerLeft,
+                                                                                padding: const EdgeInsets.fromLTRB(10,0,10,10),
+                                                                                child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
+
+                                                                              )
+                                                                          ),
+                                                                          Center(
+                                                                              child: Container(
+                                                                                alignment: Alignment.centerLeft,
+                                                                                padding: const EdgeInsets.fromLTRB(10,0,10,10),
+                                                                                child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
+
+                                                                              )
+                                                                          ),
+                                                                          Center(
+                                                                              child: Container(
+                                                                                alignment: Alignment.centerLeft,
+                                                                                padding: const EdgeInsets.fromLTRB(10,0,10,10),
+                                                                                child:Text(""+(faqModel?.data?[index].answer).toString(),textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,color: Colors.grey),),
+
+                                                                              )
+                                                                          ),
+
+                                                                        ]
+                                                                    )
                                                                 );
 
 
@@ -133,18 +170,18 @@ class _Faq extends State<Faq>{
                                         )
                                     )
 
+                                );
+                              }
+                              else{
+                                return Container();
+                              }
+                            }
+                        )
 
-
-                            )
-                        );
-                      }
-                      else{
-                        return Container();
-                      }
-                    }
+                    )
                 )
-
             )
+
         )
     );
   }
