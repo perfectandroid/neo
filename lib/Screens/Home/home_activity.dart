@@ -13,6 +13,9 @@ import 'package:neo/Screens/Login/otp_page.dart';
 import 'package:neo/Screens/Sidemenu/about_us.dart';
 import 'package:neo/Screens/Sidemenu/change_mpin.dart';
 import 'package:neo/Screens/Sidemenu/change_password.dart';
+import 'package:neo/Screens/Sidemenu/faq_list.dart';
+import 'package:neo/Screens/Sidemenu/privacy_policy.dart';
+import 'package:neo/Screens/Sidemenu/terms_and_conditions.dart';
 import 'package:neo/Screens/SplashScreen/splash_screen.dart';
 import 'package:neo/helper/config.dart';
 
@@ -85,17 +88,17 @@ class DrawerActivityState extends State<DrawerActivity> {
 
       case 4:
       // return new MPINVerification();
-        return Container();
+        return PrivacyPolicy();
 
       case 5:
       // return new MPINVerification();
        // return new ContactUs();
-        return Container();
+        return TermsConditions();
 
       case 6:
       // return new MPINVerification();
        // return new ContactUs();
-        return Container();
+        return Faq();
       case 7:
       // return new MPINVerification();
         return new ChangeMpin();

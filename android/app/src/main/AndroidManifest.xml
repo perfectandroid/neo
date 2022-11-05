@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.perfect.neo">
+
+
+
    <application
         android:label="neo"
         android:name="${applicationName}"
