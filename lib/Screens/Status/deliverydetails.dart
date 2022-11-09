@@ -768,6 +768,8 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                           iconColor: ColorUtility().colorAppbar,
                                           backgroundColor: ColorUtility().colorDroptab,
                                           children: [
+
+
                                             Container(
                                               color: Colors.white,
                                               padding:EdgeInsets.all(0),
@@ -775,6 +777,55 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                               child:   Column(
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: <Widget>[
+
+                                                    Container(
+                                                        color: Colors.white,
+                                                        width: MediaQuery.of(context).size.width * 9,
+                                                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                                        child: Row(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: <Widget>[
+
+                                                              Expanded(
+                                                                flex: 1,
+                                                                child: Container(
+                                                                  alignment: Alignment.centerLeft,
+                                                                  padding: const EdgeInsets.all(2),
+                                                                  child:Text("SN", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                ),
+                                                              ),
+
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child: Container(
+                                                                  alignment: Alignment.centerLeft,
+                                                                  padding: const EdgeInsets.all(2),
+                                                                  child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                ),
+                                                              ),
+
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child: Container(
+                                                                  alignment: Alignment.center,
+                                                                  padding: const EdgeInsets.all(2),
+                                                                  child:Text("QUANTITY", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child: Container(
+                                                                  alignment: Alignment.center,
+                                                                  padding: const EdgeInsets.all(2),
+                                                                  child:Text("AMOUNT", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                ),
+                                                              ),
+                                                            ]
+                                                        )
+                                                    ),
+
+                                                    Divider(color: Colors.grey),
+
                                                     ListView.builder(
                                                       // padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.04,0,MediaQuery.of(context).size.height * 0.04),
                                                       shrinkWrap: true,
@@ -792,7 +843,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                                               // );
 
                                                             },
-                                                            child :getCard(deliveryModel,index)
+                                                            child :getCard1(deliveryModel,index)
                                                         );
                                                         // return
 
@@ -1862,6 +1913,60 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
 
 
+    );
+
+  }
+
+  Widget getCard1(item,index){
+
+    print("147893");
+    print(item);
+    return Card(
+      // margin: EdgeInsets.zero,
+      child :  Container(
+          width: MediaQuery.of(context).size.width * 9,
+          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+          child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(2),
+                    child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                  ),
+                ),
+
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(2),
+                    child:Text((deliveryModel?.data?.items?[index].productName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                  ),
+                ),
+
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(2),
+                    child:Text((deliveryModel?.data?.items?[index].quantity).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(2),
+                    child:Text((deliveryModel?.data?.items?[index].netAmount).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                  ),
+                ),
+              ]
+          )
+      ),
     );
 
   }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_progress/loading_progress.dart';
+import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/mpin_set_page.dart';
 import 'package:neo/Screens/Status/dispatchdetails.dart';
 import 'package:neo/Screens/Status/dispatchedlist.dart';
@@ -64,7 +65,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => HomePage()
+                        builder: (context) => new DrawerActivity()
                     ),
                         (route) => false
                 );
@@ -87,7 +88,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
     return (await  Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-            builder: (context) => HomePage()
+            builder: (context) => new DrawerActivity()
         ),
             (route) => false
     )) ??
@@ -949,7 +950,7 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     onPressed: () {
      // Navigator.pop(context,true);
       //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
     },
   );
   AlertDialog alert = AlertDialog(

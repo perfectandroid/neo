@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/helper/sharedprefhelper.dart';
 
 import '../../helper/colorutility.dart';
@@ -40,7 +41,7 @@ class _PackedScreen extends State<PackedScreen>{
     return (await  Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-            builder: (context) => HomePage()
+            builder: (context) => new DrawerActivity()
         ),
             (route) => false
     )) ??
@@ -65,7 +66,7 @@ class _PackedScreen extends State<PackedScreen>{
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => HomePage()
+                        builder: (context) => new DrawerActivity()
                     ),
                         (route) => false
                 );
@@ -716,7 +717,7 @@ class _PackedScreen extends State<PackedScreen>{
       onPressed: () {
         //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
       //  Navigator.pop(context,true);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
       },
     );
     AlertDialog alert = AlertDialog(

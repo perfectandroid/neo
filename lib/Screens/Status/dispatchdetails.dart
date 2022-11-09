@@ -538,7 +538,6 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                     children: <Widget>[
 
 
-
                                                       Container(
                                                           width: MediaQuery.of(context).size.width * 9,
                                                           padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
@@ -805,6 +804,54 @@ class _DispatchDetails extends State<DispatchDetails>{
                                               child:   Column(
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: <Widget>[
+
+                                                    Container(
+                                                        width: MediaQuery.of(context).size.width * 9,
+                                                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                                        child: Row(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: <Widget>[
+
+                                                              Expanded(
+                                                                flex: 1,
+                                                                child: Container(
+                                                                  alignment: Alignment.centerLeft,
+                                                                  padding: const EdgeInsets.all(2),
+                                                                  child:Text("SN", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                ),
+                                                              ),
+
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child: Container(
+                                                                  alignment: Alignment.centerLeft,
+                                                                  padding: const EdgeInsets.all(2),
+                                                                  child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                ),
+                                                              ),
+
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child: Container(
+                                                                  alignment: Alignment.center,
+                                                                  padding: const EdgeInsets.all(2),
+                                                                  child:Text("QUANTITY", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child: Container(
+                                                                  alignment: Alignment.center,
+                                                                  padding: const EdgeInsets.all(2),
+                                                                  child:Text("AMOUNT", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                ),
+                                                              ),
+                                                            ]
+                                                        )
+                                                    ),
+
+                                                    Divider(color: Colors.grey),
+
                                                     ListView.builder(
                                                       // padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.04,0,MediaQuery.of(context).size.height * 0.04),
                                                       shrinkWrap: true,
@@ -822,7 +869,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                               // );
 
                                                             },
-                                                            child :getCard(deliveryModel,index)
+                                                            child :getCard1(deliveryModel,index)
                                                         );
                                                         // return
 
@@ -940,14 +987,14 @@ class _DispatchDetails extends State<DispatchDetails>{
     print(item);
     return Card(
       // margin: EdgeInsets.zero,
-        margin: EdgeInsets.fromLTRB(1,2,1,0),
+        margin: EdgeInsets.fromLTRB(0,1,0,1),
         color: ColorUtility().colorLightGrey,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0.0),),
+        borderRadius: BorderRadius.circular(0.0),),
         elevation: 2,
 
         child: Padding(
-            padding: const EdgeInsets.all(5),
+            padding: const EdgeInsets.fromLTRB(0,2,0,2),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -964,147 +1011,195 @@ class _DispatchDetails extends State<DispatchDetails>{
                                       child: Container(
                                           padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                           width: MediaQuery.of(context).size.width * 0.90,
-                                          child: Column(
+                                          child: Row(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: <Widget>[
 
-                                                Center(
-                                                    child: Container(
-                                                        child: Padding(
-                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                            child: Row(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: <Widget>[
 
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.2,
-                                                                        alignment: Alignment.centerLeft,
-                                                                        child:Text("Item ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
-
-                                                                      )
-                                                                  ),
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.01,
-                                                                        alignment: Alignment.center,
-                                                                        child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
-
-                                                                      )
-                                                                  ),
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.68,
-                                                                        alignment: Alignment.centerLeft,
-                                                                        child:Text((deliveryModel?.data?.items?[index].productName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-                                                                        // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-
-                                                                      )
-                                                                  ),
-
-
-                                                                ]
-                                                            )
-                                                        )
-
-                                                    )
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Container(
+                                                    alignment: Alignment.centerLeft,
+                                                    padding: const EdgeInsets.all(2),
+                                                    child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                  ),
                                                 ),
 
-                                                Center(
-                                                    child: Container(
-                                                        child: Padding(
-                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                            child: Row(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: <Widget>[
-
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.2,
-                                                                        alignment: Alignment.centerLeft,
-                                                                        child:Text("Quantity ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
-
-                                                                      )
-                                                                  ),
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.01,
-                                                                        alignment: Alignment.center,
-                                                                        child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
-
-                                                                      )
-                                                                  ),
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.68,
-                                                                        alignment: Alignment.centerLeft,
-                                                                        child:Text((deliveryModel?.data?.items?[index].quantity).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-                                                                        // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-
-                                                                      )
-                                                                  ),
-
-
-                                                                ]
-                                                            )
-                                                        )
-
-                                                    )
+                                                Expanded(
+                                                  flex: 2,
+                                                  child: Container(
+                                                    alignment: Alignment.centerLeft,
+                                                    padding: const EdgeInsets.all(2),
+                                                    child:Text((deliveryModel?.data?.items?[index].productName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                  ),
                                                 ),
 
-                                                Center(
-                                                    child: Container(
-                                                        child: Padding(
-                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                            child: Row(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: <Widget>[
-
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.2,
-                                                                        alignment: Alignment.centerLeft,
-                                                                        child:Text("Amount ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
-
-                                                                      )
-                                                                  ),
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.01,
-                                                                        alignment: Alignment.center,
-                                                                        child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
-
-                                                                      )
-                                                                  ),
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.68,
-                                                                        alignment: Alignment.centerLeft,
-                                                                        child:Text((deliveryModel?.data?.items?[index].netAmount).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-                                                                        // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-
-                                                                      )
-                                                                  ),
-
-
-                                                                ]
-                                                            )
-                                                        )
-
-                                                    )
+                                                Expanded(
+                                                  flex: 2,
+                                                  child: Container(
+                                                    alignment: Alignment.centerLeft,
+                                                    padding: const EdgeInsets.all(2),
+                                                    child:Text((deliveryModel?.data?.items?[index].quantity).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                  ),
                                                 ),
+                                                Expanded(
+                                                  flex: 2,
+                                                  child: Container(
+                                                    alignment: Alignment.centerLeft,
+                                                    padding: const EdgeInsets.all(2),
+                                                    child:Text((deliveryModel?.data?.items?[index].netAmount).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                  ),
+                                                ),
+
+                                                // Container(
+                                                //     width: MediaQuery.of(context).size.width * 9,
+                                                //     padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                                                //     child: Row(
+                                                //         crossAxisAlignment: CrossAxisAlignment.start,
+                                                //         children: <Widget>[
+                                                //
+                                                //         ]
+                                                //     )
+                                                // ),
+                                                // Divider(height: 0.05,color: ColorUtility().colorLightGrey1)
+
+                                                // Center(
+                                                //     child: Container(
+                                                //         child: Padding(
+                                                //             padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //             child: Row(
+                                                //                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                //                 children: <Widget>[
+                                                //
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.2,
+                                                //                         alignment: Alignment.centerLeft,
+                                                //                         child:Text("Item ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.01,
+                                                //                         alignment: Alignment.center,
+                                                //                         child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.68,
+                                                //                         alignment: Alignment.centerLeft,
+                                                //                         child:Text((deliveryModel?.data?.items?[index].productName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                //                         // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                //                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //
+                                                //
+                                                //                 ]
+                                                //             )
+                                                //         )
+                                                //
+                                                //     )
+                                                // ),
+                                                //
+                                                // Center(
+                                                //     child: Container(
+                                                //         child: Padding(
+                                                //             padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //             child: Row(
+                                                //                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                //                 children: <Widget>[
+                                                //
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.2,
+                                                //                         alignment: Alignment.centerLeft,
+                                                //                         child:Text("Quantity ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.01,
+                                                //                         alignment: Alignment.center,
+                                                //                         child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.68,
+                                                //                         alignment: Alignment.centerLeft,
+                                                //                         child:Text((deliveryModel?.data?.items?[index].quantity).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                //                         // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                //                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //
+                                                //
+                                                //                 ]
+                                                //             )
+                                                //         )
+                                                //
+                                                //     )
+                                                // ),
+                                                //
+                                                // Center(
+                                                //     child: Container(
+                                                //         child: Padding(
+                                                //             padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //             child: Row(
+                                                //                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                //                 children: <Widget>[
+                                                //
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.2,
+                                                //                         alignment: Alignment.centerLeft,
+                                                //                         child:Text("Amount ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.01,
+                                                //                         alignment: Alignment.center,
+                                                //                         child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.68,
+                                                //                         alignment: Alignment.centerLeft,
+                                                //                         child:Text((deliveryModel?.data?.items?[index].netAmount).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                //                         // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                //                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //
+                                                //
+                                                //                 ]
+                                                //             )
+                                                //         )
+                                                //
+                                                //     )
+                                                // ),
 
 
 
@@ -1161,6 +1256,61 @@ class _DispatchDetails extends State<DispatchDetails>{
     );
 
   }
+
+  Widget getCard1(item,index){
+
+    print("147893");
+    print(item);
+    return Card(
+      // margin: EdgeInsets.zero,
+        child :  Container(
+            width: MediaQuery.of(context).size.width * 9,
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.all(2),
+                      child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                    ),
+                  ),
+
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.all(2),
+                      child:Text((deliveryModel?.data?.items?[index].productName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                    ),
+                  ),
+
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(2),
+                      child:Text((deliveryModel?.data?.items?[index].quantity).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(2),
+                      child:Text((deliveryModel?.data?.items?[index].netAmount).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                    ),
+                  ),
+                ]
+            )
+        ),
+    );
+
+  }
+
 
   Widget _buildTimelineTile(item,index){
     return TimelineTile(
