@@ -12,6 +12,7 @@ import 'package:neo/Screens/Status/dispatchedlist.dart';
 import 'package:neo/Screens/Status/packedlist.dart';
 import 'package:neo/Screens/Stocks/report_stock.dart';
 import 'package:neo/Screens/Stocks/stock_list.dart';
+import 'package:neo/helper/colorutility.dart';
 import '../../chart/dashboard.dart';
 import '../../chart/subsciberchart.dart';
 import '../../constants.dart';
@@ -39,10 +40,12 @@ class PhotoItem {
 class Grid2 {
   final String title;
   final String image;
+  final Color color;
 
   Grid2({
     required this.title,
     required this.image,
+    required this.color,
   });
 }
 class _HomePageState extends State<HomePage> {
@@ -53,22 +56,37 @@ class _HomePageState extends State<HomePage> {
       print("not the one :(");
     }
   }*/
+  final _pageController = PageController(initialPage: 2);
+  int maxCount = 5;
+
   final List <Grid2>myImageAndCaption = [
-    Grid2(title: "Stock",image: "assets/images/stock.png"),
-    Grid2(title: "Dashboard",image: "assets/images/dashboard.png"),
-    Grid2(title: "Report",image: "assets/images/report.png"),
-    Grid2(title: "Notification",image: "assets/images/notifctn.png"),
+    // Grid2(title: "Stock",image: "assets/images/stock.png"),
+    // Grid2(title: "Dashboard",image: "assets/images/dashboard.png"),
+    // Grid2(title: "Report",image: "assets/images/report.png"),
+    // Grid2(title: "Notification",image: "assets/images/notifctn.png"),
+
+    Grid2(title: "STOCK",image: "assets/images/homestock.png",color:ColorUtility().colorHomeGrid),
+    Grid2(title: "DASHBOARD",image: "assets/images/homedash.png",color:ColorUtility().colorHomeGrid),
+    Grid2(title: "REPORT",image: "assets/images/homereport.png",color:ColorUtility().colorHomeGrid),
+    Grid2(title: "NOTIFICATION",image: "assets/images/homenotification.png",color:ColorUtility().colorHomeGrid),
 
 
   ];
 
   final List<PhotoItem> liste = [
+    // PhotoItem(title: "Pendings", image: "assets/images/pending.png"),
+    // PhotoItem(title: "Confirmed", image: "assets/images/confirm.png"),
+    // PhotoItem(title: "Packed", image: "assets/images/confirm.png"),
+    // PhotoItem(title: "Dispatch", image: "assets/images/confirm.png"),
+    // PhotoItem(title: "Delivered", image: "assets/images/confirm.png"),
+
     PhotoItem(title: "Pendings", image: "assets/images/pending.png"),
     PhotoItem(title: "Confirmed", image: "assets/images/confirm.png"),
-    PhotoItem(title: "Packed", image: "assets/images/confirm.png"),
-    PhotoItem(title: "Dispatch", image: "assets/images/confirm.png"),
-    PhotoItem(title: "Delivered", image: "assets/images/confirm.png"),
+    PhotoItem(title: "Packed", image: "assets/images/packed.png"),
+    PhotoItem(title: "Dispatch", image: "assets/images/dispatched.png"),
+    PhotoItem(title: "Delivered", image: "assets/images/delivered.png"),
   ];
+  
 
   /*List<PhotoItem> _items = [
     PhotoItem(
@@ -191,17 +209,14 @@ class _HomePageState extends State<HomePage> {
               physics: NeverScrollableScrollPhysics(),
               children: [
                 GridView.builder(
-
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
                     crossAxisCount: 5,
                     childAspectRatio: MediaQuery.of(context).size.width /
                         (MediaQuery.of(context).size.height / 2),
-                    //childAspectRatio: 1 / 1.5,
                   ),
                   itemCount: liste.length,
                   itemBuilder: (context, index) {
@@ -210,59 +225,117 @@ class _HomePageState extends State<HomePage> {
                         goToDetailsPage(context, liste[index]);
                         print(liste[index].title);
                       },
-                    /*  onTap: () {
 
-                        print("tapped");*/
+                      child : Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
 
-                       /*  Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RouteTwo(
-                      image: liste[index].image, name: liste[index].name),
-                ),
-              );*/
-                  //    },
-                      child: Container(
-                          height: 90.0,
-                        /* width: 90.0,
-              height: 90.0,*/
-                        margin: const EdgeInsets.only(top: 3.0),
-
-                        decoration: BoxDecoration(
-
-                         // shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(liste[index].image),
-
-                          ),
-
-                        ),
-                        child:Container(
-                         // padding: const EdgeInsets.only(top: 10.0),
-                          alignment: Alignment.bottomCenter,
-                          child: new Text(liste[index].title,
-                              style: new TextStyle(
-                                fontWeight: FontWeight.bold,
-
-                                fontSize: 10.0,
-
+                          Container(
+                            width: MediaQuery.of(context).size.height/20,
+                            height: MediaQuery.of(context).size.height/20,
+                            margin:  EdgeInsets.all(3.0),
+                              decoration: BoxDecoration(
+                                // shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(liste[index].image),
+                                  opacity: 0.6
+                                ),
+                                border: Border.all(
+                                  color: ColorUtility().colorWhite,
+                                  width: 0,
+                                ), //Border.all
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: ColorUtility().colorWhite,
+                                    offset: const Offset(
+                                      0.0,
+                                      0.0,
+                                    ), //Offset
+                                    blurRadius: 0.0,
+                                    spreadRadius: 0.0,
+                                  ), //BoxShadow
+                                  BoxShadow(
+                                    color: Colors.white,
+                                    offset: const Offset(0.0, 0.0),
+                                    blurRadius: 0.0,
+                                    spreadRadius: 0.0,
+                                  ), //BoxShadow
+                                ],
 
                               )
-                          ),
-                        ),
 
-                        /*  child: Stack(
-                children: [
-                  RichText(text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(text: _items[index].name,style: TextStyle(color: Colors.black)),
-                       // TextSpan(text: "Kalpesh\n",style: TextStyle(color: Colors.white))
-                      ]
-                  ))
-                ],
-              ),*/
+                          ),
+
+                          Container(
+                            // padding: const EdgeInsets.only(top: 10.0),
+                            alignment: Alignment.bottomCenter,
+                            child: new Text(liste[index].title,
+                                style: new TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10.0,
+                                )
+                            ),
+                          )
+
+
+
+                        ],
                       ),
+
+
+
+
+
+
+                      // child: Container(
+                      //   width: MediaQuery.of(context).size.height/10,
+                      //   height: MediaQuery.of(context).size.height/10,
+                      //   margin:  EdgeInsets.all(3.0),
+                      //   decoration: BoxDecoration(
+                      //    // shape: BoxShape.circle,
+                      //     image: DecorationImage(
+                      //       fit: BoxFit.fill,
+                      //       image: AssetImage(liste[index].image)
+                      //     ),
+                      //     border: Border.all(
+                      //       color: ColorUtility().colorWhite,
+                      //       width: 0,
+                      //     ), //Border.all
+                      //     borderRadius: BorderRadius.circular(5),
+                      //     boxShadow: [
+                      //       BoxShadow(
+                      //         color: ColorUtility().colorWhite,
+                      //         offset: const Offset(
+                      //           0.0,
+                      //           0.0,
+                      //         ), //Offset
+                      //         blurRadius: 0.0,
+                      //         spreadRadius: 0.0,
+                      //       ), //BoxShadow
+                      //       BoxShadow(
+                      //         color: Colors.white,
+                      //         offset: const Offset(0.0, 0.0),
+                      //         blurRadius: 0.0,
+                      //         spreadRadius: 0.0,
+                      //       ), //BoxShadow
+                      //     ],
+                      //
+                      //   ),
+                      //   child:Container(
+                      //    // padding: const EdgeInsets.only(top: 10.0),
+                      //     alignment: Alignment.bottomCenter,
+                      //     child: new Text(liste[index].title,
+                      //         style: new TextStyle(
+                      //           fontWeight: FontWeight.bold,
+                      //           fontSize: 10.0,
+                      //         )
+                      //     ),
+                      //   )
+                      // )
+
 
                     );
                   },
@@ -271,270 +344,159 @@ class _HomePageState extends State<HomePage> {
 
               ],
             ),
+            // Container(
+            //   margin: EdgeInsets.all(10),
+            //   // decoration: BoxDecoration(
+            //   //   color: Colors.white,
+            //   //   borderRadius: BorderRadius.only(
+            //   //       topLeft: Radius.circular(10),
+            //   //       topRight: Radius.circular(10),
+            //   //       bottomLeft: Radius.circular(10),
+            //   //       bottomRight: Radius.circular(10)
+            //   //   ),
+            //   //   boxShadow: [
+            //   //     BoxShadow(
+            //   //       color: Colors.grey.withOpacity(0.5),
+            //   //       spreadRadius: 5,
+            //   //       blurRadius: 7,
+            //   //       offset: Offset(0, 3), // changes position of shadow
+            //   //     )
+            //   //   ]),
+            //   child:CarouselSlider(
+            //       options: CarouselOptions(height:200,autoPlay: true),
+            //       items: [
+            //         MyImageView("assets/images/banner.jpg"),
+            //         MyImageView("assets/images/banner.jpg"),
+            //         MyImageView("assets/images/banner.jpg"),
+            //         MyImageView("assets/images/banner.jpg"),
+            //       ],
+            //   ),
+            // ),
+
             Container(
-              child:CarouselSlider(
-                  options: CarouselOptions(height:200,autoPlay: true),
-                  items: [
-                    MyImageView("assets/images/banner.jpg"),
-                    MyImageView("assets/images/banner.jpg"),
-                    MyImageView("assets/images/banner.jpg"),
-                    MyImageView("assets/images/banner.jpg"),
-                  ]
-
-               /* images: [
-
-                  AssetImage('assets/images/banner.jpg'),
-                  AssetImage('assets/images/banner.jpg'),
-                  AssetImage('assets/images/banner.jpg'),
-                  AssetImage('assets/images/banner.jpg'),
-
+              child: CarouselSlider(
+                items: [
+                  MyImageView("assets/images/banner.jpg"),
+                  MyImageView("assets/images/banner.jpg"),
+                  MyImageView("assets/images/banner.jpg"),
+                  MyImageView("assets/images/banner.jpg"),
                 ],
-                //Slider Container properties
                 options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height/4,
+                  enlargeCenterPage: true,
                   autoPlay: true,
-                ),*/
-
-              ),
+                  aspectRatio: 16 / 9,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  viewportFraction: 0.95,
+                ),
+              )
             ),
-           /* Container(
-              height: 250,
 
-              child: Carousel(
-
-                boxFit: BoxFit.cover,
-                images: [
-
-                  AssetImage('assets/images/banner.jpg'),
-                  AssetImage('assets/images/banner.jpg'),
-                  AssetImage('assets/images/banner.jpg'),
-                  AssetImage('assets/images/banner.jpg'),
-
-                ],
-
-                autoplay: true,
-               // dotColor: Colors.yellow,
-             //   dotBgColor: Colors.black,
-               // dotSize: 5.0,
-             //   dotSpacing: 20.0,
-              ),
-            ),*/
-           /* GridView.builder(
-              itemCount: myImageAndCaption.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 5.0,
-                mainAxisSpacing: 5.0,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return Image.asset(liste[index]);
-              },
-            ),*/
-
-            GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              itemCount: myImageAndCaption.length,
-              itemBuilder: (ctx, i) {
-
-                return  Card(
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              child :GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.all(10),
+                itemCount: myImageAndCaption.length,
+                itemBuilder: (ctx, i) {
+                  return  Card(
+                    elevation: 5,
+                     //shadowColor: Colors.grey,
+                     shadowColor: Colors.white,
+                     color: Colors.white,
+                   // shadowColor: myImageAndCaption[i].color,
+                   // color: myImageAndCaption[i].color,
                     child: new InkWell(
                       onTap: () {
 //
-                       goToDetailsPage2(i.toString());
+                        goToDetailsPage2(i.toString());
 
                         print("Title"+i.toString());
                       },
 
-                  child: Container(
-                    height: 290,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20)),
-                    margin: EdgeInsets.all(5),
-                    padding: EdgeInsets.all(5),
-                    child: Stack(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.white,
+                                //color: myImageAndCaption[i].color,
+                                width: 0.9
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(5))
+                        ),
+                        height: 10,
+                        width: MediaQuery.of(context).size.height/13,
+                        // decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(20)),
+                        margin: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(5),
+                        child: Stack(
                           children: [
-                       //     SizedBox.expand(
-
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                //     SizedBox.expand(
                                 Container(
                                   alignment: Alignment.center,
-                                  width: 55.0,
-                                  height: 90.0,
-                                  margin: const EdgeInsets.only(top: 10.0,left: 25.0,bottom: 10.0),
-                                  //padding: const EdgeInsets.only(top: 85.0),
+                                  width: MediaQuery.of(context).size.height/14,
+                                  height: MediaQuery.of(context).size.height/14,
+                                  margin: const EdgeInsets.all(3.0),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-
-                                    // shape: BoxShape.circle,
+                                    borderRadius: BorderRadius.circular(0),
                                     image: DecorationImage(
-                                      scale: 1.5,
+                                      scale: 1,
                                       fit: BoxFit.cover,
                                       image: AssetImage(myImageAndCaption[i].image),
-
+                                      opacity: 0.7
                                     ),
-
-                                  ),
-                                  child:Container(
-                                    padding: const EdgeInsets.only(top: 80.0),
-                                    alignment: Alignment.bottomCenter,
-                                    child: new Text(myImageAndCaption[i].title,
-                                        style: new TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 10.0,
-
-
-                                        )
-                                    ),
-                                  ),
-
-                                  /*  Expanded(
-                              child: Image.network(
-                                'https://tech.pelmorex.com/wp-content/uploads/2020/10/flutter.png',
-                                fit: BoxFit.fill,
-                              ),
-                              fit: BoxFit.cover,
-                              image: AssetImage(liste[index].image),
-                            ),
-                            Text(
-                              'Title',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Subtitle',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
                                   ),
                                 ),
-                              ],
-                            )*/
-                             //   ),
-                              ),
 
-                          //  ),
+                                Container(
+                                  padding: const EdgeInsets.all(3.0),
+                                  alignment: Alignment.bottomCenter,
+                                  child: new Text(myImageAndCaption[i].title,
+                                      style: new TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 15.0,
+                                      )
+                                  ),
+                                ),
+
+                                //  ),
+                              ],
+                            ),
                           ],
                         ),
-                      ],
+
+                      ),
                     ),
+                  );
 
-                  ),
-                    ),
-                );
-
-              },
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-
-                crossAxisCount: 2,
-                childAspectRatio: (itemWidth / itemHeight),
-               // childAspectRatio: 1.0,
-                crossAxisSpacing: 0.0,
-                mainAxisSpacing: 5,
-                mainAxisExtent: 160,
+                },
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: (itemWidth / itemHeight),
+                  crossAxisSpacing: 0.0,
+                  mainAxisSpacing: 2,
+                  mainAxisExtent: MediaQuery.of(context).size.height/5.5,
+                ),
               ),
-            ),
-           /* GridView.count(
+            )
 
-              primary: false,
-              padding: const EdgeInsets.all(10),
-              crossAxisSpacing: 10,
-              childAspectRatio: (1 / .9),
-              mainAxisSpacing: 10,
-              crossAxisCount: 2,
-              physics: NeverScrollableScrollPhysics(), // to disable GridView's scrolling
-              shrinkWrap: true, // You won't se
-              children: <Widget>[
-
-
-                Container(
-                *//*  padding: const EdgeInsets.all(8),
-                  color: Colors.teal[200],*//*
-                 // child: const Text('Stock', textAlign: TextAlign.end),
-                  child: Center(child: Text('Stock'),),
-                  height: 50.0,
-                  width: MediaQuery.of(context).size.width - 100.0,
-                  decoration: BoxDecoration(
-                     // borderRadius: BorderRadius.circular(5),
-                      color: Colors.blue,
-                      image: DecorationImage(
-                          image: AssetImage(
-                              "assets/images/stock.png"
-                          ),
-                          fit: BoxFit.fill
-                      )
-                  ),
-                ),
-                Container(
-                 *//* padding: const EdgeInsets.all(8),
-                  color: Colors.teal[300],
-                  child: const Text('Dashboard', textAlign: TextAlign.center),*//*
-                  child: Center(child: Text('Dashboard'),),
-                  height: 50.0,
-                  width: MediaQuery.of(context).size.width - 100.0,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.blue,
-                      image: DecorationImage(
-                          image: AssetImage(
-                              "assets/images/dashboard.png"
-                          ),
-                          fit: BoxFit.fill
-                      )
-                  ),
-                ),
-                Container(
-                *//*  padding: const EdgeInsets.all(8),
-                  color: Colors.teal[100],
-                  child: const Text("Report", textAlign: TextAlign.center),*//*
-
-                  child: Center(child: Text('Report'),),
-                  height: 50.0,
-                  width: MediaQuery.of(context).size.width - 100.0,
-                  decoration: BoxDecoration(
-                     // borderRadius: BorderRadius.circular(5),
-                      color: Colors.blue,
-                      image: DecorationImage(
-                          image: AssetImage(
-                              "assets/images/report.png"
-                          ),
-                          fit: BoxFit.fill
-                      )
-                  ),
-                ),
-                Container(
-                *//*  padding: const EdgeInsets.all(8),
-                  color: Colors.teal[400],
-                  child: const Text('Notification', textAlign: TextAlign.center),*//*
-                  child: Center(child: Text('Notification'),),
-                  height: 50.0,
-                  width: MediaQuery.of(context).size.width - 100.0,
-                  decoration: BoxDecoration(
-                    //  borderRadius: BorderRadius.circular(5),
-                      color: Colors.blue,
-                      image: DecorationImage(
-                          image: AssetImage(
-                              "assets/images/notifctn.png"
-                          ),
-                          fit: BoxFit.fill
-                      )
-                  ),
-                ),
-
-              ],
-            )*/
 
           ],
         ),
       ),
+
+
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: ColorUtility().colorHomeGrid,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage("assets/images/home.png")),
@@ -552,7 +514,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        //selectedItemColor: Colors.amber[800],
+        selectedItemColor: ColorUtility().colorAppbar,
         onTap: (int index) {
           switch (index) {
             case 0:
@@ -773,12 +736,36 @@ class MyImageView extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 5),
-        child: FittedBox(
+      margin: EdgeInsets.fromLTRB(0,10,0,10),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10)
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 2,
+              offset: Offset(0, 3), // changes position of shadow
+            )
+          ],
+        image: new DecorationImage(
+          image: ExactAssetImage(imgPath),
           fit: BoxFit.cover,
-          child: Image.asset(imgPath,),
-        )
+        ),
+      )
     );
+    // return Container(
+    //     margin: EdgeInsets.symmetric(horizontal: 5),
+    //     child: FittedBox(
+    //       fit: BoxFit.cover,
+    //       child: Image.asset(imgPath,),
+    //     )
+    // );
   }
 
 }
