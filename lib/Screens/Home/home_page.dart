@@ -1,11 +1,13 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo/Model/HomeList.dart';
 import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
+import 'package:neo/Screens/Sidemenu/about_us.dart';
 import 'package:neo/Screens/Status/confirmlist.dart';
 import 'package:neo/Screens/Status/deliverylist.dart';
 import 'package:neo/Screens/Status/dispatchedlist.dart';
@@ -13,12 +15,15 @@ import 'package:neo/Screens/Status/packedlist.dart';
 import 'package:neo/Screens/Stocks/report_stock.dart';
 import 'package:neo/Screens/Stocks/stock_list.dart';
 import 'package:neo/helper/colorutility.dart';
+import 'package:page_transition/page_transition.dart';
 import '../../chart/dashboard.dart';
 import '../../chart/subsciberchart.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../Login/loginpage.dart';
 import '../Notification/notifictn_list.dart';
+import '../Sidemenu/user_profile.dart';
 import '../Status/pendinglist2.dart';
 import '../Tabs/tab1.dart';
 class HomePage extends StatefulWidget {
@@ -49,6 +54,8 @@ class Grid2 {
   });
 }
 class _HomePageState extends State<HomePage> {
+
+  //var _initialActiveIndex = 1;
  /* void tapped(int index){
     if(index == 1){
       print("huray 1");
@@ -376,10 +383,11 @@ class _HomePageState extends State<HomePage> {
             Container(
               child: CarouselSlider(
                 items: [
-                  MyImageView("assets/images/banner.jpg"),
-                  MyImageView("assets/images/banner.jpg"),
-                  MyImageView("assets/images/banner.jpg"),
-                  MyImageView("assets/images/banner.jpg"),
+                  MyImageView("assets/images/banner1.png"),
+                  MyImageView("assets/images/banner2.png"),
+                  MyImageView("assets/images/banner3.png"),
+                  MyImageView("assets/images/banner4.png"),
+                  MyImageView("assets/images/banner5.png"),
                 ],
                 options: CarouselOptions(
                   height: MediaQuery.of(context).size.height/4,
@@ -494,51 +502,99 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
 
+      bottomNavigationBar: ConvexAppBar(
+        style: TabStyle.reactCircle,
+        backgroundColor: ColorUtility().colorAppbar,
+        color: ColorUtility().colorBottomIcon,
+        activeColor: Colors.white,
 
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: ColorUtility().colorHomeGrid,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage("assets/images/home.png")),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage("assets/images/home.png")),
-           // icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage("assets/images/chat.png")),
-           // icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
+        items: [
+
+          // TabItem(icon: Icons.person_outline, title: 'Profile'),
+          // TabItem(icon: Icons.language_sharp, title: 'About Us'),
+          TabItem(icon: Icons.dangerous_outlined, title: 'Quit'),
+          TabItem(icon: Icons.home_outlined, title: 'Home'),
+          TabItem(icon: Icons.logout, title: 'Log Out'),
         ],
-        currentIndex: _selectedIndex,
-        //selectedItemColor: Colors.amber[800],
-        selectedItemColor: ColorUtility().colorAppbar,
-        onTap: (int index) {
-          switch (index) {
-            case 0:
-            // only scroll to top when current index is selected.
-              if (_selectedIndex == index) {
-                _homeController.animateTo(
-                  0.0,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeOut,
-                );
-              }
-              break;
-            case 1:
-              showModal(context);
-              break;
-          }
-          setState(
-                () {
-              _selectedIndex = index;
-            },
-          );
-        },
+        initialActiveIndex: 1,
+        onTap: (int i) =>{
+
+
+          if (i == 0) [
+              quitAlert(context)
+          ]
+          else if (i == 1) [
+            // Navigator.push(
+            //   context,
+            //   PageTransition(
+            //     type: PageTransitionType.fade,
+            //     child: HomePage(),
+            //     isIos: true,
+            //     duration: Duration(milliseconds: 40),
+            //   ),
+            // )
+          ]
+          else if (i == 2) [
+              logOutAlert(context)
+            ]
+            // else if (i == 3) [
+            //
+            //
+            //   ]
+            //   else if (i == 4) [
+            //       logOutAlert(context)
+            //     ]
+
+        }
+
+
       ),
+
+
+      // bottomNavigationBar: BottomNavigationBar(
+      //   backgroundColor: ColorUtility().colorHomeGrid,
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: ImageIcon(AssetImage("assets/images/home.png")),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: ImageIcon(AssetImage("assets/images/home.png")),
+      //      // icon: Icon(Icons.search),
+      //       label: 'Search',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: ImageIcon(AssetImage("assets/images/chat.png")),
+      //      // icon: Icon(Icons.person),
+      //       label: 'Profile',
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   //selectedItemColor: Colors.amber[800],
+      //   selectedItemColor: ColorUtility().colorAppbar,
+      //   onTap: (int index) {
+      //     switch (index) {
+      //       case 0:
+      //       // only scroll to top when current index is selected.
+      //         if (_selectedIndex == index) {
+      //           _homeController.animateTo(
+      //             0.0,
+      //             duration: const Duration(milliseconds: 500),
+      //             curve: Curves.easeOut,
+      //           );
+      //         }
+      //         break;
+      //       case 1:
+      //         showModal(context);
+      //         break;
+      //     }
+      //     setState(
+      //           () {
+      //         _selectedIndex = index;
+      //       },
+      //     );
+      //   },
+      // ),
 
     ));
 
@@ -634,7 +690,7 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   void initState() {
-
+    print("Hiiiiii");
     getData();
     super.initState();
   }
@@ -723,8 +779,284 @@ class _HomePageState extends State<HomePage> {
   }
 
 
+  void logOutAlert(BuildContext context) {
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  20.0,
+                ),
+              ),
+            ),
+            contentPadding: EdgeInsets.only(
+              top: 10.0,
+            ),
+            content: Container(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(0.0),
+                      child:SizedBox(
+                          height:75,width:75,
+                          // child:Image.asset("assets/images/logo.png")
+                          child:Image.asset("assets/images/logo.png")
+
+                      ),
+                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.fromLTRB(10,20,10,20),
+                        child:SizedBox(
+                          child: Text("Are you sure you want to quit ?",textAlign: TextAlign.center,),
+                        )
+
+                    ),
+
+                    Divider(color: Colors.grey,
+                        thickness: 1),
+
+                    Container(
+                        height: 40,
+                        width: double.infinity,
+                        margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child:Row(
+                            children:<Widget>[
+                              Expanded(
+                                flex: 5,
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      //action
+                                      Navigator.of(context).pop();
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: DrawerActivity(),
+                                          isIos: true,
+                                          duration: Duration(milliseconds: 40),
+                                        ),
+                                      );
+
+                                    },
+                                    child: Text(
+                                      'Cancel', //title
+                                      textAlign: TextAlign.end, //aligment
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              VerticalDivider(
+                                  color: Colors.grey, thickness: 1),
+
+                              Expanded(
+                                flex: 5,
+                                child: Center(
+                                    child: Visibility(
+                                        visible: true,
+                                        child: TextButton(
+                                          onPressed: () async {
+                                            // action
+                                            // SystemNavigator.pop();
+                                            // exit(0);
+                                            //  window.close();
+                                            bool logOut =  await SharedPreferencesHelper.logout();
+                                            print(logOut);
+                                            if(logOut){
+                                              Navigator.pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) => LoginPage()
+                                                  ),
+                                                      (route) => false
+                                              );
+
+                                            }
+
+                                          },
+                                          child: Text(
+                                            'Log Out', //title
+                                            textAlign: TextAlign.end, //aligment
+                                          ),
+                                        ))
+
+                                ),
+                              )
+                            ]
+                        )
+
+                    )
+
+
+
+
+
+
+                  ],
+                ),
+              ),
+            ),
+
+
+          );
+        }
+    );
+  }
+
+  goToProfile(BuildContext context) {
+
+    Navigator.push(
+      context,
+      PageTransition(
+        type: PageTransitionType.fade,
+        child: UserProfile(),
+        isIos: true,
+        duration: Duration(milliseconds: 40),
+      ),
+    );
+  }
+
+
+
 
 }
+
+
+void quitAlert(BuildContext context) {
+
+  showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                20.0,
+              ),
+            ),
+          ),
+          contentPadding: EdgeInsets.only(
+            top: 10.0,
+          ),
+          content: Container(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(0.0),
+                    child:SizedBox(
+                        height:75,width:75,
+                        // child:Image.asset("assets/images/logo.png")
+                        child:Image.asset("assets/images/logo.png")
+
+                    ),
+                  ),
+                  Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.fromLTRB(10,20,10,20),
+                      child:SizedBox(
+                        child: Text("Are you sure you want to quit ?",textAlign: TextAlign.center,),
+                      )
+
+                  ),
+
+                  Divider(color: Colors.grey,
+                      thickness: 1),
+
+                  Container(
+                      height: 40,
+                      width: double.infinity,
+                      margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child:Row(
+                          children:<Widget>[
+                            Expanded(
+                              flex: 5,
+                              child: Center(
+                                child: TextButton(
+                                  onPressed: () {
+                                    //action
+                                    Navigator.of(context).pop();
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: DrawerActivity(),
+                                        isIos: true,
+                                        duration: Duration(milliseconds: 40),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Cancel', //title
+                                    textAlign: TextAlign.end, //aligment
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            VerticalDivider(
+                                color: Colors.grey, thickness: 1),
+
+                            Expanded(
+                              flex: 5,
+                              child: Center(
+                                  child: Visibility(
+                                      visible: true,
+                                      child: TextButton(
+                                        onPressed: () {
+                                          //action
+                                          SystemNavigator.pop();
+                                          // exit(0);
+                                          //  window.close();
+                                        },
+                                        child: Text(
+                                          'Quit', //title
+                                          textAlign: TextAlign.end, //aligment
+                                        ),
+                                      ))
+
+                              ),
+                            )
+                          ]
+                      )
+
+                  )
+
+
+
+
+
+
+                ],
+              ),
+            ),
+          ),
+
+
+        );
+      }
+  );
+}
+
+
 
 class MyImageView extends StatelessWidget{
 
@@ -767,5 +1099,9 @@ class MyImageView extends StatelessWidget{
     //     )
     // );
   }
+
+
+
+
 
 }
