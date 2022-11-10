@@ -47,6 +47,17 @@ class _ChangeMpin extends State<ChangeMpin>{
   }
 
   @override
+  void dispose() {
+
+    final controller = Get.put(ChangeMpinController());
+    controller.textOldMpin.clear();
+    controller.textNewMpin.clear();
+    controller.textConfirmMpin.clear();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final controller = Get.put(ChangeMpinController());
 

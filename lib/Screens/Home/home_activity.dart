@@ -13,12 +13,16 @@ import 'package:neo/Screens/Login/otp_page.dart';
 import 'package:neo/Screens/Sidemenu/about_us.dart';
 import 'package:neo/Screens/Sidemenu/change_mpin.dart';
 import 'package:neo/Screens/Sidemenu/change_password.dart';
+import 'package:neo/Screens/Sidemenu/faq_list.dart';
+import 'package:neo/Screens/Sidemenu/privacy_policy.dart';
+import 'package:neo/Screens/Sidemenu/terms_and_conditions.dart';
 import 'package:neo/Screens/SplashScreen/splash_screen.dart';
 import 'package:neo/helper/config.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/sharedprefhelper.dart';
 import '../Sidemenu/contact_us.dart';
+import '../Sidemenu/set_reminder.dart';
 import '../Sidemenu/user_profile.dart';
 
 class DrawerController extends GetxController {
@@ -47,6 +51,7 @@ class DrawerActivity extends StatefulWidget {
     new DrawerItem("Change Password", Icons.lock_outline),
     new DrawerItem("Quit", Icons.dangerous_outlined),
     new DrawerItem("Log Out", Icons.logout),
+    new DrawerItem("Reminder", Icons.alarm),
   ];
 
   @override
@@ -83,17 +88,17 @@ class DrawerActivityState extends State<DrawerActivity> {
 
       case 4:
       // return new MPINVerification();
-        return Container();
+        return PrivacyPolicy();
 
       case 5:
       // return new MPINVerification();
        // return new ContactUs();
-        return Container();
+        return TermsConditions();
 
       case 6:
       // return new MPINVerification();
        // return new ContactUs();
-        return Container();
+        return Faq();
       case 7:
       // return new MPINVerification();
         return new ChangeMpin();
@@ -102,8 +107,8 @@ class DrawerActivityState extends State<DrawerActivity> {
       // return new MPINVerification();
         return new ChangePassword();
 
-      case 9:
-
+      case 11:
+        return new SetReminder();
       default:
         return new Text("Error While");
     }

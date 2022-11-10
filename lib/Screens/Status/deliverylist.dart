@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Status/deliverydetails.dart';
 
 import '../../helper/colorutility.dart';
@@ -702,7 +703,7 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     onPressed: () {
       //Navigator.pop(context,true);
       //Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
       // Navigator.push(context, MaterialPageRoute(builder: (_) => const HomePage()));
     },
   );

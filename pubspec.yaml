@@ -58,12 +58,17 @@ dependencies:
   pin_code_fields: ^7.4.0
   flutter_gif: ^0.0.4
   standard_dialogs: ^2.0.0
+  flutter_just_toast: ^1.0.1
   flutter_pin_code_fields: ^1.1.0
   pin_code_view: 0.3.0+1
   pin_view: ^1.0.1
   pinput: ^2.2.16
   pie_chart: ^3.1.1
   charts_flutter: ^0.11.0
+  convex_bottom_bar: ^3.1.0+1
+  page_transition: ^2.0.9
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

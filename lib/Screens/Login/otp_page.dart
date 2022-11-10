@@ -40,10 +40,19 @@ class _OTPVerification extends State<OTPVerification>{
   @override
   initState(){
     final controller = Get.put(OTPController());
-    controller.otp1Focus = FocusNode();
+   // controller.otp1Focus = FocusNode();
     super.initState();
 
   }
+
+
+  @override
+  void dispose() {
+    final controller = Get.put(OTPController());
+    controller.textEditingController.clear();
+    dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -102,272 +111,275 @@ class _OTPVerification extends State<OTPVerification>{
                       )
                   ),
 
-                  Center(
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/6,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/6,0),
-                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                        alignment: Alignment.center,
-                        child:Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children:<Widget>[
-
-                              Center(
-                                child: Container(
-                                  margin: EdgeInsets.fromLTRB(0,0,0,0),
-                                  padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                  alignment: Alignment.center,
-                                  width: 40,
-                                  height: 40,
-                                  child :TextField(
-                                    autofocus: true,
-                                    readOnly: controller.otp1Read,
-                                    textAlign: TextAlign.center,
-                                    keyboardType: TextInputType.number,
-                                    controller: controller.otp1,
-                                    textInputAction:TextInputAction.next,
-                                    focusNode: controller.otp1Focus,
-                                    inputFormatters: [
-                                       FilteringTextInputFormatter.digitsOnly,
-                                       LengthLimitingTextInputFormatter(1)
-                                    ],
-                                    decoration: new InputDecoration(
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: Colors.grey, width: 1),
-                                      )
-                                    ),
-                                    onChanged: (text) {
-                                      print('First text field: $text');
-                                      if(text.length == 1){
-
-                                        setState(() {
-                                          controller.otp1Read = true;
-                                          controller.otp2Read = false;
-                                        });
-                                        _fieldFocusChange(context, controller.otp1Focus, controller.otp2Focus);
-
-                                      }
-
-                                    },
-                                  ),
-                                ),
-                              ),
-                              Center(
-                                child: Container(
-                                  margin: EdgeInsets.fromLTRB(5,0,0,0),
-                                  padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                  alignment: Alignment.center,
-                                  width: 40,
-                                  height: 40,
-                                  child :TextField(
-                                    autofocus: true,
-                                    readOnly: controller.otp2Read,
-                                    textAlign: TextAlign.center,
-                                    keyboardType: TextInputType.number,
-                                    controller: controller.otp2,
-                                    textInputAction:TextInputAction.next,
-                                    focusNode: controller.otp2Focus,
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.digitsOnly,
-                                      LengthLimitingTextInputFormatter(1)
-                                    ],
-                                    decoration: new InputDecoration(
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.grey, width: 1),
-                                        )
-                                    ),
-                                    onChanged: (text) {
-                                      print('First text field: $text');
-                                      if(text.length == 0){
-                                        setState(() {
-                                          controller.otp1Read = false;
-                                          controller.otp2Read = true;
-                                        });
-                                        _fieldFocusChange(context, controller.otp2Focus, controller.otp1Focus);
-
-                                      }
-                                      if(text.length == 1){
-                                        setState(() {
-                                          controller.otp2Read = true;
-                                          controller.otp3Read = false;
-                                        });
-                                        _fieldFocusChange(context, controller.otp2Focus, controller.otp3Focus);
-
-                                      }
-                                    },
-                                  ),
-                                ),
-                              ),
-                              Center(
-                                child: Container(
-                                  margin: EdgeInsets.fromLTRB(5,0,0,0),
-                                  padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                  alignment: Alignment.center,
-                                  width: 40,
-                                  height: 40,
-                                  child :TextField(
-                                    autofocus: true,
-                                    readOnly: controller.otp3Read,
-                                    textAlign: TextAlign.center,
-                                    keyboardType: TextInputType.number,
-                                    controller: controller.otp3,
-                                    textInputAction:TextInputAction.next,
-                                    focusNode: controller.otp3Focus,
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.digitsOnly,
-                                      LengthLimitingTextInputFormatter(1)
-                                    ],
-                                    decoration: new InputDecoration(
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.grey, width: 1),
-                                        )
-                                    ),
-                                    onChanged: (text) {
-                                      print('First text field: $text');
-                                      if(text.length == 0){
-                                        setState(() {
-                                          controller.otp2Read = false;
-                                          controller.otp3Read = true;
-                                        });
-                                        _fieldFocusChange(context, controller.otp3Focus, controller.otp2Focus);
-
-                                      }
-                                      if(text.length == 1){
-                                        setState(() {
-                                          controller.otp3Read = true;
-                                          controller.otp4Read = false;
-                                        });
-                                        _fieldFocusChange(context, controller.otp3Focus, controller.otp4Focus);
-
-                                      }
-                                    },
-                                  ),
-                                ),
-                              ),
-                              Center(
-                                child: Container(
-                                  margin: EdgeInsets.fromLTRB(5,0,0,0),
-                                  padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                  alignment: Alignment.center,
-                                  width: 40,
-                                  height: 40,
-                                  child :TextField(
-                                    autofocus: true,
-                                    readOnly: controller.otp4Read,
-                                    textAlign: TextAlign.center,
-                                    keyboardType: TextInputType.number,
-                                    controller: controller.otp4,
-                                    textInputAction:TextInputAction.next,
-                                    focusNode: controller.otp4Focus,
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.digitsOnly,
-                                      LengthLimitingTextInputFormatter(1)
-                                    ],
-                                    decoration: new InputDecoration(
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.grey, width: 1),
-                                        )
-                                    ),
-                                    onChanged: (text) async {
-                                      print('First text field: $text');
-
-
-                                      String otpStr = (controller.otp1.text+controller.otp2.text+controller.otp3.text+controller.otp4.text).toString();
-                                      setState(() {
-                                        controller.otp1.clear();
-                                        controller.otp2.clear();
-                                        controller.otp3.clear();
-                                        controller.otp4.clear();
-
-                                        controller.otp1Read =false;
-                                        controller.otp2Read =true;
-                                        controller.otp3Read =true;
-                                        controller.otp4Read =true;
-
-                                        _fieldFocusChange(context, controller.otp4Focus, controller.otp4Focus);
-                                      });
-
-                                      var users = await otp(widget.text, otpStr, context);
-
-                                     // var users = await otp(widget.text, controller.textEditingController.text, context);
-                                      //controller.otp4Focus.requestFocus();
-                                      // if(text.length == 0){
-                                      //   setState(() {
-                                      //     controller.otp3Read = false;
-                                      //     controller.otp4Read = true;
-                                      //   });
-                                      //   _fieldFocusChange(context, controller.otp4Focus, controller.otp3Focus);
-                                      //
-                                      // }
-                                    },
-                                  ),
-                                ),
-                              ),
-
-
-
-                            ]
-                        )
-
-                      )
-                  ),
-
-
-
-
-                  // Container(
-                  //     margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/6,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/6,0),
-                  //     height: MediaQuery.of(context).size.height/16,
-                  //   child: PinCodeTextField(
-                  //     length: 4,
-                  //     obscureText: true,
-                  //     autoFocus: true,
-                  //     animationType: AnimationType.fade,
-                  //     keyboardType: TextInputType.number,
-                  //     pinTheme: PinTheme(
-                  //       shape: PinCodeFieldShape.box,
-                  //       borderRadius: BorderRadius.circular(5),
-                  //       fieldHeight: MediaQuery.of(context).size.height/20,
-                  //       fieldWidth: MediaQuery.of(context).size.height/20,
-                  //       activeFillColor: Colors.white,
-                  //       activeColor: ColorUtility().colorAppbar,
-                  //       inactiveColor: Colors.grey,
-                  //       inactiveFillColor: Colors.grey,
-                  //       selectedFillColor: Colors.grey,
-                  //       selectedColor: Colors.grey
-                  //     ),
-                  //     animationDuration: const Duration(milliseconds: 300),
-                  //     backgroundColor: Colors.grey.shade50,
-                  //     enableActiveFill: false,
-                  //     controller: controller.textEditingController,
-                  //     onCompleted: (v) async {
-                  //       debugPrint("Completed");
-                  //       var users = await otp(widget.text, controller.textEditingController.text, context);
-                  //     },
-                  //     onChanged: (value) {
-                  //       debugPrint(value);
-                  //       setState(() {
-                  //       //  currentText = value;
-                  //       });
-                  //     },
-                  //     beforeTextPaste: (text) {
-                  //       return true;
-                  //     },
-                  //     appContext: context,
-                  //   ),
+                  // Center(
+                  //     child: Container(
+                  //       margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/6,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/6,0),
+                  //       padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                  //       alignment: Alignment.center,
+                  //       child:Row(
+                  //           mainAxisAlignment: MainAxisAlignment.center,
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           children:<Widget>[
+                  //
+                  //             Center(
+                  //               child: Container(
+                  //                 margin: EdgeInsets.fromLTRB(0,0,0,0),
+                  //                 padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                  //                 alignment: Alignment.center,
+                  //                 width: 40,
+                  //                 height: 40,
+                  //                 child :TextField(
+                  //                   autofocus: true,
+                  //                   readOnly: controller.otp1Read,
+                  //                   textAlign: TextAlign.center,
+                  //                   keyboardType: TextInputType.number,
+                  //                   controller: controller.otp1,
+                  //                   textInputAction:TextInputAction.next,
+                  //                   focusNode: controller.otp1Focus,
+                  //                   inputFormatters: [
+                  //                      FilteringTextInputFormatter.digitsOnly,
+                  //                      LengthLimitingTextInputFormatter(1)
+                  //                   ],
+                  //                   decoration: new InputDecoration(
+                  //                     focusedBorder: OutlineInputBorder(
+                  //                       borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                  //                     ),
+                  //                     enabledBorder: OutlineInputBorder(
+                  //                       borderSide: BorderSide(color: Colors.grey, width: 1),
+                  //                     )
+                  //                   ),
+                  //                   onChanged: (text) {
+                  //                     print('First text field: $text');
+                  //                     if(text.length == 1){
+                  //
+                  //                       setState(() {
+                  //                         controller.otp1Read = true;
+                  //                         controller.otp2Read = false;
+                  //                       });
+                  //                       _fieldFocusChange(context, controller.otp1Focus, controller.otp2Focus);
+                  //
+                  //                     }
+                  //
+                  //                   },
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             Center(
+                  //               child: Container(
+                  //                 margin: EdgeInsets.fromLTRB(5,0,0,0),
+                  //                 padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                  //                 alignment: Alignment.center,
+                  //                 width: 40,
+                  //                 height: 40,
+                  //                 child :TextField(
+                  //                   autofocus: true,
+                  //                   readOnly: controller.otp2Read,
+                  //                   textAlign: TextAlign.center,
+                  //                   keyboardType: TextInputType.number,
+                  //                   controller: controller.otp2,
+                  //                   textInputAction:TextInputAction.next,
+                  //                   focusNode: controller.otp2Focus,
+                  //                   inputFormatters: [
+                  //                     FilteringTextInputFormatter.digitsOnly,
+                  //                     LengthLimitingTextInputFormatter(1)
+                  //                   ],
+                  //                   decoration: new InputDecoration(
+                  //                       focusedBorder: OutlineInputBorder(
+                  //                         borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                  //                       ),
+                  //                       enabledBorder: OutlineInputBorder(
+                  //                         borderSide: BorderSide(color: Colors.grey, width: 1),
+                  //                       )
+                  //                   ),
+                  //                   onChanged: (text) {
+                  //                     print('First text field: $text');
+                  //                     if(text.length == 0){
+                  //                       setState(() {
+                  //                         controller.otp1Read = false;
+                  //                         controller.otp2Read = true;
+                  //                       });
+                  //                       _fieldFocusChange(context, controller.otp2Focus, controller.otp1Focus);
+                  //
+                  //                     }
+                  //                     if(text.length == 1){
+                  //                       setState(() {
+                  //                         controller.otp2Read = true;
+                  //                         controller.otp3Read = false;
+                  //                       });
+                  //                       _fieldFocusChange(context, controller.otp2Focus, controller.otp3Focus);
+                  //
+                  //                     }
+                  //                   },
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             Center(
+                  //               child: Container(
+                  //                 margin: EdgeInsets.fromLTRB(5,0,0,0),
+                  //                 padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                  //                 alignment: Alignment.center,
+                  //                 width: 40,
+                  //                 height: 40,
+                  //                 child :TextField(
+                  //                   autofocus: true,
+                  //                   readOnly: controller.otp3Read,
+                  //                   textAlign: TextAlign.center,
+                  //                   keyboardType: TextInputType.number,
+                  //                   controller: controller.otp3,
+                  //                   textInputAction:TextInputAction.next,
+                  //                   focusNode: controller.otp3Focus,
+                  //                   inputFormatters: [
+                  //                     FilteringTextInputFormatter.digitsOnly,
+                  //                     LengthLimitingTextInputFormatter(1)
+                  //                   ],
+                  //                   decoration: new InputDecoration(
+                  //                       focusedBorder: OutlineInputBorder(
+                  //                         borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                  //                       ),
+                  //                       enabledBorder: OutlineInputBorder(
+                  //                         borderSide: BorderSide(color: Colors.grey, width: 1),
+                  //                       )
+                  //                   ),
+                  //                   onChanged: (text) {
+                  //                     print('First text field: $text');
+                  //                     if(text.length == 0){
+                  //                       setState(() {
+                  //                         controller.otp2Read = false;
+                  //                         controller.otp3Read = true;
+                  //                       });
+                  //                       _fieldFocusChange(context, controller.otp3Focus, controller.otp2Focus);
+                  //
+                  //                     }
+                  //                     if(text.length == 1){
+                  //                       setState(() {
+                  //                         controller.otp3Read = true;
+                  //                         controller.otp4Read = false;
+                  //                       });
+                  //                       _fieldFocusChange(context, controller.otp3Focus, controller.otp4Focus);
+                  //
+                  //                     }
+                  //                   },
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             Center(
+                  //               child: Container(
+                  //                 margin: EdgeInsets.fromLTRB(5,0,0,0),
+                  //                 padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                  //                 alignment: Alignment.center,
+                  //                 width: 40,
+                  //                 height: 40,
+                  //                 child :TextField(
+                  //                   autofocus: true,
+                  //                   readOnly: controller.otp4Read,
+                  //                   textAlign: TextAlign.center,
+                  //                   keyboardType: TextInputType.number,
+                  //                   controller: controller.otp4,
+                  //                   textInputAction:TextInputAction.next,
+                  //                   focusNode: controller.otp4Focus,
+                  //                   inputFormatters: [
+                  //                     FilteringTextInputFormatter.digitsOnly,
+                  //                     LengthLimitingTextInputFormatter(1)
+                  //                   ],
+                  //                   decoration: new InputDecoration(
+                  //                       focusedBorder: OutlineInputBorder(
+                  //                         borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                  //                       ),
+                  //                       enabledBorder: OutlineInputBorder(
+                  //                         borderSide: BorderSide(color: Colors.grey, width: 1),
+                  //                       )
+                  //                   ),
+                  //                   onChanged: (text) async {
+                  //                     print('First text field: $text');
+                  //
+                  //
+                  //                     String otpStr = (controller.otp1.text+controller.otp2.text+controller.otp3.text+controller.otp4.text).toString();
+                  //                     setState(() {
+                  //                       controller.otp1.clear();
+                  //                       controller.otp2.clear();
+                  //                       controller.otp3.clear();
+                  //                       controller.otp4.clear();
+                  //
+                  //                       controller.otp1Read =false;
+                  //                       controller.otp2Read =true;
+                  //                       controller.otp3Read =true;
+                  //                       controller.otp4Read =true;
+                  //
+                  //                       _fieldFocusChange(context, controller.otp4Focus, controller.otp4Focus);
+                  //                     });
+                  //
+                  //                     var users = await otp(widget.text, otpStr, context);
+                  //
+                  //                    // var users = await otp(widget.text, controller.textEditingController.text, context);
+                  //                     //controller.otp4Focus.requestFocus();
+                  //                     // if(text.length == 0){
+                  //                     //   setState(() {
+                  //                     //     controller.otp3Read = false;
+                  //                     //     controller.otp4Read = true;
+                  //                     //   });
+                  //                     //   _fieldFocusChange(context, controller.otp4Focus, controller.otp3Focus);
+                  //                     //
+                  //                     // }
+                  //                   },
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //
+                  //
+                  //
+                  //           ]
+                  //       )
+                  //
+                  //     )
                   // ),
+
+
+
+
+                  Container(
+                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/6,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/6,0),
+                      height: MediaQuery.of(context).size.height/16,
+                    child: PinCodeTextField(
+                      length: 4,
+                      obscureText: true,
+                      autoFocus: true,
+                      animationType: AnimationType.fade,
+                      keyboardType: TextInputType.number,
+                      autoDisposeControllers: false,
+                      pinTheme: PinTheme(
+                        shape: PinCodeFieldShape.box,
+                        borderRadius: BorderRadius.circular(5),
+                        fieldHeight: MediaQuery.of(context).size.height/20,
+                        fieldWidth: MediaQuery.of(context).size.height/20,
+                        activeFillColor: Colors.white,
+                        activeColor: ColorUtility().colorAppbar,
+                        inactiveColor: Colors.grey,
+                        inactiveFillColor: Colors.grey,
+                        selectedFillColor: Colors.grey,
+                        selectedColor: Colors.grey
+                      ),
+                      animationDuration: const Duration(milliseconds: 300),
+                      backgroundColor: Colors.grey.shade50,
+                      enableActiveFill: false,
+                      controller: controller.textEditingController,
+                      onCompleted: (v) async {
+                        debugPrint("Completed");
+                        String mpinStr = controller.textEditingController.text;
+
+                        var users = await otp(widget.text, mpinStr, context);
+                      },
+                      onChanged: (value) {
+                        debugPrint(value);
+                        setState(() {
+                        //  currentText = value;
+                        });
+                      },
+                      beforeTextPaste: (text) {
+                        return true;
+                      },
+                      appContext: context,
+                    ),
+                  ),
 
                   // Center(
                   //     child: Container(
@@ -481,7 +493,7 @@ class _OTPVerification extends State<OTPVerification>{
       child: Text("OK",style: TextStyle(color: ColorUtility().colorAppbar,fontWeight: FontWeight.bold)),
       onPressed: () {
         //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
-      //  controller.textEditingController.clear();
+        controller.textEditingController.clear();
         Navigator.pop(context);
       },
     );
@@ -511,23 +523,24 @@ class OTPController extends GetxController {
   var isLoading = false.obs;
   final eMailController = TextEditingController();
   final passWordController = TextEditingController();
+  TextEditingController textEditingController = TextEditingController();
 
   late String mobileNumber ;
 
-  final otp1 = TextEditingController();
-  final otp2 = TextEditingController();
-  final otp3 = TextEditingController();
-  final otp4 = TextEditingController();
-
-  late FocusNode otp1Focus = FocusNode();
-  late FocusNode otp2Focus = FocusNode();
-  late FocusNode otp3Focus = FocusNode();
-  late FocusNode otp4Focus = FocusNode();
-
-  late bool otp1Read = false;
-  late bool otp2Read = true;
-  late bool otp3Read = true;
-  late bool otp4Read = true;
+  // final otp1 = TextEditingController();
+  // final otp2 = TextEditingController();
+  // final otp3 = TextEditingController();
+  // final otp4 = TextEditingController();
+  //
+  // late FocusNode otp1Focus = FocusNode();
+  // late FocusNode otp2Focus = FocusNode();
+  // late FocusNode otp3Focus = FocusNode();
+  // late FocusNode otp4Focus = FocusNode();
+  //
+  // late bool otp1Read = false;
+  // late bool otp2Read = true;
+  // late bool otp3Read = true;
+  // late bool otp4Read = true;
 
 }
 

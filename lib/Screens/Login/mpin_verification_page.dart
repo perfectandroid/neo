@@ -16,27 +16,27 @@ var TAG = "MPINVerificationController";
 class MPINVerificationController extends GetxController {
   TextEditingController textController = TextEditingController();
 
-  final mpin1 = TextEditingController();
-  final mpin2 = TextEditingController();
-  final mpin3 = TextEditingController();
-  final mpin4 = TextEditingController();
-  final mpin5 = TextEditingController();
-  final mpin6 = TextEditingController();
-
-  final FocusNode mpinFocus1 = FocusNode();
-  final FocusNode mpinFocus2 = FocusNode();
-  final FocusNode mpinFocus3 = FocusNode();
-  final FocusNode mpinFocus4 = FocusNode();
-  final FocusNode mpinFocus5 = FocusNode();
-  final FocusNode mpinFocus6 = FocusNode();
-
-
-  late bool mpinRead1 = false;
-  late bool mpinRead2 = false;
-  late bool mpinRead3 = false;
-  late bool mpinRead4 = false;
-  late bool mpinRead5 = false;
-  late bool mpinRead6 = false;
+  // final mpin1 = TextEditingController();
+  // final mpin2 = TextEditingController();
+  // final mpin3 = TextEditingController();
+  // final mpin4 = TextEditingController();
+  // final mpin5 = TextEditingController();
+  // final mpin6 = TextEditingController();
+  //
+  // final FocusNode mpinFocus1 = FocusNode();
+  // final FocusNode mpinFocus2 = FocusNode();
+  // final FocusNode mpinFocus3 = FocusNode();
+  // final FocusNode mpinFocus4 = FocusNode();
+  // final FocusNode mpinFocus5 = FocusNode();
+  // final FocusNode mpinFocus6 = FocusNode();
+  //
+  //
+  // late bool mpinRead1 = false;
+  // late bool mpinRead2 = false;
+  // late bool mpinRead3 = false;
+  // late bool mpinRead4 = false;
+  // late bool mpinRead5 = false;
+  // late bool mpinRead6 = false;
 
 }
 
@@ -166,437 +166,436 @@ class _MPINVerification extends State<MPINVerification>{
                           ),
                         ),
 
-                        // Center(
-                        //   child: Container(
-                        //       padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                        //       alignment: Alignment.center,
-                        //       margin: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height/25,0,0),
-                        //     child: PinCodeTextField(
-                        //       length: 6,
-                        //       obscureText: true,
-                        //       autoFocus: true,
-                        //       animationType: AnimationType.fade,
-                        //       keyboardType: TextInputType.number,
-                        //       pinTheme: PinTheme(
-                        //           shape: PinCodeFieldShape.box,
-                        //           borderRadius: BorderRadius.circular(5),
-                        //           fieldHeight: MediaQuery.of(context).size.height/20,
-                        //           fieldWidth: MediaQuery.of(context).size.height/20,
-                        //           activeFillColor: Colors.white,
-                        //           activeColor: ColorUtility().colorAppbar,
-                        //           inactiveColor: Colors.grey,
-                        //           inactiveFillColor: Colors.grey,
-                        //           selectedFillColor: Colors.grey,
-                        //           selectedColor: Colors.grey
-                        //       ),
-                        //       animationDuration: const Duration(milliseconds: 300),
-                        //       backgroundColor: Colors.white,
-                        //       enableActiveFill: false,
-                        //       controller: controller.textController,
-                        //       onCompleted: (v) async {
-                        //         debugPrint("Completed");
-                        //         String Username = await SharedPreferencesHelper.getAgent_mobile_number();
-                        //         print(Username);
-                        //         print(controller.textController.text);
-                        //         var mpinStr = controller.textController.text;
-                        //         controller.textController.forEach((TextEditingController t) => t.dispose());
-                        //         var users = await mpin(Username, mpinStr, context);
-                        //       },
-                        //       onChanged: (value) {
-                        //         debugPrint(value);
-                        //         setState(() {
-                        //           //  currentText = value;
-                        //
-                        //         });
-                        //       },
-                        //       beforeTextPaste: (text) {
-                        //         return true;
-                        //       },
-                        //       appContext: context,
-                        //     ),
-                        //
-                        //   ),
-                        // ),
-
                         Center(
-                            child: Container(
-                                margin: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height/10,0,0),
-                                padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                alignment: Alignment.center,
-                                child:Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children:<Widget>[
+                          child: Container(
+                              padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                              alignment: Alignment.center,
+                              margin: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height/25,0,0),
+                            child: PinCodeTextField(
+                              length: 6,
+                              obscureText: true,
+                              autoFocus: true,
+                              animationType: AnimationType.fade,
+                              keyboardType: TextInputType.number,
+                              autoDisposeControllers: false,
+                              pinTheme: PinTheme(
+                                  shape: PinCodeFieldShape.box,
+                                  borderRadius: BorderRadius.circular(5),
+                                  fieldHeight: MediaQuery.of(context).size.height/20,
+                                  fieldWidth: MediaQuery.of(context).size.height/20,
+                                  activeFillColor: Colors.white,
+                                  activeColor: ColorUtility().colorAppbar,
+                                  inactiveColor: Colors.grey,
+                                  inactiveFillColor: Colors.grey,
+                                  selectedFillColor: Colors.grey,
+                                  selectedColor: Colors.grey
+                              ),
+                              animationDuration: const Duration(milliseconds: 300),
+                              backgroundColor: Colors.white,
+                              enableActiveFill: false,
+                              controller: controller.textController,
+                              onCompleted: (v) async {
+                                debugPrint("Completed");
+                                String Username = await SharedPreferencesHelper.getAgent_mobile_number();
+                                print(Username);
+                                print(controller.textController.text);
+                                var mpinStr = controller.textController.text;
 
-                                      Center(
-                                        child: Container(
-                                          margin: EdgeInsets.fromLTRB(0,0,0,0),
-                                          padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                          alignment: Alignment.center,
-                                          width: 35,
-                                          height: 35,
-                                          child :TextFormField(
-                                            autofocus: true,
-                                            obscureText: true,
-                                            readOnly: controller.mpinRead1,
-                                            textAlign: TextAlign.center,
-                                            keyboardType: TextInputType.number,
-                                            controller: controller.mpin1,
-                                            textInputAction:TextInputAction.next,
-                                            focusNode: controller.mpinFocus1,
-                                            inputFormatters: [
-                                              FilteringTextInputFormatter.digitsOnly,
-                                              LengthLimitingTextInputFormatter(1)
-                                            ],
-                                            style: TextStyle(color: Colors.black,fontSize: 12),
-                                            decoration: new InputDecoration(
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.grey, width: 1),
-                                                )
-                                            ),
-                                            onChanged: (text) {
-                                              print('First text field: $text');
-                                              if(text.length == 1){
+                                var users = await mpin(Username, mpinStr, context);
+                              },
+                              onChanged: (value) {
+                                debugPrint(value);
+                                setState(() {
+                                  //  currentText = value;
 
-                                                setState(() {
-                                                  controller.mpinRead1 = true;
-                                                  controller.mpinRead2 = false;
-                                                });
-                                                _fieldFocusChange(context, controller.mpinFocus1, controller.mpinFocus2);
+                                });
+                              },
+                              beforeTextPaste: (text) {
+                                return true;
+                              },
+                              appContext: context,
+                            ),
 
-                                              }
+                          ),
+                         ),
 
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                      Center(
-                                        child: Container(
-                                          margin: EdgeInsets.fromLTRB(2,0,0,0),
-                                          padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                          alignment: Alignment.center,
-                                          width: 35,
-                                          height: 35,
-                                          child :TextFormField(
-                                            autofocus: true,
-                                            obscureText: true,
-                                            readOnly: controller.mpinRead2,
-                                            textAlign: TextAlign.center,
-                                            keyboardType: TextInputType.number,
-                                            controller: controller.mpin2,
-                                            textInputAction:TextInputAction.next,
-                                            focusNode: controller.mpinFocus2,
-                                            inputFormatters: [
-                                              FilteringTextInputFormatter.digitsOnly,
-                                              LengthLimitingTextInputFormatter(1)
-                                            ],
-                                            style: TextStyle(color: Colors.black,fontSize: 12),
-                                            decoration: new InputDecoration(
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.grey, width: 1),
-                                                )
-                                            ),
-                                            onChanged: (text) {
-                                              print('First text field: $text');
-                                              if(text.length == 0){
-                                                setState(() {
-                                                  controller.mpinRead1 = false;
-                                                  controller.mpinRead2 = true;
-                                                });
-                                                _fieldFocusChange(context, controller.mpinFocus2, controller.mpinFocus1);
-
-                                              }
-                                              if(text.length == 1){
-                                                setState(() {
-                                                  controller.mpinRead2 = true;
-                                                  controller.mpinRead3 = false;
-                                                });
-                                                _fieldFocusChange(context, controller.mpinFocus2, controller.mpinFocus3);
-
-                                              }
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                      Center(
-                                        child: Container(
-                                          margin: EdgeInsets.fromLTRB(2,0,0,0),
-                                          padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                          alignment: Alignment.center,
-                                          width: 35,
-                                          height: 35,
-                                          child :TextFormField(
-                                            autofocus: true,
-                                            obscureText: true,
-                                            readOnly: controller.mpinRead3,
-                                            textAlign: TextAlign.center,
-                                            keyboardType: TextInputType.number,
-                                            controller: controller.mpin3,
-                                            textInputAction:TextInputAction.next,
-                                            focusNode: controller.mpinFocus3,
-                                            inputFormatters: [
-                                              FilteringTextInputFormatter.digitsOnly,
-                                              LengthLimitingTextInputFormatter(1)
-                                            ],
-                                            style: TextStyle(color: Colors.black,fontSize: 12),
-                                            decoration: new InputDecoration(
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.grey, width: 1),
-                                                )
-                                            ),
-                                            onChanged: (text) {
-                                              print('First text field: $text');
-                                              if(text.length == 0){
-                                                setState(() {
-                                                  controller.mpinRead2 = false;
-                                                  controller.mpinRead3 = true;
-                                                });
-                                                _fieldFocusChange(context, controller.mpinFocus3, controller.mpinFocus2);
-
-                                              }
-                                              if(text.length == 1){
-                                                setState(() {
-                                                  controller.mpinRead3 = true;
-                                                  controller.mpinRead4 = false;
-                                                });
-                                                _fieldFocusChange(context, controller.mpinFocus3, controller.mpinFocus4);
-
-                                              }
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                      Center(
-                                        child: Container(
-                                          margin: EdgeInsets.fromLTRB(2,0,0,0),
-                                          padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                          alignment: Alignment.center,
-                                          width: 35,
-                                          height: 35,
-                                          child :TextFormField(
-                                            autofocus: true,
-                                            obscureText: true,
-                                            readOnly: controller.mpinRead4,
-                                            textAlign: TextAlign.center,
-                                            keyboardType: TextInputType.number,
-                                            controller: controller.mpin4,
-                                            textInputAction:TextInputAction.next,
-                                            focusNode: controller.mpinFocus4,
-                                            inputFormatters: [
-                                              FilteringTextInputFormatter.digitsOnly,
-                                              LengthLimitingTextInputFormatter(1)
-                                            ],
-                                            style: TextStyle(color: Colors.black,fontSize: 12),
-                                            decoration: new InputDecoration(
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.grey, width: 1),
-                                                )
-                                            ),
-                                            onChanged: (text) async {
-                                              print('First text field: $text');
-
-
-                                              if(text.length == 0){
-                                                setState(() {
-                                                  controller.mpinRead3 = false;
-                                                  controller.mpinRead4 = true;
-                                                });
-                                                _fieldFocusChange(context, controller.mpinFocus4, controller.mpinFocus3);
-
-                                              }
-                                              if(text.length == 1){
-                                                setState(() {
-                                                  controller.mpinRead4 = true;
-                                                  controller.mpinRead5 = false;
-                                                });
-                                                _fieldFocusChange(context, controller.mpinFocus4, controller.mpinFocus5);
-
-                                              }
-
-
-                                            },
-                                          ),
-                                        ),
-                                      ),
-
-                                      Center(
-                                        child: Container(
-                                          margin: EdgeInsets.fromLTRB(2,0,0,0),
-                                          padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                          alignment: Alignment.center,
-                                          width: 35,
-                                          height: 35,
-                                          child :TextFormField(
-                                            autofocus: true,
-                                            obscureText: true,
-                                            readOnly: controller.mpinRead5,
-                                            textAlign: TextAlign.center,
-                                            keyboardType: TextInputType.number,
-                                            controller: controller.mpin5,
-                                            textInputAction:TextInputAction.next,
-                                            focusNode: controller.mpinFocus5,
-                                            inputFormatters: [
-                                              FilteringTextInputFormatter.digitsOnly,
-                                              LengthLimitingTextInputFormatter(1)
-                                            ],
-                                            style: TextStyle(color: Colors.black,fontSize: 12),
-                                            decoration: new InputDecoration(
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.grey, width: 1),
-                                                )
-                                            ),
-                                            onChanged: (text) async {
-                                              print('First text field: $text');
-
-
-                                              if(text.length == 0){
-                                                setState(() {
-                                                  controller.mpinRead4 = false;
-                                                  controller.mpinRead5 = true;
-                                                });
-                                                _fieldFocusChange(context, controller.mpinFocus5, controller.mpinFocus4);
-
-                                              }
-                                              if(text.length == 1){
-                                                setState(() {
-                                                  controller.mpinRead5 = true;
-                                                  controller.mpinRead6 = false;
-                                                });
-                                                _fieldFocusChange(context, controller.mpinFocus5, controller.mpinFocus6);
-
-                                              }
-
-
-                                            },
-                                          ),
-                                        ),
-                                      ),
-
-                                      Center(
-                                        child: Container(
-                                          margin: EdgeInsets.fromLTRB(2,0,0,0),
-                                          padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                          alignment: Alignment.center,
-                                          width: 35,
-                                          height: 35,
-                                          child :TextFormField(
-                                            autofocus: true,
-                                            obscureText: true,
-                                            readOnly: controller.mpinRead6,
-                                            textAlign: TextAlign.center,
-                                            keyboardType: TextInputType.number,
-                                            controller: controller.mpin6,
-                                            textInputAction:TextInputAction.next,
-                                            focusNode: controller.mpinFocus6,
-                                            inputFormatters: [
-                                              FilteringTextInputFormatter.digitsOnly,
-                                              LengthLimitingTextInputFormatter(1)
-                                            ],
-                                            style: TextStyle(color: Colors.black,fontSize: 12),
-                                            decoration: new InputDecoration(
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.grey, width: 1),
-                                                )
-                                            ),
-                                            onChanged: (text) async {
-                                              print('First text field  66  : $text');
-
-                                              String mpinStr = (controller.mpin1.text+controller.mpin2.text+controller.mpin3.text+controller.mpin4.text+controller.mpin5.text+controller.mpin6.text).toString();
-                                              setState(() {
-                                                controller.mpin1.clear();
-                                                controller.mpin2.clear();
-                                                controller.mpin3.clear();
-                                                controller.mpin4.clear();
-                                                controller.mpin5.clear();
-                                                controller.mpin6.clear();
-
-                                                controller.mpinRead1 = false;
-                                                controller.mpinRead2 = true;
-                                                controller.mpinRead3 = true;
-                                                controller.mpinRead4 = true;
-                                                controller.mpinRead5 = true;
-                                                controller.mpinRead6 = true;
-                                              });
-
-                                              print("widget.text");
-                                              String Username = await SharedPreferencesHelper.getAgent_mobile_number();
-                                              var users = await mpin(Username, mpinStr, context);
-
-                                            },
-                                          ),
-                                        ),
-                                      )
-
-
-
-
-                                    ]
-                                )
-
-                            )
-                        ),
-
-
-
-                        Container(
-                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/10,0),
-                            child: Column(
-                                children: [
-                                  Align(
-                                      alignment: Alignment.center, child:
-                                  new GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          controller.mpin1.clear();
-                                          controller.mpin2.clear();
-                                          controller.mpin3.clear();
-                                          controller.mpin4.clear();
-                                          controller.mpin5.clear();
-                                          controller.mpin6.clear();
-
-                                          controller.mpinRead1 = false;
-                                          controller.mpinRead2 = true;
-                                          controller.mpinRead3 = true;
-                                          controller.mpinRead4 = true;
-                                          controller.mpinRead5 = true;
-                                          controller.mpinRead6 = true;
-                                        });
-
-                                        Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => SendMpinOtp()
-                                            ),
-                                                (route) => false
-                                        );
-
-                                        //   confirmOtpPopup(context);
-                                      },
-                                      child: new Text('Forgot Mpin ?', textAlign: TextAlign.right, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05,color: ColorUtility().colorAppbar))
-                                  )
-
-                                  )
-                                ]
-                            )
-                        )
+                        // Center(
+                        //     child: Container(
+                        //         margin: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height/10,0,0),
+                        //         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                        //         alignment: Alignment.center,
+                        //         child:Row(
+                        //             mainAxisAlignment: MainAxisAlignment.center,
+                        //             crossAxisAlignment: CrossAxisAlignment.center,
+                        //             children:<Widget>[
+                        //
+                        //               Center(
+                        //                 child: Container(
+                        //                   margin: EdgeInsets.fromLTRB(0,0,0,0),
+                        //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                        //                   alignment: Alignment.center,
+                        //                   width: 35,
+                        //                   height: 35,
+                        //                   child :TextFormField(
+                        //                     autofocus: true,
+                        //                     obscureText: true,
+                        //                     readOnly: controller.mpinRead1,
+                        //                     textAlign: TextAlign.center,
+                        //                     keyboardType: TextInputType.number,
+                        //                     controller: controller.mpin1,
+                        //                     textInputAction:TextInputAction.next,
+                        //                     focusNode: controller.mpinFocus1,
+                        //                     inputFormatters: [
+                        //                       FilteringTextInputFormatter.digitsOnly,
+                        //                       LengthLimitingTextInputFormatter(1)
+                        //                     ],
+                        //                     style: TextStyle(color: Colors.black,fontSize: 12),
+                        //                     decoration: new InputDecoration(
+                        //                         focusedBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                        //                         ),
+                        //                         enabledBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: Colors.grey, width: 1),
+                        //                         )
+                        //                     ),
+                        //                     onChanged: (text) {
+                        //                       print('First text field: $text');
+                        //                       if(text.length == 1){
+                        //
+                        //                         setState(() {
+                        //                           controller.mpinRead1 = true;
+                        //                           controller.mpinRead2 = false;
+                        //                         });
+                        //                         _fieldFocusChange(context, controller.mpinFocus1, controller.mpinFocus2);
+                        //
+                        //                       }
+                        //
+                        //                     },
+                        //                   ),
+                        //                 ),
+                        //               ),
+                        //               Center(
+                        //                 child: Container(
+                        //                   margin: EdgeInsets.fromLTRB(2,0,0,0),
+                        //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                        //                   alignment: Alignment.center,
+                        //                   width: 35,
+                        //                   height: 35,
+                        //                   child :TextFormField(
+                        //                     autofocus: true,
+                        //                     obscureText: true,
+                        //                     readOnly: controller.mpinRead2,
+                        //                     textAlign: TextAlign.center,
+                        //                     keyboardType: TextInputType.number,
+                        //                     controller: controller.mpin2,
+                        //                     textInputAction:TextInputAction.next,
+                        //                     focusNode: controller.mpinFocus2,
+                        //                     inputFormatters: [
+                        //                       FilteringTextInputFormatter.digitsOnly,
+                        //                       LengthLimitingTextInputFormatter(1)
+                        //                     ],
+                        //                     style: TextStyle(color: Colors.black,fontSize: 12),
+                        //                     decoration: new InputDecoration(
+                        //                         focusedBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                        //                         ),
+                        //                         enabledBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: Colors.grey, width: 1),
+                        //                         )
+                        //                     ),
+                        //                     onChanged: (text) {
+                        //                       print('First text field: $text');
+                        //                       if(text.length == 0){
+                        //                         setState(() {
+                        //                           controller.mpinRead1 = false;
+                        //                           controller.mpinRead2 = true;
+                        //                         });
+                        //                         _fieldFocusChange(context, controller.mpinFocus2, controller.mpinFocus1);
+                        //
+                        //                       }
+                        //                       if(text.length == 1){
+                        //                         setState(() {
+                        //                           controller.mpinRead2 = true;
+                        //                           controller.mpinRead3 = false;
+                        //                         });
+                        //                         _fieldFocusChange(context, controller.mpinFocus2, controller.mpinFocus3);
+                        //
+                        //                       }
+                        //                     },
+                        //                   ),
+                        //                 ),
+                        //               ),
+                        //               Center(
+                        //                 child: Container(
+                        //                   margin: EdgeInsets.fromLTRB(2,0,0,0),
+                        //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                        //                   alignment: Alignment.center,
+                        //                   width: 35,
+                        //                   height: 35,
+                        //                   child :TextFormField(
+                        //                     autofocus: true,
+                        //                     obscureText: true,
+                        //                     readOnly: controller.mpinRead3,
+                        //                     textAlign: TextAlign.center,
+                        //                     keyboardType: TextInputType.number,
+                        //                     controller: controller.mpin3,
+                        //                     textInputAction:TextInputAction.next,
+                        //                     focusNode: controller.mpinFocus3,
+                        //                     inputFormatters: [
+                        //                       FilteringTextInputFormatter.digitsOnly,
+                        //                       LengthLimitingTextInputFormatter(1)
+                        //                     ],
+                        //                     style: TextStyle(color: Colors.black,fontSize: 12),
+                        //                     decoration: new InputDecoration(
+                        //                         focusedBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                        //                         ),
+                        //                         enabledBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: Colors.grey, width: 1),
+                        //                         )
+                        //                     ),
+                        //                     onChanged: (text) {
+                        //                       print('First text field: $text');
+                        //                       if(text.length == 0){
+                        //                         setState(() {
+                        //                           controller.mpinRead2 = false;
+                        //                           controller.mpinRead3 = true;
+                        //                         });
+                        //                         _fieldFocusChange(context, controller.mpinFocus3, controller.mpinFocus2);
+                        //
+                        //                       }
+                        //                       if(text.length == 1){
+                        //                         setState(() {
+                        //                           controller.mpinRead3 = true;
+                        //                           controller.mpinRead4 = false;
+                        //                         });
+                        //                         _fieldFocusChange(context, controller.mpinFocus3, controller.mpinFocus4);
+                        //
+                        //                       }
+                        //                     },
+                        //                   ),
+                        //                 ),
+                        //               ),
+                        //               Center(
+                        //                 child: Container(
+                        //                   margin: EdgeInsets.fromLTRB(2,0,0,0),
+                        //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                        //                   alignment: Alignment.center,
+                        //                   width: 35,
+                        //                   height: 35,
+                        //                   child :TextFormField(
+                        //                     autofocus: true,
+                        //                     obscureText: true,
+                        //                     readOnly: controller.mpinRead4,
+                        //                     textAlign: TextAlign.center,
+                        //                     keyboardType: TextInputType.number,
+                        //                     controller: controller.mpin4,
+                        //                     textInputAction:TextInputAction.next,
+                        //                     focusNode: controller.mpinFocus4,
+                        //                     inputFormatters: [
+                        //                       FilteringTextInputFormatter.digitsOnly,
+                        //                       LengthLimitingTextInputFormatter(1)
+                        //                     ],
+                        //                     style: TextStyle(color: Colors.black,fontSize: 12),
+                        //                     decoration: new InputDecoration(
+                        //                         focusedBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                        //                         ),
+                        //                         enabledBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: Colors.grey, width: 1),
+                        //                         )
+                        //                     ),
+                        //                     onChanged: (text) async {
+                        //                       print('First text field: $text');
+                        //
+                        //
+                        //                       if(text.length == 0){
+                        //                         setState(() {
+                        //                           controller.mpinRead3 = false;
+                        //                           controller.mpinRead4 = true;
+                        //                         });
+                        //                         _fieldFocusChange(context, controller.mpinFocus4, controller.mpinFocus3);
+                        //
+                        //                       }
+                        //                       if(text.length == 1){
+                        //                         setState(() {
+                        //                           controller.mpinRead4 = true;
+                        //                           controller.mpinRead5 = false;
+                        //                         });
+                        //                         _fieldFocusChange(context, controller.mpinFocus4, controller.mpinFocus5);
+                        //
+                        //                       }
+                        //
+                        //
+                        //                     },
+                        //                   ),
+                        //                 ),
+                        //               ),
+                        //
+                        //               Center(
+                        //                 child: Container(
+                        //                   margin: EdgeInsets.fromLTRB(2,0,0,0),
+                        //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                        //                   alignment: Alignment.center,
+                        //                   width: 35,
+                        //                   height: 35,
+                        //                   child :TextFormField(
+                        //                     autofocus: true,
+                        //                     obscureText: true,
+                        //                     readOnly: controller.mpinRead5,
+                        //                     textAlign: TextAlign.center,
+                        //                     keyboardType: TextInputType.number,
+                        //                     controller: controller.mpin5,
+                        //                     textInputAction:TextInputAction.next,
+                        //                     focusNode: controller.mpinFocus5,
+                        //                     inputFormatters: [
+                        //                       FilteringTextInputFormatter.digitsOnly,
+                        //                       LengthLimitingTextInputFormatter(1)
+                        //                     ],
+                        //                     style: TextStyle(color: Colors.black,fontSize: 12),
+                        //                     decoration: new InputDecoration(
+                        //                         focusedBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                        //                         ),
+                        //                         enabledBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: Colors.grey, width: 1),
+                        //                         )
+                        //                     ),
+                        //                     onChanged: (text) async {
+                        //                       print('First text field: $text');
+                        //
+                        //
+                        //                       if(text.length == 0){
+                        //                         setState(() {
+                        //                           controller.mpinRead4 = false;
+                        //                           controller.mpinRead5 = true;
+                        //                         });
+                        //                         _fieldFocusChange(context, controller.mpinFocus5, controller.mpinFocus4);
+                        //
+                        //                       }
+                        //                       if(text.length == 1){
+                        //                         setState(() {
+                        //                           controller.mpinRead5 = true;
+                        //                           controller.mpinRead6 = false;
+                        //                         });
+                        //                         _fieldFocusChange(context, controller.mpinFocus5, controller.mpinFocus6);
+                        //
+                        //                       }
+                        //
+                        //
+                        //                     },
+                        //                   ),
+                        //                 ),
+                        //               ),
+                        //
+                        //               Center(
+                        //                 child: Container(
+                        //                   margin: EdgeInsets.fromLTRB(2,0,0,0),
+                        //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                        //                   alignment: Alignment.center,
+                        //                   width: 35,
+                        //                   height: 35,
+                        //                   child :TextFormField(
+                        //                     autofocus: true,
+                        //                     obscureText: true,
+                        //                     readOnly: controller.mpinRead6,
+                        //                     textAlign: TextAlign.center,
+                        //                     keyboardType: TextInputType.number,
+                        //                     controller: controller.mpin6,
+                        //                     textInputAction:TextInputAction.next,
+                        //                     focusNode: controller.mpinFocus6,
+                        //                     inputFormatters: [
+                        //                       FilteringTextInputFormatter.digitsOnly,
+                        //                       LengthLimitingTextInputFormatter(1)
+                        //                     ],
+                        //                     style: TextStyle(color: Colors.black,fontSize: 12),
+                        //                     decoration: new InputDecoration(
+                        //                         focusedBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
+                        //                         ),
+                        //                         enabledBorder: OutlineInputBorder(
+                        //                           borderSide: BorderSide(color: Colors.grey, width: 1),
+                        //                         )
+                        //                     ),
+                        //                     onChanged: (text) async {
+                        //                       print('First text field  66  : $text');
+                        //
+                        //                       String mpinStr = (controller.mpin1.text+controller.mpin2.text+controller.mpin3.text+controller.mpin4.text+controller.mpin5.text+controller.mpin6.text).toString();
+                        //                       setState(() {
+                        //                         controller.mpin1.clear();
+                        //                         controller.mpin2.clear();
+                        //                         controller.mpin3.clear();
+                        //                         controller.mpin4.clear();
+                        //                         controller.mpin5.clear();
+                        //                         controller.mpin6.clear();
+                        //
+                        //                         controller.mpinRead1 = false;
+                        //                         controller.mpinRead2 = true;
+                        //                         controller.mpinRead3 = true;
+                        //                         controller.mpinRead4 = true;
+                        //                         controller.mpinRead5 = true;
+                        //                         controller.mpinRead6 = true;
+                        //                       });
+                        //
+                        //                       print("widget.text");
+                        //                       String Username = await SharedPreferencesHelper.getAgent_mobile_number();
+                        //                       var users = await mpin(Username, mpinStr, context);
+                        //
+                        //                     },
+                        //                   ),
+                        //                 ),
+                        //               )
+                        //
+                        //
+                        //
+                        //
+                        //             ]
+                        //         )
+                        //
+                        //     )
+                        // ),
+                        //
+                        // Container(
+                        //     margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/10,0),
+                        //     child: Column(
+                        //         children: [
+                        //           Align(
+                        //               alignment: Alignment.center, child:
+                        //           new GestureDetector(
+                        //               onTap: () {
+                        //                 setState(() {
+                        //                   controller.mpin1.clear();
+                        //                   controller.mpin2.clear();
+                        //                   controller.mpin3.clear();
+                        //                   controller.mpin4.clear();
+                        //                   controller.mpin5.clear();
+                        //                   controller.mpin6.clear();
+                        //
+                        //                   controller.mpinRead1 = false;
+                        //                   controller.mpinRead2 = true;
+                        //                   controller.mpinRead3 = true;
+                        //                   controller.mpinRead4 = true;
+                        //                   controller.mpinRead5 = true;
+                        //                   controller.mpinRead6 = true;
+                        //                 });
+                        //
+                        //                 Navigator.pushAndRemoveUntil(
+                        //                     context,
+                        //                     MaterialPageRoute(
+                        //                         builder: (context) => SendMpinOtp()
+                        //                     ),
+                        //                         (route) => false
+                        //                 );
+                        //
+                        //                 //   confirmOtpPopup(context);
+                        //               },
+                        //               child: new Text('Forgot Mpin ?', textAlign: TextAlign.right, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05,color: ColorUtility().colorAppbar))
+                        //           )
+                        //
+                        //           )
+                        //         ]
+                        //     )
+                        // )
 
                       ],
                     )

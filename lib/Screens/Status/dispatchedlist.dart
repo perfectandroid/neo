@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:neo/Screens/Home/home_activity.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
@@ -39,7 +40,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
     return (await  Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-            builder: (context) => HomePage()
+            builder: (context) => new DrawerActivity()
         ),
             (route) => false
     )) ??
@@ -62,7 +63,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => HomePage()
+                          builder: (context) => new DrawerActivity()
                       ),
                           (route) => false
                   );
@@ -825,7 +826,7 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     onPressed: () {
       //Navigator.pop(context,true);
       //Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
          // Navigator.push(context, MaterialPageRoute(builder: (_) => const HomePage()));
     },
   );
