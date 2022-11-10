@@ -219,6 +219,33 @@ class _MPINVerification extends State<MPINVerification>{
                           ),
                          ),
 
+                        // Container(
+                        //     margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/10,0),
+                        //     child: Column(
+                        //         children: [
+                        //           Align(
+                        //               alignment: Alignment.center, child:
+                        //           new GestureDetector(
+                        //               onTap: () {
+                        //
+                        //                 Navigator.pushAndRemoveUntil(
+                        //                     context,
+                        //                     MaterialPageRoute(
+                        //                         builder: (context) => SendMpinOtp()
+                        //                     ),
+                        //                         (route) => false
+                        //                 );
+                        //
+                        //                 //   confirmOtpPopup(context);
+                        //               },
+                        //               child: new Text('Forgot Mpin ?', textAlign: TextAlign.right, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05,color: ColorUtility().colorAppbar))
+                        //           )
+                        //
+                        //           )
+                        //         ]
+                        //     )
+                        // )
+
                         // Center(
                         //     child: Container(
                         //         margin: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height/10,0,0),
