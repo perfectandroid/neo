@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Stocks/SockReportListModel.dart';
 import 'package:neo/Screens/Stocks/edit_stock.dart';
 import 'package:neo/Screens/Stocks/stock_edit.dart';
@@ -48,7 +49,7 @@ class _ReportStock extends State<ReportStock>{
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => HomePage()
+                          builder: (context) =>  new DrawerActivity()
                       ),
                           (route) => false
                   );
@@ -413,7 +414,7 @@ class _ReportStock extends State<ReportStock>{
     return (await  Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-            builder: (context) => HomePage()
+            builder: (context) =>  new DrawerActivity()
         ),
             (route) => false
     )) ??
