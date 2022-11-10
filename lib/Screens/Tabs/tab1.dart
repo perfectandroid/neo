@@ -42,15 +42,15 @@ class _MainScreenState extends State<Test2> {
             title: const Text(""),
             leading: IconButton(
               onPressed: () {
-                  Navigator.push(
-              context,
-              MaterialPageRoute(
-                fullscreenDialog: true,
-                builder: (BuildContext context) => DrawerActivity(
-                  //  liste: album,
-                ),
-              ),
-            );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    fullscreenDialog: true,
+                    builder: (BuildContext context) => DrawerActivity(
+                      //  liste: album,
+                    ),
+                  ),
+                );
                 // Navigator.pop(context,true);
               },
               icon: Icon(Icons.arrow_back),
@@ -197,7 +197,7 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
                               content: Text("Saved successfully"),
                             );
 
-                           // ShowDialogs().showAlertDialog1(context, "TEST");
+                            // ShowDialogs().showAlertDialog1(context, "TEST");
                             savePending(context,_ids2.toString());
 
                             print('Listin :  '+_ids2.toString());
@@ -289,25 +289,25 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
               ),
             ),
             Center(
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(0,10,10,10),
-                  width: MediaQuery.of(context).size.width * 0.08,
-                  height: MediaQuery.of(context).size.width * 0.15,
-                  alignment: Alignment.centerRight,
-                  child: Transform.scale(
-                      scale: 1,
-                      child: Checkbox(
-                        activeColor: ColorUtility().colorAppbar,
-                        value: userStatus[index],
-                        onChanged: (value) {
-                          setState(() {
-                            userStatus[index] = value!;
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0,10,10,10),
+                width: MediaQuery.of(context).size.width * 0.08,
+                height: MediaQuery.of(context).size.width * 0.15,
+                alignment: Alignment.centerRight,
+                child: Transform.scale(
+                    scale: 1,
+                    child: Checkbox(
+                      activeColor: ColorUtility().colorAppbar,
+                      value: userStatus[index],
+                      onChanged: (value) {
+                        setState(() {
+                          userStatus[index] = value!;
 
-                          });
-                        },
-                      )
-                  ),
+                        });
+                      },
+                    )
                 ),
+              ),
             ),
           ],
         ),
@@ -343,7 +343,7 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
       final res = await response.stream.bytesToString();
-       print("getPendinglist 200     "+request.toString());
+      print("getPendinglist 200     "+request.toString());
       final status =jsonDecode(res);
       final statuscode = status['success'] as bool;
       print("statuscode"+statuscode.toString());
@@ -364,7 +364,7 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
               backgroundColor: Colors.red,
               textColor: Colors.yellow
           );
-         // showAlertDialog(context, errors.toString());
+          // showAlertDialog(context, errors.toString());
           setState(() {
             pendings1 = [];
           });
@@ -394,11 +394,11 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
             backgroundColor: Colors.red,
             textColor: Colors.yellow
         );
-     //   showAlertDialog(context, errors.toString());
+        //   showAlertDialog(context, errors.toString());
       }
     }catch(e) {
       ShowDialogs().showProgressDialog(context,"Loading....",false);
-    //  ShowDialogs().showAlertDialog(context, e.toString());
+      //  ShowDialogs().showAlertDialog(context, e.toString());
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -437,7 +437,7 @@ void savePending(BuildContext context,String id) async{
 
   final res = await response.stream.bytesToString();
 
- print("Save data     "+res.toString());
+  print("Save data     "+res.toString());
   final status = jsonDecode(res);
   final statuscode = status['success'] as bool;
   final msg = status[id]['mesaage'] as String;
@@ -500,7 +500,7 @@ class _ChkbxjsonreturnListViewState  extends State<Chkbxreturn> {
           textColor: Colors.yellow
       );     // duration
 
-    //  showAlertDialog(context, errors.toString());
+      //  showAlertDialog(context, errors.toString());
     }
     return usersList2;
   }
