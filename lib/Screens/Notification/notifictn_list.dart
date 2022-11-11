@@ -30,8 +30,8 @@ class GetUsers {
   String order;
   String user;
   String product;
-  /* String isread;
-  String created;
+  bool isread;
+  /*String created;
   String fkorder;
   String fkprdct;
 */
@@ -41,8 +41,8 @@ class GetUsers {
    required this.order,
     required this.user,
     required this.product,
-    /*  required this.isread,
-    required this.created,
+    required this.isread,
+   /* required this.created,
     required this.fkorder,
     required this.fkprdct,*/
 
@@ -58,8 +58,8 @@ class GetUsers {
      order: json['order'],
       user: json['user'],
       product: json['product'],
-      /* isread: json['is_read'],
-      created: json['created_at'],
+      isread: json['is_read'],
+      /*created: json['created_at'],
       fkorder: json['fk_order'],
       fkprdct: json['fk_product'],*/
 
@@ -71,6 +71,8 @@ class GetUsers {
     );
   }
 }
+
+
 class JSONListView extends StatefulWidget {
   CustomJSONListView createState() => CustomJSONListView();
 }
@@ -129,6 +131,7 @@ class CustomJSONListView extends State {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorUtility().colorAppbar,
@@ -151,6 +154,7 @@ class CustomJSONListView extends State {
       ),
       body: FutureBuilder<List<GetUsers>>(
         future: fetchJSONData(),
+
         builder: (context, snapshot) {
 
           if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
@@ -159,39 +163,63 @@ class CustomJSONListView extends State {
                 padding: const EdgeInsets.all(8),
                 itemCount: usersList2 == null ? 0 : usersList2.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    elevation: 5,
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  return new GestureDetector(
 
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 50,
-                            height: 50,
-                            child: Image(image: AssetImage('images/alarm.png')),
-                            /* child: Image(
+                    onTap: () =>
+                       setState(() {
+                         readStatus(usersList2[index].id.toString());
+                         child: Icon(Icons.add);
+                         CustomJSONListView createState() => CustomJSONListView();
+                       }),
 
-                              Asse("assets/images/time.png",
-                              width: 300,
-                              height: 300,)
-
-                          ),
-*/
-                          ),
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.only(bottom: 8),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                      //  print("Clicked item"+usersList2[index].id.toString()),
 
 
-                                children: [
-                                /*  Padding(
+                      child: new Card(
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+
+                  child: Container(
+                  padding: EdgeInsets.all(8),
+                  child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+
+                    if (usersList2[index].isread.toString()=="false") ...[
+                      Container(
+                        width: 50,
+                        height: 50,
+
+                        child: Image(image: AssetImage('images/notifunread.png')),
+
+                      )
+                    ] ,
+                    if (usersList2[index].isread.toString()=="true") ...[
+                      Container(
+                        width: 50,
+                        height: 50,
+
+                        child: Image(image: AssetImage('images/notifread.png')),
+
+                      )
+                    ] ,
+
+                    // if(usersList2[index].id.toString()=="false")
+
+
+                    
+                  Expanded(
+                  child: Container(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+
+
+
+                  children: [
+                  /*  Padding(
                                     padding: EdgeInsets.only(left: 8, right: 8),
                                     child: Text("Id :"+
                                         usersList2[index].id.toString(),
@@ -202,19 +230,19 @@ class CustomJSONListView extends State {
                                     ),
                                   )
                                   ,*/
-                                Padding(
-                                    padding: EdgeInsets.only(left: 8, right: 8),
-                                    child: Text("Order Id  :"+usersList2[index].order.toString()),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 8, right: 8),
-                                    child: Text("Contact :"+usersList2[index].user.toString()),
-                                  ),
-                                   Padding(
-                                    padding: EdgeInsets.only(left: 8, right: 8),
-                                    child: Text("Product :"+usersList2[index].product.toString()),
-                                  )
-                                  /*,
+                  Padding(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  child: Text("Order Id  :"+usersList2[index].order.toString()),
+                  ),
+                  Padding(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  child: Text("Contact :"+usersList2[index].user.toString()),
+                  ),
+                  Padding(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  child: Text("Product :"+usersList2[index].product.toString()),
+                  )
+                  /*,
                                   Padding(
                                     padding: EdgeInsets.only(left: 8, right: 8),
                                     child: Text("User :"+usersList2[index].user.toString()),
@@ -224,16 +252,20 @@ class CustomJSONListView extends State {
                                     padding: EdgeInsets.only(left: 8, right: 8),
                                     child: Text("Product :"+usersList2[index].product.toString()),
                                   )*/
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                  ],
+                  ),
+                  ),
+                  ),
+                  ],
+
+                  ),
 
 
-                    ),
+                  ),
+                  ),
                   );
+
+
                 }
             ),
           );
@@ -262,4 +294,39 @@ class CustomJSONListView extends State {
     );
   }
 
+
+
+}
+
+Future<String> readStatus(String id) async {
+  late  bool status;
+  try {
+    var _token = await SharedPreferencesHelper.getAgent_token();
+    print("TOKEN  546   :  $_token");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token="Token "+_token;
+    var headers = {'Content-Type': 'application/json', 'Authorization': token,};
+    var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/seller_api/order/notification/read/'+id+'/'));
+    print("REQUSET"+request.toString());
+    // request.body = json.encode({});
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    final res = await response.stream.bytesToString();
+    print("data status     "+res.toString());
+    final status1 =jsonDecode(res);
+     status = status1['success']  ;
+    if(status1==true) {
+
+
+      //  print("json2"+jsonItems1);
+    }
+    else {
+      throw Exception('Failed to load data from internet'+status.toString());
+    }
+    return status.toString();
+
+  } catch (e) {
+    // If encountering an error, return
+    return 'Error!';
+  }
 }

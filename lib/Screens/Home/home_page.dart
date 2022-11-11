@@ -18,6 +18,7 @@ import 'package:neo/Screens/Stocks/stock_list.dart';
 import 'package:neo/helper/colorutility.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../chart/dashboard.dart';
+import '../../chart/pielatest.dart';
 import '../../chart/subsciberchart.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
@@ -94,7 +95,7 @@ class _HomePageState extends State<HomePage> {
     PhotoItem(title: "Dispatch", image: "assets/images/dispatched.png"),
     PhotoItem(title: "Delivered", image: "assets/images/delivered.png"),
   ];
-  
+
 
   /*List<PhotoItem> _items = [
     PhotoItem(
@@ -742,15 +743,15 @@ class _HomePageState extends State<HomePage> {
     else if(index=="1")
     {
 
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     fullscreenDialog: true,
-      //     builder: (BuildContext context) => Barchart(
-      //       //  liste: album,
-      //     ),
-      //   ),
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (BuildContext context) => PieCht1(
+            //  liste: album,
+          ),
+        ),
+      );
     }
     else if(index=="2")
     {
