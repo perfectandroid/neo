@@ -8,6 +8,7 @@ import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
 import 'package:neo/Screens/Report/order_report.dart';
+import 'package:neo/Screens/Report/test_report.dart';
 import 'package:neo/Screens/Sidemenu/about_us.dart';
 import 'package:neo/Screens/Status/confirmlist.dart';
 import 'package:neo/Screens/Status/deliverylist.dart';
@@ -754,15 +755,15 @@ class _HomePageState extends State<HomePage> {
     }
     else if(index=="2")
     {
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     fullscreenDialog: true,
-      //     builder: (BuildContext context) => OrderReport(
-      //       //  liste: album,
-      //     ),
-      //   ),
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (BuildContext context) => OrderReport(
+            //  liste: album,
+          ),
+        ),
+      );
     }
     else if(index=="3")
     {
