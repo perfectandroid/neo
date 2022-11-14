@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "data": {
+    "categories_count": {
+      "goods": 0,
+      "bank": 1,
+      "Retailer": 2
+    },
+    "daily_sales_count": {
+      "05-Nov": 0,
+      "04-Nov": 0,
+      "03-Nov": 0,
+      "02-Nov": 0,
+      "01-Nov": 3300.0,
+      "31-Oct": 0,
+      "30-Oct": 0
+    },
+    "categories_list": [
+      "goods",
+      "bank",
+      "Retailer"
+    ],
+    "product_count_list": [
+      0,
+      1,
+      2
+    ],
+    "days": [
+      "05-Nov",
+      "04-Nov",
+      "03-Nov",
+      "02-Nov",
+      "01-Nov",
+      "31-Oct",
+      "30-Oct"
+    ],
+    "sales": [
+      0,
+      0,
+      0,
+      0,
+      3300.0,
+      0,
+      0
+    ]
+  },
+  "errors": null
+}
