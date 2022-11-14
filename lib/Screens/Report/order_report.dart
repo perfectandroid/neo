@@ -116,7 +116,7 @@ class _OrderReport extends State<OrderReport>{
                 padding: const EdgeInsets.all(5),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                      // filterScreen(context)
 
@@ -124,7 +124,8 @@ class _OrderReport extends State<OrderReport>{
                         margin: const EdgeInsets.all(0),
                         padding: const EdgeInsets.all(3.0),
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height/4.2,
+                     //   height: MediaQuery.of(context).size.height/3,
+                        height: MediaQuery.of(context).size.height * 0.32,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.grey,width: 0.5)
@@ -132,6 +133,7 @@ class _OrderReport extends State<OrderReport>{
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
 
                               datePicker(context),
@@ -144,9 +146,9 @@ class _OrderReport extends State<OrderReport>{
 
                       Container(
                           margin: const EdgeInsets.fromLTRB(0,10,0,0,),
-                          padding: const EdgeInsets.all(3.0),
+                          padding: const EdgeInsets.all(0.0),
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height/1.5,
+                          height: MediaQuery.of(context).size.height * 0.53,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               border: Border.all(color: Colors.grey,width: 0.5)
@@ -169,7 +171,7 @@ class _OrderReport extends State<OrderReport>{
                                             child: Container(
                                               alignment: Alignment.centerLeft,
                                               padding: EdgeInsets.all(4),
-                                              child:Text("SI", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                              child:Text("SI", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
                                           ),
                                           Flexible(
@@ -178,7 +180,7 @@ class _OrderReport extends State<OrderReport>{
                                             child: Container(
                                               alignment: Alignment.centerLeft,
                                               padding: EdgeInsets.all(4),
-                                              child:Text("DATE", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                              child:Text("DATE", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
                                           ),
                                           Flexible(
@@ -187,7 +189,7 @@ class _OrderReport extends State<OrderReport>{
                                             child: Container(
                                               alignment: Alignment.centerLeft,
                                               padding: EdgeInsets.all(4),
-                                              child:Text("NAME", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                              child:Text("NAME", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
                                           ),
                                           Flexible(
@@ -196,7 +198,7 @@ class _OrderReport extends State<OrderReport>{
                                             child: Container(
                                               alignment: Alignment.centerLeft,
                                               padding: EdgeInsets.all(4),
-                                              child:Text("MOBILE/EMAIL", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                              child:Text("MOBILE/EMAIL", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
                                           ),
                                           Flexible(
@@ -205,7 +207,7 @@ class _OrderReport extends State<OrderReport>{
                                             child: Container(
                                               alignment: Alignment.centerLeft,
                                               padding: EdgeInsets.all(4),
-                                              child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                              child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
                                           ),
                                           Flexible(
@@ -214,7 +216,7 @@ class _OrderReport extends State<OrderReport>{
                                             child: Container(
                                               alignment: Alignment.centerLeft,
                                               padding: EdgeInsets.all(4),
-                                              child:Text("Total", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                              child:Text("TOTAL", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
                                           ),
                                           Flexible(
@@ -224,7 +226,7 @@ class _OrderReport extends State<OrderReport>{
 
                                               alignment: Alignment.centerLeft,
                                               padding: EdgeInsets.all(4),
-                                              child:Text("STATUS", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                              child:Text("STATUS", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
                                           ),
 
@@ -244,7 +246,7 @@ class _OrderReport extends State<OrderReport>{
                                           Container(
                                               margin: EdgeInsets.fromLTRB(0,2,0,2),
                                               padding: EdgeInsets.all(0),
-                                              height: MediaQuery.of(context).size.height/1.75,
+                                              height: MediaQuery.of(context).size.height * 0.46,
                                               child :ListView.builder(
                                                   scrollDirection: Axis.vertical,
                                                   shrinkWrap: false,
@@ -271,7 +273,7 @@ class _OrderReport extends State<OrderReport>{
                                                                     child: Container(
                                                                       alignment: Alignment.centerLeft,
                                                                       padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                                                     ),
                                                                   ),
                                                                   Flexible(
@@ -280,7 +282,7 @@ class _OrderReport extends State<OrderReport>{
                                                                     child: Container(
                                                                       alignment: Alignment.centerLeft,
                                                                       padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(orderReportModel.data?[index].createdAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      child:Text(""+(orderReportModel.data?[index].createdAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                                                     ),
                                                                   ),
                                                                   Flexible(
@@ -289,7 +291,7 @@ class _OrderReport extends State<OrderReport>{
                                                                     child: Container(
                                                                       alignment: Alignment.centerLeft,
                                                                       padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(orderReportModel.data?[index].customerName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      child:Text(""+(orderReportModel.data?[index].customerName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                                                     ),
                                                                   ),
                                                                   Flexible(
@@ -298,7 +300,7 @@ class _OrderReport extends State<OrderReport>{
                                                                     child: Container(
                                                                       alignment: Alignment.centerLeft,
                                                                       padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(orderReportModel.data?[index].fkUser).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      child:Text(""+(orderReportModel.data?[index].fkUser).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                                                     ),
                                                                   ),
                                                                   Flexible(
@@ -307,17 +309,7 @@ class _OrderReport extends State<OrderReport>{
                                                                     child: Container(
                                                                       alignment: Alignment.centerLeft,
                                                                       padding: EdgeInsets.all(4),
-                                                                      child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 2,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Container(
-
-                                                                      alignment: Alignment.centerLeft,
-                                                                      padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(orderReportModel.data?[index].grandTotal).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                                                     ),
                                                                   ),
                                                                   Flexible(
@@ -327,7 +319,17 @@ class _OrderReport extends State<OrderReport>{
 
                                                                       alignment: Alignment.centerLeft,
                                                                       padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(orderReportModel.data?[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      child:Text(""+(orderReportModel.data?[index].grandTotal).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                    ),
+                                                                  ),
+                                                                  Flexible(
+                                                                    flex: 2,
+                                                                    fit: FlexFit.tight,
+                                                                    child: Container(
+
+                                                                      alignment: Alignment.centerLeft,
+                                                                      padding: EdgeInsets.all(4),
+                                                                      child:Text(""+(orderReportModel.data?[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                                                     ),
                                                                   ),
 
@@ -402,157 +404,52 @@ class _OrderReport extends State<OrderReport>{
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 
-              // Expanded(
-              //    child: Container(
-              //      padding: EdgeInsets.all(0),
-              //      margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-              //      decoration: BoxDecoration(
-              //          borderRadius: BorderRadius.circular(5),
-              //          border: Border.all(color: Colors.grey,width: 0.5)
-              //      ),
-              //        child: DateTimePicker(
-              //          type: DateTimePickerType.date,
-              //          dateMask: 'dd-MM-yyyy',
-              //          initialValue: DateTime.now().toString(),
-              //          firstDate: DateTime(2000),
-              //          lastDate: DateTime(2100),
-              //          icon: Icon(Icons.event),
-              //          dateLabelText: 'To Date',
-              //          timeLabelText: "Hour",
-              //          cursorColor: Colors.black,
-              //          style: ,
-              //          selectableDayPredicate: (date) {
-              //            // Disable weekend days to select from the calendar
-              //            // if (date.weekday == 6 || date.weekday == 7) {
-              //            //   return false;
-              //            // }
-              //            return true;
-              //          },
-              //          onChanged: (val) => print(val),
-              //          validator: (val) {
-              //            print(val);
-              //            return null;
-              //          },
-              //          onSaved: (val) => print(val),
-              //        )
-              //    ),
-              // ),
-              //
-              // Expanded(
-              //   child: Container(
-              //       padding: EdgeInsets.all(0),
-              //       margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-              //       decoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(5),
-              //           border: Border.all(color: Colors.grey,width: 0.5)
-              //       ),
-              //       child: DateTimePicker(
-              //         type: DateTimePickerType.date,
-              //         dateMask: 'dd-MM-yyyy',
-              //         initialValue: DateTime.now().toString(),
-              //         firstDate: DateTime(2000),
-              //         lastDate: DateTime(2100),
-              //         icon: Icon(Icons.event),
-              //         dateLabelText: 'To Date',
-              //         timeLabelText: "Hour",
-              //         cursorColor: Colors.black,
-              //         selectableDayPredicate: (date) {
-              //           // Disable weekend days to select from the calendar
-              //           // if (date.weekday == 6 || date.weekday == 7) {
-              //           //   return false;
-              //           // }
-              //           return true;
-              //         },
-              //         onChanged: (val) => print(val),
-              //         validator: (val) {
-              //           print(val);
-              //           return null;
-              //         },
-              //         onSaved: (val) => print(val),
-              //       )
-              //   ),
-              // ),
-
-
-              // Expanded(
-              //     child: TextField(
-              //       //controller: dateInput,
-              //       //editing controller of this TextField
-              //       decoration: InputDecoration(
-              //           border: UnderlineInputBorder(),
-              //           icon: Icon(Icons.calendar_today), //icon of text field
-              //           labelText: "Enter Date" //label text of field
-              //       ),
-              //       readOnly: true,
-              //       // onTap: () async {
-              //       //   DateTime? pickedDate = await showDatePicker(
-              //       //       context: context,
-              //       //       initialDate: DateTime.now(),
-              //       //       firstDate: DateTime(1950),
-              //       //       //DateTime.now() - not to allow to choose before today.
-              //       //       lastDate: DateTime(2100));
-              //       //
-              //       //   if (pickedDate != null) {
-              //       //     print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-              //       //     // String formattedDate =
-              //       //     // DateFormat('yyyy-MM-dd').format(pickedDate);
-              //       //     // print(
-              //       //     //     formattedDate); //formatted date output using intl package =>  2021-03-16
-              //       //     setState(() {
-              //       //       dateInput.text = pickedDate.toString(); //set output date to TextField value.
-              //       //     });
-              //       //   } else {}
-              //       //
-              //       //
-              //       // },
-              //
-              //
-              //     )
-              // )
-
-
               Expanded(
                 child :Container(
                   margin: EdgeInsets.fromLTRB(0, 5, 2, 0),
-                    child:  TextField(
-                      readOnly: true,
-                      controller: controller.dateInputFrom,
-                      decoration: InputDecoration(
-                        hintText: "From Date",
-                        labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
+                  child : SizedBox(
+                    height: 40,
+                      child:  TextField(
+                        readOnly: true,
+                        controller: controller.dateInputFrom,
+                        decoration: InputDecoration(
+                          hintText: "From Date",
+                          labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.auto,
+                        onTap: () async {
+                          DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2000),
+                              //DateTime.now() - not to allow to choose before today.
+                              lastDate: DateTime(2100));
 
-                      ),
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(2000),
-                            //DateTime.now() - not to allow to choose before today.
-                            lastDate: DateTime(2100));
-
-                        if (pickedDate != null) {
-                          print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                          String formattedDate =
-                          DateFormat('dd-MM-yyyy').format(pickedDate);
-                          print(
-                              formattedDate); //formatted date output using intl package =>  2021-03-16
-                          setState(() {
-                            controller.dateInputFrom.text = formattedDate; //set output date to TextField value.
-                          });
-                        } else {}
+                          if (pickedDate != null) {
+                            print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                            String formattedDate =
+                            DateFormat('dd-MM-yyyy').format(pickedDate);
+                            print(
+                                formattedDate); //formatted date output using intl package =>  2021-03-16
+                            setState(() {
+                              controller.dateInputFrom.text = formattedDate; //set output date to TextField value.
+                            });
+                          } else {}
 
 
-                      },
-                    )
+                        },
+                      )
+                  )
+
                 )
 
               ),
@@ -561,45 +458,49 @@ class _OrderReport extends State<OrderReport>{
 
                 child :Container(
                     margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
-                    child:  TextField(
-                      readOnly: true,
-                      controller: controller.dateInputTo,
-                      decoration: InputDecoration(
-                        hintText: "To Date",
-                        labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.auto,
+                    child : SizedBox(
+                      height: 40,
+                      child:  TextField(
+                          readOnly: true,
+                          controller: controller.dateInputTo,
+                          decoration: InputDecoration(
+                            hintText: "To Date",
+                            labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
+                            ),
+                            floatingLabelBehavior: FloatingLabelBehavior.auto,
 
-                      ),
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(2000),
-                            //DateTime.now() - not to allow to choose before today.
-                            lastDate: DateTime(2100));
+                          ),
+                          onTap: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2000),
+                                //DateTime.now() - not to allow to choose before today.
+                                lastDate: DateTime(2100));
 
-                        if (pickedDate != null) {
-                          print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                          String formattedDate =
-                          DateFormat('dd-MM-yyyy').format(pickedDate);
-                          print(
-                              formattedDate); //formatted date output using intl package =>  2021-03-16
-                          setState(() {
-                            controller.dateInputTo.text = formattedDate; //set output date to TextField value.
-                          });
-                        } else {}
+                            if (pickedDate != null) {
+                              print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                              String formattedDate =
+                              DateFormat('dd-MM-yyyy').format(pickedDate);
+                              print(
+                                  formattedDate); //formatted date output using intl package =>  2021-03-16
+                              setState(() {
+                                controller.dateInputTo.text = formattedDate; //set output date to TextField value.
+                              });
+                            } else {}
 
 
-                      },
+                          },
+                        )
                     )
+
                 )
 
               )
@@ -733,27 +634,31 @@ class _OrderReport extends State<OrderReport>{
               Expanded(
                   child :Container(
                       margin: EdgeInsets.fromLTRB(0, 5, 2, 0),
-                      child:  TextField(
-                        readOnly: false,
-                        controller: controller.searchInput,
-                        decoration: InputDecoration(
-                          labelText: "Search",
-                          labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
-                          ),
-                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                      child : SizedBox(
+                        height: 40,
+                          child:  TextField(
+                            readOnly: false,
+                            controller: controller.searchInput,
+                            decoration: InputDecoration(
+                              labelText: "Search",
+                              labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
+                              ),
+                              floatingLabelBehavior: FloatingLabelBehavior.auto,
 
-                        ),
-                        onTap: () async {
+                            ),
+                            onTap: () async {
 
-                        },
+                            },
+                          )
                       )
+
                   )
 
               ),
@@ -762,29 +667,33 @@ class _OrderReport extends State<OrderReport>{
 
                   child :Container(
                       margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
-                      child:  TextField(
-                        readOnly: true,
-                        controller: controller.orderStatusInput,
-                        decoration: InputDecoration(
-                          labelText: "Order Status",
-                          labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
-                          ),
-                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                      child : SizedBox(
+                      height: 40,
+                          child:  TextField(
+                            readOnly: true,
+                            controller: controller.orderStatusInput,
+                            decoration: InputDecoration(
+                              labelText: "Order Status",
+                              labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(color: Colors.grey.shade500,width: 0.25),
+                              ),
+                              floatingLabelBehavior: FloatingLabelBehavior.auto,
 
-                        ),
-                        onTap: () async {
+                            ),
+                            onTap: () async {
 
-                          fetchOrderStatus(context);
+                              fetchOrderStatus(context);
 
-                        },
+                            },
+                          )
                       )
+
                   )
 
               )
@@ -810,43 +719,47 @@ class _OrderReport extends State<OrderReport>{
               Expanded(
                   child :Container(
                       margin: EdgeInsets.fromLTRB(0, 5, 2, 0),
-                    child: MaterialButton(
-                      onPressed: (){
-                        setState(() {
-                          orderReportModel.data?.clear();
-                          // controller.dateInputFrom.clear();
-                          // controller.dateInputTo.clear();
-                          getCuurentDate(context);
-                          controller.searchInput.clear();
-                          controller.orderStatusInput.clear();
-                        });
-                        print(orderReportModel);
-                      },
-                      padding: EdgeInsets.all(0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                          // gradient: LinearGradient(
-                          //   begin: Alignment.centerLeft,
-                          //   end: Alignment.centerRight,
-                          //   colors: [
-                          //     Color(0xffff5f6d),
-                          //     Color(0xffff5f6d),
-                          //     Color(0xffffc371),
-                          //   ],
-                          // ),
-                          color: ColorUtility().colorButtonReset,
-                          borderRadius: BorderRadius.circular(6),
+                      child : SizedBox(
+                        height: 40,
+                        child: MaterialButton(
+                          onPressed: (){
+                            setState(() {
+                              orderReportModel.data?.clear();
+                              // controller.dateInputFrom.clear();
+                              // controller.dateInputTo.clear();
+                              getCuurentDate(context);
+                              controller.searchInput.clear();
+                              controller.orderStatusInput.clear();
+                            });
+                            print(orderReportModel);
+                          },
+                          padding: EdgeInsets.all(0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Ink(
+                            decoration: BoxDecoration(
+                              // gradient: LinearGradient(
+                              //   begin: Alignment.centerLeft,
+                              //   end: Alignment.centerRight,
+                              //   colors: [
+                              //     Color(0xffff5f6d),
+                              //     Color(0xffff5f6d),
+                              //     Color(0xffffc371),
+                              //   ],
+                              // ),
+                              color: ColorUtility().colorButtonReset,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Container(
+                              alignment: Alignment.center,
+                              constraints: BoxConstraints(minHeight: 50,maxWidth: double.infinity),
+                              child: Text("Reset",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),textAlign: TextAlign.center,),
+                            ),
+                          ),
                         ),
-                        child: Container(
-                          alignment: Alignment.center,
-                          constraints: BoxConstraints(minHeight: 50,maxWidth: double.infinity),
-                          child: Text("Reset",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),textAlign: TextAlign.center,),
-                        ),
-                      ),
-                    ),
+                      )
+
                   )
 
               ),
@@ -855,101 +768,105 @@ class _OrderReport extends State<OrderReport>{
 
                   child :Container(
                       margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
-                    child: MaterialButton(
-                      onPressed: (){
-                        // var fromdate = controller.dateInputFrom.text;
-                        // var todate = controller.dateInputTo.text;
-                        // var orderstat = controller.orderStatusInput.text;
-                        // var searchname = controller.searchInput.text;
+                      child : SizedBox(
+                        height: 40,
+                        child: MaterialButton(
+                          onPressed: (){
+                            // var fromdate = controller.dateInputFrom.text;
+                            // var todate = controller.dateInputTo.text;
+                            // var orderstat = controller.orderStatusInput.text;
+                            // var searchname = controller.searchInput.text;
 
-                        var fromdate = "";
-                        var todate = "";
-                        var orderstat ="";
-                        var searchname = "";
+                            var fromdate = "";
+                            var todate = "";
+                            var orderstat ="";
+                            var searchname = "";
 
-                        if(!controller.dateInputFrom.text.isEmpty){
-                          fromdate = controller.dateInputFrom.text;
-                        }
+                            if(!controller.dateInputFrom.text.isEmpty){
+                              fromdate = controller.dateInputFrom.text;
+                            }
 
-                        if(!controller.dateInputTo.text.isEmpty){
-                          todate = controller.dateInputTo.text;
-                        }
+                            if(!controller.dateInputTo.text.isEmpty){
+                              todate = controller.dateInputTo.text;
+                            }
 
-                        if(!controller.orderStatusInput.text.isEmpty){
-                          orderstat = controller.orderStatusInput.text;
-                        }
+                            if(!controller.orderStatusInput.text.isEmpty){
+                              orderstat = controller.orderStatusInput.text;
+                            }
 
-                        if(!controller.searchInput.text.isEmpty){
-                          searchname = controller.searchInput.text;
-                        }
+                            if(!controller.searchInput.text.isEmpty){
+                              searchname = controller.searchInput.text;
+                            }
 
-                        DateTime parseDate1 = new DateFormat("dd-MM-yyyy").parse(controller.dateInputFrom.text.toString());
-                        var inputDate1 = DateTime.parse(parseDate1.toString());
-                        var outputFormat1 = DateFormat('yyyy-MM-dd');
-                        var outputDate1 = outputFormat1.format(inputDate1);
-                        print(outputDate1);
+                            DateTime parseDate1 = new DateFormat("dd-MM-yyyy").parse(controller.dateInputFrom.text.toString());
+                            var inputDate1 = DateTime.parse(parseDate1.toString());
+                            var outputFormat1 = DateFormat('yyyy-MM-dd');
+                            var outputDate1 = outputFormat1.format(inputDate1);
+                            print(outputDate1);
 
-                        DateTime parseDate2 = new DateFormat("dd-MM-yyyy").parse(controller.dateInputTo.text.toString());
-                        var inputDate2 = DateTime.parse(parseDate2.toString());
-                        var outputFormat2 = DateFormat('yyyy-MM-dd');
-                        var outputDate2 = outputFormat2.format(inputDate2);
-                        print(outputDate2);
+                            DateTime parseDate2 = new DateFormat("dd-MM-yyyy").parse(controller.dateInputTo.text.toString());
+                            var inputDate2 = DateTime.parse(parseDate2.toString());
+                            var outputFormat2 = DateFormat('yyyy-MM-dd');
+                            var outputDate2 = outputFormat2.format(inputDate2);
+                            print(outputDate2);
 
-                        //
-                        DateTime dt1 = DateTime.parse(outputDate1);
-                        DateTime dt2 = DateTime.parse(outputDate2);
-                    //    print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                            //
+                            DateTime dt1 = DateTime.parse(outputDate1);
+                            DateTime dt2 = DateTime.parse(outputDate2);
+                            //    print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
 
-                        // DateTime dateTime1 = DateTime.parse(controller.dateInputFrom.text.toString());
-                        // DateTime dateTime2 = DateTime.parse(controller.dateInputTo.text.toString());
-                        // print(dateTime1);
-                        // print(dateTime2);
-                        // String formattedDate1 =DateFormat('yyyy-MM-dd').format(dateTime1);
-                        // String formattedDate2 =DateFormat('yyyy-MM-dd').format(dateTime2);
-                        // print(formattedDate1);
-                        // print(formattedDate2);
+                            // DateTime dateTime1 = DateTime.parse(controller.dateInputFrom.text.toString());
+                            // DateTime dateTime2 = DateTime.parse(controller.dateInputTo.text.toString());
+                            // print(dateTime1);
+                            // print(dateTime2);
+                            // String formattedDate1 =DateFormat('yyyy-MM-dd').format(dateTime1);
+                            // String formattedDate2 =DateFormat('yyyy-MM-dd').format(dateTime2);
+                            // print(formattedDate1);
+                            // print(formattedDate2);
 
-                        // DateTime dt1 = DateTime.parse(formattedDate1);
-                        // DateTime dt2 = DateTime.parse(formattedDate2);
-                        //
+                            // DateTime dt1 = DateTime.parse(formattedDate1);
+                            // DateTime dt2 = DateTime.parse(formattedDate2);
+                            //
 
-                        if(dt1.compareTo(dt2) <= 0){
-                          print("DT1 is before DT2");
-                          print(fromdate);
-                          SearchOrderReport(context,fromdate.toString(),todate.toString(),searchname.toString(),orderstat.toString());
-                        }
-                        else{
-                          validateMessage(context,"Check Date");
-                        }
+                            if(dt1.compareTo(dt2) <= 0){
+                              print("DT1 is before DT2");
+                              print(fromdate);
+                              SearchOrderReport(context,fromdate.toString(),todate.toString(),searchname.toString(),orderstat.toString());
+                            }
+                            else{
+                              validateMessage(context,"Check Date");
+                            }
 
 
 
-                      },
-                      padding: EdgeInsets.all(0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                          // gradient: LinearGradient(
-                          //   begin: Alignment.centerLeft,
-                          //   end: Alignment.centerRight,
-                          //   colors: [
-                          //     Color(0xffff5f6d),
-                          //     Color(0xffff5f6d),
-                          //     Color(0xffffc371),
-                          //   ],
-                          // ),
-                          color: ColorUtility().colorButtonSearch,
-                          borderRadius: BorderRadius.circular(6),
+                          },
+                          padding: EdgeInsets.all(0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Ink(
+                            decoration: BoxDecoration(
+                              // gradient: LinearGradient(
+                              //   begin: Alignment.centerLeft,
+                              //   end: Alignment.centerRight,
+                              //   colors: [
+                              //     Color(0xffff5f6d),
+                              //     Color(0xffff5f6d),
+                              //     Color(0xffffc371),
+                              //   ],
+                              // ),
+                              color: ColorUtility().colorButtonSearch,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Container(
+                              alignment: Alignment.center,
+                              constraints: BoxConstraints(minHeight: 50,maxWidth: double.infinity),
+                              child: Text("Search",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),textAlign: TextAlign.center,),
+                            ),
+                          ),
                         ),
-                        child: Container(
-                          alignment: Alignment.center,
-                          constraints: BoxConstraints(minHeight: 50,maxWidth: double.infinity),
-                          child: Text("Search",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),textAlign: TextAlign.center,),
-                        ),
-                      ),
-                    ),
+                      )
+
                   )
 
               )
