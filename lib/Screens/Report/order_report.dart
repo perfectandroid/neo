@@ -125,7 +125,7 @@ class _OrderReport extends State<OrderReport>{
                         padding: const EdgeInsets.all(3.0),
                         width: MediaQuery.of(context).size.width,
                      //   height: MediaQuery.of(context).size.height/3,
-                        height: MediaQuery.of(context).size.height * 0.32,
+                        height: MediaQuery.of(context).size.height * 0.25,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.grey,width: 0.5)
@@ -148,7 +148,7 @@ class _OrderReport extends State<OrderReport>{
                           margin: const EdgeInsets.fromLTRB(0,10,0,0,),
                           padding: const EdgeInsets.all(0.0),
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.53,
+                          height: MediaQuery.of(context).size.height * 0.59,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               border: Border.all(color: Colors.grey,width: 0.5)
@@ -246,7 +246,7 @@ class _OrderReport extends State<OrderReport>{
                                           Container(
                                               margin: EdgeInsets.fromLTRB(0,2,0,2),
                                               padding: EdgeInsets.all(0),
-                                              height: MediaQuery.of(context).size.height * 0.46,
+                                              height: MediaQuery.of(context).size.height * 0.54,
                                               child :ListView.builder(
                                                   scrollDirection: Axis.vertical,
                                                   shrinkWrap: false,
