@@ -1211,8 +1211,20 @@ class _OrderReport extends State<OrderReport>{
       context: context,
      // barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: Text('ORDER STATUS',textAlign: TextAlign.center),
-        content: SizedBox(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              5.0,
+            ),
+          ),
+        ),
+        contentPadding: EdgeInsets.zero,
+        backgroundColor: ColorUtility().colorAlertTop,
+        title: Center(
+            child: Text('ORDER STATUS',textAlign: TextAlign.center,style: TextStyle(fontSize: 15,fontStyle: FontStyle.normal,color: Colors.black))),
+       // title: Text('ORDER STATUS',textAlign: TextAlign.center),
+        content: Container(
+          margin: EdgeInsets.all(5),
           width: double.maxFinite,  //  <------- Use SizedBox to limit width
           child: ListView.builder(
             shrinkWrap: true,  //            <------  USE SHRINK WRAP
@@ -1222,19 +1234,49 @@ class _OrderReport extends State<OrderReport>{
             Container(
                 margin: EdgeInsets.all(0),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0,10,5,0),
+                  padding: const EdgeInsets.all(0),
                  // child: Text(""+(orderStatusModel?.data?.status?[index]).toString()),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          InkWell(
-                            onTap: () {
-                              print((orderStatusModel?.data?.status?[index]).toString());
-                              Navigator.pop(context);
-                              controller.orderStatusInput.text = (orderStatusModel?.data?.status?[index]).toString();
-                            },
-                            child: Text(""+(orderStatusModel?.data?.status?[index]).toString()),
-                          ),
+
+                          GestureDetector(
+                              onTap: (){
+                                print((orderStatusModel?.data?.status?[index]).toString());
+                                Navigator.pop(context);
+                                controller.orderStatusInput.text = (orderStatusModel?.data?.status?[index]).toString();
+                              },
+                              child: new Container(
+                                  width: double.infinity,
+                                  padding: new EdgeInsets.all(10),
+                                  // color: Colors.white,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(1),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(color: Colors.grey, spreadRadius: 0.5),
+                                    ],
+                                  ),
+                                  child: new Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        new Text((orderStatusModel?.data?.status?[index]).toString(),textAlign: TextAlign.start),
+                                      ]
+                                  )
+
+                              )
+                          )
+
+                          // InkWell(
+                          //   onTap: () {
+                          //     print((orderStatusModel?.data?.status?[index]).toString());
+                          //     Navigator.pop(context);
+                          //     controller.orderStatusInput.text = (orderStatusModel?.data?.status?[index]).toString();
+                          //   },
+                          //   child: Text(""+(orderStatusModel?.data?.status?[index]).toString()),
+                          // ),
+
                         ]
                     )
 
