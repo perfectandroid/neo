@@ -163,7 +163,8 @@ class _OrderReport extends State<OrderReport>{
                               children: <Widget>[
 
                                 Container(
-                                  color: ColorUtility().colorReportHead,
+                                  color: ColorUtility().colorAlertTop,
+                                    padding: EdgeInsets.fromLTRB(2,0,2,0),
                                     child: Row(
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -240,6 +241,7 @@ class _OrderReport extends State<OrderReport>{
                                 ),
 
                                 Container(
+                                    color: ColorUtility().colorAlertTop,
                                   child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       mainAxisAlignment: MainAxisAlignment.start,
@@ -250,6 +252,7 @@ class _OrderReport extends State<OrderReport>{
                                           Container(
                                               margin: EdgeInsets.fromLTRB(0,2,0,2),
                                               padding: EdgeInsets.all(0),
+                                              color: ColorUtility().colorAlertTop,
                                               height: MediaQuery.of(context).size.height * 0.54,
                                               child :ListView.builder(
                                                   scrollDirection: Axis.vertical,
@@ -258,14 +261,22 @@ class _OrderReport extends State<OrderReport>{
                                                   itemBuilder: (context,index){
 
                                                     return Card(
-                                                        margin: EdgeInsets.all(2.0),
-                                                        color: ColorUtility().colorLightGrey,
+                                                        margin: EdgeInsets.fromLTRB(2,0,2,0),
+                                                        color: ColorUtility().colorAlertTop,
+                                                        //color: ColorUtility().colorLightGrey,
                                                         shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius.circular(2.0),),
-                                                        elevation: 5,
+                                                        elevation: 0,
                                                         child:  Container(
-                                                            color: Colors.white,
-                                                            margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
+                                                            decoration: BoxDecoration(
+                                                              borderRadius: BorderRadius.circular(1),
+                                                              color: Colors.white,
+                                                              boxShadow: [
+                                                                BoxShadow(color: Colors.grey, spreadRadius: 0.5),
+                                                              ],
+                                                            ),
+                                                           // color: Colors.white,
+                                                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                                             child: Row(
                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                 mainAxisAlignment: MainAxisAlignment.center,
