@@ -95,7 +95,11 @@ class _OrderReport extends State<OrderReport>{
             ),
 
 
-            body: Center(child : getBody())
+          //  body: Center(child : getBody())
+
+            body: SingleChildScrollView(
+                child : getBody()
+            )
 
 
 
@@ -1065,7 +1069,7 @@ class _OrderReport extends State<OrderReport>{
     //  var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/seller_api/customer-order-report/'));
    //   var request = http.Request('GET', Uri.parse("http://202.164.150.222:8000/seller_api/customer-order-report/?status=success&from_date=12/11/2022&to_date=12/09/2022&search="));
    //   var request = http.Request('GET', Uri.parse('http://202.164.150.222:8000/seller_api/customer-order-report/?'+queryParameters.toString()));
-      var request = http.Request('GET', Uri.parse('http://202.164.150.222:8000/seller_api/customer-order-report/?status=$orderStatus&from_date=$fromdate&to_date=$toDate&search=$searchUser'));
+      var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/seller_api/customer-order-report/?status=$orderStatus&from_date=$fromdate&to_date=$toDate&search=$searchUser'));
       print(request);
      // var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/seller_api/customer-order-report?/'+'status=$orderStatus'+'&from_date=$fromdate'+'&to_date=$toDate'+'&search=$searchUser'));
      // request.body = json.encode(bodyString);
@@ -1212,7 +1216,7 @@ class _OrderReport extends State<OrderReport>{
           width: double.maxFinite,  //  <------- Use SizedBox to limit width
           child: ListView.builder(
             shrinkWrap: true,  //            <------  USE SHRINK WRAP
-            itemCount: 5,
+            itemCount: orderStatusModel?.data?.status?.length,
             itemBuilder: (context, index) =>
                // Text('Order'.),
             Container(
