@@ -252,7 +252,8 @@ class _OrderReport extends State<OrderReport>{
                                           Container(
                                               margin: EdgeInsets.fromLTRB(0,2,0,2),
                                               padding: EdgeInsets.all(0),
-                                              color: ColorUtility().colorAlertTop,
+                                              //color: ColorUtility().colorAlertTop,
+                                              color: Colors.white,
                                               height: MediaQuery.of(context).size.height * 0.54,
                                               child :ListView.builder(
                                                   scrollDirection: Axis.vertical,
@@ -262,7 +263,7 @@ class _OrderReport extends State<OrderReport>{
 
                                                     return Card(
                                                         margin: EdgeInsets.fromLTRB(2,0,2,0),
-                                                        color: ColorUtility().colorAlertTop,
+                                                       // color: ColorUtility().colorAlertTop,
                                                         //color: ColorUtility().colorLightGrey,
                                                         shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius.circular(2.0),),

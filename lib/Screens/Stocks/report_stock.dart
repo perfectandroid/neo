@@ -187,6 +187,10 @@ class _ReportStock extends State<ReportStock>{
                           ),
 
                           Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(color: Colors.grey,width: 0.5)
+                              ),
                             margin: EdgeInsets.fromLTRB(0,10,0,2),
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,6 +199,7 @@ class _ReportStock extends State<ReportStock>{
 
                                     Container(
                                         color: ColorUtility().colorReportHead,
+                                        margin: EdgeInsets.fromLTRB(0,0,0,0),
                                         child: Row(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: <Widget>[
@@ -204,7 +209,7 @@ class _ReportStock extends State<ReportStock>{
                                                 child: Container(
                                                   alignment: Alignment.centerLeft,
                                                   padding: const EdgeInsets.fromLTRB(4,15,4,15),
-                                                  child:Text("SN", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                  child:Text("SN", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
                                               ),
                                               Expanded(
@@ -212,7 +217,7 @@ class _ReportStock extends State<ReportStock>{
                                                 child: Container(
                                                   alignment: Alignment.centerLeft,
                                                   padding: const EdgeInsets.fromLTRB(4,15,4,15),
-                                                  child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                  child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
                                               ),
                                               Expanded(
@@ -220,7 +225,7 @@ class _ReportStock extends State<ReportStock>{
                                                 child: Container(
                                                   alignment: Alignment.centerLeft,
                                                   padding: const EdgeInsets.fromLTRB(4,15,4,15),
-                                                  child:Text("MRP", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                  child:Text("MRP", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
                                               ),
                                               Expanded(
@@ -228,7 +233,7 @@ class _ReportStock extends State<ReportStock>{
                                                 child: Container(
                                                   alignment: Alignment.centerLeft,
                                                   padding: const EdgeInsets.fromLTRB(4,15,4,15),
-                                                  child:Text("STOCK", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                  child:Text("STOCK", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
                                               ),
                                               Expanded(
@@ -236,7 +241,7 @@ class _ReportStock extends State<ReportStock>{
                                                 child: Container(
                                                   alignment: Alignment.centerLeft,
                                                   padding: const EdgeInsets.fromLTRB(4,15,4,15),
-                                                  child:Text("STATUS", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                  child:Text("STATUS", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
                                               ),
                                               Expanded(
@@ -244,7 +249,7 @@ class _ReportStock extends State<ReportStock>{
                                                 child: Container(
                                                   alignment: Alignment.centerLeft,
                                                   padding: const EdgeInsets.fromLTRB(4,15,4,15),
-                                                  child:Text("", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                  child:Text("", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
                                               )
 
@@ -261,149 +266,153 @@ class _ReportStock extends State<ReportStock>{
                                       Container(
                                           margin: EdgeInsets.fromLTRB(0,2,0,2),
                                           padding: EdgeInsets.all(0),
+                                          color: Colors.white,
                                           height: MediaQuery.of(context).size.height * 0.48,
                                           child :ListView.builder(
                                               shrinkWrap: true,
                                               itemCount: stockModel.data?.length,
                                               itemBuilder: (context,index){
                                                 // return Text((stockModel.data?[index].seller).toString());
-                                                return  Container(
-                                                    child: Padding(
-                                                        padding: const EdgeInsets.all(0.0),
-                                                        child : Card(
-                                                            elevation: 1,
-                                                            shadowColor: Colors.black,
-                                                            color: Colors.white,
-                                                            child:Column(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                children: <Widget>[
-                                                                  Container(
-                                                                      child: Row(
-                                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                return Card(
+                                                    // elevation: 1,
+                                                    // shadowColor: Colors.black,
+                                                    // color: Colors.white,
+                                                    margin: EdgeInsets.fromLTRB(2,0,2,0),
+                                                    color: Colors.white,
+                                                    //color: ColorUtility().colorLightGrey,
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(2.0),),
+                                                    elevation: 0,
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(1),
+                                                        color: Colors.white,
+                                                        boxShadow: [
+                                                          BoxShadow(color: Colors.grey, spreadRadius: 0.5),
+                                                        ],
+                                                      ),
+                                                      // color: Colors.white,
+                                                      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                                        child: Row(
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: <Widget>[
+
+                                                              Flexible(
+                                                                flex: 1,
+                                                                fit: FlexFit.tight,
+                                                                child: Container(
+                                                                  color: Colors.white,
+                                                                  alignment: Alignment.centerLeft,
+                                                                  padding: EdgeInsets.all(4),
+                                                                  child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                  flex: 3,
+                                                                  child: Center(
+                                                                      child: Column(
+                                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                                           mainAxisAlignment: MainAxisAlignment.center,
                                                                           children: <Widget>[
-
-                                                                            Flexible(
-                                                                              flex: 1,
-                                                                              fit: FlexFit.tight,
-                                                                              child: Container(
-                                                                                color: Colors.white,
-                                                                                alignment: Alignment.centerLeft,
-                                                                                padding: EdgeInsets.all(4),
-                                                                                child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
-                                                                              ),
-                                                                            ),
-                                                                            Expanded(
-                                                                                flex: 3,
-                                                                                child: Center(
-                                                                                    child: Column(
-                                                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                        mainAxisAlignment: MainAxisAlignment.center,
-                                                                                        children: <Widget>[
-                                                                                          Container(
-                                                                                            color: Colors.white,
-                                                                                            alignment: Alignment.centerLeft,
-                                                                                            padding: EdgeInsets.all(4),
-                                                                                            child:Text(""+(stockModel.data?[index].product).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
-                                                                                          )
-                                                                                        ]
-                                                                                    )
-                                                                                )
-                                                                            ),
-                                                                            Expanded(
-                                                                              flex: 2,
-                                                                              child: Container(
-                                                                                color: Colors.white,
-                                                                                alignment: Alignment.centerLeft,
-                                                                                padding: EdgeInsets.all(4),
-                                                                                child:Text(""+(stockModel.data?[index].stkMrp).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
-                                                                              ),
-                                                                            ),
-                                                                            Expanded(
-                                                                              flex: 2,
-                                                                              child: Container(
-                                                                                color: Colors.white,
-                                                                                alignment: Alignment.centerLeft,
-                                                                                padding: EdgeInsets.all(4),
-                                                                                child:Text(""+(stockModel.data?[index].curQty).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
-                                                                              ),
-                                                                            ),
-                                                                            Expanded(
-                                                                                flex: 3,
-                                                                                child: (stockModel.data?[index].curQty).toString() == '0' ?
-                                                                                new
-                                                                                Container(
-                                                                                  color: Colors.white,
-                                                                                  alignment: Alignment.centerLeft,
-                                                                                  padding: EdgeInsets.all(4),
-                                                                                  child:Text("Out of stock", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.red),),
-                                                                                )
-                                                                                    : new
-                                                                                Container(
-                                                                                  color: Colors.white,
-                                                                                  alignment: Alignment.centerLeft,
-                                                                                  padding: EdgeInsets.all(4),
-                                                                                  child:Text("In stock", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
-                                                                                )
-
-                                                                            ),
-                                                                            Expanded(
-                                                                              flex: 1,
-                                                                              child: Container(
-                                                                                alignment: Alignment.center,
-                                                                                padding: EdgeInsets.all(0),
-                                                                                child :IconButton(
-                                                                                  icon: new Icon(Icons.border_color_outlined,color: ColorUtility().colorAppbar),
-                                                                                  highlightColor: Colors.grey,
-                                                                                  onPressed: (){
-
-                                                                                    final controller = Get.put(ReportStockController());
-                                                                                    controller.InputStatus.text = "";
-                                                                                    controller.InputSearch.text = "";
-                                                                                    controller.InputMinQuantity.text = "";
-                                                                                    controller.InputMaxQuantity.text = "";
-                                                                                    controller.InputCategory.text = "";
-                                                                                    controller.InputSubCategory.text = "";
-                                                                                    controller.categoryId = "";
-                                                                                    controller.subCategoryId = "";
-
-                                                                                    print(index);
-                                                                                    Navigator.push(
-                                                                                      context,
-                                                                                      MaterialPageRoute(
-                                                                                          fullscreenDialog: true,
-                                                                                          // builder: (BuildContext context) => StockList(
-                                                                                          builder: (BuildContext context) => StockEdit(model: stockModel,pos : index)
-                                                                                        //builder: (BuildContext context) => EditStock()
-                                                                                      ),
-                                                                                    );
-
-
-
-
-
-
-
-                                                                                  },
-                                                                                ),
-                                                                              ),
-                                                                            ),
-
-
+                                                                            Container(
+                                                                              color: Colors.white,
+                                                                              alignment: Alignment.centerLeft,
+                                                                              padding: EdgeInsets.all(4),
+                                                                              child:Text(""+(stockModel.data?[index].product).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
+                                                                            )
                                                                           ]
                                                                       )
-                                                                  ),
-                                                                  //  Divider()
-                                                                ]
-                                                            )
-                                                        )
+                                                                  )
+                                                              ),
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child: Container(
+                                                                  color: Colors.white,
+                                                                  alignment: Alignment.centerLeft,
+                                                                  padding: EdgeInsets.all(4),
+                                                                  child:Text(""+(stockModel.data?[index].stkMrp).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child: Container(
+                                                                  color: Colors.white,
+                                                                  alignment: Alignment.centerLeft,
+                                                                  padding: EdgeInsets.all(4),
+                                                                  child:Text(""+(stockModel.data?[index].curQty).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                  flex: 3,
+                                                                  child: (stockModel.data?[index].curQty).toString() == '0' ?
+                                                                  new
+                                                                  Container(
+                                                                    color: Colors.white,
+                                                                    alignment: Alignment.centerLeft,
+                                                                    padding: EdgeInsets.all(4),
+                                                                    child:Text("Out of stock", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.red),),
+                                                                  )
+                                                                      : new
+                                                                  Container(
+                                                                    color: Colors.white,
+                                                                    alignment: Alignment.centerLeft,
+                                                                    padding: EdgeInsets.all(4),
+                                                                    child:Text("In stock", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
+                                                                  )
 
+                                                              ),
+                                                              Expanded(
+                                                                flex: 1,
+                                                                child: Container(
+                                                                  alignment: Alignment.centerLeft,
+                                                                  padding: EdgeInsets.fromLTRB(0,0,2,0),
+                                                                  child :IconButton(
+                                                                    alignment: Alignment.centerLeft,
+                                                                    icon: new Icon(Icons.border_color_outlined,color: ColorUtility().colorAppbar),
+                                                                    highlightColor: Colors.grey,
+                                                                    onPressed: (){
+
+                                                                      final controller = Get.put(ReportStockController());
+                                                                      controller.InputStatus.text = "";
+                                                                      controller.InputSearch.text = "";
+                                                                      controller.InputMinQuantity.text = "";
+                                                                      controller.InputMaxQuantity.text = "";
+                                                                      controller.InputCategory.text = "";
+                                                                      controller.InputSubCategory.text = "";
+                                                                      controller.categoryId = "";
+                                                                      controller.subCategoryId = "";
+
+                                                                      print(index);
+                                                                      Navigator.push(
+                                                                        context,
+                                                                        MaterialPageRoute(
+                                                                            fullscreenDialog: true,
+                                                                            // builder: (BuildContext context) => StockList(
+                                                                            builder: (BuildContext context) => StockEdit(model: stockModel,pos : index)
+                                                                          //builder: (BuildContext context) => EditStock()
+                                                                        ),
+                                                                      );
+
+
+
+
+
+
+
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                              ),
+
+
+                                                            ]
+                                                        )
                                                     )
 
-
-
                                                 );
+
+
 
                                               }
                                           )
