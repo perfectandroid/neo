@@ -1273,43 +1273,84 @@ class _ReportStock extends State<ReportStock>{
   void showStatusPopup(BuildContext context) {
     final controller = Get.put(ReportStockController());
     final List<String> available = <String>['In stock', 'Out of stock'];
-    showDialog(
+      showDialog(
       context: context,
       //barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: Text('AVAILABLE IN STOCK',textAlign: TextAlign.center),
-        content: SizedBox(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              5.0,
+            ),
+          ),
+        ),
+        contentPadding: EdgeInsets.zero,
+        backgroundColor: ColorUtility().colorAlertTop,
+        title: Center(
+            child: Text('AVAILABLE IN STOCK',textAlign: TextAlign.center,style: TextStyle(fontSize: 15,fontStyle: FontStyle.normal,color: Colors.black))),
+        content: Container(
+          margin: EdgeInsets.all(5),
           width: double.maxFinite,  //  <------- Use SizedBox to limit width
           child: ListView.builder(
               shrinkWrap: true,  //            <------  USE SHRINK WRAP
               itemCount: available.length,
               itemBuilder: (context, index) =>
               // Text('Order'.),
-              Container(
-                  margin: EdgeInsets.all(0),
-                  child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0,10,5,0),
-                      // child: Text(""+(orderStatusModel?.data?.status?[index]).toString()),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
 
-                            ListTile(
-                              title: Text(available[index]),
-                              onTap: () {
-                                controller.InputStatus.text = available[index];
-                                Navigator.pop(context);
-                              }, // Handle your onTap here.
-                            )
-
-
-                          ]
-                      )
-
+               GestureDetector(
+                  onTap: (){
+                    controller.InputStatus.text = available[index];
+                    Navigator.pop(context);
+                  },
+                  child: new Container(
+                    width: double.infinity,
+                    padding: new EdgeInsets.all(10),
+                   // color: Colors.white,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(1),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey, spreadRadius: 0.5),
+                      ],
+                    ),
+                    child: new Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          new Text(available[index],textAlign: TextAlign.start),
+                        ]
+                    ),
                   )
-
-
               )
+              // Container(
+              //     margin: EdgeInsets.all(1),
+              //     child: Padding(
+              //         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+              //         // child: Text(""+(orderStatusModel?.data?.status?[index]).toString()),
+              //         child: Column(
+              //             crossAxisAlignment: CrossAxisAlignment.start,
+              //             children: <Widget>[
+              //
+              //               ListTile(
+              //                 tileColor: Colors.white,
+              //                 title: Text(available[index]),
+              //                 onTap: () {
+              //                   controller.InputStatus.text = available[index];
+              //                   Navigator.pop(context);
+              //                 }, // Handle your onTap here.
+              //               )
+              //
+              //
+              //             ]
+              //         )
+              //
+              //     )
+              //
+              //
+              // )
+
+
+
           ),
         ),
       ),
@@ -1407,9 +1448,20 @@ class _ReportStock extends State<ReportStock>{
       context: context,
       //barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: Text('CATEGORY',textAlign: TextAlign.center),
-        content: SizedBox(
-          width: double.maxFinite,  //  <------- Use SizedBox to limit width
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              5.0,
+            ),
+          ),
+        ),
+        contentPadding: EdgeInsets.zero,
+        backgroundColor: ColorUtility().colorAlertTop,
+        title: Center(
+            child: Text('CATEGORY',textAlign: TextAlign.center,style: TextStyle(fontSize: 15,fontStyle: FontStyle.normal,color: Colors.black))),
+        content: Container(
+          margin: EdgeInsets.all(5),
+          width: double.maxFinite, //  <------- Use SizedBox to limit width
           child: ListView.builder(
               shrinkWrap: true,  //            <------  USE SHRINK WRAP
               itemCount: categoryModel.data?.length,
@@ -1418,22 +1470,54 @@ class _ReportStock extends State<ReportStock>{
               Container(
                   margin: EdgeInsets.all(0),
                   child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0,10,5,0),
+                      padding: const EdgeInsets.all(0),
                       // child: Text(""+(orderStatusModel?.data?.status?[index]).toString()),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
 
-                            ListTile(
-                              title: Text((categoryModel.data?[index].name).toString()),
-                              onTap: () {
+                            GestureDetector(
+                              onTap: (){
                                 controller.InputCategory.text = (categoryModel.data?[index].name).toString();
                                 controller.categoryId  =(categoryModel.data?[index].catId).toString();
                                 controller.InputSubCategory.text = "";
                                 controller.subCategoryId  ="";
                                 Navigator.pop(context);
-                              }, // Handle your onTap here.
+                              },
+                              child: new Container(
+                                width: double.infinity,
+                                padding: new EdgeInsets.all(10),
+                                // color: Colors.white,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(1),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(color: Colors.grey, spreadRadius: 0.5),
+                                  ],
+                                ),
+                                child: new Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      new Text((categoryModel.data?[index].name).toString(),textAlign: TextAlign.start),
+                                    ]
+                                )
+
+                              )
                             )
+
+
+
+                          // ListTile(
+                          //     title: Text((categoryModel.data?[index].name).toString()),
+                          //     onTap: () {
+                          //       controller.InputCategory.text = (categoryModel.data?[index].name).toString();
+                          //       controller.categoryId  =(categoryModel.data?[index].catId).toString();
+                          //       controller.InputSubCategory.text = "";
+                          //       controller.subCategoryId  ="";
+                          //       Navigator.pop(context);
+                          //     }, // Handle your onTap here.
+                          //   )
 
 
                           ]
@@ -1488,8 +1572,20 @@ class _ReportStock extends State<ReportStock>{
       context: context,
       //barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: Text('SUB CATEGORY',textAlign: TextAlign.center),
-        content: SizedBox(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              5.0,
+            ),
+          ),
+        ),
+        contentPadding: EdgeInsets.zero,
+        backgroundColor: ColorUtility().colorAlertTop,
+        title: Center(
+            child: Text('SUB CATEGORY',textAlign: TextAlign.center,style: TextStyle(fontSize: 15,fontStyle: FontStyle.normal,color: Colors.black))),
+       // title: Text('SUB CATEGORY',textAlign: TextAlign.center),
+        content: Container(
+          margin: EdgeInsets.all(5),
           width: double.maxFinite,  //  <------- Use SizedBox to limit width
           child: ListView.builder(
               shrinkWrap: true,  //            <------  USE SHRINK WRAP
@@ -1499,20 +1595,48 @@ class _ReportStock extends State<ReportStock>{
               Container(
                   margin: EdgeInsets.all(0),
                   child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0,10,5,0),
+                      padding: const EdgeInsets.all(0),
                       // child: Text(""+(orderStatusModel?.data?.status?[index]).toString()),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
 
-                            ListTile(
-                              title: Text((subcategoryModel.data?[index].name).toString()),
-                              onTap: () {
-                                controller.InputSubCategory.text = (subcategoryModel.data?[index].name).toString();
-                                controller.subCategoryId  =(subcategoryModel.data?[index].subCatId).toString();
-                                Navigator.pop(context);
-                              }, // Handle your onTap here.
+                            GestureDetector(
+                                onTap: (){
+                                  controller.InputSubCategory.text = (subcategoryModel.data?[index].name).toString();
+                                  controller.subCategoryId  =(subcategoryModel.data?[index].subCatId).toString();
+                                  Navigator.pop(context);
+                                },
+                                child: new Container(
+                                    width: double.infinity,
+                                    padding: new EdgeInsets.all(10),
+                                    // color: Colors.white,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(1),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(color: Colors.grey, spreadRadius: 0.5),
+                                      ],
+                                    ),
+                                    child: new Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          new Text((subcategoryModel.data?[index].name).toString(),textAlign: TextAlign.start),
+                                        ]
+                                    )
+
+                                )
                             )
+
+                            // ListTile(
+                            //   title: Text((subcategoryModel.data?[index].name).toString()),
+                            //   onTap: () {
+                            //     controller.InputSubCategory.text = (subcategoryModel.data?[index].name).toString();
+                            //     controller.subCategoryId  =(subcategoryModel.data?[index].subCatId).toString();
+                            //     Navigator.pop(context);
+                            //   }, // Handle your onTap here.
+                            // )
 
 
                           ]

@@ -36,6 +36,7 @@ class ColorUtility {
 
    var colorButtonReset = Color.fromARGB(0xFF, 0xB4, 0xB1, 0xB1);
    var colorButtonSearch = Color.fromARGB(0xFF, 0x47, 0xC, 0x4B);
+   var colorAlertTop = Color.fromARGB(0xFF, 0xE5, 0xE4, 0xE4);
 
 
 }
