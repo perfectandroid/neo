@@ -155,7 +155,8 @@ class DrawerActivityState extends State<DrawerActivity> {
     return Scaffold(
       appBar: new AppBar(
         backgroundColor: ColorUtility().colorAppbar,
-        title: new Text(widget._draweItems[_selectedIndex].title),
+        centerTitle: true,
+        title: new Text(widget._draweItems[_selectedIndex].title,style: TextStyle(fontWeight: FontWeight.bold)),
       ),
 
       drawer: new Drawer(
