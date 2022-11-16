@@ -40,4 +40,7 @@ class ColorUtility {
    var colorAlertTop = Color.fromARGB(0xFF, 0xE5, 0xE4, 0xE4);
 
 
+   var colorProfileTop = Color.fromARGB(0xFF, 0xFB, 0xF0, 0xFC);
+
+
 }
