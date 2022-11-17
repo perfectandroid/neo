@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -562,23 +561,13 @@ class _SendOtp extends State<SendOtp>{
       if(statuscode==true){
         ShowDialogs().showProgressDialog(context,"Loading....",false);
         print("sendOtp  4072     "+res.toString());
-        // Navigator.pushAndRemoveUntil(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => ForgotPassword()
-        //     ),
-        //         (route) => false
-        // );
-
-        SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ForgotPassword()
-              ),
-                  (route) => false
-          );
-        });
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ForgotPassword()
+            ),
+                (route) => false
+        );
 
       }else{
         ShowDialogs().showProgressDialog(context,"Loading....",false);
