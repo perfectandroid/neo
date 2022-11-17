@@ -1688,7 +1688,7 @@ class _ReportStock extends State<ReportStock>{
       http.StreamedResponse response = await request.send();
       final res = await response.stream.bytesToString();
 
-   //   print("SearchStockreportReport  1252     "+res.toString());
+      print("SearchStockreportReport  1252     "+res.toString());
 
       final status =jsonDecode(res);
       final statuscode = status['success'] as bool;
@@ -1710,7 +1710,8 @@ class _ReportStock extends State<ReportStock>{
       }
     }catch (e){
       ShowDialogs().showProgressDialog(context,"Loading....",false);
-      return showFaliureAlertDialog(context,"Some technical issues");
+     // return showFaliureAlertDialog(context,"Some technical issues");
+      return showFaliureAlertDialog(context,e.toString());
     }
 
   }

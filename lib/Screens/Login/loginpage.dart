@@ -167,36 +167,46 @@ class _LoginPage extends State<LoginPage>{
 
                                           Container(
                                               margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/25,MediaQuery.of(context).size.width/20,0),
-                                              height: MediaQuery.of(context).size.height/15,
+                                             // height: MediaQuery.of(context).size.height/13,
                                               child: Column(
                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
-                                                    new SizedBox(
-                                                      height: MediaQuery.of(context).size.height/17,
-                                                      width: MediaQuery.of(context).size.width,
-                                                        child:  TextFormField(
-                                                          cursorColor: ColorUtility().colorAppbar,
-                                                          decoration: InputDecoration(
-                                                            labelText: "Username",
-                                                            labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.045,color: ColorUtility().colorBorderBox),
-                                                            prefixIcon: Icon(Icons.person, size: 24,color: ColorUtility().colorBorderBox),
-                                                            enabledBorder: OutlineInputBorder(
-                                                              borderRadius: BorderRadius.circular(2),
-                                                              borderSide: BorderSide(
+                                                    TextFormField(
+                                                      cursorColor: ColorUtility().colorAppbar,
+                                                      decoration: InputDecoration(
+                                                        labelText: "Username",
+                                                        labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.045,color: ColorUtility().colorBorderBox),
+                                                        prefixIcon: Icon(Icons.person, size: 24,color: ColorUtility().colorBorderBox),
+
+                                                          enabledBorder: UnderlineInputBorder(
+                                                              borderSide: new BorderSide(
                                                                 color: ColorUtility().colorBorderBox,
-                                                              ),
-                                                            ),
-                                                            focusedBorder: OutlineInputBorder(
-                                                                borderRadius: BorderRadius.circular(2),
-                                                                borderSide: BorderSide(
-                                                                  color: ColorUtility().colorAppbar,
-                                                                )
-                                                            ),
+                                                              )
                                                           ),
-                                                          obscureText: false,
-                                                          controller: controller.eMailController,
-                                                        )
+
+                                                          focusedBorder: UnderlineInputBorder(
+                                                              borderSide: new BorderSide(
+                                                                color: ColorUtility().colorAppbar,
+                                                              )
+                                                          )
+
+
+                                                        // enabledBorder: OutlineInputBorder(
+                                                        //   borderRadius: BorderRadius.circular(2),
+                                                        //   borderSide: BorderSide(
+                                                        //     color: ColorUtility().colorBorderBox,
+                                                        //   ),
+                                                        // ),
+                                                        // focusedBorder: OutlineInputBorder(
+                                                        //     borderRadius: BorderRadius.circular(2),
+                                                        //     borderSide: BorderSide(
+                                                        //       color: ColorUtility().colorAppbar,
+                                                        //     )
+                                                        // ),
+                                                      ),
+                                                      obscureText: false,
+                                                      controller: controller.eMailController,
                                                     )
                                                   ]
                                               )
@@ -205,54 +215,68 @@ class _LoginPage extends State<LoginPage>{
 
                                           Container(
                                               margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/20,0),
-                                              height: MediaQuery.of(context).size.height/15,
+                                             // height: MediaQuery.of(context).size.height/15,
                                               child: Column(
                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
-                                                    new SizedBox(
-                                                        height: MediaQuery.of(context).size.height/17,
-                                                        width: MediaQuery.of(context).size.width,
-                                                        child:  TextField(
-                                                          cursorColor: ColorUtility().colorAppbar,
-                                                          decoration: InputDecoration(
-                                                            labelText: "Password",
-                                                            labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.045,color: ColorUtility().colorBorderBox),
-                                                            prefixIcon: Icon(Icons.lock, size: 24,color: ColorUtility().colorBorderBox),
-                                                            suffixIcon: IconButton(
-                                                                icon: Icon(boolPass == true?Icons.visibility_off:Icons.visibility),
-                                                                color: ColorUtility().colorBorderBox,
-                                                                onPressed: () {
-                                                                  if(boolPass){ //if passenable == true, make it false
-                                                                    setState(() {
-                                                                      boolPass = false;
-                                                                    });
-                                                                  }else{
-                                                                    setState(() {
-                                                                      boolPass = true;
-                                                                    });
-                                                                  }
 
-                                                                }
-                                                            ),
+                                                    TextField(
+                                                      cursorColor: ColorUtility().colorAppbar,
+                                                      decoration: InputDecoration(
+                                                        labelText: "Password",
+                                                        labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.045,color: ColorUtility().colorBorderBox),
+                                                        prefixIcon: Icon(Icons.lock, size: 24,color: ColorUtility().colorBorderBox),
+                                                        suffixIcon: IconButton(
+                                                            icon: Icon(boolPass == true?Icons.visibility_off:Icons.visibility),
+                                                            color: ColorUtility().colorBorderBox,
+                                                            onPressed: () {
+                                                              if(boolPass){ //if passenable == true, make it false
+                                                                setState(() {
+                                                                  boolPass = false;
+                                                                });
+                                                              }else{
+                                                                setState(() {
+                                                                  boolPass = true;
+                                                                });
+                                                              }
 
-                                                            enabledBorder: OutlineInputBorder(
-                                                              borderRadius: BorderRadius.circular(2),
-                                                              borderSide: BorderSide(
+                                                            }
+                                                        ),
+
+                                                          enabledBorder: UnderlineInputBorder(
+                                                              borderSide: new BorderSide(
                                                                 color: ColorUtility().colorBorderBox,
-                                                              ),
-                                                            ),
-                                                            focusedBorder: OutlineInputBorder(
-                                                                borderRadius: BorderRadius.circular(2),
-                                                                borderSide: BorderSide(
-                                                                  color: ColorUtility().colorAppbar,
-                                                                )
-                                                            ),
+                                                              )
                                                           ),
-                                                          obscureText: boolPass,
-                                                          controller: controller.passWordController,
-                                                        )
+
+                                                          focusedBorder: UnderlineInputBorder(
+                                                              borderSide: new BorderSide(
+                                                                color: ColorUtility().colorAppbar,
+                                                              )
+                                                          )
+
+                                                        // enabledBorder: OutlineInputBorder(
+                                                        //   borderRadius: BorderRadius.circular(2),
+                                                        //   borderSide: BorderSide(
+                                                        //     color: ColorUtility().colorBorderBox,
+                                                        //   ),
+                                                        // ),
+                                                        // focusedBorder: OutlineInputBorder(
+                                                        //     borderRadius: BorderRadius.circular(2),
+                                                        //     borderSide: BorderSide(
+                                                        //       color: ColorUtility().colorAppbar,
+                                                        //     )
+                                                        // ),
+                                                      ),
+                                                      obscureText: boolPass,
+                                                      controller: controller.passWordController,
                                                     )
+                                                    // new SizedBox(
+                                                    //     height: MediaQuery.of(context).size.height/17,
+                                                    //     width: MediaQuery.of(context).size.width,
+                                                    //
+                                                    // )
                                                   ]
                                               )
 

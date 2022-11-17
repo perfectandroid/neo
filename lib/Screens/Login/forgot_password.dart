@@ -44,167 +44,350 @@ class _ForgotPassword extends State<ForgotPassword>{
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-          child: Container(
-            // color: Colors.white,
-            // height: double.infinity,
-            // width: double.infinity,
-            height: MediaQuery.of(context).size.height,
-            child: Padding(
-              padding: const EdgeInsets.all(0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+          child :Container(
+              height: MediaQuery.of(context).size.height,
+              color: Colors.white,
+              child: Stack(
+                  children: <Widget>[
 
-
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height/3,
-                    margin: EdgeInsets.all(MediaQuery.of(context).size.width/10),
-                    child: Image.asset('assets/images/forgot_password.png')),
-
-                  Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/10,0),
-                      height: MediaQuery.of(context).size.height/16,
-                      child:  TextFormField(
-                        cursorColor: ColorUtility().colorAppbar,
-                        decoration: InputDecoration(
-                          labelText: "User Name",
-                          labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
-                          prefixIcon: Icon(Icons.person, size: 24,color: Colors.grey),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(2),
-                            borderSide: BorderSide(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(2),
-                              borderSide: BorderSide(
-                                color: ColorUtility().colorAppbar,
-                              )
-                          ),
-                        ),
-                        obscureText: false,
-                        controller: controller.textUserName,
-                      )
-                  ),
-
-                  Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/10,0),
-                      height: MediaQuery.of(context).size.height/16,
-                      child:  TextFormField(
-                        cursorColor: ColorUtility().colorAppbar,
-                        decoration: InputDecoration(
-                          labelText: "New Password",
-                          labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
-                          prefixIcon: Icon(Icons.lock, size: 24,color: Colors.grey),
-                          suffixIcon: IconButton(
-                              icon: Icon(boolNew == true?Icons.visibility_off:Icons.visibility),
-                              color: Colors.grey,
-                              onPressed: () {
-                                if(boolNew){ //if passenable == true, make it false
-                                  setState(() {
-                                    boolNew = false;
-                                  });
-                                }else{
-                                  setState(() {
-                                    boolNew = true;
-                                  });
-                                }
-
-                              }
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(2),
-                            borderSide: BorderSide(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(2),
-                              borderSide: BorderSide(
-                                color: ColorUtility().colorAppbar,
-                              )
-                          ),
-                        ),
-                        obscureText: boolNew,
-                        controller: controller.textNewPaasword,
-                      )
-                  ),
-
-                  Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/10,0),
-                      height: MediaQuery.of(context).size.height/16,
-                      child:  TextField(
-                        cursorColor: ColorUtility().colorAppbar,
-                        decoration: InputDecoration(
-                          labelText: "Confirm Password",
-                          labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
-                          prefixIcon: Icon(Icons.punch_clock_rounded, size: 24,color: Colors.grey),
-                          suffixIcon: IconButton(
-                              icon: Icon(boolConfirm == true?Icons.visibility_off:Icons.visibility),
-                              color: Colors.grey,
-                              onPressed: () {
-                                if(boolConfirm){ //if passenable == true, make it false
-                                  setState(() {
-                                    boolConfirm = false;
-                                  });
-                                }else{
-                                  setState(() {
-                                    boolConfirm = true;
-                                  });
-                                }
-
-                              }
-                          ),
-
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(2),
-                            borderSide: BorderSide(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(2),
-                              borderSide: BorderSide(
-                                color: ColorUtility().colorAppbar,
-                              )
-                          ),
-                        ),
-                        obscureText: boolConfirm,
-                        controller: controller.textConfirmPaasword,
-                      )
-                  ),
-
-                  Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/10,0),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            new SizedBox(
-                              height: MediaQuery.of(context).size.height/16,
-                              width: MediaQuery.of(context).size.width,
-                              child: ElevatedButton(
-                                child: Text('CONFIRM',style:TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04)),
-                                style: ElevatedButton.styleFrom(primary: ColorUtility().colorAppbar),
-                                onPressed: () {
-                                  // controller.checkUserInputs(context);
-                                  // controller.checkUserInputs(context);
-                                  validator();
-                                },
+                    Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        child:  Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height/2,
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: EdgeInsets.all(0),
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                              color: ColorUtility().colorAppbar,
+                              // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            )
+                        )
+                    ),
+                    Positioned(
+                        top: MediaQuery.of(context).size.height/2,
+                        left: 0,
+                        right: 0,
+                        child:  Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height/2,
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: EdgeInsets.all(0),
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                              // border: Border.all(
+                              //     color: Colors.white,
+                              //     //color: myImageAndCaption[i].color,
+                              //     width: 0.9
+                              // ),
+                              // borderRadius: BorderRadius.all(Radius.circular(5))
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/loginbg.png"),
+                                fit: BoxFit.fill,
                               ),
-                            ),
-                          ]
-                      )
+                            )
+                        )
+                    ),
 
-                  )//Text//Text
+                    Positioned(
+                      top: MediaQuery.of(context).size.height/20,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        width: MediaQuery.of(context).size.height/6,
+                        height: MediaQuery.of(context).size.height/6,
+                        child: CircleAvatar(
+                            backgroundColor: Colors.black,
+                            radius: 100,
+                            child: Image.asset('assets/images/logo.png')),//Text
+                      ),
+                    ),
 
-                ],
-              ),
-            ),
-          )),
+                    Positioned(
+                      top: MediaQuery.of(context).size.height/3,
+                      left: MediaQuery.of(context).size.width/10,
+                      right: MediaQuery.of(context).size.width/10,
+                      child: Card(
+                          elevation: 5,
+                          //shadowColor: Colors.grey,
+                          shadowColor: Colors.white,
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child : Container(
+                              width: MediaQuery.of(context).size.height/20,
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/30,MediaQuery.of(context).size.width/20,0),
+                                          width: MediaQuery.of(context).size.height/17,
+                                          height: MediaQuery.of(context).size.height/17,
+                                          child: CircleAvatar(
+                                              backgroundColor: Colors.white,
+                                              radius: 100,
+                                              child: Image.asset('assets/images/lock_login.png')),//Text
+                                        ),
+
+                                        Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/90,MediaQuery.of(context).size.width/20,0),
+                                            child: Column(
+                                                children: [
+                                                  Align(
+                                                      alignment: Alignment.center,
+                                                      child: new Text('Forgot Password', textAlign: TextAlign.center, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.06,color: Colors.black54,fontWeight: FontWeight.bold))
+
+                                                  )
+                                                ]
+                                            )
+                                        ),
+
+                                        Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/25,MediaQuery.of(context).size.width/20,0),
+                                           // height: MediaQuery.of(context).size.height/15,
+                                            child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+
+                                                   TextFormField(
+                                                    cursorColor: ColorUtility().colorAppbar,
+                                                    decoration: InputDecoration(
+                                                        labelText: "User Name",
+                                                        labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: ColorUtility().colorBorderBox),
+                                                        prefixIcon: Icon(Icons.person, size: 24,color: ColorUtility().colorBorderBox),
+
+                                                        enabledBorder: UnderlineInputBorder(
+                                                            borderSide: new BorderSide(
+                                                              color: ColorUtility().colorBorderBox,
+                                                            )
+                                                        ),
+
+                                                        focusedBorder: UnderlineInputBorder(
+                                                            borderSide: new BorderSide(
+                                                              color: ColorUtility().colorAppbar,
+                                                            )
+                                                        )
+
+                                                      // enabledBorder: OutlineInputBorder(
+                                                      //   borderRadius: BorderRadius.circular(2),
+                                                      //   borderSide: BorderSide(
+                                                      //     color: ColorUtility().colorBorderBox,
+                                                      //   ),
+                                                      // ),
+                                                      // focusedBorder: OutlineInputBorder(
+                                                      //     borderRadius: BorderRadius.circular(2),
+                                                      //     borderSide: BorderSide(
+                                                      //       color: ColorUtility().colorAppbar,
+                                                      //     )
+                                                      // ),
+                                                    ),
+                                                    obscureText: false,
+                                                    controller: controller.textUserName,
+                                                  )
+
+                                                  // new SizedBox(
+                                                  //     height: MediaQuery.of(context).size.height/17,
+                                                  //     width: MediaQuery.of(context).size.width,
+                                                  //
+                                                  // )
+                                                ]
+                                            )
+
+                                        ),
+
+                                        Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/80,MediaQuery.of(context).size.width/20,0),
+                                           // height: MediaQuery.of(context).size.height/15,
+                                            child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+
+                                                  TextFormField(
+                                                    cursorColor: ColorUtility().colorAppbar,
+                                                    decoration: InputDecoration(
+                                                        labelText: "New Password",
+                                                        labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: ColorUtility().colorBorderBox),
+                                                        prefixIcon: Icon(Icons.lock, size: 24,color:ColorUtility().colorBorderBox),
+                                                        suffixIcon: IconButton(
+                                                            icon: Icon(boolNew == true?Icons.visibility_off:Icons.visibility),
+                                                            color: ColorUtility().colorBorderBox,
+                                                            onPressed: () {
+                                                              if(boolNew){ //if passenable == true, make it false
+                                                                setState(() {
+                                                                  boolNew = false;
+                                                                });
+                                                              }else{
+                                                                setState(() {
+                                                                  boolNew = true;
+                                                                });
+                                                              }
+
+                                                            }
+                                                        ),
+
+                                                        enabledBorder: UnderlineInputBorder(
+                                                            borderSide: new BorderSide(
+                                                              color: ColorUtility().colorBorderBox,
+                                                            )
+                                                        ),
+
+                                                        focusedBorder: UnderlineInputBorder(
+                                                            borderSide: new BorderSide(
+                                                              color: ColorUtility().colorAppbar,
+                                                            )
+                                                        )
+                                                      //   enabledBorder: OutlineInputBorder(
+                                                      //     borderRadius: BorderRadius.circular(2),
+                                                      //     borderSide: BorderSide(
+                                                      //       color: ColorUtility().colorBorderBox,
+                                                      //     ),
+                                                      //   ),
+                                                      //   focusedBorder: OutlineInputBorder(
+                                                      //       borderRadius: BorderRadius.circular(2),
+                                                      //       borderSide: BorderSide(
+                                                      //         color: ColorUtility().colorAppbar,
+                                                      //       )
+                                                      //   ),
+                                                    ),
+                                                    obscureText: boolNew,
+                                                    controller: controller.textNewPaasword,
+                                                  )
+
+                                                  // new SizedBox(
+                                                  //     height: MediaQuery.of(context).size.height/17,
+                                                  //     width: MediaQuery.of(context).size.width,
+                                                  //     child:
+                                                  // )
+                                                ]
+                                            )
+
+
+                                        ),
+
+
+                                        Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/90,MediaQuery.of(context).size.width/40,0),
+                                         //   height: MediaQuery.of(context).size.height/15,
+                                            child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+
+                                                  TextField(
+                                                    cursorColor: ColorUtility().colorAppbar,
+                                                    decoration: InputDecoration(
+                                                        labelText: "Confirm Password",
+                                                        labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: ColorUtility().colorBorderBox),
+                                                        prefixIcon: Icon(Icons.punch_clock_rounded, size: 24,color: ColorUtility().colorBorderBox),
+                                                        suffixIcon: IconButton(
+                                                            icon: Icon(boolConfirm == true?Icons.visibility_off:Icons.visibility),
+                                                            color: ColorUtility().colorBorderBox,
+                                                            onPressed: () {
+                                                              if(boolConfirm){ //if passenable == true, make it false
+                                                                setState(() {
+                                                                  boolConfirm = false;
+                                                                });
+                                                              }else{
+                                                                setState(() {
+                                                                  boolConfirm = true;
+                                                                });
+                                                              }
+
+                                                            }
+                                                        ),
+
+                                                        enabledBorder: UnderlineInputBorder(
+                                                            borderSide: new BorderSide(
+                                                              color: ColorUtility().colorBorderBox,
+                                                            )
+                                                        ),
+
+                                                        focusedBorder: UnderlineInputBorder(
+                                                            borderSide: new BorderSide(
+                                                              color: ColorUtility().colorAppbar,
+                                                            )
+                                                        )
+
+                                                      // enabledBorder: OutlineInputBorder(
+                                                      //   borderRadius: BorderRadius.circular(2),
+                                                      //   borderSide: BorderSide(
+                                                      //     color: ColorUtility().colorBorderBox,
+                                                      //   ),
+                                                      // ),
+                                                      // focusedBorder: OutlineInputBorder(
+                                                      //     borderRadius: BorderRadius.circular(2),
+                                                      //     borderSide: BorderSide(
+                                                      //       color: ColorUtility().colorAppbar,
+                                                      //     )
+                                                      // ),
+                                                    ),
+                                                    obscureText: boolConfirm,
+                                                    controller: controller.textConfirmPaasword,
+                                                  )
+
+                                                  // new SizedBox(
+                                                  //     height: MediaQuery.of(context).size.height/17,
+                                                  //     width: MediaQuery.of(context).size.width,
+                                                  //     child:
+                                                  // )
+                                                ]
+                                            )
+
+
+                                        ),
+
+
+
+
+                                        Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/20),
+                                            child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  new SizedBox(
+                                                    height: MediaQuery.of(context).size.height/17,
+                                                    width: MediaQuery.of(context).size.width,
+                                                    child: ElevatedButton(
+                                                      child: Text('CONFIRM',style:TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04)),
+                                                      style: ElevatedButton.styleFrom(primary: ColorUtility().colorAppbar),
+                                                      onPressed: () {
+                                                        // controller.checkUserInputs(context);
+                                                        // controller.checkUserInputs(context);
+                                                        validator();
+                                                      },
+                                                    ),
+                                                  ),
+                                                ]
+                                            )
+
+                                        )
+
+
+                                      ]
+                                  )
+                              )
+
+                          )
+                      ),
+                    ),
+
+
+
+
+                  ]
+              )
+          )
+      ),
 
     );
   }

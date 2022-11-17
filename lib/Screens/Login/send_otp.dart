@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -42,134 +43,219 @@ class _SendOtp extends State<SendOtp>{
     super.initState();
   }
 
+
+  @override
+  void dispose() {
+    final controller = Get.put(SendOtpController());
+    controller.userNameController.dispose();
+    controller.eMailController.dispose();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SendOtpController());
     return Scaffold(
       body: SingleChildScrollView(
-          child: Container(
-            color: ColorUtility().colorAppbar,
-            height: MediaQuery.of(context).size.height,
-            child: Padding(
-              padding: const EdgeInsets.all(0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
 
-                  Expanded(
-                      flex: 3,
+          child :Container(
+              height: MediaQuery.of(context).size.height,
+              color: Colors.white,
+              child: Stack(
+                  children: <Widget>[
+
+                    Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        child:  Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height/2,
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: EdgeInsets.all(0),
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                              color: ColorUtility().colorAppbar,
+                              // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            )
+                        )
+                    ),
+                    Positioned(
+                        top: MediaQuery.of(context).size.height/2,
+                        left: 0,
+                        right: 0,
+                        child:  Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height/2,
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: EdgeInsets.all(0),
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                              // border: Border.all(
+                              //     color: Colors.white,
+                              //     //color: myImageAndCaption[i].color,
+                              //     width: 0.9
+                              // ),
+                              // borderRadius: BorderRadius.all(Radius.circular(5))
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/loginbg.png"),
+                                fit: BoxFit.fill,
+                              ),
+                            )
+                        )
+                    ),
+
+                    Positioned(
+                      top: MediaQuery.of(context).size.height/10,
+                      left: 0,
+                      right: 0,
                       child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height/5,
-                          margin: EdgeInsets.all(MediaQuery.of(context).size.width/10),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: CircleAvatar(
-                                      backgroundColor: Colors.black,
-                                      radius: 75,
-                                      child: Image.asset('assets/images/logo.png')),//Text
-                                )
+                        width: MediaQuery.of(context).size.height/6,
+                        height: MediaQuery.of(context).size.height/6,
+                        child: CircleAvatar(
+                            backgroundColor: Colors.black,
+                            radius: 100,
+                            child: Image.asset('assets/images/logo.png')),//Text
+                      ),
+                    ),
 
-                              ]
-                          )
-                      )
-                    // child: Image.asset('assets/images/forgot_password.png'))
-                  ),
-
-                  Expanded(
-                      flex: 5,
-                      child:  Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(100),
-                            ),
-                            border: Border.all(
-                              width: 3,
-                              color: Colors.white,
-                              style: BorderStyle.solid,
-                            ),
+                    Positioned(
+                      top: MediaQuery.of(context).size.height/3,
+                      left: MediaQuery.of(context).size.width/10,
+                      right: MediaQuery.of(context).size.width/10,
+                      child: Card(
+                          elevation: 5,
+                          //shadowColor: Colors.grey,
+                          shadowColor: Colors.white,
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
                           ),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
+                          child : Container(
+                              width: MediaQuery.of(context).size.height/20,
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
 
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/10,0),
-                                  padding: const EdgeInsets.all(5.0),
-                                  alignment: Alignment.topCenter,
-                                  child:Text("We will send you a One Time Password (OTP) on your mobile", style: TextStyle(fontWeight: FontWeight.normal,
-                                      fontSize: MediaQuery.of(context).size.height * 0.018,letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.center),
-
-                                ),
-                                Container(
-                                    margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/10,0),
-                                    height: MediaQuery.of(context).size.height/16,
-                                    child:  TextFormField(
-                                      cursorColor: ColorUtility().colorAppbar,
-                                      decoration: InputDecoration(
-                                        labelText: "User Name",
-                                        labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
-                                        prefixIcon: Icon(Icons.person, size: 24,color: Colors.grey),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(2),
-                                          borderSide: BorderSide(
-                                            color: Colors.grey,
-                                          ),
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.width/20,0),
+                                          width: MediaQuery.of(context).size.height/17,
+                                          height: MediaQuery.of(context).size.height/17,
+                                          child: CircleAvatar(
+                                              backgroundColor: Colors.white,
+                                              radius: 100,
+                                              child: Image.asset('assets/images/lock_login.png')),//Text
                                         ),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(2),
-                                            borderSide: BorderSide(
-                                              color: ColorUtility().colorAppbar,
+
+                                        Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/90,MediaQuery.of(context).size.width/20,0),
+                                            child: Column(
+                                                children: [
+                                                  Align(
+                                                      alignment: Alignment.center,
+                                                      child: new Text('Send OTP', textAlign: TextAlign.center, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.06,color: Colors.black54,fontWeight: FontWeight.bold))
+
+                                                  )
+                                                ]
                                             )
                                         ),
-                                      ),
-                                      obscureText: false,
-                                      controller: controller.userNameController,
-                                    )
-                                ),//Text
-                                Container(
-                                    margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/10,0),
-                                    child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          new SizedBox(
-                                            height: MediaQuery.of(context).size.height/16,
-                                            width: MediaQuery.of(context).size.width,
-                                            child: ElevatedButton(
-                                              child: Text('Send OTP',style:TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04)),
-                                              style: ElevatedButton.styleFrom(primary: ColorUtility().colorAppbar),
-                                              onPressed: () {
-                                                // controller.checkUserInputs(context);
-                                                // controller.checkUserInputs(context);
-                                                validator();
-                                              },
-                                            ),
-                                          ),
-                                        ]
-                                    )
 
-                                )
-                              ]
+                                        Center(
+                                            child: Container(
+                                              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/20,0),
+                                              padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                              alignment: Alignment.center,
+                                              child:Text("We will send you a One Time Password (OTP) on your mobile ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.center),
+
+                                            )
+                                        ),
+
+
+                                        Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/20,0),
+                                            //height: MediaQuery.of(context).size.height/16,
+                                            child:  TextFormField(
+                                              cursorColor: ColorUtility().colorAppbar,
+                                              decoration: InputDecoration(
+                                                labelText: "User Name",
+                                                labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
+                                                prefixIcon: Icon(Icons.person, size: 24,color: Colors.grey),
+
+                                                  enabledBorder: UnderlineInputBorder(
+                                                      borderSide: new BorderSide(
+                                                        color: ColorUtility().colorBorderBox,
+                                                      )
+                                                  ),
+
+                                                focusedBorder: UnderlineInputBorder(
+                                                    borderSide: new BorderSide(
+                                                      color: ColorUtility().colorAppbar,
+                                                    )
+                                                )
+
+                                              // enabledBorder: OutlineInputBorder(
+                                                //   borderRadius: BorderRadius.circular(2),
+                                                //   borderSide: BorderSide(
+                                                //     color: Colors.grey,
+                                                //   ),
+                                                // ),
+                                                // focusedBorder: OutlineInputBorder(
+                                                //     borderRadius: BorderRadius.circular(2),
+                                                //     borderSide: BorderSide(
+                                                //       color: ColorUtility().colorAppbar,
+                                                //     )
+                                                // ),
+                                              ),
+                                              obscureText: false,
+                                              controller: controller.userNameController,
+                                            )
+                                        ),
+
+
+                                        Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/10),
+                                            child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  new SizedBox(
+                                                    height: MediaQuery.of(context).size.height/17,
+                                                    width: MediaQuery.of(context).size.width,
+                                                    child: ElevatedButton(
+                                                      child: Text('Send OTP',style:TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04)),
+                                                      style: ElevatedButton.styleFrom(primary: ColorUtility().colorAppbar),
+                                                      onPressed: () {
+                                                        // controller.checkUserInputs(context);
+                                                        // controller.checkUserInputs(context);
+                                                        validator();
+                                                      },
+                                                    ),
+                                                  ),
+                                                ]
+                                            )
+
+                                        )
+
+
+                                      ]
+                                  )
+                              )
+
                           )
-                      )
-                  )
+                      ),
+                    ),
 
 
 
 
-
-                ],
-              ),
-            ),
-          )),
+                  ]
+              )
+          )
+      ),
 
     );
   }
@@ -455,10 +541,11 @@ class _SendOtp extends State<SendOtp>{
     final controller = Get.put(SendOtpController());
     controller.userNameController.clear();
     controller.eMailController.clear();
+    controller.eMailController.clear();
     print('sendOtp');
     print(Username);
     try {
-      //  ShowDialogs().showProgressDialog(context,"Loading....",true);
+      ShowDialogs().showProgressDialog(context,"Loading....",true);
       var headers = {'Content-Type': 'application/json'};
       var request = http.Request('POST', Uri.parse(Config().BASE_URL+'/customer_api/verify_forgot_otp/'));
       request.body = json.encode({"username": "$Username","fpassotp": "$otp"});
@@ -471,17 +558,27 @@ class _SendOtp extends State<SendOtp>{
       final status =jsonDecode(res);
       final statuscode = status['success'] as bool;
       final errors = status['errors'] as String;
-
+      print("sendOtp  4071     "+res.toString());
       if(statuscode==true){
         ShowDialogs().showProgressDialog(context,"Loading....",false);
+        print("sendOtp  4072     "+res.toString());
+        // Navigator.pushAndRemoveUntil(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => ForgotPassword()
+        //     ),
+        //         (route) => false
+        // );
 
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ForgotPassword()
-            ),
-                (route) => false
-        );
+        SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ForgotPassword()
+              ),
+                  (route) => false
+          );
+        });
 
       }else{
         ShowDialogs().showProgressDialog(context,"Loading....",false);
