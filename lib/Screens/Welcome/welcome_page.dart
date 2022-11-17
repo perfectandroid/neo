@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Login/loginpage.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
+import 'package:neo/helper/colorutility.dart';
 import '../../constants.dart';
 
 class WelcomePage extends StatefulWidget {
   WelcomePage({Key? key, this.title}) : super(key: key);
   final String? title;
 
-  @override
-  _WelcomePageState createState() => _WelcomePageState();
+  State<StatefulWidget> createState() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    return _WelcomePageState();
+  }
+
+  // @override
+  // _WelcomePageState createState() => _WelcomePageState();
 }
 class _WelcomePageState extends State<WelcomePage> {
   Widget _submitButton() {
@@ -30,6 +40,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
       },
       child: Container(
+        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height/15, MediaQuery.of(context).size.height/15, MediaQuery.of(context).size.height/15, MediaQuery.of(context).size.height/70),
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 13),
         alignment: Alignment.center,
@@ -37,15 +48,17 @@ class _WelcomePageState extends State<WelcomePage> {
             borderRadius: BorderRadius.all(Radius.circular(5)),
             boxShadow: <BoxShadow>[
               BoxShadow(
-                  color: Color(0xffdf8e33).withAlpha(100),
+                  // color: Color(0xffdf8e33).withAlpha(100),
+                  color: Colors.white,
                   offset: Offset(2, 4),
                   blurRadius: 8,
                   spreadRadius: 2)
             ],
-            color: Colors.white),
+           // color: Colors.white),
+            color:ColorUtility().colorAppbar),
         child: Text(
-          'Login',
-          style: TextStyle(fontSize: 20, color: Color(0xfff7892b)),
+          'Get Started',
+          style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
     );
@@ -88,20 +101,26 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   Widget _title() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-          text: 'Welcome Back',style: TextStyle(color: Colors.white, fontSize: 30),
-      ),
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height/15, 0, MediaQuery.of(context).size.height/70),
+       child : RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            text: 'Welcome Back',style: TextStyle(color: Colors.black, fontSize: 30),
+          ),
+        )
     );
 
   }
   Widget _discription() {
-    return RichText(
-      textAlign: TextAlign.justify,
-      text: TextSpan(
-          text: 'Let us get started, be ready to activate your account. This application will advantage you in many ways and also makes your works done effortlessly.',style: TextStyle(color: Colors.white, fontSize: 18),
-      ),
+    return Container(
+      padding: EdgeInsets.fromLTRB( MediaQuery.of(context).size.width/15, 0, MediaQuery.of(context).size.width/15, 0),
+       child : RichText(
+          textAlign: TextAlign.justify,
+          text: TextSpan(
+            text: 'Let us get started, be ready to activate your account. This application will advantage you in many ways and also makes your works done effortlessly.',style: TextStyle(color: Colors.black, fontSize: 18),
+          ),
+        )
     );
 
   }
@@ -113,20 +132,29 @@ class _WelcomePageState extends State<WelcomePage> {
         child:Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
           height: MediaQuery.of(context).size.height,
+        //  color: Colors.greenAccent,
+          // decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.all(Radius.circular(5)),
+          //     boxShadow: <BoxShadow>[
+          //       BoxShadow(
+          //           color: Colors.grey.shade200,
+          //           offset: Offset(2, 4),
+          //           blurRadius: 5,
+          //           spreadRadius: 2)
+          //     ],
+          //     gradient: LinearGradient(
+          //         begin: Alignment.topCenter,
+          //         end: Alignment.bottomCenter,
+          //         colors: [PrimaryColor, PrimaryLightColor])
+          // ),
+
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.shade200,
-                    offset: Offset(2, 4),
-                    blurRadius: 5,
-                    spreadRadius: 2)
-              ],
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [PrimaryColor, PrimaryLightColor])
+            image: DecorationImage(
+              image: AssetImage("assets/images/welcome_bg.jpg"),
+              fit: BoxFit.cover,
+            ),
           ),
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
