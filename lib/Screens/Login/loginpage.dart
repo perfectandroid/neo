@@ -38,7 +38,7 @@ class LoginPage extends StatefulWidget{
 class _LoginPage extends State<LoginPage>{
   // TextEditingController eMailController = TextEditingController();
   // TextEditingController passWordController = TextEditingController();
-  bool boolPass = false;
+  bool boolPass = true;
   @override
   initState(){
 
@@ -59,159 +59,275 @@ class _LoginPage extends State<LoginPage>{
     final controller = Get.put(LoginController());
     return Scaffold(
       body: SingleChildScrollView(
-          child: Container(
-            // color: Colors.white,
-            // height: double.infinity,
-            // width: double.infinity,
-            height: MediaQuery.of(context).size.height,
-            decoration: new BoxDecoration(image: new DecorationImage(image: new AssetImage("assets/images/loginbg.png"), fit: BoxFit.fill)),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
 
-                  Container(
-                    width: MediaQuery.of(context).size.height/5,
-                    height: MediaQuery.of(context).size.height/5,
-                    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
-                    child: CircleAvatar(
-                        backgroundColor: Colors.black,
-                        radius: 100,
-                        child: Image.asset('assets/images/logo.png')),//Text
-                  ),
+          child :Container(
+                  height: MediaQuery.of(context).size.height,
+                  color: Colors.white,
+                  child: Stack(
+                      children: <Widget>[
 
-                  Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/10,0),
-                      height: MediaQuery.of(context).size.height/16,
-                      child:  TextFormField(
-                        cursorColor: ColorUtility().colorAppbar,
-                        decoration: InputDecoration(
-                          labelText: "Username",
-                          labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
-                          prefixIcon: Icon(Icons.person, size: 24,color: Colors.grey),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(2),
-                            borderSide: BorderSide(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(2),
-                              borderSide: BorderSide(
-                                color: ColorUtility().colorAppbar,
-                              )
-                          ),
+                        Positioned(
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            child:  Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height/2,
+                                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                padding: EdgeInsets.all(0),
+                                alignment: Alignment.topCenter,
+                                decoration: BoxDecoration(
+                                  color: ColorUtility().colorAppbar,
+                                 // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+                                )
+                            )
                         ),
-                        obscureText: false,
-                        controller: controller.eMailController,
-                      )
-                  ),//Text
-
-                  Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/10,0),
-                      height: MediaQuery.of(context).size.height/16,
-                      child:  TextField(
-                        cursorColor: ColorUtility().colorAppbar,
-                        decoration: InputDecoration(
-                          labelText: "Password",
-                          labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
-                          prefixIcon: Icon(Icons.lock, size: 24,color: Colors.grey),
-                          suffixIcon: IconButton(
-                              icon: Icon(boolPass == true?Icons.visibility_off:Icons.visibility),
-                              color: Colors.grey,
-                              onPressed: () {
-                                if(boolPass){ //if passenable == true, make it false
-                                  setState(() {
-                                    boolPass = false;
-                                  });
-                                }else{
-                                  setState(() {
-                                    boolPass = true;
-                                  });
-                                }
-
-                              }
-                          ),
-
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(2),
-                            borderSide: BorderSide(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(2),
-                              borderSide: BorderSide(
-                                color: ColorUtility().colorAppbar,
-                              )
-                          ),
+                        Positioned(
+                            top: MediaQuery.of(context).size.height/2,
+                            left: 0,
+                            right: 0,
+                            child:  Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height/2,
+                                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                padding: EdgeInsets.all(0),
+                                alignment: Alignment.topCenter,
+                                decoration: BoxDecoration(
+                                  // border: Border.all(
+                                  //     color: Colors.white,
+                                  //     //color: myImageAndCaption[i].color,
+                                  //     width: 0.9
+                                  // ),
+                                  // borderRadius: BorderRadius.all(Radius.circular(5))
+                                  image: DecorationImage(
+                                    image: AssetImage("assets/images/loginbg.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                )
+                            )
                         ),
-                        obscureText: boolPass,
-                        controller: controller.passWordController,
-                      )
-                  ),//Text
 
+                        Positioned(
+                            top: MediaQuery.of(context).size.height/10,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              width: MediaQuery.of(context).size.height/6,
+                              height: MediaQuery.of(context).size.height/6,
+                              child: CircleAvatar(
+                                  backgroundColor: Colors.black,
+                                  radius: 100,
+                                  child: Image.asset('assets/images/logo.png')),//Text
+                            ),
+                        ),
 
-                  Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/10,0),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            new SizedBox(
-                              height: MediaQuery.of(context).size.height/16,
-                              width: MediaQuery.of(context).size.width,
-                              child: ElevatedButton(
-                                child: Text('Login',style:TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04)),
-                                style: ElevatedButton.styleFrom(primary: ColorUtility().colorAppbar),
-                                onPressed: () {
-                                  // controller.checkUserInputs(context);
-                                  // controller.checkUserInputs(context);
-                                  validator();
-                                },
+                        Positioned(
+                          top: MediaQuery.of(context).size.height/3,
+                          left: MediaQuery.of(context).size.width/10,
+                          right: MediaQuery.of(context).size.width/10,
+                          child: Card(
+                            elevation: 5,
+                            //shadowColor: Colors.grey,
+                            shadowColor: Colors.white,
+                            color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
                               ),
-                            ),
-                          ]
-                      )
+                            child : Container(
+                              width: MediaQuery.of(context).size.height/20,
+                                child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
 
-                  ),
+                                          Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.width/20,0),
+                                            width: MediaQuery.of(context).size.height/17,
+                                            height: MediaQuery.of(context).size.height/17,
+                                            child: CircleAvatar(
+                                                backgroundColor: Colors.white,
+                                                radius: 100,
+                                                child: Image.asset('assets/images/lock_login.png')),//Text
+                                          ),
 
-                  Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/70,MediaQuery.of(context).size.width/10,0),
-                      child: Column(
-                          children: [
-                            Align(
-                                alignment: Alignment.centerRight, child:
-                                new GestureDetector(
-                                  onTap: () {
+                                          Container(
+                                              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/90,MediaQuery.of(context).size.width/20,0),
+                                              child: Column(
+                                                  children: [
+                                                    Align(
+                                                        alignment: Alignment.center,
+                                                        child: new Text('Login Account', textAlign: TextAlign.center, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.06,color: Colors.black54,fontWeight: FontWeight.bold))
 
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => SendOtp()
-                                        ),
-                                            (route) => false
-                                    );
+                                                    )
+                                                  ]
+                                              )
+                                          ),
 
-                                 //   confirmOtpPopup(context);
-                                  },
-                                  child: new Text('Forgot Password ?', textAlign: TextAlign.right, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05,color: ColorUtility().colorAppbar))
+                                          Container(
+                                              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/25,MediaQuery.of(context).size.width/20,0),
+                                              height: MediaQuery.of(context).size.height/15,
+                                              child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    new SizedBox(
+                                                      height: MediaQuery.of(context).size.height/17,
+                                                      width: MediaQuery.of(context).size.width,
+                                                        child:  TextFormField(
+                                                          cursorColor: ColorUtility().colorAppbar,
+                                                          decoration: InputDecoration(
+                                                            labelText: "Username",
+                                                            labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.045,color: ColorUtility().colorBorderBox),
+                                                            prefixIcon: Icon(Icons.person, size: 24,color: ColorUtility().colorBorderBox),
+                                                            enabledBorder: OutlineInputBorder(
+                                                              borderRadius: BorderRadius.circular(2),
+                                                              borderSide: BorderSide(
+                                                                color: ColorUtility().colorBorderBox,
+                                                              ),
+                                                            ),
+                                                            focusedBorder: OutlineInputBorder(
+                                                                borderRadius: BorderRadius.circular(2),
+                                                                borderSide: BorderSide(
+                                                                  color: ColorUtility().colorAppbar,
+                                                                )
+                                                            ),
+                                                          ),
+                                                          obscureText: false,
+                                                          controller: controller.eMailController,
+                                                        )
+                                                    )
+                                                  ]
+                                              )
+
+                                          ),
+
+                                          Container(
+                                              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/20,0),
+                                              height: MediaQuery.of(context).size.height/15,
+                                              child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    new SizedBox(
+                                                        height: MediaQuery.of(context).size.height/17,
+                                                        width: MediaQuery.of(context).size.width,
+                                                        child:  TextField(
+                                                          cursorColor: ColorUtility().colorAppbar,
+                                                          decoration: InputDecoration(
+                                                            labelText: "Password",
+                                                            labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.045,color: ColorUtility().colorBorderBox),
+                                                            prefixIcon: Icon(Icons.lock, size: 24,color: ColorUtility().colorBorderBox),
+                                                            suffixIcon: IconButton(
+                                                                icon: Icon(boolPass == true?Icons.visibility_off:Icons.visibility),
+                                                                color: ColorUtility().colorBorderBox,
+                                                                onPressed: () {
+                                                                  if(boolPass){ //if passenable == true, make it false
+                                                                    setState(() {
+                                                                      boolPass = false;
+                                                                    });
+                                                                  }else{
+                                                                    setState(() {
+                                                                      boolPass = true;
+                                                                    });
+                                                                  }
+
+                                                                }
+                                                            ),
+
+                                                            enabledBorder: OutlineInputBorder(
+                                                              borderRadius: BorderRadius.circular(2),
+                                                              borderSide: BorderSide(
+                                                                color: ColorUtility().colorBorderBox,
+                                                              ),
+                                                            ),
+                                                            focusedBorder: OutlineInputBorder(
+                                                                borderRadius: BorderRadius.circular(2),
+                                                                borderSide: BorderSide(
+                                                                  color: ColorUtility().colorAppbar,
+                                                                )
+                                                            ),
+                                                          ),
+                                                          obscureText: boolPass,
+                                                          controller: controller.passWordController,
+                                                        )
+                                                    )
+                                                  ]
+                                              )
+
+
+                                          ),
+
+                                          Container(
+                                              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/50,MediaQuery.of(context).size.width/10,0),
+                                              child: Column(
+                                                  children: [
+                                                    Align(
+                                                        alignment: Alignment.centerLeft, child:
+                                                    new GestureDetector(
+                                                        onTap: () {
+
+                                                          Navigator.pushAndRemoveUntil(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (context) => SendOtp()
+                                                              ),
+                                                                  (route) => false
+                                                          );
+
+                                                          //   confirmOtpPopup(context);
+                                                        },
+                                                        child: new Text('Forgot Password ?', textAlign: TextAlign.left, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04,color: ColorUtility().colorAppbar))
+                                                    )
+
+                                                    )
+                                                  ]
+                                              )
+                                          ),
+
+
+                                          Container(
+                                              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/10),
+                                              child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    new SizedBox(
+                                                      height: MediaQuery.of(context).size.height/17,
+                                                      width: MediaQuery.of(context).size.width,
+                                                      child: ElevatedButton(
+                                                        child: Text('Login',style:TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04)),
+                                                        style: ElevatedButton.styleFrom(primary: ColorUtility().colorAppbar),
+                                                        onPressed: () {
+                                                          // controller.checkUserInputs(context);
+                                                          // controller.checkUserInputs(context);
+                                                          validator();
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ]
+                                              )
+
+                                          ),
+
+
+                                        ]
+                                    )
                                 )
 
                             )
-                          ]
-                      )
+                          ),
+                        ),
+
+
+
+
+                      ]
                   )
+             )
 
-
-
-
-                ],
-              ),
-            ),
-          )),
+        ),
 
     );
   }
@@ -493,14 +609,18 @@ OtpPage(BuildContext context, String Username, status) async {
     //     MaterialPageRoute(
     //       builder: (context) => OTPVerification(text: Username,mobileNo : mobileNo),
     //     ));
+
+    var pass = controller.passWordController.text.toString();
     controller.eMailController.clear();
     controller.passWordController.clear();
+
+
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-            builder: (context) => OTPVerification(text: Username,mobileNo : mobileNo)
+            builder: (context) => OTPVerification(text: Username,mobileNo : mobileNo,pass : pass)
         ),
-            (route) => true
+            (route) => false
     );
 
   }

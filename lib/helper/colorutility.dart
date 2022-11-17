@@ -41,6 +41,7 @@ class ColorUtility {
 
 
    var colorProfileTop = Color.fromARGB(0xFF, 0xFB, 0xF0, 0xFC);
+   var colorBorderBox = Color.fromARGB(0xFF, 0xC4, 0xC3, 0xC3);
 
 
 }

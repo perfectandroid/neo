@@ -22,7 +22,8 @@ class OTPVerification extends StatefulWidget{
 
   String text;
   String mobileNo;
-  OTPVerification({required this.text,required this.mobileNo});
+  String pass;
+  OTPVerification({required this.text,required this.mobileNo,required this.pass});
 
   @override
   State<StatefulWidget> createState() {
@@ -60,375 +61,229 @@ class _OTPVerification extends State<OTPVerification>{
 
     return Scaffold(
       body: SingleChildScrollView(
-          child: Container(
-            // color: Colors.white,
-            // height: double.infinity,
-            // width: double.infinity,
-            height: MediaQuery.of(context).size.height,
-            decoration: new BoxDecoration(image: new DecorationImage(image: new AssetImage("assets/images/loginbg.png"), fit: BoxFit.fill)),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+          child :Container(
+              height: MediaQuery.of(context).size.height,
+              color: Colors.white,
+              child: Stack(
+                  children: <Widget>[
 
-                  Container(
-                    width: MediaQuery.of(context).size.height/5,
-                    height: MediaQuery.of(context).size.height/5,
-                    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
-                    padding: EdgeInsets.all(1),
-                    decoration: new BoxDecoration(
-                        borderRadius: BorderRadius.circular( MediaQuery.of(context).size.height/10),
-                        boxShadow: [new BoxShadow(
-                            color: Colors.grey,
-                        )]
+                    Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        child:  Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height/2,
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: EdgeInsets.all(0),
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                              color: ColorUtility().colorAppbar,
+                              // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            )
+                        )
+                    ),
+                    Positioned(
+                        top: MediaQuery.of(context).size.height/2,
+                        left: 0,
+                        right: 0,
+                        child:  Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height/2,
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: EdgeInsets.all(0),
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                              // border: Border.all(
+                              //     color: Colors.white,
+                              //     //color: myImageAndCaption[i].color,
+                              //     width: 0.9
+                              // ),
+                              // borderRadius: BorderRadius.all(Radius.circular(5))
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/loginbg.png"),
+                                fit: BoxFit.fill,
+                              ),
+                            )
+                        )
                     ),
 
-                    child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: MediaQuery.of(context).size.height/15,
-                        child: Image.asset('assets/images/iconotp.png',width: MediaQuery.of(context).size.height/12,height: MediaQuery.of(context).size.height/12,))//Text
-                  ),
-                 //Text
-
-                  Center(
+                    Positioned(
+                      top: MediaQuery.of(context).size.height/10,
+                      left: 0,
+                      right: 0,
                       child: Container(
-                        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/10,0),
-                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                        alignment: Alignment.center,
-                        child:Text("Verification", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.height * 0.03,letterSpacing: .1,color: Colors.black),),
-
-                      )
-                  ),
-                  Center(
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/10,0),
-                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                        alignment: Alignment.center,
-                        child:Text("Please enter your OTP Code sent to your mobile number "+widget.mobileNo.replaceRange(0, 6,"*****"), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.center),
-
-                      )
-                  ),
-
-                  // Center(
-                  //     child: Container(
-                  //       margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/6,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/6,0),
-                  //       padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //       alignment: Alignment.center,
-                  //       child:Row(
-                  //           mainAxisAlignment: MainAxisAlignment.center,
-                  //           crossAxisAlignment: CrossAxisAlignment.center,
-                  //           children:<Widget>[
-                  //
-                  //             Center(
-                  //               child: Container(
-                  //                 margin: EdgeInsets.fromLTRB(0,0,0,0),
-                  //                 padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //                 alignment: Alignment.center,
-                  //                 width: 40,
-                  //                 height: 40,
-                  //                 child :TextField(
-                  //                   autofocus: true,
-                  //                   readOnly: controller.otp1Read,
-                  //                   textAlign: TextAlign.center,
-                  //                   keyboardType: TextInputType.number,
-                  //                   controller: controller.otp1,
-                  //                   textInputAction:TextInputAction.next,
-                  //                   focusNode: controller.otp1Focus,
-                  //                   inputFormatters: [
-                  //                      FilteringTextInputFormatter.digitsOnly,
-                  //                      LengthLimitingTextInputFormatter(1)
-                  //                   ],
-                  //                   decoration: new InputDecoration(
-                  //                     focusedBorder: OutlineInputBorder(
-                  //                       borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                  //                     ),
-                  //                     enabledBorder: OutlineInputBorder(
-                  //                       borderSide: BorderSide(color: Colors.grey, width: 1),
-                  //                     )
-                  //                   ),
-                  //                   onChanged: (text) {
-                  //                     print('First text field: $text');
-                  //                     if(text.length == 1){
-                  //
-                  //                       setState(() {
-                  //                         controller.otp1Read = true;
-                  //                         controller.otp2Read = false;
-                  //                       });
-                  //                       _fieldFocusChange(context, controller.otp1Focus, controller.otp2Focus);
-                  //
-                  //                     }
-                  //
-                  //                   },
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //             Center(
-                  //               child: Container(
-                  //                 margin: EdgeInsets.fromLTRB(5,0,0,0),
-                  //                 padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //                 alignment: Alignment.center,
-                  //                 width: 40,
-                  //                 height: 40,
-                  //                 child :TextField(
-                  //                   autofocus: true,
-                  //                   readOnly: controller.otp2Read,
-                  //                   textAlign: TextAlign.center,
-                  //                   keyboardType: TextInputType.number,
-                  //                   controller: controller.otp2,
-                  //                   textInputAction:TextInputAction.next,
-                  //                   focusNode: controller.otp2Focus,
-                  //                   inputFormatters: [
-                  //                     FilteringTextInputFormatter.digitsOnly,
-                  //                     LengthLimitingTextInputFormatter(1)
-                  //                   ],
-                  //                   decoration: new InputDecoration(
-                  //                       focusedBorder: OutlineInputBorder(
-                  //                         borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                  //                       ),
-                  //                       enabledBorder: OutlineInputBorder(
-                  //                         borderSide: BorderSide(color: Colors.grey, width: 1),
-                  //                       )
-                  //                   ),
-                  //                   onChanged: (text) {
-                  //                     print('First text field: $text');
-                  //                     if(text.length == 0){
-                  //                       setState(() {
-                  //                         controller.otp1Read = false;
-                  //                         controller.otp2Read = true;
-                  //                       });
-                  //                       _fieldFocusChange(context, controller.otp2Focus, controller.otp1Focus);
-                  //
-                  //                     }
-                  //                     if(text.length == 1){
-                  //                       setState(() {
-                  //                         controller.otp2Read = true;
-                  //                         controller.otp3Read = false;
-                  //                       });
-                  //                       _fieldFocusChange(context, controller.otp2Focus, controller.otp3Focus);
-                  //
-                  //                     }
-                  //                   },
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //             Center(
-                  //               child: Container(
-                  //                 margin: EdgeInsets.fromLTRB(5,0,0,0),
-                  //                 padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //                 alignment: Alignment.center,
-                  //                 width: 40,
-                  //                 height: 40,
-                  //                 child :TextField(
-                  //                   autofocus: true,
-                  //                   readOnly: controller.otp3Read,
-                  //                   textAlign: TextAlign.center,
-                  //                   keyboardType: TextInputType.number,
-                  //                   controller: controller.otp3,
-                  //                   textInputAction:TextInputAction.next,
-                  //                   focusNode: controller.otp3Focus,
-                  //                   inputFormatters: [
-                  //                     FilteringTextInputFormatter.digitsOnly,
-                  //                     LengthLimitingTextInputFormatter(1)
-                  //                   ],
-                  //                   decoration: new InputDecoration(
-                  //                       focusedBorder: OutlineInputBorder(
-                  //                         borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                  //                       ),
-                  //                       enabledBorder: OutlineInputBorder(
-                  //                         borderSide: BorderSide(color: Colors.grey, width: 1),
-                  //                       )
-                  //                   ),
-                  //                   onChanged: (text) {
-                  //                     print('First text field: $text');
-                  //                     if(text.length == 0){
-                  //                       setState(() {
-                  //                         controller.otp2Read = false;
-                  //                         controller.otp3Read = true;
-                  //                       });
-                  //                       _fieldFocusChange(context, controller.otp3Focus, controller.otp2Focus);
-                  //
-                  //                     }
-                  //                     if(text.length == 1){
-                  //                       setState(() {
-                  //                         controller.otp3Read = true;
-                  //                         controller.otp4Read = false;
-                  //                       });
-                  //                       _fieldFocusChange(context, controller.otp3Focus, controller.otp4Focus);
-                  //
-                  //                     }
-                  //                   },
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //             Center(
-                  //               child: Container(
-                  //                 margin: EdgeInsets.fromLTRB(5,0,0,0),
-                  //                 padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //                 alignment: Alignment.center,
-                  //                 width: 40,
-                  //                 height: 40,
-                  //                 child :TextField(
-                  //                   autofocus: true,
-                  //                   readOnly: controller.otp4Read,
-                  //                   textAlign: TextAlign.center,
-                  //                   keyboardType: TextInputType.number,
-                  //                   controller: controller.otp4,
-                  //                   textInputAction:TextInputAction.next,
-                  //                   focusNode: controller.otp4Focus,
-                  //                   inputFormatters: [
-                  //                     FilteringTextInputFormatter.digitsOnly,
-                  //                     LengthLimitingTextInputFormatter(1)
-                  //                   ],
-                  //                   decoration: new InputDecoration(
-                  //                       focusedBorder: OutlineInputBorder(
-                  //                         borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                  //                       ),
-                  //                       enabledBorder: OutlineInputBorder(
-                  //                         borderSide: BorderSide(color: Colors.grey, width: 1),
-                  //                       )
-                  //                   ),
-                  //                   onChanged: (text) async {
-                  //                     print('First text field: $text');
-                  //
-                  //
-                  //                     String otpStr = (controller.otp1.text+controller.otp2.text+controller.otp3.text+controller.otp4.text).toString();
-                  //                     setState(() {
-                  //                       controller.otp1.clear();
-                  //                       controller.otp2.clear();
-                  //                       controller.otp3.clear();
-                  //                       controller.otp4.clear();
-                  //
-                  //                       controller.otp1Read =false;
-                  //                       controller.otp2Read =true;
-                  //                       controller.otp3Read =true;
-                  //                       controller.otp4Read =true;
-                  //
-                  //                       _fieldFocusChange(context, controller.otp4Focus, controller.otp4Focus);
-                  //                     });
-                  //
-                  //                     var users = await otp(widget.text, otpStr, context);
-                  //
-                  //                    // var users = await otp(widget.text, controller.textEditingController.text, context);
-                  //                     //controller.otp4Focus.requestFocus();
-                  //                     // if(text.length == 0){
-                  //                     //   setState(() {
-                  //                     //     controller.otp3Read = false;
-                  //                     //     controller.otp4Read = true;
-                  //                     //   });
-                  //                     //   _fieldFocusChange(context, controller.otp4Focus, controller.otp3Focus);
-                  //                     //
-                  //                     // }
-                  //                   },
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //
-                  //
-                  //
-                  //           ]
-                  //       )
-                  //
-                  //     )
-                  // ),
-
-
-
-
-                  Container(
-                      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/6,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/6,0),
-                      height: MediaQuery.of(context).size.height/16,
-                    child: PinCodeTextField(
-                      length: 4,
-                      obscureText: true,
-                      autoFocus: true,
-                      animationType: AnimationType.fade,
-                      keyboardType: TextInputType.number,
-                      autoDisposeControllers: false,
-                      pinTheme: PinTheme(
-                        shape: PinCodeFieldShape.box,
-                        borderRadius: BorderRadius.circular(5),
-                        fieldHeight: MediaQuery.of(context).size.height/20,
-                        fieldWidth: MediaQuery.of(context).size.height/20,
-                        activeFillColor: Colors.white,
-                        activeColor: ColorUtility().colorAppbar,
-                        inactiveColor: Colors.grey,
-                        inactiveFillColor: Colors.grey,
-                        selectedFillColor: Colors.grey,
-                        selectedColor: Colors.grey
+                        width: MediaQuery.of(context).size.height/6,
+                        height: MediaQuery.of(context).size.height/6,
+                        child: CircleAvatar(
+                            backgroundColor: Colors.black,
+                            radius: 100,
+                            child: Image.asset('assets/images/logo.png')),//Text
                       ),
-                      animationDuration: const Duration(milliseconds: 300),
-                      backgroundColor: Colors.grey.shade50,
-                      enableActiveFill: false,
-                      controller: controller.textEditingController,
-                      onCompleted: (v) async {
-                        debugPrint("Completed");
-                        String mpinStr = controller.textEditingController.text;
-
-                        var users = await otp(widget.text, mpinStr, context);
-                      },
-                      onChanged: (value) {
-                        debugPrint(value);
-                        setState(() {
-                        //  currentText = value;
-                        });
-                      },
-                      beforeTextPaste: (text) {
-                        return true;
-                      },
-                      appContext: context,
                     ),
-                  ),
 
-                  // Center(
-                  //     child: Container(
-                  //       margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/40,MediaQuery.of(context).size.width/10,0),
-                  //       padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //       alignment: Alignment.center,
-                  //      // child:Text("OTP not received? ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: ColorUtility().colorAppbar),textAlign: TextAlign.right),
-                  //       child: RichText(
-                  //             text: TextSpan(
-                  //             text: ' OTP not received? ',
-                  //               style: TextStyle(
-                  //                 color: Colors.grey,
-                  //                 fontWeight: FontWeight.normal,
-                  //                 fontSize: MediaQuery.of(context).size.height * 0.017,
-                  //               ),
-                  //               children: [
-                  //                 TextSpan(
-                  //                   text: ' RESEND ',
-                  //                   style: TextStyle(
-                  //                     color: Colors.black,
-                  //                     fontWeight: FontWeight.normal,
-                  //                     fontSize: MediaQuery.of(context).size.height * 0.02,
-                  //                   ),
-                  //                 recognizer: TapGestureRecognizer()
-                  //                   ..onTap = () =>   Navigator.push(
-                  //
-                  //                       context, MaterialPageRoute(builder: (context) => LoginPage()))
-                  //                 ),
-                  //
-                  //               ],
-                  //             ),
-                  // )
-                  //
-                  //
-                  //     )
-                  // ),
+                    Positioned(
+                      top: MediaQuery.of(context).size.height/3,
+                      left: MediaQuery.of(context).size.width/10,
+                      right: MediaQuery.of(context).size.width/10,
+                      child: Card(
+                          elevation: 5,
+                          //shadowColor: Colors.grey,
+                          shadowColor: Colors.white,
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child : Container(
+                              width: MediaQuery.of(context).size.height/20,
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.width/20,0),
+                                          width: MediaQuery.of(context).size.height/17,
+                                          height: MediaQuery.of(context).size.height/17,
+                                          child: CircleAvatar(
+                                              backgroundColor: Colors.white,
+                                              radius: 100,
+                                              child: Image.asset('assets/images/mpin_lock.png')),//Text
+                                        ),
+
+                                        Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/90,MediaQuery.of(context).size.width/20,0),
+                                            child: Column(
+                                                children: [
+                                                  Align(
+                                                      alignment: Alignment.center,
+                                                      child: new Text('OTP', textAlign: TextAlign.center, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.06,color: Colors.black54,fontWeight: FontWeight.bold))
+
+                                                  )
+                                                ]
+                                            )
+                                        ),
+
+                                        Center(
+                                            child: Container(
+                                              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/20,0),
+                                              padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                              alignment: Alignment.center,
+                                              child:Text("Please enter your OTP Code sent to your mobile number "+widget.mobileNo.replaceRange(0, 6,"*****"), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.center),
+
+                                            )
+                                        ),
 
 
-                  //Text
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/20,0),
+                                          height: MediaQuery.of(context).size.height/16,
+                                          child: PinCodeTextField(
+                                            length: 4,
+                                            obscureText: true,
+                                            autoFocus: true,
+                                            animationType: AnimationType.fade,
+                                            keyboardType: TextInputType.number,
+                                            autoDisposeControllers: false,
+                                            pinTheme: PinTheme(
+                                                shape: PinCodeFieldShape.box,
+                                                borderRadius: BorderRadius.circular(5),
+                                                fieldHeight: MediaQuery.of(context).size.height/20,
+                                                fieldWidth: MediaQuery.of(context).size.height/20,
+                                                activeFillColor: Colors.white,
+                                                activeColor: ColorUtility().colorAppbar,
+                                                inactiveColor: Colors.grey,
+                                                inactiveFillColor: Colors.grey,
+                                                selectedFillColor: Colors.grey,
+                                                selectedColor: Colors.grey
+                                            ),
+                                            animationDuration: const Duration(milliseconds: 300),
+                                            backgroundColor: Colors.grey.shade50,
+                                            enableActiveFill: false,
+                                            controller: controller.textEditingController,
+                                            onCompleted: (v) async {
+                                              debugPrint("Completed");
+                                              String mpinStr = controller.textEditingController.text;
+
+                                              var users = await otp(widget.text, mpinStr, context);
+                                            },
+                                            onChanged: (value) {
+                                              debugPrint(value);
+                                              setState(() {
+                                                //  currentText = value;
+                                              });
+                                            },
+                                            beforeTextPaste: (text) {
+                                              return true;
+                                            },
+                                            appContext: context,
+                                          ),
+                                        ),
+
+                                        Center(
+                                            child: Container(
+                                              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/40,MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.width/10),
+                                              padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                              alignment: Alignment.center,
+                                             // child:Text("OTP not received? ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: ColorUtility().colorAppbar),textAlign: TextAlign.right),
+                                              child: RichText(
+                                                    text: TextSpan(
+                                                    text: ' OTP not received? ',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontWeight: FontWeight.normal,
+                                                        fontSize: MediaQuery.of(context).size.height * 0.017,
+                                                      ),
+                                                      children: [
+                                                        TextSpan(
+                                                          text: ' RESEND ',
+                                                          style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontWeight: FontWeight.normal,
+                                                            fontSize: MediaQuery.of(context).size.height * 0.02,
+                                                          ),
+                                                        recognizer: TapGestureRecognizer()
+                                                          ..onTap = () =>   {
+
+                                                                reLogin(widget.text, widget.pass, context)
+                                                          }
+
+                                                              // Navigator.push(
+                                                              // context, MaterialPageRoute(builder: (context) => LoginPage()))
+
+
+                                                        ),
+
+                                                      ],
+                                                    ),
+                                        )
+
+
+                                            )
+                                        )
 
 
 
 
 
 
-                ],
-              ),
-            ),
-          )),
+                                      ]
+                                  )
+                              )
+
+                          )
+                      ),
+                    ),
+
+
+
+
+                  ]
+              )
+          )
+      )
 
     );
 
@@ -440,6 +295,39 @@ class _OTPVerification extends State<OTPVerification>{
   _fieldFocusChange(BuildContext context, FocusNode currentFocus,FocusNode nextFocus) {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
+  }
+
+  static Future reLogin(Username, Password,BuildContext context ) async {
+
+    try{
+      print(Username);
+      print(Password);
+
+      ShowDialogs().showProgressDialog(context,"Resend OTP ....",true);
+      var headers = {'Content-Type': 'application/json'};
+      var request = http.Request('POST', Uri.parse(Config().BASE_URL+'/customer_api/login/'));
+      request.body = json.encode({"username": "$Username", "password": '$Password'});
+      request.headers.addAll(headers);
+      http.StreamedResponse response = await request.send();
+      final res = await response.stream.bytesToString();
+
+      print("LOGIN"+res.toString());
+      print("300   : $response");
+      final status =jsonDecode(res);
+      final statuscode = status['success'] as bool;
+      final errors = status['errors'] as String;
+      ShowDialogs().showProgressDialog(context,"Loading....",false);
+      if(statuscode==true){
+
+
+      }else{
+
+      }
+    }catch(e){
+      ShowDialogs().showProgressDialog(context,"Loading....",false);
+      showFaliureAlertDialog(context, e.toString());
+    }
+
   }
 
   static Future otp(Username, Password, BuildContext context) async {
