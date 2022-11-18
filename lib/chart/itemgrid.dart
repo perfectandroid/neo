@@ -14,9 +14,9 @@ import '../helper/showDialogs.dart';
 import 'itemgrid.dart';
 
 
-void main() => runApp(Dashboard());
+void main() => runApp(SaleDetails());
 
-class Dashboard extends StatelessWidget {
+class SaleDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -106,6 +106,9 @@ class CustomJSONListView extends State {
 
   String data="";
   String? todayssale="";
+  String? totalsale="";
+  String? totalproduct="";
+  String? totalstock="";
   String? json="";
   final String apiURL = 'https://jsonplaceholder.typicode.com/users';
 
@@ -172,12 +175,15 @@ class CustomJSONListView extends State {
     Griddetails tutorial = Griddetails.fromJson(jsonDecode(data));
     String results=data;
     todayssale=tutorial.data?.todaySales.toString();
+    totalsale=tutorial.data?.totalSales.toString();
+    totalproduct=tutorial.data?.totalProduct.toString();
+    totalstock=tutorial.data?.totalStock.toString();
     print(tutorial.data?.todaySales.toString());
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorUtility().colorAppbar,
-        title: Text('Dashboard'),
+        title: Text('Sale Details'),
         leading: IconButton(
           onPressed: () {
             Navigator.push(
@@ -197,7 +203,7 @@ class CustomJSONListView extends State {
         ),
 
       ),
-    /*  body: SingleChildScrollView(
+      /*  body: SingleChildScrollView(
          child: Column(
            children: <Widget>[
              ListTile(
@@ -233,46 +239,155 @@ class CustomJSONListView extends State {
     return Container(
       margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 5),
       padding: EdgeInsets.only(top: 15, bottom: 25, left: 15, right: 0),
-    child: Column(children: <Widget>[
-      Container(
-      child:Card(
-        child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              fullscreenDialog: true,
-              builder: (BuildContext context) => SaleDetails(
-                //  liste: album,
+      child: Column(children: <Widget>[
+        Container(
+          child:Card(
+            child: InkWell(
+              onTap: () {
+              /*  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    fullscreenDialog: true,
+                    builder: (BuildContext context) => SaleDetails(
+                      //  liste: album,
+                    ),
+                  ),
+                );
+*/
+
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    title:Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Todayssale'),
+                        Text(todayssale!),
+                      ],
+                    ),
+                    trailing:CircleAvatar(backgroundImage:AssetImage('assets/images/todyssales.png')) ,
+                  ),
+
+                ],
               ),
             ),
-          );
+          ),
 
-
-        },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-          ListTile(
-          title:Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Todayssale'),
-            Text(todayssale!),
-          ],
-      ),
-            trailing:CircleAvatar(backgroundImage:AssetImage('assets/images/todyssales.png')) ,
-         ),
-
-            ],
-      ),
         ),
-    ),
+        Container(
+          child:Card(
+            child: InkWell(
+              onTap: () {
+                /*  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    fullscreenDialog: true,
+                    builder: (BuildContext context) => SaleDetails(
+                      //  liste: album,
+                    ),
+                  ),
+                );
+*/
+
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    title:Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Total Sale'),
+                        Text(totalsale!),
+                      ],
+                    ),
+                    trailing:CircleAvatar(backgroundImage:AssetImage('assets/images/totalsales.png')) ,
+                  ),
+
+                ],
+              ),
+            ),
+          ),
+
         ),
-    ]),
+        Container(
+          child:Card(
+            child: InkWell(
+              onTap: () {
+                /*  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    fullscreenDialog: true,
+                    builder: (BuildContext context) => SaleDetails(
+                      //  liste: album,
+                    ),
+                  ),
+                );
+*/
+
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    title:Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Total Product'),
+                        Text(totalproduct!),
+                      ],
+                    ),
+                    trailing:CircleAvatar(backgroundImage:AssetImage('assets/images/totalproduct.png')) ,
+                  ),
+
+                ],
+              ),
+            ),
+          ),
+
+        ),
+        Container(
+          child:Card(
+            child: InkWell(
+              onTap: () {
+                /*  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    fullscreenDialog: true,
+                    builder: (BuildContext context) => SaleDetails(
+                      //  liste: album,
+                    ),
+                  ),
+                );
+*/
+
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    title:Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Total Stock'),
+                        Text(totalsale!),
+                      ],
+                    ),
+                    trailing:CircleAvatar(backgroundImage:AssetImage('assets/images/totalstock.png')) ,
+                  ),
+
+                ],
+              ),
+            ),
+          ),
+
+        ),
+      ]),
     );
 
-}
+  }
 
 }
 
