@@ -206,15 +206,15 @@ class _OrderReport extends State<OrderReport>{
                                               child:Text("MOBILE/EMAIL", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
                                           ),
-                                          Flexible(
-                                            flex: 2,
-                                            fit: FlexFit.tight,
-                                            child: Container(
-                                              alignment: Alignment.centerLeft,
-                                              padding: EdgeInsets.all(4),
-                                              child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
-                                            ),
-                                          ),
+                                          // Flexible(
+                                          //   flex: 2,
+                                          //   fit: FlexFit.tight,
+                                          //   child: Container(
+                                          //     alignment: Alignment.centerLeft,
+                                          //     padding: EdgeInsets.all(4),
+                                          //     child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                          //   ),
+                                          // ),
                                           Flexible(
                                             flex: 2,
                                             fit: FlexFit.tight,
@@ -232,6 +232,14 @@ class _OrderReport extends State<OrderReport>{
                                               alignment: Alignment.centerLeft,
                                               padding: EdgeInsets.all(4),
                                               child:Text("STATUS", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                            ),
+                                          ),
+
+                                          Flexible(
+                                            flex: 1,
+                                            fit: FlexFit.tight,
+                                            child: Container(
+
                                             ),
                                           ),
 
@@ -261,99 +269,122 @@ class _OrderReport extends State<OrderReport>{
                                                   itemCount: orderReportModel.data?.length,
                                                   itemBuilder: (context,index){
 
-                                                    return Card(
-                                                        margin: EdgeInsets.fromLTRB(2,0,2,0),
-                                                       // color: ColorUtility().colorAlertTop,
-                                                        //color: ColorUtility().colorLightGrey,
-                                                        shape: RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(2.0),),
-                                                        elevation: 0,
-                                                        child:  Container(
-                                                            decoration: BoxDecoration(
-                                                              borderRadius: BorderRadius.circular(1),
-                                                              color: Colors.white,
-                                                              boxShadow: [
-                                                                BoxShadow(color: Colors.grey, spreadRadius: 0.5),
-                                                              ],
-                                                            ),
-                                                           // color: Colors.white,
-                                                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                                            child: Row(
-                                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                children: <Widget>[
+                                                    return GestureDetector(
+                                                      onTap: (){
+                                                      //  controller.InputStatus.text = available[index];
+                                                      //  Navigator.pop(context);
 
-                                                                  Flexible(
-                                                                    flex: 1,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Container(
-                                                                      alignment: Alignment.centerLeft,
-                                                                      padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 2,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Container(
-                                                                      alignment: Alignment.centerLeft,
-                                                                      padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(orderReportModel.data?[index].createdAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 2,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Container(
-                                                                      alignment: Alignment.centerLeft,
-                                                                      padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(orderReportModel.data?[index].customerName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 2,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Container(
-                                                                      alignment: Alignment.centerLeft,
-                                                                      padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(orderReportModel.data?[index].fkUser).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 2,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Container(
-                                                                      alignment: Alignment.centerLeft,
-                                                                      padding: EdgeInsets.all(4),
-                                                                      child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 2,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Container(
+                                                       // print((orderReportModel.data?[index].items?[0].productName));
 
-                                                                      alignment: Alignment.centerLeft,
-                                                                      padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(orderReportModel.data?[index].grandTotal).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                        showItemListing(context,orderReportModel.data?[index].items);
+
+                                                      },
+                                                      child : Card(
+                                                          margin: EdgeInsets.fromLTRB(2,0,2,0),
+                                                          // color: ColorUtility().colorAlertTop,
+                                                          //color: ColorUtility().colorLightGrey,
+                                                          shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(2.0),),
+                                                          elevation: 0,
+                                                          child:  Container(
+                                                              decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.circular(1),
+                                                                color: Colors.white,
+                                                                boxShadow: [
+                                                                  BoxShadow(color: Colors.grey, spreadRadius: 0.5),
+                                                                ],
+                                                              ),
+                                                              // color: Colors.white,
+                                                              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                                              child: Row(
+                                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                  children: <Widget>[
+
+                                                                    Flexible(
+                                                                      flex: 1,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Container(
+                                                                        alignment: Alignment.centerLeft,
+                                                                        padding: EdgeInsets.all(4),
+                                                                        child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    flex: 2,
-                                                                    fit: FlexFit.tight,
-                                                                    child: Container(
-
-                                                                      alignment: Alignment.centerLeft,
-                                                                      padding: EdgeInsets.all(4),
-                                                                      child:Text(""+(orderReportModel.data?[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                    Flexible(
+                                                                      flex: 2,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Container(
+                                                                        alignment: Alignment.centerLeft,
+                                                                        padding: EdgeInsets.all(4),
+                                                                        child:Text(""+(orderReportModel.data?[index].createdAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      ),
                                                                     ),
-                                                                  ),
+                                                                    Flexible(
+                                                                      flex: 2,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Container(
+                                                                        alignment: Alignment.centerLeft,
+                                                                        padding: EdgeInsets.all(4),
+                                                                        child:Text(""+(orderReportModel.data?[index].customerName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 2,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Container(
+                                                                        alignment: Alignment.centerLeft,
+                                                                        padding: EdgeInsets.all(4),
+                                                                        child:Text(""+(orderReportModel.data?[index].fkUser).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      ),
+                                                                    ),
+                                                                    // Flexible(
+                                                                    //   flex: 2,
+                                                                    //   fit: FlexFit.tight,
+                                                                    //   child: Container(
+                                                                    //     alignment: Alignment.centerLeft,
+                                                                    //     padding: EdgeInsets.all(4),
+                                                                    //     child:Text("", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                    //   ),
+                                                                    // ),
+                                                                    Flexible(
+                                                                      flex: 2,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Container(
+
+                                                                        alignment: Alignment.centerLeft,
+                                                                        padding: EdgeInsets.all(4),
+                                                                        child:Text(""+(orderReportModel.data?[index].grandTotal).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 2,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Container(
+
+                                                                        alignment: Alignment.centerLeft,
+                                                                        padding: EdgeInsets.all(4),
+                                                                        child:Text(""+(orderReportModel.data?[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 1,
+                                                                      fit: FlexFit.tight,
+                                                                      child: Container(
+
+                                                                        alignment: Alignment.centerLeft,
+                                                                        padding: EdgeInsets.all(4),
+                                                                        child : Icon(Icons.arrow_forward_ios_rounded,color: Colors.grey,size: 20)
+                                                                      ),
+                                                                    ),
 
 
-                                                                ]
-                                                            )
-                                                        )
+                                                                  ]
+                                                              )
+                                                          )
+                                                      )
                                                     );
+
+                                                  //  return
 
                                                   }
                                               )
@@ -423,10 +454,12 @@ class _OrderReport extends State<OrderReport>{
               Expanded(
                 child :Container(
                   margin: EdgeInsets.fromLTRB(0, 5, 2, 0),
+                  alignment: Alignment.center,
                   child : SizedBox(
                     height: 40,
                       child:  TextField(
                         readOnly: true,
+                        textAlignVertical: TextAlignVertical.center,
                         controller: controller.dateInputFrom,
                         decoration: InputDecoration(
                           hintText: "From Date",
@@ -1382,6 +1415,195 @@ class _OrderReport extends State<OrderReport>{
       ),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+}
+
+void showItemListing(BuildContext context ,List<Items>? items) {
+
+  print(items?.length);
+  print(items?[0].productName);
+  try{
+
+    showDialog(
+      context: context,
+      //barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              5.0,
+            ),
+          ),
+        ),
+        contentPadding: EdgeInsets.zero,
+        backgroundColor: ColorUtility().colorAlertTop,
+      //  title: Center(child: Text('ITEM LIST',textAlign: TextAlign.center,style: TextStyle(fontSize: 15,fontStyle: FontStyle.normal,color: Colors.black))),
+        content: Container(
+          margin: EdgeInsets.all(5),
+          width: double.maxFinite,
+
+          child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              // mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+
+                Container(
+                  color: ColorUtility().colorAlertTop,
+                  margin: EdgeInsets.all(0),
+                  alignment: Alignment.center,
+                    padding: EdgeInsets.all(10),
+                    child:Text("ITEM LIST", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: Colors.black54),textAlign: TextAlign.center,)
+
+                ),
+
+                Container(
+                    margin: EdgeInsets.all(0),
+                    padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(1),
+                      color: ColorUtility().colorAlertTop1,
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey, spreadRadius: 0.5),
+                      ],
+                    ),
+                    child: new Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child :Container(
+                                  color: Colors.transparent,
+                                  alignment: Alignment.centerLeft,
+                                  padding: EdgeInsets.all(4),
+                                  child:Text("SI", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                              )
+                          ),
+                          Expanded(
+                              flex: 3,
+                              child :Container(
+                                  color: Colors.transparent,
+                                  alignment: Alignment.centerLeft,
+                                  padding: EdgeInsets.all(4),
+                                  child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                              )
+                          ),
+                          Expanded(
+                              flex: 2,
+                              child :Container(
+                                  color: Colors.transparent,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.all(4),
+                                  child:Text("QTY", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                              )
+                          ),
+                          Expanded(
+                              flex: 2,
+                              child :Container(
+                                  color: Colors.transparent,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.all(4),
+                                  child:Text("AMOUNT", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                              )
+                          )
+
+                        ]
+                    )
+                ),
+
+                Container(
+                  margin: EdgeInsets.all(0),
+                  child: ListView.builder(
+                      shrinkWrap: true,  //            <------  USE SHRINK WRAP
+                      itemCount: items?.length,
+                      itemBuilder: (context, index) =>
+                      // Text('Order'.),
+                      Container(
+                          margin: EdgeInsets.all(0),
+                          child: Padding(
+                              padding: const EdgeInsets.all(0),
+                              // child: Text(""+(orderStatusModel?.data?.status?[index]).toString()),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+
+                                    Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(1),
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(color: Colors.grey, spreadRadius: 0.5),
+                                          ],
+                                        ),
+                                        child: new Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Expanded(
+                                                  flex: 1,
+                                                  child :Container(
+                                                      color: Colors.white,
+                                                      alignment: Alignment.centerLeft,
+                                                      padding: EdgeInsets.all(4),
+                                                      child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                                                  )
+                                              ),
+                                              Expanded(
+                                                  flex: 3,
+                                                  child :Container(
+                                                      color: Colors.white,
+                                                      alignment: Alignment.centerLeft,
+                                                      padding: EdgeInsets.all(4),
+                                                      child:Text(""+(items?[index].productName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                                                  )
+                                              ),
+                                              Expanded(
+                                                  flex: 2,
+                                                  child :Container(
+                                                      color: Colors.white,
+                                                      alignment: Alignment.center,
+                                                      padding: EdgeInsets.all(4),
+                                                      child:Text(""+(items?[index].quantity).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                                                  )
+                                              ),
+                                              Expanded(
+                                                  flex: 2,
+                                                  child :Container(
+                                                      color: Colors.white,
+                                                      alignment: Alignment.center,
+                                                      padding: EdgeInsets.all(4),
+                                                      child:Text(""+(items?[index].totalAmount).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                                                  )
+                                              )
+
+                                            ]
+                                        )
+
+                                    )
+
+
+                                  ]
+                              )
+
+                          )
+
+
+                      )
+                  )
+                )
+              ]
+          )
+
+          //  <------- Use SizedBox to limit width
+
+        ),
+      ),
+    );
+
+  }catch(e){
+
   }
 
 }

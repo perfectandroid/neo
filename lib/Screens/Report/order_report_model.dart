@@ -1,5 +1,5 @@
 /// success : true
-/// data : [{"id":15,"order_id":"orderU3UPUYLHGKNDS41","payment_order_id":null,"payment_amount":null,"transaction_id":null,"status":"success","delivery_status":"delivered","description":null,"payment_method":"cash","coupon_amount":0.0,"shipping_charge":0.0,"customer_name":null,"quantity":null,"total_amount":100.0,"grand_total":100.0,"status_update_time":null,"created_at":"2022-10-07T05:10:58.026347Z","updated_at":"2022-11-01T10:57:05.660174Z","pending_time":null,"verified_time":null,"packed_time":null,"dispacthed_time":null,"delivered_time":null,"fk_user":"9995740386","fk_shipping_address":1},{"id":15,"order_id":"orderU3UPUYLHGKNDS41","payment_order_id":null,"payment_amount":null,"transaction_id":null,"status":"success","delivery_status":"delivered","description":null,"payment_method":"cash","coupon_amount":0.0,"shipping_charge":0.0,"customer_name":null,"quantity":null,"total_amount":100.0,"grand_total":100.0,"status_update_time":null,"created_at":"2022-10-07T05:10:58.026347Z","updated_at":"2022-11-01T10:57:05.660174Z","pending_time":null,"verified_time":null,"packed_time":null,"dispacthed_time":null,"delivered_time":null,"fk_user":"9995740386","fk_shipping_address":1},{"id":16,"order_id":"orderN2IRJZUG0RPSNG1","payment_order_id":null,"payment_amount":null,"transaction_id":null,"status":"success","delivery_status":"delivered","description":null,"payment_method":"cash","coupon_amount":0.0,"shipping_charge":0.0,"customer_name":null,"quantity":null,"total_amount":100.0,"grand_total":100.0,"status_update_time":null,"created_at":"2022-10-07T05:11:00.120919Z","updated_at":"2022-11-01T10:36:39.686566Z","pending_time":null,"verified_time":null,"packed_time":null,"dispacthed_time":null,"delivered_time":null,"fk_user":"9995740386","fk_shipping_address":1},{"id":16,"order_id":"orderN2IRJZUG0RPSNG1","payment_order_id":null,"payment_amount":null,"transaction_id":null,"status":"success","delivery_status":"delivered","description":null,"payment_method":"cash","coupon_amount":0.0,"shipping_charge":0.0,"customer_name":null,"quantity":null,"total_amount":100.0,"grand_total":100.0,"status_update_time":null,"created_at":"2022-10-07T05:11:00.120919Z","updated_at":"2022-11-01T10:36:39.686566Z","pending_time":null,"verified_time":null,"packed_time":null,"dispacthed_time":null,"delivered_time":null,"fk_user":"9995740386","fk_shipping_address":1}]
+/// data : [{"id":15,"items":[{"id":13,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1},{"id":14,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1}],"order_id":"orderU3UPUYLHGKNDS41","payment_order_id":null,"payment_amount":null,"transaction_id":null,"status":"success","delivery_status":"delivered","description":null,"payment_method":"cash","coupon_amount":0.0,"shipping_charge":0.0,"customer_name":null,"quantity":null,"total_amount":100.0,"grand_total":100.0,"status_update_time":null,"created_at":"2022-10-07T05:10:58.026347Z","updated_at":"2022-11-01T10:57:05.660174Z","pending_time":null,"verified_time":null,"packed_time":null,"dispacthed_time":null,"delivered_time":null,"fk_user":"9995740386","fk_shipping_address":1},{"id":15,"items":[{"id":13,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1},{"id":14,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1}],"order_id":"orderU3UPUYLHGKNDS41","payment_order_id":null,"payment_amount":null,"transaction_id":null,"status":"success","delivery_status":"delivered","description":null,"payment_method":"cash","coupon_amount":0.0,"shipping_charge":0.0,"customer_name":null,"quantity":null,"total_amount":100.0,"grand_total":100.0,"status_update_time":null,"created_at":"2022-10-07T05:10:58.026347Z","updated_at":"2022-11-01T10:57:05.660174Z","pending_time":null,"verified_time":null,"packed_time":null,"dispacthed_time":null,"delivered_time":null,"fk_user":"9995740386","fk_shipping_address":1},{"id":16,"items":[{"id":15,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1},{"id":16,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1}],"order_id":"orderN2IRJZUG0RPSNG1","payment_order_id":null,"payment_amount":null,"transaction_id":null,"status":"success","delivery_status":"delivered","description":null,"payment_method":"cash","coupon_amount":0.0,"shipping_charge":0.0,"customer_name":null,"quantity":null,"total_amount":100.0,"grand_total":100.0,"status_update_time":null,"created_at":"2022-10-07T05:11:00.120919Z","updated_at":"2022-11-01T10:36:39.686566Z","pending_time":null,"verified_time":null,"packed_time":null,"dispacthed_time":null,"delivered_time":null,"fk_user":"9995740386","fk_shipping_address":1},{"id":16,"items":[{"id":15,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1},{"id":16,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1}],"order_id":"orderN2IRJZUG0RPSNG1","payment_order_id":null,"payment_amount":null,"transaction_id":null,"status":"success","delivery_status":"delivered","description":null,"payment_method":"cash","coupon_amount":0.0,"shipping_charge":0.0,"customer_name":null,"quantity":null,"total_amount":100.0,"grand_total":100.0,"status_update_time":null,"created_at":"2022-10-07T05:11:00.120919Z","updated_at":"2022-11-01T10:36:39.686566Z","pending_time":null,"verified_time":null,"packed_time":null,"dispacthed_time":null,"delivered_time":null,"fk_user":"9995740386","fk_shipping_address":1}]
 /// errors : null
 
 class OrderReportModel {
@@ -49,6 +49,7 @@ OrderReportModel copyWith({  bool? success,
 }
 
 /// id : 15
+/// items : [{"id":13,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1},{"id":14,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1}]
 /// order_id : "orderU3UPUYLHGKNDS41"
 /// payment_order_id : null
 /// payment_amount : null
@@ -77,6 +78,7 @@ OrderReportModel copyWith({  bool? success,
 class Data {
   Data({
       num? id, 
+      List<Items>? items, 
       String? orderId, 
       dynamic paymentOrderId, 
       dynamic paymentAmount, 
@@ -102,6 +104,7 @@ class Data {
       String? fkUser, 
       num? fkShippingAddress,}){
     _id = id;
+    _items = items;
     _orderId = orderId;
     _paymentOrderId = paymentOrderId;
     _paymentAmount = paymentAmount;
@@ -130,6 +133,12 @@ class Data {
 
   Data.fromJson(dynamic json) {
     _id = json['id'];
+    if (json['items'] != null) {
+      _items = [];
+      json['items'].forEach((v) {
+        _items?.add(Items.fromJson(v));
+      });
+    }
     _orderId = json['order_id'];
     _paymentOrderId = json['payment_order_id'];
     _paymentAmount = json['payment_amount'];
@@ -156,6 +165,7 @@ class Data {
     _fkShippingAddress = json['fk_shipping_address'];
   }
   num? _id;
+  List<Items>? _items;
   String? _orderId;
   dynamic _paymentOrderId;
   dynamic _paymentAmount;
@@ -181,6 +191,7 @@ class Data {
   String? _fkUser;
   num? _fkShippingAddress;
 Data copyWith({  num? id,
+  List<Items>? items,
   String? orderId,
   dynamic paymentOrderId,
   dynamic paymentAmount,
@@ -206,6 +217,7 @@ Data copyWith({  num? id,
   String? fkUser,
   num? fkShippingAddress,
 }) => Data(  id: id ?? _id,
+  items: items ?? _items,
   orderId: orderId ?? _orderId,
   paymentOrderId: paymentOrderId ?? _paymentOrderId,
   paymentAmount: paymentAmount ?? _paymentAmount,
@@ -232,6 +244,7 @@ Data copyWith({  num? id,
   fkShippingAddress: fkShippingAddress ?? _fkShippingAddress,
 );
   num? get id => _id;
+  List<Items>? get items => _items;
   String? get orderId => _orderId;
   dynamic get paymentOrderId => _paymentOrderId;
   dynamic get paymentAmount => _paymentAmount;
@@ -260,6 +273,9 @@ Data copyWith({  num? id,
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
+    if (_items != null) {
+      map['items'] = _items?.map((v) => v.toJson()).toList();
+    }
     map['order_id'] = _orderId;
     map['payment_order_id'] = _paymentOrderId;
     map['payment_amount'] = _paymentAmount;
@@ -284,6 +300,94 @@ Data copyWith({  num? id,
     map['delivered_time'] = _deliveredTime;
     map['fk_user'] = _fkUser;
     map['fk_shipping_address'] = _fkShippingAddress;
+    return map;
+  }
+
+}
+
+/// id : 13
+/// product_name : "salt"
+/// quantity : 10
+/// coupon_percent : 0.0
+/// coupon_amount : 0.0
+/// total_amount : 10.0
+/// net_amount : 12.0
+/// fk_product : 1
+
+class Items {
+  Items({
+      num? id, 
+      String? productName, 
+      num? quantity, 
+      num? couponPercent, 
+      num? couponAmount, 
+      num? totalAmount, 
+      num? netAmount, 
+      num? fkProduct,}){
+    _id = id;
+    _productName = productName;
+    _quantity = quantity;
+    _couponPercent = couponPercent;
+    _couponAmount = couponAmount;
+    _totalAmount = totalAmount;
+    _netAmount = netAmount;
+    _fkProduct = fkProduct;
+}
+
+  Items.fromJson(dynamic json) {
+    _id = json['id'];
+    _productName = json['product_name'];
+    _quantity = json['quantity'];
+    _couponPercent = json['coupon_percent'];
+    _couponAmount = json['coupon_amount'];
+    _totalAmount = json['total_amount'];
+    _netAmount = json['net_amount'];
+    _fkProduct = json['fk_product'];
+  }
+  num? _id;
+  String? _productName;
+  num? _quantity;
+  num? _couponPercent;
+  num? _couponAmount;
+  num? _totalAmount;
+  num? _netAmount;
+  num? _fkProduct;
+Items copyWith({  num? id,
+  String? productName,
+  num? quantity,
+  num? couponPercent,
+  num? couponAmount,
+  num? totalAmount,
+  num? netAmount,
+  num? fkProduct,
+}) => Items(  id: id ?? _id,
+  productName: productName ?? _productName,
+  quantity: quantity ?? _quantity,
+  couponPercent: couponPercent ?? _couponPercent,
+  couponAmount: couponAmount ?? _couponAmount,
+  totalAmount: totalAmount ?? _totalAmount,
+  netAmount: netAmount ?? _netAmount,
+  fkProduct: fkProduct ?? _fkProduct,
+);
+  num? get id => _id;
+  String? get productName => _productName;
+  num? get quantity => _quantity;
+  num? get couponPercent => _couponPercent;
+  num? get couponAmount => _couponAmount;
+  num? get totalAmount => _totalAmount;
+  num? get netAmount => _netAmount;
+  num? get fkProduct => _fkProduct;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['id'] = _id;
+    map['product_name'] = _productName;
+    map['quantity'] = _quantity;
+    map['coupon_percent'] = _couponPercent;
+    map['coupon_amount'] = _couponAmount;
+    map['total_amount'] = _totalAmount;
+    map['net_amount'] = _netAmount;
+    map['fk_product'] = _fkProduct;
     return map;
   }
 
