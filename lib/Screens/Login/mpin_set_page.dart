@@ -528,6 +528,7 @@ class _MPINCREATION extends State<MPINCREATION>{
       var request = http.Request(
           'POST', Uri.parse(Config().BASE_URL+'/customer_api/mpin/'));
       request.body = json.encode({"username": '$Username', "mpin": '$Password'});
+      print(request.body);
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
       final res = await response.stream.bytesToString();

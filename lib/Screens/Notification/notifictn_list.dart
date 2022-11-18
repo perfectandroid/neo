@@ -158,7 +158,9 @@ class CustomJSONListView extends State {
         builder: (context, snapshot) {
 
           if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
-          return Container(
+          return
+            Container(
+
             child: ListView.builder(
                 padding: const EdgeInsets.all(8),
                 itemCount: usersList2 == null ? 0 : usersList2.length,
@@ -191,7 +193,7 @@ class CustomJSONListView extends State {
                         width: 50,
                         height: 50,
 
-                        child: Image(image: AssetImage('images/notifunread.png')),
+                        child: Image(image: AssetImage('assets/images/notifunread.png')),
 
                       )
                     ] ,
@@ -200,7 +202,7 @@ class CustomJSONListView extends State {
                         width: 50,
                         height: 50,
 
-                        child: Image(image: AssetImage('images/notifread.png')),
+                        child: Image(image: AssetImage('assets/images/notifread.png')),
 
                       )
                     ] ,

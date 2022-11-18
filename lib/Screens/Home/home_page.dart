@@ -18,7 +18,7 @@ import 'package:neo/Screens/Stocks/stock_list.dart';
 import 'package:neo/helper/colorutility.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../chart/dashboard.dart';
-import '../../chart/pielatest.dart';
+import '../../chart/itemgrid.dart';
 import '../../chart/subsciberchart.dart';
 import '../../constants.dart';
 import '../../helper/sharedprefhelper.dart';
@@ -747,7 +747,7 @@ class _HomePageState extends State<HomePage> {
         context,
         MaterialPageRoute(
           fullscreenDialog: true,
-          builder: (BuildContext context) => PieCht1(
+          builder: (BuildContext context) => Dashboard(
             //  liste: album,
           ),
         ),
