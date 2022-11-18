@@ -475,7 +475,7 @@ class _StockEdit extends State<StockEdit>{
 
       var bodyString = {"product":"$product_id","category":"$category_id","sub_category":"$sub_category_id",
         "stk_mrp":"$stk_mrp","cur_qty":"$cur_qty","created_by":"$created_by","cancel_by":"$created_by","updated_by":"$created_by"};
-      print(bodyString);
+     // print(bodyString);
       var request = http.Request('PUT', Uri.parse(Config().BASE_URL+'/seller_api/stock_purchase/'+'$stockId/'));
       request.body = json.encode(bodyString);
       //  request.body = json.encode({"product":"$product_id","category":"$category_id","sub_category":"$sub_category_id","stk_mrp":"$stk_mrp","cur_qty":"$cur_qty","created_by":"$created_by","cancel_by":"$created_by","updated_by":"$created_by"});

@@ -8,6 +8,7 @@ import 'package:neo/Screens/Home/home_activity.dart';
 import 'package:neo/Screens/Login/login_page.dart';
 import 'package:neo/Screens/Register/signup_page.dart';
 import 'package:neo/Screens/Report/order_report.dart';
+import 'package:neo/Screens/Report/test_report.dart';
 import 'package:neo/Screens/Sidemenu/about_us.dart';
 import 'package:neo/Screens/Status/confirmlist.dart';
 import 'package:neo/Screens/Status/deliverylist.dart';
@@ -48,11 +49,13 @@ class Grid2 {
   final String title;
   final String image;
   final Color color;
+  final String bgimage;
 
   Grid2({
     required this.title,
     required this.image,
     required this.color,
+    required this.bgimage,
   });
 }
 class _HomePageState extends State<HomePage> {
@@ -74,10 +77,10 @@ class _HomePageState extends State<HomePage> {
     // Grid2(title: "Report",image: "assets/images/report.png"),
     // Grid2(title: "Notification",image: "assets/images/notifctn.png"),
 
-    Grid2(title: "STOCK",image: "assets/images/homestock.png",color:ColorUtility().colorHomeGrid),
-    Grid2(title: "DASHBOARD",image: "assets/images/homedash.png",color:ColorUtility().colorHomeGrid),
-    Grid2(title: "REPORT",image: "assets/images/homereport.png",color:ColorUtility().colorHomeGrid),
-    Grid2(title: "NOTIFICATION",image: "assets/images/homenotification.png",color:ColorUtility().colorHomeGrid),
+    Grid2(title: "STOCK",image: "assets/images/homestock.png",color:ColorUtility().colorAppbar,bgimage: "assets/images/homestockbg.png"),
+    Grid2(title: "DASHBOARD",image: "assets/images/homedash.png",color:ColorUtility().colorAppbar,bgimage: "assets/images/homedashbg.png"),
+    Grid2(title: "REPORT",image: "assets/images/homereport.png",color:ColorUtility().colorAppbar,bgimage: "assets/images/homereportbg.png"),
+    Grid2(title: "NOTIFICATION",image: "assets/images/homenotification.png",color:ColorUtility().colorAppbar,bgimage: "assets/images/homenotificationbg.png"),
 
 
   ];
@@ -221,20 +224,24 @@ class _HomePageState extends State<HomePage> {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 2,
+                    mainAxisSpacing: 2,
                     crossAxisCount: 5,
                     childAspectRatio: MediaQuery.of(context).size.width /
-                        (MediaQuery.of(context).size.height / 2),
+                        (MediaQuery.of(context).size.height / 1.8),
                   ),
                   itemCount: liste.length,
                   itemBuilder: (context, index) {
-                    return new GestureDetector(
-                      onTap: () {
-                        goToDetailsPage(context, liste[index]);
-                        print(liste[index].title);
-                      },
-
+                    return Card(
+                        elevation: 5,
+                        //shadowColor: Colors.grey,
+                        shadowColor: Colors.white,
+                        color: Colors.white,
+                        child: new InkWell(
+                        onTap: () {
+                      goToDetailsPage(context, liste[index]);
+                      print(liste[index].title);
+                    },
                       child : Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -243,13 +250,14 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             width: MediaQuery.of(context).size.height/20,
                             height: MediaQuery.of(context).size.height/20,
-                            margin:  EdgeInsets.all(3.0),
+                            margin:  EdgeInsets.all(1.0),
                               decoration: BoxDecoration(
                                 // shape: BoxShape.circle,
+                                color: Colors.white,
                                 image: DecorationImage(
                                     fit: BoxFit.fill,
                                     image: AssetImage(liste[index].image),
-                                  opacity: 0.6
+                                 // opacity: 0.6
                                 ),
                                 border: Border.all(
                                   color: ColorUtility().colorWhite,
@@ -346,6 +354,7 @@ class _HomePageState extends State<HomePage> {
                       // )
 
 
+                    )
                     );
                   },
                 ),
@@ -388,8 +397,8 @@ class _HomePageState extends State<HomePage> {
                   MyImageView("assets/images/banner1.png"),
                   MyImageView("assets/images/banner2.png"),
                   MyImageView("assets/images/banner3.png"),
-                  MyImageView("assets/images/banner4.png"),
-                  MyImageView("assets/images/banner5.png"),
+                  // MyImageView("assets/images/banner4.png"),
+                  // MyImageView("assets/images/banner5.png"),
                 ],
                 options: CarouselOptions(
                   height: MediaQuery.of(context).size.height/4,
@@ -399,7 +408,7 @@ class _HomePageState extends State<HomePage> {
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enableInfiniteScroll: true,
                   autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  viewportFraction: 0.95,
+                  viewportFraction: 0.98,
                 ),
               )
             ),
@@ -409,11 +418,11 @@ class _HomePageState extends State<HomePage> {
               child :GridView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(0),
                 itemCount: myImageAndCaption.length,
                 itemBuilder: (ctx, i) {
                   return  Card(
-                    elevation: 5,
+                    elevation: 0,
                      //shadowColor: Colors.grey,
                      shadowColor: Colors.white,
                      color: Colors.white,
@@ -429,20 +438,26 @@ class _HomePageState extends State<HomePage> {
 
                       child: Container(
                         alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Colors.white,
-                                //color: myImageAndCaption[i].color,
-                                width: 0.9
-                            ),
-                            borderRadius: BorderRadius.all(Radius.circular(5))
-                        ),
                         height: 10,
                         width: MediaQuery.of(context).size.height/13,
+                        margin: EdgeInsets.all(0),
+                        padding: EdgeInsets.all(0),
+                        decoration: BoxDecoration(
+                            // border: Border.all(
+                            //     color: Colors.white,
+                            //     //color: myImageAndCaption[i].color,
+                            //     width: 0.9
+                            // ),
+                            // borderRadius: BorderRadius.all(Radius.circular(5))
+                          image: DecorationImage(
+                            image: AssetImage(myImageAndCaption[i].bgimage),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+
                         // decoration: BoxDecoration(
                         //     borderRadius: BorderRadius.circular(20)),
-                        margin: EdgeInsets.all(5),
-                        padding: EdgeInsets.all(5),
+
                         child: Stack(
                           children: [
                             Column(
@@ -454,25 +469,25 @@ class _HomePageState extends State<HomePage> {
                                   alignment: Alignment.center,
                                   width: MediaQuery.of(context).size.height/14,
                                   height: MediaQuery.of(context).size.height/14,
-                                  margin: const EdgeInsets.all(3.0),
+                                  margin: const EdgeInsets.all(10.0),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(0),
                                     image: DecorationImage(
                                       scale: 1,
                                       fit: BoxFit.cover,
                                       image: AssetImage(myImageAndCaption[i].image),
-                                      opacity: 0.7
+                                      //opacity: 0
                                     ),
                                   ),
                                 ),
 
                                 Container(
-                                  padding: const EdgeInsets.all(3.0),
+                                  margin: EdgeInsets.all(10.0),
                                   alignment: Alignment.bottomCenter,
                                   child: new Text(myImageAndCaption[i].title,
                                       style: new TextStyle(
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.normal,
+                                        color: myImageAndCaption[i].color,
+                                        fontWeight: FontWeight.bold,
                                         fontSize: 15.0,
                                       )
                                   ),
@@ -755,15 +770,15 @@ class _HomePageState extends State<HomePage> {
     }
     else if(index=="2")
     {
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     fullscreenDialog: true,
-      //     builder: (BuildContext context) => OrderReport(
-      //       //  liste: album,
-      //     ),
-      //   ),
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (BuildContext context) => OrderReport(
+            //  liste: album,
+          ),
+        ),
+      );
     }
     else if(index=="3")
     {
@@ -1081,7 +1096,7 @@ class MyImageView extends StatelessWidget{
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
+              color: Colors.grey.withOpacity(0),
               spreadRadius: 2,
               blurRadius: 2,
               offset: Offset(0, 3), // changes position of shadow

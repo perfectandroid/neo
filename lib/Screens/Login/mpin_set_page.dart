@@ -79,434 +79,183 @@ class _MPINCREATION extends State<MPINCREATION>{
 
     return Scaffold(
       body: SingleChildScrollView(
-          child: Container(
-            // color: Colors.white,
-            // height: double.infinity,
-            // width: double.infinity,
-            height: MediaQuery.of(context).size.height,
-            decoration: new BoxDecoration(image: new DecorationImage(image: new AssetImage("assets/images/loginbg.png"), fit: BoxFit.fill)),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+          child :Container(
+              height: MediaQuery.of(context).size.height,
+              color: Colors.white,
+              child: Stack(
+                  children: <Widget>[
 
-                  Container(
-                      width: MediaQuery.of(context).size.height/5,
-                      height: MediaQuery.of(context).size.height/5,
-                      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
-                      padding: EdgeInsets.all(1),
-                      decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular( MediaQuery.of(context).size.height/10),
-                          boxShadow: [new BoxShadow(
-                            color: Colors.grey,
-                          )]
-                      ),
-
-                      child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: MediaQuery.of(context).size.height/15,
-                          child: Image.asset('assets/images/iconmpin.png',width: MediaQuery.of(context).size.height/12,height: MediaQuery.of(context).size.height/12,))//Text
-                  ),
-                  //Text
-
-                  Center(
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(0,0,0,0),
-                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                        alignment: Alignment.center,
-                        child:Text("", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.height * 0.03,letterSpacing: .1,color: Colors.black),),
-
-                      )
-                  ),
-                  Center(
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/15,MediaQuery.of(context).size.height/30,MediaQuery.of(context).size.width/15,0),
-                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                        alignment: Alignment.center,
-                        child:Text("Please provide a 6 digit  numaric MPIN to protect your account", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.center),
-
-                      )
-                  ),
-
-                  // Center(
-                  //     child: Container(
-                  //         margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/6,MediaQuery.of(context).size.height/10,MediaQuery.of(context).size.width/6,0),
-                  //         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //         alignment: Alignment.center,
-                  //         child:Row(
-                  //             mainAxisAlignment: MainAxisAlignment.center,
-                  //             crossAxisAlignment: CrossAxisAlignment.center,
-                  //             children:<Widget>[
-                  //
-                  //               Center(
-                  //                 child: Container(
-                  //                   margin: EdgeInsets.fromLTRB(0,0,0,0),
-                  //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //                   alignment: Alignment.center,
-                  //                   width: 35,
-                  //                   height: 35,
-                  //                   child :TextFormField(
-                  //                     autofocus: true,
-                  //                     readOnly: controller.mpinRead1,
-                  //                     textAlign: TextAlign.center,
-                  //                     keyboardType: TextInputType.number,
-                  //                     controller: controller.mpin1,
-                  //                     textInputAction:TextInputAction.next,
-                  //                     focusNode: controller.mpinFocus1,
-                  //                     inputFormatters: [
-                  //                       FilteringTextInputFormatter.digitsOnly,
-                  //                       LengthLimitingTextInputFormatter(1)
-                  //                     ],
-                  //                     style: TextStyle(color: Colors.black,fontSize: 12),
-                  //                     decoration: new InputDecoration(
-                  //                         focusedBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                  //                         ),
-                  //                         enabledBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: Colors.grey, width: 1),
-                  //                         )
-                  //                     ),
-                  //                     onChanged: (text) {
-                  //                       print('First text field: $text');
-                  //                       if(text.length == 1){
-                  //
-                  //                         setState(() {
-                  //                           controller.mpinRead1 = true;
-                  //                           controller.mpinRead2 = false;
-                  //                         });
-                  //                         _fieldFocusChange(context, controller.mpinFocus1, controller.mpinFocus2);
-                  //
-                  //                       }
-                  //
-                  //                     },
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //               Center(
-                  //                 child: Container(
-                  //                   margin: EdgeInsets.fromLTRB(2,0,0,0),
-                  //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //                   alignment: Alignment.center,
-                  //                   width: 35,
-                  //                   height: 35,
-                  //                   child :TextFormField(
-                  //                     autofocus: true,
-                  //                     readOnly: controller.mpinRead2,
-                  //                     textAlign: TextAlign.center,
-                  //                     keyboardType: TextInputType.number,
-                  //                     controller: controller.mpin2,
-                  //                     textInputAction:TextInputAction.next,
-                  //                     focusNode: controller.mpinFocus2,
-                  //                     inputFormatters: [
-                  //                       FilteringTextInputFormatter.digitsOnly,
-                  //                       LengthLimitingTextInputFormatter(1)
-                  //                     ],
-                  //                     style: TextStyle(color: Colors.black,fontSize: 12),
-                  //                     decoration: new InputDecoration(
-                  //                         focusedBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                  //                         ),
-                  //                         enabledBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: Colors.grey, width: 1),
-                  //                         )
-                  //                     ),
-                  //                     onChanged: (text) {
-                  //                       print('First text field: $text');
-                  //                       if(text.length == 0){
-                  //                         setState(() {
-                  //                           controller.mpinRead1 = false;
-                  //                           controller.mpinRead2 = true;
-                  //                         });
-                  //                         _fieldFocusChange(context, controller.mpinFocus2, controller.mpinFocus1);
-                  //
-                  //                       }
-                  //                       if(text.length == 1){
-                  //                         setState(() {
-                  //                           controller.mpinRead2 = true;
-                  //                           controller.mpinRead3 = false;
-                  //                         });
-                  //                         _fieldFocusChange(context, controller.mpinFocus2, controller.mpinFocus3);
-                  //
-                  //                       }
-                  //                     },
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //               Center(
-                  //                 child: Container(
-                  //                   margin: EdgeInsets.fromLTRB(2,0,0,0),
-                  //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //                   alignment: Alignment.center,
-                  //                   width: 35,
-                  //                   height: 35,
-                  //                   child :TextFormField(
-                  //                     autofocus: true,
-                  //                     readOnly: controller.mpinRead3,
-                  //                     textAlign: TextAlign.center,
-                  //                     keyboardType: TextInputType.number,
-                  //                     controller: controller.mpin3,
-                  //                     textInputAction:TextInputAction.next,
-                  //                     focusNode: controller.mpinFocus3,
-                  //                     inputFormatters: [
-                  //                       FilteringTextInputFormatter.digitsOnly,
-                  //                       LengthLimitingTextInputFormatter(1)
-                  //                     ],
-                  //                     style: TextStyle(color: Colors.black,fontSize: 12),
-                  //                     decoration: new InputDecoration(
-                  //                         focusedBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                  //                         ),
-                  //                         enabledBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: Colors.grey, width: 1),
-                  //                         )
-                  //                     ),
-                  //                     onChanged: (text) {
-                  //                       print('First text field: $text');
-                  //                       if(text.length == 0){
-                  //                         setState(() {
-                  //                           controller.mpinRead2 = false;
-                  //                           controller.mpinRead3 = true;
-                  //                         });
-                  //                         _fieldFocusChange(context, controller.mpinFocus3, controller.mpinFocus2);
-                  //
-                  //                       }
-                  //                       if(text.length == 1){
-                  //                         setState(() {
-                  //                           controller.mpinRead3 = true;
-                  //                           controller.mpinRead4 = false;
-                  //                         });
-                  //                         _fieldFocusChange(context, controller.mpinFocus3, controller.mpinFocus4);
-                  //
-                  //                       }
-                  //                     },
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //               Center(
-                  //                 child: Container(
-                  //                   margin: EdgeInsets.fromLTRB(2,0,0,0),
-                  //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //                   alignment: Alignment.center,
-                  //                   width: 35,
-                  //                   height: 35,
-                  //                   child :TextFormField(
-                  //                     autofocus: true,
-                  //                     readOnly: controller.mpinRead4,
-                  //                     textAlign: TextAlign.center,
-                  //                     keyboardType: TextInputType.number,
-                  //                     controller: controller.mpin4,
-                  //                     textInputAction:TextInputAction.next,
-                  //                     focusNode: controller.mpinFocus4,
-                  //                     inputFormatters: [
-                  //                       FilteringTextInputFormatter.digitsOnly,
-                  //                       LengthLimitingTextInputFormatter(1)
-                  //                     ],
-                  //                     style: TextStyle(color: Colors.black,fontSize: 12),
-                  //                     decoration: new InputDecoration(
-                  //                         focusedBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                  //                         ),
-                  //                         enabledBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: Colors.grey, width: 1),
-                  //                         )
-                  //                     ),
-                  //                     onChanged: (text) async {
-                  //                       print('First text field: $text');
-                  //
-                  //
-                  //                       if(text.length == 0){
-                  //                         setState(() {
-                  //                           controller.mpinRead3 = false;
-                  //                           controller.mpinRead4 = true;
-                  //                         });
-                  //                         _fieldFocusChange(context, controller.mpinFocus4, controller.mpinFocus3);
-                  //
-                  //                       }
-                  //                       if(text.length == 1){
-                  //                         setState(() {
-                  //                           controller.mpinRead4 = true;
-                  //                           controller.mpinRead5 = false;
-                  //                         });
-                  //                         _fieldFocusChange(context, controller.mpinFocus4, controller.mpinFocus5);
-                  //
-                  //                       }
-                  //
-                  //
-                  //                     },
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //
-                  //               Center(
-                  //                 child: Container(
-                  //                   margin: EdgeInsets.fromLTRB(2,0,0,0),
-                  //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //                   alignment: Alignment.center,
-                  //                   width: 35,
-                  //                   height: 35,
-                  //                   child :TextFormField(
-                  //                     autofocus: true,
-                  //                     readOnly: controller.mpinRead5,
-                  //                     textAlign: TextAlign.center,
-                  //                     keyboardType: TextInputType.number,
-                  //                     controller: controller.mpin5,
-                  //                     textInputAction:TextInputAction.next,
-                  //                     focusNode: controller.mpinFocus5,
-                  //                     inputFormatters: [
-                  //                       FilteringTextInputFormatter.digitsOnly,
-                  //                       LengthLimitingTextInputFormatter(1)
-                  //                     ],
-                  //                     style: TextStyle(color: Colors.black,fontSize: 12),
-                  //                     decoration: new InputDecoration(
-                  //                         focusedBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                  //                         ),
-                  //                         enabledBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: Colors.grey, width: 1),
-                  //                         )
-                  //                     ),
-                  //                     onChanged: (text) async {
-                  //                       print('First text field: $text');
-                  //
-                  //
-                  //                       if(text.length == 0){
-                  //                         setState(() {
-                  //                           controller.mpinRead4 = false;
-                  //                           controller.mpinRead5 = true;
-                  //                         });
-                  //                         _fieldFocusChange(context, controller.mpinFocus5, controller.mpinFocus4);
-                  //
-                  //                       }
-                  //                       if(text.length == 1){
-                  //                         setState(() {
-                  //                           controller.mpinRead5 = true;
-                  //                           controller.mpinRead6 = false;
-                  //                         });
-                  //                         _fieldFocusChange(context, controller.mpinFocus5, controller.mpinFocus6);
-                  //
-                  //                       }
-                  //
-                  //
-                  //                     },
-                  //                   ),
-                  //                 ),
-                  //               ),
-                  //
-                  //               Center(
-                  //                 child: Container(
-                  //                   margin: EdgeInsets.fromLTRB(2,0,0,0),
-                  //                   padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                  //                   alignment: Alignment.center,
-                  //                   width: 35,
-                  //                   height: 35,
-                  //                   child :TextFormField(
-                  //                     autofocus: true,
-                  //                     readOnly: controller.mpinRead6,
-                  //                     textAlign: TextAlign.center,
-                  //                     keyboardType: TextInputType.number,
-                  //                     controller: controller.mpin6,
-                  //                     textInputAction:TextInputAction.next,
-                  //                     focusNode: controller.mpinFocus6,
-                  //                     inputFormatters: [
-                  //                       FilteringTextInputFormatter.digitsOnly,
-                  //                       LengthLimitingTextInputFormatter(1)
-                  //                     ],
-                  //                     style: TextStyle(color: Colors.black,fontSize: 12),
-                  //                     decoration: new InputDecoration(
-                  //                         focusedBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: ColorUtility().colorAppbar, width: 1),
-                  //                         ),
-                  //                         enabledBorder: OutlineInputBorder(
-                  //                           borderSide: BorderSide(color: Colors.grey, width: 1),
-                  //                         )
-                  //                     ),
-                  //                     onChanged: (text) async {
-                  //                       print('First text field  66  : $text');
-                  //
-                  //                       String mpinStr = (controller.mpin1.text+controller.mpin2.text+controller.mpin3.text+controller.mpin4.text+controller.mpin5.text+controller.mpin6.text).toString();
-                  //                       setState(() {
-                  //                         controller.mpin1.clear();
-                  //                         controller.mpin2.clear();
-                  //                         controller.mpin3.clear();
-                  //                         controller.mpin4.clear();
-                  //                         controller.mpin5.clear();
-                  //                         controller.mpin6.clear();
-                  //
-                  //                         controller.mpinRead1 = false;
-                  //                         controller.mpinRead2 = true;
-                  //                         controller.mpinRead3 = true;
-                  //                         controller.mpinRead4 = true;
-                  //                         controller.mpinRead5 = true;
-                  //                         controller.mpinRead6 = true;
-                  //                       });
-                  //
-                  //                       var users = await mpin(widget.text, mpinStr, context);
-                  //
-                  //                     },
-                  //                   ),
-                  //                 ),
-                  //               )
-                  //
-                  //
-                  //
-                  //
-                  //             ]
-                  //         )
-                  //
-                  //     )
-                  // ),
-
-                  Container(
-                    margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.height/15,MediaQuery.of(context).size.width/10,0),
-                    height: MediaQuery.of(context).size.height/16,
-                    child: PinCodeTextField(
-                      length: 6,
-                      obscureText: true,
-                      autoFocus: true,
-                      animationType: AnimationType.fade,
-                      keyboardType: TextInputType.number,
-                      autoDisposeControllers: false,
-                      pinTheme: PinTheme(
-                          shape: PinCodeFieldShape.box,
-                          borderRadius: BorderRadius.circular(5),
-                          fieldHeight: MediaQuery.of(context).size.height/20,
-                          fieldWidth: MediaQuery.of(context).size.height/20,
-                          activeFillColor: Colors.white,
-                          activeColor: ColorUtility().colorAppbar,
-                          inactiveColor: Colors.grey,
-                          inactiveFillColor: Colors.grey,
-                          selectedFillColor: Colors.grey,
-                          selectedColor: Colors.grey
-                      ),
-                      animationDuration: const Duration(milliseconds: 300),
-                      backgroundColor: Colors.grey.shade50,
-                      enableActiveFill: false,
-                      controller: controller.textEditingController,
-                      onCompleted: (v) async {
-                        debugPrint("Completed");
-                        var users = await mpin(widget.text, controller.textEditingController.text, context);
-                      },
-                      onChanged: (value) {
-                        debugPrint(value);
-                        setState(() {
-                          //  currentText = value;
-                        });
-                      },
-                      beforeTextPaste: (text) {
-                        return true;
-                      },
-                      appContext: context,
+                    Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        child:  Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height/2,
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: EdgeInsets.all(0),
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                              color: ColorUtility().colorAppbar,
+                              // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            )
+                        )
                     ),
-                  ),
+                    Positioned(
+                        top: MediaQuery.of(context).size.height/2,
+                        left: 0,
+                        right: 0,
+                        child:  Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height/2,
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: EdgeInsets.all(0),
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                              // border: Border.all(
+                              //     color: Colors.white,
+                              //     //color: myImageAndCaption[i].color,
+                              //     width: 0.9
+                              // ),
+                              // borderRadius: BorderRadius.all(Radius.circular(5))
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/loginbg.png"),
+                                fit: BoxFit.fill,
+                              ),
+                            )
+                        )
+                    ),
+
+                    Positioned(
+                      top: MediaQuery.of(context).size.height/10,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        width: MediaQuery.of(context).size.height/6,
+                        height: MediaQuery.of(context).size.height/6,
+                        child: CircleAvatar(
+                            backgroundColor: Colors.black,
+                            radius: 100,
+                            child: Image.asset('assets/images/logo.png')),//Text
+                      ),
+                    ),
+
+                    Positioned(
+                      top: MediaQuery.of(context).size.height/3,
+                      left: MediaQuery.of(context).size.width/10,
+                      right: MediaQuery.of(context).size.width/10,
+                      child: Card(
+                          elevation: 5,
+                          //shadowColor: Colors.grey,
+                          shadowColor: Colors.white,
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child : Container(
+                              width: MediaQuery.of(context).size.height/20,
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.width/20,0),
+                                          width: MediaQuery.of(context).size.height/17,
+                                          height: MediaQuery.of(context).size.height/17,
+                                          child: CircleAvatar(
+                                              backgroundColor: Colors.white,
+                                              radius: 100,
+                                              child: Image.asset('assets/images/lock_login.png')),//Text
+                                        ),
+                                        Container(
+                                            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/90,MediaQuery.of(context).size.width/20,0),
+                                            child: Column(
+                                                children: [
+                                                  Align(
+                                                      alignment: Alignment.center,
+                                                      child: new Text('SET MPIN', textAlign: TextAlign.center, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.06,color: Colors.black54,fontWeight: FontWeight.bold))
+
+                                                  )
+                                                ]
+                                            )
+                                        ),
+
+                                        Center(
+                                            child: Container(
+                                              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/20,0),
+                                              padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                              alignment: Alignment.center,
+                                              child:Text("Please provide a 6 digit  numaric MPIN to protect your account", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.center),
+
+                                            )
+                                        ),
+
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/40,MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/10),
+                                          height: MediaQuery.of(context).size.height/16,
+                                          child: PinCodeTextField(
+                                            length: 6,
+                                            obscureText: true,
+                                            autoFocus: true,
+                                            animationType: AnimationType.fade,
+                                            keyboardType: TextInputType.number,
+                                            autoDisposeControllers: false,
+                                            pinTheme: PinTheme(
+                                                shape: PinCodeFieldShape.box,
+                                                borderRadius: BorderRadius.circular(5),
+                                                fieldHeight: MediaQuery.of(context).size.height/20,
+                                                fieldWidth: MediaQuery.of(context).size.height/20,
+                                                activeFillColor: Colors.white,
+                                                activeColor: ColorUtility().colorAppbar,
+                                                inactiveColor: Colors.grey,
+                                                inactiveFillColor: Colors.grey,
+                                                selectedFillColor: Colors.grey,
+                                                selectedColor: Colors.grey
+                                            ),
+                                            animationDuration: const Duration(milliseconds: 300),
+                                            backgroundColor: Colors.grey.shade50,
+                                            enableActiveFill: false,
+                                            controller: controller.textEditingController,
+                                            onCompleted: (v) async {
+                                              debugPrint("Completed");
+                                              var users = await mpin(widget.text, controller.textEditingController.text, context);
+                                            },
+                                            onChanged: (value) {
+                                              debugPrint(value);
+                                              setState(() {
+                                                //  currentText = value;
+                                              });
+                                            },
+                                            beforeTextPaste: (text) {
+                                              return true;
+                                            },
+                                            appContext: context,
+                                          ),
+                                        ),
 
 
 
-                ],
-              ),
-            ),
-          )),
+
+
+
+                                      ]
+                                  )
+                              )
+
+                          )
+                      ),
+                    ),
+
+
+
+
+                  ]
+              )
+          )
+      ),
 
     );
 

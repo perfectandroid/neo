@@ -1,3 +1,4 @@
+
 import 'dart:collection';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
@@ -244,11 +245,9 @@ class _ChkbxjsonListViewState  extends State<Chkbxjson>{
               height: 50,
               //  child: Image(image: AssetImage('assets/images/time.png')),
               /* child: Image(
-
                               Asse("assets/images/time.png",
                               width: 300,
                               height: 300,)
-
                           ),
 */
             ),
@@ -540,11 +539,9 @@ class _ChkbxjsonreturnListViewState  extends State<Chkbxreturn> {
                             height: 50,
                             //  child: Image(image: AssetImage('assets/images/time.png')),
                             /* child: Image(
-
                               Asse("assets/images/time.png",
                               width: 300,
                               height: 300,)
-
                           ),
 */
                           ),
@@ -601,7 +598,6 @@ class _ChkbxjsonreturnListViewState  extends State<Chkbxreturn> {
 
 
 }
-
 
 
 

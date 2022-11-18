@@ -76,7 +76,7 @@ showSuccessAlertDialog(BuildContext context, String Username, status) {
 
 
 
-
+  final controller = Get.put(LoginController());
   Widget okButton = TextButton(
     child: Text("Continue"),
     onPressed: () async{
@@ -102,12 +102,12 @@ showSuccessAlertDialog(BuildContext context, String Username, status) {
         print("TOKEN LOGIN"+token);
         String mobileNo = status['data']["mobile_number"].toString();
 
-
+        var pass = controller.passWordController.text.toString();
         // Navigator.push(context, MaterialPageRoute(builder: (_) => const OTPVerification()));
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => OTPVerification(text: Username,mobileNo : mobileNo),
+              builder: (context) => OTPVerification(text: Username,mobileNo : mobileNo,pass : ""),
             ));
       }
       catch(e)
