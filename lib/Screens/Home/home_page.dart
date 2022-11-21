@@ -292,7 +292,8 @@ class _HomePageState extends State<HomePage> {
                             child: new Text(liste[index].title,
                                 style: new TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 10.0,
+                                  //fontSize: 10.0,
+                                  fontSize: MediaQuery.of(context).size.width * 0.02,
                                 )
                             ),
                           )
