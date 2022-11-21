@@ -80,7 +80,7 @@ class _DeliveryScreen extends State<DeliveryScreen>{
                           context,
                           MaterialPageRoute(
                               builder: (context) => DeliveryDetails(
-                                id: deliveryList[index]['id'].toString(),status: deliveryList[index]['status'].toString()
+                                id: deliveryList[index]['id'].toString(),delivery_status: deliveryList[index]['delivery_status'].toString(),status: deliveryList[index]['status'].toString()
                               )),
                         );
 
