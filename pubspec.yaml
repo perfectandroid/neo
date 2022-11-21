@@ -52,7 +52,8 @@ dependencies:
   progress_dialog: ^1.2.4
   loading_progress: ^1.0.2
   overlay_progress_indicator: ^0.0.2
-  flutter_svg: ^0.22.0
+#  flutter_svg: ^0.22.0
+  flutter_svg: ^1.1.6
   flutter_swiper: 1.1.6
   timeline_tile: ^2.0.0
   pin_code_fields: ^7.4.0

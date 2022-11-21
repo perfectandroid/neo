@@ -1,12 +1,12 @@
 /// success : true
-/// data : [{"stock_id":1,"stk_batch_no":"1234","expiry_date":"2022-09-22","stk_mrp":78,"sale_mrp":10,"cur_qty":400,"purchase_rate":9.0,"featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"9995740386","created_at":"2022-09-22T06:30:37.982252Z","cancel_by":"6666","cancel_at":null,"updated_by":"9995740386","updated_at":null,"backup_id":null,"user":5,"product":"salt","category":"Retailer","sub_category":"df","detail_page_products":[],"product_id":1,"sub_category_id":2,"category_id":2,"front_image":"salt_Ueu7hE0.jpeg","seller":"sellernew"},{"stock_id":2,"stk_batch_no":"123456","expiry_date":"2022-09-23","stk_mrp":10,"sale_mrp":10,"cur_qty":0,"purchase_rate":8.0,"featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"9995740386","created_at":"2022-09-22T06:31:02.428084Z","cancel_by":"","cancel_at":null,"updated_by":"9995740386","updated_at":null,"backup_id":null,"user":5,"product":"salt","category":"Retailer","sub_category":"df","detail_page_products":[],"product_id":1,"sub_category_id":2,"category_id":2,"front_image":"salt_Ueu7hE0.jpeg","seller":"sellernew"},{"stock_id":3,"stk_batch_no":"1234567","expiry_date":"2022-09-23","stk_mrp":10,"sale_mrp":12,"cur_qty":4,"purchase_rate":8.0,"featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"9995740386","created_at":"2022-09-22T06:31:38.973664Z","cancel_by":"","cancel_at":null,"updated_by":"9995740386","updated_at":null,"backup_id":null,"user":5,"product":"salt","category":"Retailer","sub_category":"df","detail_page_products":[],"product_id":1,"sub_category_id":2,"category_id":2,"front_image":"salt_Ueu7hE0.jpeg","seller":"sellernew"},{"stock_id":4,"stk_batch_no":"1234","expiry_date":"2022-10-08","stk_mrp":10,"sale_mrp":12,"cur_qty":10,"purchase_rate":8.0,"featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"9995740386","created_at":"2022-10-01T04:54:03.233290Z","cancel_by":"","cancel_at":null,"updated_by":"9995740386","updated_at":null,"backup_id":null,"user":5,"product":"salt","category":"Retailer","sub_category":"df","detail_page_products":[],"product_id":1,"sub_category_id":2,"category_id":2,"front_image":"salt_Ueu7hE0.jpeg","seller":"sellernew"},{"stock_id":5,"stk_batch_no":"123456","expiry_date":"2022-10-18","stk_mrp":100,"sale_mrp":100,"cur_qty":9300,"purchase_rate":75.0,"featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"9995740386","created_at":"2022-10-18T11:51:23.575503Z","cancel_by":"","cancel_at":null,"updated_by":"9995740386","updated_at":null,"backup_id":null,"user":5,"product":"sweets","category":"Retailer","sub_category":"df","detail_page_products":[],"product_id":2,"sub_category_id":2,"category_id":2,"front_image":"dairy_5U1lcQx.png","seller":"sellernew"}]
-/// errors : null
+/// data : [{"stock_id":20,"stk_batch_no":"1234","expiry_date":"2022-10-10","stk_mrp":50.5,"sale_mrp":"10.00","cur_qty":10,"purchase_rate":"8.00","featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"8086627226","created_at":"2022-10-10T08:48:37.929000Z","cancel_by":"","cancel_at":null,"updated_by":"8086627226","updated_at":null,"backup_id":null,"user":4,"product":"Black Forest Cake","category":"Food and dining","sub_category":"Cakes and Bakes","payment_method":1,"detail_page_products":[],"product_id":2,"sub_category_id":2,"category_id":2,"front_image":"cakes.jpeg","seller":"Seller"},{"stock_id":21,"stk_batch_no":null,"expiry_date":null,"stk_mrp":15.8,"sale_mrp":"59.00","cur_qty":10,"purchase_rate":"56.80","featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"8086627226","created_at":"2022-10-10T13:44:40.535000Z","cancel_by":"","cancel_at":null,"updated_by":"8086627226","updated_at":"2022-10-10T13:45:10.798000Z","backup_id":null,"user":4,"product":"Tomato","category":"Vegetables","sub_category":"Organic Foods","payment_method":1,"detail_page_products":[],"product_id":1,"sub_category_id":1,"category_id":1,"front_image":"Tomato.jpeg","seller":"Seller"},{"stock_id":22,"stk_batch_no":null,"expiry_date":null,"stk_mrp":51.4,"sale_mrp":"56.11","cur_qty":3,"purchase_rate":"56.99","featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"8086627226","created_at":"2022-10-10T13:47:42.213000Z","cancel_by":"","cancel_at":null,"updated_by":"8086627226","updated_at":null,"backup_id":null,"user":4,"product":"Black Forest Cake","category":"Food and dining","sub_category":"Cakes and Bakes","payment_method":1,"detail_page_products":[],"product_id":2,"sub_category_id":2,"category_id":2,"front_image":"cakes.jpeg","seller":"Seller"},{"stock_id":23,"stk_batch_no":null,"expiry_date":null,"stk_mrp":21.8,"sale_mrp":"21.99","cur_qty":78,"purchase_rate":"22.90","featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"8086627226","created_at":"2022-10-10T13:48:17.155000Z","cancel_by":"","cancel_at":null,"updated_by":"8086627226","updated_at":null,"backup_id":null,"user":4,"product":"Black Forest Cake","category":"Food and dining","sub_category":"Cakes and Bakes","payment_method":1,"detail_page_products":[],"product_id":2,"sub_category_id":2,"category_id":2,"front_image":"cakes.jpeg","seller":"Seller"},{"stock_id":24,"stk_batch_no":null,"expiry_date":null,"stk_mrp":4.4,"sale_mrp":"3.90","cur_qty":90,"purchase_rate":"3.90","featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"8086627226","created_at":"2022-10-10T14:11:55.401000Z","cancel_by":"","cancel_at":null,"updated_by":"8086627226","updated_at":null,"backup_id":null,"user":4,"product":"Tomato","category":"Vegetables","sub_category":"Organic Foods","payment_method":1,"detail_page_products":[],"product_id":1,"sub_category_id":1,"category_id":1,"front_image":"Tomato.jpeg","seller":"Seller"},{"stock_id":25,"stk_batch_no":null,"expiry_date":null,"stk_mrp":80.0,"sale_mrp":"78.90","cur_qty":90,"purchase_rate":"78.90","featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"8086627226","created_at":"2022-10-10T14:16:11.617000Z","cancel_by":"","cancel_at":null,"updated_by":"8086627226","updated_at":null,"backup_id":null,"user":4,"product":"Black Forest Cake","category":"Food and dining","sub_category":"Cakes and Bakes","payment_method":1,"detail_page_products":[],"product_id":2,"sub_category_id":2,"category_id":2,"front_image":"cakes.jpeg","seller":"Seller"},{"stock_id":26,"stk_batch_no":null,"expiry_date":null,"stk_mrp":67.89,"sale_mrp":"67.89","cur_qty":10,"purchase_rate":"67.89","featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"8086627226","created_at":"2022-10-11T05:15:40.090000Z","cancel_by":"","cancel_at":null,"updated_by":"8086627226","updated_at":null,"backup_id":null,"user":4,"product":"Broccoli","category":"Vegetables","sub_category":"Organic Foods","payment_method":1,"detail_page_products":[],"product_id":6,"sub_category_id":1,"category_id":1,"front_image":"broc.jfif","seller":"Seller"},{"stock_id":27,"stk_batch_no":null,"expiry_date":null,"stk_mrp":250.0,"sale_mrp":"250.00","cur_qty":1,"purchase_rate":"200.00","featured":false,"is_offer":false,"offer_type":null,"offer_price_val":null,"description":"","best_sellers":false,"is_deleted":false,"created_by":"8086627226","created_at":"2022-10-12T10:14:58.841000Z","cancel_by":"","cancel_at":null,"updated_by":"8086627226","updated_at":null,"backup_id":null,"user":4,"product":"Black Forest Cake","category":"Food and dining","sub_category":"Cakes and Bakes","payment_method":1,"detail_page_products":[],"product_id":2,"sub_category_id":2,"category_id":2,"front_image":"cakes.jpeg","seller":"Seller"}]
+/// errors : ""
 
 class SockReportListModel {
   SockReportListModel({
       bool? success, 
       List<Data>? data, 
-      dynamic errors,}){
+      String? errors,}){
     _success = success;
     _data = data;
     _errors = errors;
@@ -24,17 +24,17 @@ class SockReportListModel {
   }
   bool? _success;
   List<Data>? _data;
-  dynamic _errors;
+  String? _errors;
 SockReportListModel copyWith({  bool? success,
   List<Data>? data,
-  dynamic errors,
+  String? errors,
 }) => SockReportListModel(  success: success ?? _success,
   data: data ?? _data,
   errors: errors ?? _errors,
 );
   bool? get success => _success;
   List<Data>? get data => _data;
-  dynamic get errors => _errors;
+  String? get errors => _errors;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -48,13 +48,13 @@ SockReportListModel copyWith({  bool? success,
 
 }
 
-/// stock_id : 1
+/// stock_id : 20
 /// stk_batch_no : "1234"
-/// expiry_date : "2022-09-22"
-/// stk_mrp : 78
-/// sale_mrp : 10
-/// cur_qty : 400
-/// purchase_rate : 9.0
+/// expiry_date : "2022-10-10"
+/// stk_mrp : 50.5
+/// sale_mrp : "10.00"
+/// cur_qty : 10
+/// purchase_rate : "8.00"
 /// featured : false
 /// is_offer : false
 /// offer_type : null
@@ -62,23 +62,24 @@ SockReportListModel copyWith({  bool? success,
 /// description : ""
 /// best_sellers : false
 /// is_deleted : false
-/// created_by : "9995740386"
-/// created_at : "2022-09-22T06:30:37.982252Z"
-/// cancel_by : "6666"
+/// created_by : "8086627226"
+/// created_at : "2022-10-10T08:48:37.929000Z"
+/// cancel_by : ""
 /// cancel_at : null
-/// updated_by : "9995740386"
+/// updated_by : "8086627226"
 /// updated_at : null
 /// backup_id : null
-/// user : 5
-/// product : "salt"
-/// category : "Retailer"
-/// sub_category : "df"
+/// user : 4
+/// product : "Black Forest Cake"
+/// category : "Food and dining"
+/// sub_category : "Cakes and Bakes"
+/// payment_method : 1
 /// detail_page_products : []
-/// product_id : 1
+/// product_id : 2
 /// sub_category_id : 2
 /// category_id : 2
-/// front_image : "salt_Ueu7hE0.jpeg"
-/// seller : "sellernew"
+/// front_image : "cakes.jpeg"
+/// seller : "Seller"
 
 class Data {
   Data({
@@ -86,9 +87,9 @@ class Data {
       String? stkBatchNo, 
       String? expiryDate, 
       num? stkMrp, 
-      num? saleMrp, 
+      String? saleMrp, 
       num? curQty, 
-      num? purchaseRate, 
+      String? purchaseRate, 
       bool? featured, 
       bool? isOffer, 
       dynamic offerType, 
@@ -107,6 +108,7 @@ class Data {
       String? product, 
       String? category, 
       String? subCategory, 
+      num? paymentMethod, 
       List<dynamic>? detailPageProducts, 
       num? productId, 
       num? subCategoryId, 
@@ -138,6 +140,7 @@ class Data {
     _product = product;
     _category = category;
     _subCategory = subCategory;
+    _paymentMethod = paymentMethod;
     _detailPageProducts = detailPageProducts;
     _productId = productId;
     _subCategoryId = subCategoryId;
@@ -172,10 +175,11 @@ class Data {
     _product = json['product'];
     _category = json['category'];
     _subCategory = json['sub_category'];
+    _paymentMethod = json['payment_method'];
     if (json['detail_page_products'] != null) {
       _detailPageProducts = [];
       json['detail_page_products'].forEach((v) {
-      //  _detailPageProducts?.add(Dynamic.fromJson(v));
+       // _detailPageProducts?.add(Dynamic.fromJson(v));
       });
     }
     _productId = json['product_id'];
@@ -188,9 +192,9 @@ class Data {
   String? _stkBatchNo;
   String? _expiryDate;
   num? _stkMrp;
-  num? _saleMrp;
+  String? _saleMrp;
   num? _curQty;
-  num? _purchaseRate;
+  String? _purchaseRate;
   bool? _featured;
   bool? _isOffer;
   dynamic _offerType;
@@ -209,6 +213,7 @@ class Data {
   String? _product;
   String? _category;
   String? _subCategory;
+  num? _paymentMethod;
   List<dynamic>? _detailPageProducts;
   num? _productId;
   num? _subCategoryId;
@@ -219,9 +224,9 @@ Data copyWith({  num? stockId,
   String? stkBatchNo,
   String? expiryDate,
   num? stkMrp,
-  num? saleMrp,
+  String? saleMrp,
   num? curQty,
-  num? purchaseRate,
+  String? purchaseRate,
   bool? featured,
   bool? isOffer,
   dynamic offerType,
@@ -240,6 +245,7 @@ Data copyWith({  num? stockId,
   String? product,
   String? category,
   String? subCategory,
+  num? paymentMethod,
   List<dynamic>? detailPageProducts,
   num? productId,
   num? subCategoryId,
@@ -271,6 +277,7 @@ Data copyWith({  num? stockId,
   product: product ?? _product,
   category: category ?? _category,
   subCategory: subCategory ?? _subCategory,
+  paymentMethod: paymentMethod ?? _paymentMethod,
   detailPageProducts: detailPageProducts ?? _detailPageProducts,
   productId: productId ?? _productId,
   subCategoryId: subCategoryId ?? _subCategoryId,
@@ -282,9 +289,9 @@ Data copyWith({  num? stockId,
   String? get stkBatchNo => _stkBatchNo;
   String? get expiryDate => _expiryDate;
   num? get stkMrp => _stkMrp;
-  num? get saleMrp => _saleMrp;
+  String? get saleMrp => _saleMrp;
   num? get curQty => _curQty;
-  num? get purchaseRate => _purchaseRate;
+  String? get purchaseRate => _purchaseRate;
   bool? get featured => _featured;
   bool? get isOffer => _isOffer;
   dynamic get offerType => _offerType;
@@ -303,6 +310,7 @@ Data copyWith({  num? stockId,
   String? get product => _product;
   String? get category => _category;
   String? get subCategory => _subCategory;
+  num? get paymentMethod => _paymentMethod;
   List<dynamic>? get detailPageProducts => _detailPageProducts;
   num? get productId => _productId;
   num? get subCategoryId => _subCategoryId;
@@ -337,6 +345,7 @@ Data copyWith({  num? stockId,
     map['product'] = _product;
     map['category'] = _category;
     map['sub_category'] = _subCategory;
+    map['payment_method'] = _paymentMethod;
     if (_detailPageProducts != null) {
       map['detail_page_products'] = _detailPageProducts?.map((v) => v.toJson()).toList();
     }
