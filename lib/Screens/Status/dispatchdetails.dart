@@ -183,7 +183,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                                                                                                     ),
                                                                                                                                     child: Row(
                                                                                                                                         children: <Widget>[
-                                                                                                                                          Image.asset("assets/images/icon_confirmed.png",width: 12,height: 12,color: Colors.white),
+                                                                                                                                          SvgPicture.asset("assets/images/ic_confirmed.svg",width: 12,height: 12,color: Colors.white),
                                                                                                                                           Container(width: 2,color :  Colors.transparent),
                                                                                                                                           Text(""+(deliveryModel?.data?.deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),)
                                                                                                                                         ]
@@ -205,7 +205,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                                                                                                         crossAxisAlignment: CrossAxisAlignment.end,
                                                                                                                                         mainAxisAlignment: MainAxisAlignment.end,
                                                                                                                                         children: <Widget>[
-                                                                                                                                          Image.asset("assets/images/icon_dispatched.png",width: 12,height: 12,color: Colors.white),
+                                                                                                                                          SvgPicture.asset("assets/images/ic_dispatched.svg",width: 12,height: 12,color: Colors.white),
                                                                                                                                           Container(width: 2,color :  Colors.transparent),
                                                                                                                                           Text(""+(deliveryModel?.data?.deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),)
                                                                                                                                         ]
@@ -225,7 +225,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                                                                                                       ),
                                                                                                                                       child: Row(
                                                                                                                                           children: <Widget>[
-                                                                                                                                            Image.asset("assets/images/icon_packed.png",width: 12,height: 12,color: Colors.white),
+                                                                                                                                            SvgPicture.asset("assets/images/ic_packed.svg",width: 12,height: 12,color: Colors.white),
                                                                                                                                             Container(width: 2,color :  Colors.transparent),
                                                                                                                                             Text(""+(deliveryModel?.data?.deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),)
                                                                                                                                           ]
@@ -275,7 +275,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                                                                                             children: <Widget>[
                                                                                                                               // Icon(Icons.play_arrow, color: Colors.black,size: 20),
                                                                                                                               //Image.asset("assets/images/icon_orderid.png",width: 20,height: 20,color: ColorUtility().colorAppbar,),
-                                                                                                                              SvgPicture.asset("assets/images/ic_discount.svg",width: 14,height: 14,color : ColorUtility().colorAppbar,fit: BoxFit.scaleDown),
+                                                                                                                              SvgPicture.asset("assets/images/ic_order_id.svg",width: 14,height: 14,color : ColorUtility().colorAppbar,fit: BoxFit.scaleDown),
                                                                                                                               Container(width : 5,color : Colors.transparent),
                                                                                                                               Text("Order ID ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorBlack)),
                                                                                                                             ]

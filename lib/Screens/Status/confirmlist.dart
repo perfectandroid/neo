@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_progress/loading_progress.dart';
 import 'package:neo/Screens/Home/home_activity.dart';
@@ -134,36 +135,36 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
 
+                    //  SizedBox(
+                    //     height: MediaQuery.of(context).size.height * 0.06,
+                    //     width: MediaQuery.of(context).size.width / 2.0091, // <-- match_parent
+                    //     child: TextButton(
+                    //       style: TextButton.styleFrom(
+                    //           primary: Colors.white,fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+                    //           backgroundColor: ColorUtility().colorAppbar,
+                    //           shape: const RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.all(Radius.zero))
+                    //       ),
+                    //       onPressed: () {
+                    //         _confirmSaveList.clear();
+                    //         print('List :  $_isChecked');
+                    //         for (var i = 0; i < confirmList.length; i++){
+                    //           if(_isChecked[i]){
+                    //             print("Packed List 96");
+                    //             print(confirmList[i]['id'].toString());
+                    //             _confirmSaveList.add(confirmList[i]['id'].toString());
+                    //           }
+                    //         }
+                    //         print("Packed List 96");
+                    //       },
+                    //       child: Text('DELETE'),
+                    //     )
+                    // ),
+                    // SizedBox(width:MediaQuery.of(context).size.width /250),
                      SizedBox(
                         height: MediaQuery.of(context).size.height * 0.06,
-                        width: MediaQuery.of(context).size.width / 2.0091, // <-- match_parent
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                              primary: Colors.white,fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
-                              backgroundColor: ColorUtility().colorAppbar,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.zero))
-                          ),
-                          onPressed: () {
-                            _confirmSaveList.clear();
-                            print('List :  $_isChecked');
-                            for (var i = 0; i < confirmList.length; i++){
-                              if(_isChecked[i]){
-                                print("Packed List 96");
-                                print(confirmList[i]['id'].toString());
-                                _confirmSaveList.add(confirmList[i]['id'].toString());
-                              }
-                            }
-                            print("Packed List 96");
-                          },
-                          child: Text('DELETE'),
-                        )
-                    ),
-                    SizedBox(width:MediaQuery.of(context).size.width /250),
-                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.06,
-                        width: MediaQuery.of(context).size.width /2.0091, // <-- match_paren
-                        child: TextButton(
+                       // width: MediaQuery.of(context).size.width /2.0091, // <-- match_paren
+                         child: TextButton(
                           style: TextButton.styleFrom(
                               primary: Colors.white,fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
                               backgroundColor: ColorUtility().colorAppbar,
@@ -187,6 +188,10 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                           child: Text('VERIFY'),
                         )
                     )
+
+
+
+
                   ]
               ),
           )
@@ -283,10 +288,81 @@ class _ConfirmScreen extends State<ConfirmScreen>{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+
+                    Center(
+                        child: Container(
+                            margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(5,0,0,0),
+                                child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+
+                                      Center(
+                                          child: Container(
+                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                            width: MediaQuery.of(context).size.width * 0.62,
+                                            alignment: Alignment.centerLeft,
+                                            child:Text(""+item[index]['customer_name'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                            //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+
+                                          )
+                                      ),
+
+
+                                      Center(
+                                          child : Container(
+                                              width: MediaQuery.of(context).size.width * 0.25,
+                                              alignment: Alignment.centerRight,
+
+                                              child : Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                  children: <Widget>[
+
+                                                    Center(
+                                                        child : Container(
+                                                            padding: const EdgeInsets.all(5),
+                                                            alignment: Alignment.centerLeft,
+                                                            decoration: BoxDecoration(
+                                                              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                                              color: ColorUtility().colorVerified,
+                                                            ),
+                                                            child: Row(
+                                                                children: <Widget>[
+                                                                  SvgPicture.asset("assets/images/ic_confirmed.svg",width: 12,height: 12,color: Colors.white),
+                                                                  Container(width: 2,color :  Colors.transparent),
+                                                                  Text(""+item[index]['delivery_status'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),)
+                                                                ]
+                                                            )
+                                                          //
+                                                        )
+                                                    )
+
+                                                  ]
+                                              )
+                                          )
+                                      )
+
+
+
+
+
+
+
+
+                                    ]
+                                )
+                            )
+
+                        )
+                    ),
+
                     Center(
                       child: Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
                           child: Padding(
-                              padding: const EdgeInsets.fromLTRB(5,0,0,0),
+                              padding: const EdgeInsets.fromLTRB(5,0,0,5),
                               child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
@@ -300,52 +376,63 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: <Widget>[
 
+                                                // Center(
+                                                //     child: Container(
+                                                //         child: Padding(
+                                                //             padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //             child: Row(
+                                                //                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                //                 children: <Widget>[
+                                                //
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.8,
+                                                //                         alignment: Alignment.centerLeft,
+                                                //                         child:Text(""+item[index]['customer_name'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //
+                                                //                 ]
+                                                //             )
+                                                //         )
+                                                //
+                                                //     )
+                                                // ),
+
                                                 Center(
                                                     child: Container(
+                                                      margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
                                                         child: Padding(
                                                             padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                             child: Row(
                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                 children: <Widget>[
 
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.8,
-                                                                        alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['customer_name'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05,letterSpacing: .1,color: ColorUtility().colorAppbar),),
-
-                                                                      )
-                                                                  ),
-
-                                                                ]
-                                                            )
-                                                        )
-
-                                                    )
-                                                ),
-
-                                                Center(
-                                                    child: Container(
-                                                        child: Padding(
-                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                            child: Row(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: <Widget>[
 
                                                                   Center(
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        width: MediaQuery.of(context).size.width * 0.28,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text("Address ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                                          child: Row(
+                                                                              children: <Widget>[
+                                                                                // Icon(Icons.play_arrow, color: Colors.black,size: 20),
+                                                                                //Image.asset("assets/images/icon_orderid.png",width: 20,height: 20,color: ColorUtility().colorAppbar,),
+                                                                                SvgPicture.asset("assets/images/ic_contact.svg",width: 14,height: 14,color : ColorUtility().colorAppbar,fit: BoxFit.scaleDown),
+                                                                                Container(width : 5,color : Colors.transparent),
+                                                                                Text("Address ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack)),
+                                                                              ]
+                                                                          )
+                                                                      //  child:Text("Address ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
 
                                                                       )
                                                                   ),
                                                                   Center(
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.6,
+                                                                        width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
                                                                         child:Text(""+item[index]['fk_shipping_address'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
@@ -362,6 +449,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
 
                                                 Center(
                                                     child: Container(
+                                                        margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
                                                         child: Padding(
                                                             padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                             child: Row(
@@ -371,16 +459,25 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                   Center(
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        width: MediaQuery.of(context).size.width * 0.28,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text("Order ID ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                                          child: Row(
+                                                                              children: <Widget>[
+                                                                                // Icon(Icons.play_arrow, color: Colors.black,size: 20),
+                                                                                //Image.asset("assets/images/icon_orderid.png",width: 20,height: 20,color: ColorUtility().colorAppbar,),
+                                                                                SvgPicture.asset("assets/images/ic_order_id.svg",width: 14,height: 14,color : ColorUtility().colorAppbar,fit: BoxFit.scaleDown),
+                                                                                Container(width : 5,color : Colors.transparent),
+                                                                                Text("Order ID ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack)),
+                                                                              ]
+                                                                          )
+                                                                       // child:Text("Order ID ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
 
                                                                       )
                                                                   ),
                                                                   Center(
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.6,
+                                                                        width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
                                                                         child:Text(""+item[index]['order_id'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
@@ -395,8 +492,56 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                     )
                                                 ),
 
+                                                // Center(
+                                                //     child: Container(
+                                                //         child: Padding(
+                                                //             padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //             child: Row(
+                                                //                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                //                 children: <Widget>[
+                                                //
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                                                //                         width: MediaQuery.of(context).size.width * 0.2,
+                                                //                         alignment: Alignment.centerLeft,
+                                                //                           child: Row(
+                                                //                               children: <Widget>[
+                                                //                                 // Icon(Icons.play_arrow, color: Colors.black,size: 20),
+                                                //                                 //Image.asset("assets/images/icon_orderid.png",width: 20,height: 20,color: ColorUtility().colorAppbar,),
+                                                //                                 SvgPicture.asset("assets/images/ic_order_id.svg",width: 14,height: 14,color : ColorUtility().colorLightBlack,fit: BoxFit.scaleDown),
+                                                //                                 Container(width : 5,color : Colors.transparent),
+                                                //                                 Text("Status ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorBlack)),
+                                                //                               ]
+                                                //                           )
+                                                //                         //child:Text("Status ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //                   Center(
+                                                //                       child: Container(
+                                                //                         padding: const EdgeInsets.fromLTRB(5,1,5,1),
+                                                //                         alignment: Alignment.centerLeft,
+                                                //                         decoration: BoxDecoration(
+                                                //                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                                //                           color: ColorUtility().colorVerified,
+                                                //                         ),
+                                                //                         child:Text(""+item[index]['delivery_status'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),),
+                                                //                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                //
+                                                //                       )
+                                                //                   ),
+                                                //
+                                                //                 ]
+                                                //             )
+                                                //         )
+                                                //
+                                                //     )
+                                                // ),
+
                                                 Center(
                                                     child: Container(
+                                                        margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
                                                         child: Padding(
                                                             padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                             child: Row(
@@ -406,54 +551,25 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                   Center(
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        width: MediaQuery.of(context).size.width * 0.28,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text("Status ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
-
-                                                                      )
-                                                                  ),
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(5,1,5,1),
-                                                                        alignment: Alignment.centerLeft,
-                                                                        decoration: BoxDecoration(
-                                                                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                                                                          color: ColorUtility().colorVerified,
-                                                                        ),
-                                                                        child:Text(""+item[index]['delivery_status'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),),
-                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-
-                                                                      )
-                                                                  ),
-
-                                                                ]
-                                                            )
-                                                        )
-
-                                                    )
-                                                ),
-
-                                                Center(
-                                                    child: Container(
-                                                        child: Padding(
-                                                            padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                            child: Row(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: <Widget>[
-
-                                                                  Center(
-                                                                      child: Container(
-                                                                        padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.2,
-                                                                        alignment: Alignment.centerLeft,
-                                                                        child:Text("Order Count ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                                          child: Row(
+                                                                              children: <Widget>[
+                                                                                // Icon(Icons.play_arrow, color: Colors.black,size: 20),
+                                                                                //Image.asset("assets/images/icon_orderid.png",width: 20,height: 20,color: ColorUtility().colorAppbar,),
+                                                                                SvgPicture.asset("assets/images/ic_sub_total.svg",width: 14,height: 14,color : ColorUtility().colorAppbar,fit: BoxFit.scaleDown),
+                                                                                Container(width : 5,color : Colors.transparent),
+                                                                                Text("Order Count ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack)),
+                                                                              ]
+                                                                          )
+                                                                        //child:Text("Order Count ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
 
                                                                       )
                                                                   ),
                                                                   Center(
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.6,
+                                                                        width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
                                                                         child:Text(""+item[index]['quantity'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
@@ -470,6 +586,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
 
                                                 Center(
                                                     child: Container(
+                                                        margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
                                                         child: Padding(
                                                             padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                             child: Row(
@@ -479,16 +596,25 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                   Center(
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.20,
+                                                                        width: MediaQuery.of(context).size.width * 0.28,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text("Total ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                                          child: Row(
+                                                                              children: <Widget>[
+                                                                                // Icon(Icons.play_arrow, color: Colors.black,size: 20),
+                                                                                //Image.asset("assets/images/icon_orderid.png",width: 20,height: 20,color: ColorUtility().colorAppbar,),
+                                                                                SvgPicture.asset("assets/images/ic_total.svg",width: 14,height: 14,color : ColorUtility().colorAppbar,fit: BoxFit.scaleDown),
+                                                                                Container(width : 5,color : Colors.transparent),
+                                                                                Text("Total ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack)),
+                                                                              ]
+                                                                          )
+                                                                       // child:Text("Total ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
 
                                                                       )
                                                                   ),
                                                                   Center(
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.6,
+                                                                        width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
                                                                         child:Text(""+item[index]['grand_total'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
@@ -504,6 +630,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
 
                                                 Center(
                                                     child: Container(
+                                                        margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
                                                         child: Padding(
                                                             padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                             child: Row(
@@ -513,16 +640,25 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                   Center(
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.2,
+                                                                        width: MediaQuery.of(context).size.width * 0.28,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text("Ordered On ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
+                                                                          child: Row(
+                                                                              children: <Widget>[
+                                                                                // Icon(Icons.play_arrow, color: Colors.black,size: 20),
+                                                                                //Image.asset("assets/images/icon_orderid.png",width: 20,height: 20,color: ColorUtility().colorAppbar,),
+                                                                                SvgPicture.asset("assets/images/ic_sub_total.svg",width: 14,height: 14,color : ColorUtility().colorAppbar,fit: BoxFit.scaleDown),
+                                                                                Container(width : 5,color : Colors.transparent),
+                                                                                Text("Ordered On ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack)),
+                                                                              ]
+                                                                          )
+                                                                        //child:Text("Ordered On ", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorBlack),),
 
                                                                       )
                                                                   ),
                                                                   Center(
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                                                        width: MediaQuery.of(context).size.width * 0.6,
+                                                                        width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
                                                                         child:Text(""+item[index]['created_at'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
@@ -558,7 +694,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                           padding: const EdgeInsets.fromLTRB(0,10,10,10),
                                           width: MediaQuery.of(context).size.width * 0.08,
                                           height: MediaQuery.of(context).size.width * 0.15,
-                                          alignment: Alignment.center,
+                                          alignment: Alignment.bottomCenter,
                                           child: Transform.scale(
                                               scale: 1,
                                               child: Checkbox(
@@ -596,35 +732,6 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                       )
                     ),
 
-                    // Center(
-                    //     child: Container(
-                    //         child: Padding(
-                    //             padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                    //             child: Column(
-                    //                 crossAxisAlignment: CrossAxisAlignment.start,
-                    //                 children: <Widget>[
-                    //                   Center(
-                    //                     child: Container(
-                    //                         padding: const EdgeInsets.all(0.0),
-                    //                         width: MediaQuery.of(context).size.width,
-                    //                         child: Column(
-                    //                             crossAxisAlignment: CrossAxisAlignment.end,
-                    //                             children: <Widget>[
-                    //                               Text("Ordered On : "+item['created_at'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.02,letterSpacing: .1,color: ColorUtility().colorBlack),),
-                    //                               SizedBox(height: 5,),
-                    //
-                    //
-                    //                             ]
-                    //                         )
-                    //                     ),
-                    //                   )
-                    //
-                    //
-                    //                 ]
-                    //             )
-                    //         )
-                    //     )
-                    // )
                   ]
               )
           )
