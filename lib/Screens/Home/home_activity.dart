@@ -1,4 +1,5 @@
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -41,17 +42,17 @@ class DrawerActivity extends StatefulWidget {
   final _draweItems = [
     new DrawerItem("Home ", Icons.home_outlined),
     new DrawerItem("Profile", Icons.person_outline),
-    new DrawerItem("About Us", Icons.language_sharp),
-    new DrawerItem("Contact Us", Icons.quick_contacts_dialer_outlined),
-    new DrawerItem("Privacy Policy", Icons.privacy_tip_outlined),
-    new DrawerItem("Terms & Conditions", Icons.fact_check_outlined),
-    new DrawerItem("Faq", Icons.question_answer_outlined),
+    //new DrawerItem("About Us", Icons.language_sharp),
+   // new DrawerItem("Contact Us", Icons.quick_contacts_dialer_outlined),
+    //new DrawerItem("Privacy Policy", Icons.privacy_tip_outlined),
+    //new DrawerItem("Terms & Conditions", Icons.fact_check_outlined),
+    //new DrawerItem("Faq", Icons.question_answer_outlined),
     //new DrawerItem("Rate Us", Icons.image_aspect_ratio),
     new DrawerItem("Change Mpin", Icons.pin_outlined),
     new DrawerItem("Change Password", Icons.lock_outline),
     new DrawerItem("Quit", Icons.dangerous_outlined),
     new DrawerItem("Log Out", Icons.logout),
-    new DrawerItem("Reminder", Icons.alarm),
+    //new DrawerItem("Reminder", Icons.alarm),
   ];
 
   @override
@@ -81,19 +82,22 @@ class DrawerActivityState extends State<DrawerActivity> {
         return new UserProfile();
       case 2:
        // return new MPINVerification();
-        return new AboutUs();
+          return new ChangeMpin();
+        //return new AboutUs();
       case 3:
       // return new MPINVerification();
-        return new ContactUs();
+         
+         return new ChangePassword();
+        //return new ContactUs();
 
       case 4:
       // return new MPINVerification();
-        return PrivacyPolicy();
+        //return PrivacyPolicy();
 
       case 5:
       // return new MPINVerification();
        // return new ContactUs();
-        return TermsConditions();
+        //return TermsConditions();
 
       case 6:
       // return new MPINVerification();
@@ -101,11 +105,11 @@ class DrawerActivityState extends State<DrawerActivity> {
         return Faq();
       case 7:
       // return new MPINVerification();
-        return new ChangeMpin();
+        //return new ChangeMpin();
 
       case 8:
       // return new MPINVerification();
-        return new ChangePassword();
+        //return new ChangePassword();
 
       case 11:
         return new SetReminder();
@@ -116,11 +120,11 @@ class DrawerActivityState extends State<DrawerActivity> {
 
   _onSelectItem(int index) {
 
-    if(index == 9 ){
+    if(index == 4 ){
       Navigator.of(context).pop(); //
       quitAlert(context);
     }
-    else if(index == 10 ){
+    else if(index == 5 ){
       Navigator.of(context).pop(); //
       logOutAlert(context);
     }else{
@@ -159,58 +163,62 @@ class DrawerActivityState extends State<DrawerActivity> {
         title: new Text(widget._draweItems[_selectedIndex].title,style: TextStyle(fontWeight: FontWeight.bold)),
       ),
 
-      drawer: new Drawer(
-     child : FutureBuilder<void>(
-       future:  fetchData(context),
-      builder: (context, snapshot) {
-        return Container(
-          child: ListView(
-            children: [
-              Column(
-                children: <Widget>[
-                  UserAccountsDrawerHeader(
-                    accountEmail: new Text(""+controller._email, style: TextStyle(fontSize: 18),),
-                    accountName: new Text(""+controller._name, style: TextStyle(fontSize: 16)),
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(0xFF, 0x89, 0x34, 0x8E)),
-
-                    currentAccountPicture: new GestureDetector(
-                      // child :Container(
-                      //     decoration: BoxDecoration(
-                      //     image: DecorationImage(image:NetworkImage(Config().BASE_URL+controller._imagePath),fit: BoxFit.),
-                      //     color: Colors.white,
-                      //     shape: BoxShape.circle,
-                      //     ),
-                      //     ),
-
-                      // child: new CircleAvatar(
-                      //   backgroundImage: new NetworkImage(Config().BASE_URL+controller._imagePath)
-                      //  // backgroundImage: new NetworkImage(picsUrl),
-                      // ),
-
-                      child: Container(
-                        child: CircleAvatar(
+      drawer: SafeArea(
+        child: new Drawer(
+           child : FutureBuilder<void>(
+         future:  fetchData(context),
+        builder: (context, snapshot) {
+          return Container(
+            child: ListView(
+              shrinkWrap: true,
+              physics: ClampingScrollPhysics(),
+              children: [
+                Column(
+                  children: <Widget>[
+                    UserAccountsDrawerHeader(
+                      accountEmail: new Text(""+controller._email, style: TextStyle(fontSize: 18),),
+                      accountName: new Text(""+controller._name, style: TextStyle(fontSize: 16)),
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(0xFF, 0x89, 0x34, 0x8E)),
+      
+                      currentAccountPicture: new GestureDetector(
+                        // child :Container(
+                        //     decoration: BoxDecoration(
+                        //     image: DecorationImage(image:NetworkImage(Config().BASE_URL+controller._imagePath),fit: BoxFit.),
+                        //     color: Colors.white,
+                        //     shape: BoxShape.circle,
+                        //     ),
+                        //     ),
+      
+                        // child: new CircleAvatar(
+                        //   backgroundImage: new NetworkImage(Config().BASE_URL+controller._imagePath)
+                        //  // backgroundImage: new NetworkImage(picsUrl),
+                        // ),
+      
+                        child: Container(
                           child: CircleAvatar(
-                             child: Image.network(Config().BASE_URL+controller._imagePath),backgroundColor: Colors.white
-                            //  child: Image.network(picsUrl),backgroundColor: Colors.white
-                            // child: Image.network(picsUrl),
-                          ),backgroundColor: Colors.white,
-                        ),padding: EdgeInsets.zero,
+                            child: CircleAvatar(
+                               child: Image.network(Config().BASE_URL+controller._imagePath),backgroundColor: Colors.white
+                              //  child: Image.network(picsUrl),backgroundColor: Colors.white
+                              // child: Image.network(picsUrl),
+                            ),backgroundColor: Colors.white,
+                          ),padding: EdgeInsets.zero,
+                        ),
+      
+                        onTap: () => print("This is your current account."),
                       ),
-
-                      onTap: () => print("This is your current account."),
+      
                     ),
-
-                  ),
-                  Column(children: drawerOpts)
-                ],
-              )
-            ],
-          )
-        );
-      }
-     )
-
+                    Column(children: drawerOpts)
+                  ],
+                )
+              ],
+            )
+          );
+        }
+           )
+      
+        ),
       ),
       body: _getDrawerItemWidget(_selectedIndex),
     );
@@ -345,7 +353,14 @@ class DrawerActivityState extends State<DrawerActivity> {
                                         child: TextButton(
                                           onPressed: () {
                                             //action
-                                             SystemNavigator.pop();
+                              if (Platform.isAndroid) {
+                              // Android-specific code
+                                 SystemNavigator.pop();
+                              } else if (Platform.isIOS) {
+                               // iOS-specific code
+                                  exit(0);
+                                  
+                              }
                                             // exit(0);
                                           //  window.close();
                                           },
@@ -417,7 +432,7 @@ class DrawerActivityState extends State<DrawerActivity> {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.fromLTRB(10,20,10,20),
                         child:SizedBox(
-                          child: Text("Are you sure you want to quit ?",textAlign: TextAlign.center,),
+                          child: Text("Are you sure you want to logout ?",textAlign: TextAlign.center,),
                         )
 
                     ),

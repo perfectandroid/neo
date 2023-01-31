@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +106,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                           context,
                           MaterialPageRoute(
                               builder: (context) => DispatchDetails(
-                                  id: dispatchedList[index]['id'].toString(),delivery_status: dispatchedList[index]['delivery_status'].toString(),heading :'Dispatched Details'
+                                  id: dispatchedList[index]['id'].toString(),delivery_status: dispatchedList[index]['delivery_status'].toString(),heading :'Dispatched Details',from: "dispatched",
                               )),
                         );
 
@@ -497,7 +498,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['grand_total'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+Config.priceFormate(item[index]['grand_total'].toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
                                                                   ),
@@ -541,7 +542,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['created_at'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+Config.splitDateFormate(item[index]['created_at'].toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
                                                                   ),
@@ -800,6 +801,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
       child: Text("OK"),
       onPressed: () {
         Navigator.pop(context);
+        Navigator.of(context, rootNavigator: true).pop();//additionaly add for remove alert dialog
         setState(() {
           checkInterNet(context);
         });
@@ -949,7 +951,14 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     onPressed: () {
       //Navigator.pop(context,true);
       //Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
+       if (Platform.isAndroid) {
+       // Android-specific code
+       Navigator.of(context,rootNavigator: true).pop();
+       //Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
+      } else if (Platform.isIOS) {
+       // iOS-specific code
+       Navigator.of(context,rootNavigator: true).pop();
+      }
          // Navigator.push(context, MaterialPageRoute(builder: (_) => const HomePage()));
     },
   );
@@ -966,5 +975,5 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     builder: (BuildContext context) {
       return alert;
     },
-  );
+  ).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),)));
 }

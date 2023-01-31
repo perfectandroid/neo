@@ -138,15 +138,13 @@ class CustomJSONListView extends State {
         title: Text('Notification List'),
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                fullscreenDialog: true,
-                builder: (BuildContext context) => DrawerActivity(
-                  //  liste: album,
-                ),
-              ),
-            );
+             Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DrawerActivity()
+                      ),
+                          (route) => false
+                  );
             // Navigator.pop(context,true);
           },
           icon: Icon(Icons.arrow_back),

@@ -160,7 +160,7 @@ class _Faq extends State<Faq>{
     try{
       String token = await SharedPreferencesHelper.getAgent_token();
       var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
-      var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/customer_api/faq/'));
+      var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/seller_api/faq/'));
 
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();

@@ -23,8 +23,9 @@ class DispatchDetails extends StatefulWidget {
   String id;
   String delivery_status;
   String heading;
+  String from;
 
-  DispatchDetails({required this.id, required this.delivery_status, required this.heading});
+  DispatchDetails({required this.id, required this.delivery_status, required this.heading,required this.from});
 
   State<StatefulWidget> createState() {
     SystemChrome.setPreferredOrientations([
@@ -41,8 +42,8 @@ class DispatchDetails extends StatefulWidget {
 class _DispatchDetails extends State<DispatchDetails>{
 
   @override
-  Future<DeliveryDetailModel>? futureAlbum;
-  DeliveryDetailModel deliveryModel = DeliveryDetailModel();
+  Future<DeliveryFullDetailsModel>? futureAlbum;
+  DeliveryFullDetailsModel deliveryModel = DeliveryFullDetailsModel();
   late List _saveList = [];
 
   late List<bool> _isChecked;
@@ -89,7 +90,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                         width: double.infinity,
                         padding: EdgeInsets.fromLTRB(0,0,0,0),
                         margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child : FutureBuilder<DeliveryDetailModel>(
+                        child : FutureBuilder<DeliveryFullDetailsModel>(
                             future:  fetchPost(context),
                             builder: (context, snapshot) {
                               if (deliveryModel.success == true) {
@@ -153,7 +154,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                                                                         width: MediaQuery.of(context).size.width * 0.6,
                                                                                                                         alignment: Alignment.centerLeft,
-                                                                                                                        child:Text(""+(deliveryModel?.data?.address?.name).toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05,letterSpacing: .1,color: ColorUtility().colorAppbar),),
+                                                                                                                        child:Text(""+(deliveryModel.data?.customerName).toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05,letterSpacing: .1,color: ColorUtility().colorAppbar),),
                                                                                                                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                                                                       )
@@ -185,7 +186,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                                                                                                         children: <Widget>[
                                                                                                                                           SvgPicture.asset("assets/images/ic_confirmed.svg",width: 12,height: 12,color: Colors.white),
                                                                                                                                           Container(width: 2,color :  Colors.transparent),
-                                                                                                                                          Text(""+(deliveryModel?.data?.deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),)
+                                                                                                                                          Text(""+(deliveryModel.data?.deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.white),)
                                                                                                                                         ]
                                                                                                                                     )
                                                                                                                                   //
@@ -453,7 +454,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                                                                         width: MediaQuery.of(context).size.width * 0.6,
                                                                                                                         alignment: Alignment.centerLeft,
-                                                                                                                        child:Text(""+(deliveryModel?.data?.grandTotal).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                                                                        child:Text(""+Config.priceFormate((deliveryModel?.data?.grandTotal).toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                                                                       )
                                                                                                                   ),
@@ -630,7 +631,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                                             width: MediaQuery.of(context).size.width * 0.55,
                                                                             alignment: Alignment.topLeft,
                                                                             // child:Text(""+(deliveryModel.data?.address?.address).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-                                                                            child:Text(""+(deliveryModel.data?.address?.name).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                            child:Text(""+(deliveryModel.data?.address.name).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                             //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                           )
@@ -678,7 +679,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                                             width: MediaQuery.of(context).size.width * 0.55,
                                                                             alignment: Alignment.topLeft,
                                                                             // child:Text(""+(deliveryModel.data?.address?.address).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-                                                                            child:Text(""+(deliveryModel.data?.address?.address).toString()+","+(deliveryModel.data?.address?.cityName).toString()+","+(deliveryModel.data?.address?.stateName).toString()+","+(deliveryModel.data?.address?.countryName).toString()+","+(deliveryModel.data?.address?.pin).toString()+","+(deliveryModel.data?.address?.phone).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                            child:Text(""+(deliveryModel.data?.address?.address).toString()+","+(deliveryModel.data?.address.cityName).toString()+","+(deliveryModel.data?.address.stateName).toString()+","+(deliveryModel.data?.address.countryName).toString()+","+(deliveryModel.data?.address.pin).toString()+","+(deliveryModel.data?.address.phone).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                             //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                           )
@@ -1315,7 +1316,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                   child: Container(
                                                     alignment: Alignment.centerLeft,
                                                     padding: const EdgeInsets.all(2),
-                                                    child:Text((deliveryModel?.data?.items?[index].productName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                    child:Text((deliveryModel.data?.items[index].product_name).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                   ),
                                                 ),
 
@@ -1324,7 +1325,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                   child: Container(
                                                     alignment: Alignment.centerLeft,
                                                     padding: const EdgeInsets.all(2),
-                                                    child:Text((deliveryModel?.data?.items?[index].quantity).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                    child:Text((deliveryModel.data?.items[index].quantity).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                   ),
                                                 ),
                                                 Expanded(
@@ -1332,7 +1333,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                                                   child: Container(
                                                     alignment: Alignment.centerLeft,
                                                     padding: const EdgeInsets.all(2),
-                                                    child:Text((deliveryModel?.data?.items?[index].netAmount).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                    child:Text(Config.priceFormate((deliveryModel.data?.items[index].total_amount).toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                   ),
                                                 ),
 
@@ -1572,7 +1573,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                 child: Container(
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.fromLTRB(0,5,0,5),
-                  child:Text((deliveryModel?.data?.items?[index].productName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                  child:Text((deliveryModel.data?.items[index].product_name).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                 ),
               ),
 
@@ -1581,7 +1582,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                 child: Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(0,5,0,5),
-                  child:Text((deliveryModel?.data?.items?[index].quantity).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                  child:Text((deliveryModel.data?.items[index].quantity).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                 ),
               ),
               Expanded(
@@ -1589,7 +1590,7 @@ class _DispatchDetails extends State<DispatchDetails>{
                 child: Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(0,5,0,5),
-                  child:Text((deliveryModel?.data?.items?[index].netAmount).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                  child:Text(Config.priceFormate((deliveryModel.data?.items[index].total_amount).toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                 ),
               ),
             ]
@@ -1639,9 +1640,9 @@ class _DispatchDetails extends State<DispatchDetails>{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Text((deliveryModel?.data?.status?[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-            Text((deliveryModel?.data?.status?[index].statusMessage).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-            Text((deliveryModel?.data?.status?[index].updatedAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((deliveryModel.data?.status[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((deliveryModel.data?.status[index].statusMessage).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((deliveryModel.data?.status[index].updatedAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
           ],
         ),
@@ -1673,7 +1674,7 @@ class _DispatchDetails extends State<DispatchDetails>{
     );
   }
 
-  Future<DeliveryDetailModel> fetchPost(context) async {
+  Future<DeliveryFullDetailsModel> fetchPost(context) async {
 
     try{
       ShowDialogs().showProgressDialog(context,"Loading....",true);
@@ -1682,7 +1683,8 @@ class _DispatchDetails extends State<DispatchDetails>{
       String token = await SharedPreferencesHelper.getAgent_token();
       var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
       //var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/customer_api/order/29/'));
-      var request = http.Request('GET', Uri.parse(Config().BASE_URL+'/customer_api/order/'+widget.id+'/'));
+      String urlPath = widget.from == "confirm" ?  '/seller_api/order_list_verified/' : widget.from == "packed" ? '/seller_api/order_list_packed/' : "/seller_api/order_list_dispatched/";
+      var request = http.Request('GET', Uri.parse(Config().BASE_URL+ urlPath + widget.id +'/'));
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
       final res = await response.stream.bytesToString();
@@ -1694,7 +1696,9 @@ class _DispatchDetails extends State<DispatchDetails>{
       final errors = status['errors'] as String;
       ShowDialogs().showProgressDialog(context,"Loading....",false);
       if(statuscode==true){
-        return deliveryModel = DeliveryDetailModel.fromJson(status);
+        DeliveryFullDetailsModel deliveryInfo = DeliveryFullDetailsModel.fromJson(status);
+        print(deliveryInfo);
+        return deliveryModel = DeliveryFullDetailsModel.fromJson(status);
       }else{
         return showFaliureAlertDialog(context,errors);
 

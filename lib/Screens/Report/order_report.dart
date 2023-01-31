@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:dropdown_plus/dropdown_plus.dart';
@@ -201,9 +202,9 @@ class _OrderReport extends State<OrderReport>{
                                             flex: 2,
                                             fit: FlexFit.tight,
                                             child: Container(
-                                              alignment: Alignment.centerLeft,
+                                              alignment: Alignment.center,
                                               padding: EdgeInsets.all(4),
-                                              child:Text("MOBILE/EMAIL", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                              child:Text("MOBILE", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
                                           ),
                                           // Flexible(
@@ -219,7 +220,7 @@ class _OrderReport extends State<OrderReport>{
                                             flex: 2,
                                             fit: FlexFit.tight,
                                             child: Container(
-                                              alignment: Alignment.centerLeft,
+                                              alignment: Alignment.centerRight,
                                               padding: EdgeInsets.all(4),
                                               child:Text("TOTAL", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
@@ -229,7 +230,7 @@ class _OrderReport extends State<OrderReport>{
                                             fit: FlexFit.tight,
                                             child: Container(
 
-                                              alignment: Alignment.centerLeft,
+                                              alignment: Alignment.centerRight,
                                               padding: EdgeInsets.all(4),
                                               child:Text("STATUS", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                             ),
@@ -276,7 +277,7 @@ class _OrderReport extends State<OrderReport>{
 
                                                        // print((orderReportModel.data?[index].items?[0].productName));
 
-                                                        showItemListing(context,orderReportModel.data?[index].items);
+                                                        showItemListing(context,orderReportModel.data?[index].items,orderReportModel,index);
 
                                                       },
                                                       child : Card(
@@ -305,36 +306,40 @@ class _OrderReport extends State<OrderReport>{
                                                                       flex: 1,
                                                                       fit: FlexFit.tight,
                                                                       child: Container(
+                                                                        height: 30,
                                                                         alignment: Alignment.centerLeft,
                                                                         padding: EdgeInsets.all(4),
-                                                                        child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                        child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.0225,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      flex: 2,
+                                                                      fit: FlexFit.loose,
+                                                                      child: Container(
+                                                                        height: 30,
+                                                                        alignment: Alignment.centerLeft,
+                                                                        padding: EdgeInsets.all(4),
+                                                                        child:Text(""+Config.dateFormate((orderReportModel.data?[index].createdAt).toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.0225,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.left,),
                                                                       ),
                                                                     ),
                                                                     Flexible(
                                                                       flex: 2,
                                                                       fit: FlexFit.tight,
                                                                       child: Container(
+                                                                        height: 30,
                                                                         alignment: Alignment.centerLeft,
                                                                         padding: EdgeInsets.all(4),
-                                                                        child:Text(""+(orderReportModel.data?[index].createdAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                        child:Text(""+(orderReportModel.data?[index].customerName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.0225,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.left,),
                                                                       ),
                                                                     ),
                                                                     Flexible(
                                                                       flex: 2,
                                                                       fit: FlexFit.tight,
                                                                       child: Container(
-                                                                        alignment: Alignment.centerLeft,
+                                                                        height: 30,
+                                                                        alignment: Alignment.center,
                                                                         padding: EdgeInsets.all(4),
-                                                                        child:Text(""+(orderReportModel.data?[index].customerName).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
-                                                                      ),
-                                                                    ),
-                                                                    Flexible(
-                                                                      flex: 2,
-                                                                      fit: FlexFit.tight,
-                                                                      child: Container(
-                                                                        alignment: Alignment.centerLeft,
-                                                                        padding: EdgeInsets.all(4),
-                                                                        child:Text(""+(orderReportModel.data?[index].fkUser).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                        child:Text(""+(orderReportModel.data?[index].fkUser).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.0225,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                                                       ),
                                                                     ),
                                                                     // Flexible(
@@ -350,30 +355,30 @@ class _OrderReport extends State<OrderReport>{
                                                                       flex: 2,
                                                                       fit: FlexFit.tight,
                                                                       child: Container(
-
-                                                                        alignment: Alignment.centerLeft,
+                                                                        height: 30,
+                                                                        alignment: Alignment.centerRight,
                                                                         padding: EdgeInsets.all(4),
-                                                                        child:Text(""+(orderReportModel.data?[index].grandTotal).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                        child:Text(""+Config.priceFormate((orderReportModel.data?[index].grandTotal).toString().replaceAll("\r\n", "")), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.0225,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.right,),
                                                                       ),
                                                                     ),
                                                                     Flexible(
                                                                       flex: 2,
                                                                       fit: FlexFit.tight,
                                                                       child: Container(
-
-                                                                        alignment: Alignment.centerLeft,
+                                                                        height: 30,
+                                                                        alignment: Alignment.centerRight,
                                                                         padding: EdgeInsets.all(4),
-                                                                        child:Text(""+(orderReportModel.data?[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.025,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
+                                                                        child:Text(""+deliveryStatus((orderReportModel.data?[index].deliveryStatus).toString().replaceAll("\r\n", "")), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.0225,letterSpacing: .1,color: statusColor((orderReportModel.data?[index].deliveryStatus).toString().replaceAll("\r\n", ""))),textAlign: TextAlign.center,),
                                                                       ),
                                                                     ),
                                                                     Flexible(
                                                                       flex: 1,
                                                                       fit: FlexFit.tight,
                                                                       child: Container(
-
+                                                                        height: 30,
                                                                         alignment: Alignment.centerLeft,
                                                                         padding: EdgeInsets.all(4),
-                                                                        child : Icon(Icons.arrow_forward_ios_rounded,color: Colors.grey,size: 20)
+                                                                        child : Icon(Icons.arrow_forward_ios_rounded,color: Colors.grey,size: 16)
                                                                       ),
                                                                     ),
 
@@ -439,6 +444,36 @@ class _OrderReport extends State<OrderReport>{
     )) ??
         false;
   }
+
+  String deliveryStatus(String status){
+  
+     String currentStatus = "";
+   
+     currentStatus = status == "pending" ? "pending" : status == "verified" ? "verified" : 
+                     status == "packed" ? "packed" : status == "dispatched" ? "dispatched" : 
+                     status == "delivered" ? "delivered" : status == "order_cancelled" ? "cancelled" : status;
+
+                    //currentStatus = status == "order_cancelled" ? "cancelled" : status;
+
+     
+    return currentStatus.replaceFirst(currentStatus[0], currentStatus[0].toUpperCase());
+  }
+
+  Color? statusColor(String status){
+     print(status);
+     Color currrntColor = Colors.black;
+     currrntColor = status == "pending" ? ColorUtility().colorAppbar : 
+                    status == "verified" ? ColorUtility().colorVerified :
+                    status == "packed" ? ColorUtility().colorPacked : 
+                    status == "dispatched" ? ColorUtility().colorDispatched :
+                    status == "delivered" ? ColorUtility().colorDelivered : 
+                    status == "order_cancelled" ? ColorUtility().colorWarning : Colors.black;
+
+      return currrntColor;              
+
+  }
+
+  
 
 
   Widget datePicker(BuildContext context) {
@@ -690,6 +725,8 @@ class _OrderReport extends State<OrderReport>{
                             controller: controller.searchInput,
                             decoration: InputDecoration(
                               labelText: "Search",
+                              contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                              isDense: true,
                               labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -723,6 +760,8 @@ class _OrderReport extends State<OrderReport>{
                             controller: controller.orderStatusInput,
                             decoration: InputDecoration(
                               labelText: "Order Status",
+                              contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                              isDense: true,
                               labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -1231,7 +1270,14 @@ class _OrderReport extends State<OrderReport>{
       onPressed: () {
         //Navigator.pop(context,true);
         //Navigator.pop(context);
-        Navigator.pop(context,true);
+        //System Platform Navigator pop up hide
+        if (Platform.isAndroid){
+            //Navigator.pop(context,true);
+            Navigator.of(context,rootNavigator: true).pop();
+        }else if (Platform.isIOS){
+            Navigator.of(context,rootNavigator: true).pop();
+        }
+        
       },
     );
     AlertDialog alert = AlertDialog(
@@ -1247,7 +1293,7 @@ class _OrderReport extends State<OrderReport>{
       builder: (BuildContext context) {
         return alert;
       },
-    );
+    ).then((value) => Navigator.pop(context,true));
   }
 
   void showStatusPopup(BuildContext context,OrderStatusModel orderStatusModel) {
@@ -1419,7 +1465,50 @@ class _OrderReport extends State<OrderReport>{
 
 }
 
-void showItemListing(BuildContext context ,List<Items>? items) {
+TextStyle? headerFieldStyle(BuildContext context,Color color,double width,{ double space = .1}){
+  TextStyle style = TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * width,letterSpacing: space,color: color);
+  return style;
+}
+
+TextStyle? descriptionFieldStyle(BuildContext context,Color color,double width,{ double space = .1}){
+  TextStyle style = TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * width,letterSpacing: space,color: color);
+  return style;
+}
+
+ String statusFomateString(String status){
+  
+     String currentStatus = "";
+   
+     currentStatus = status == "pending" ? "pending" : status == "verified" ? "verified" : 
+                     status == "packed" ? "packed" : status == "dispatched" ? "dispatched" : 
+                     status == "delivered" ? "delivered" : status == "order_cancelled" ? "cancelled" : status;
+
+                    //currentStatus = status == "order_cancelled" ? "cancelled" : status;
+
+     
+    return currentStatus.replaceFirst(currentStatus[0], currentStatus[0].toUpperCase());
+  }
+
+Widget titleValueView(BuildContext context,String titile, String value,{bool alignLeft = true }){
+  return Row(
+    mainAxisAlignment: alignLeft == true ? MainAxisAlignment.start : MainAxisAlignment.end,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Container(
+      height: 15,  
+      margin: EdgeInsets.fromLTRB(5, 5, 5, 1),
+      padding: EdgeInsets.zero,
+      child: Text(titile + ": ",style: headerFieldStyle(context, Colors.black, 0.03),)),
+      Container(
+        alignment: Alignment.centerLeft,
+        padding: EdgeInsets.fromLTRB(0, 6, 0, 0),
+        child: Text(value,style: headerFieldStyle(context, Colors.black, 0.03),textAlign: TextAlign.justify,overflow: TextOverflow.ellipsis,))
+    ],
+  );
+}
+
+void showItemListing(BuildContext context ,List<Items>? items,OrderReportModel data,int index) {
+
 
   print(items?.length);
   print(items?[0].productName);
@@ -1441,6 +1530,7 @@ void showItemListing(BuildContext context ,List<Items>? items) {
       //  title: Center(child: Text('ITEM LIST',textAlign: TextAlign.center,style: TextStyle(fontSize: 15,fontStyle: FontStyle.normal,color: Colors.black))),
         content: Container(
           margin: EdgeInsets.all(5),
+          padding: EdgeInsets.fromLTRB(0, 3, 0, 2),
           width: double.maxFinite,
 
           child: Column(
@@ -1454,8 +1544,75 @@ void showItemListing(BuildContext context ,List<Items>? items) {
                   margin: EdgeInsets.all(0),
                   alignment: Alignment.center,
                     padding: EdgeInsets.all(10),
-                    child:Text("ITEM LIST", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: Colors.black54),textAlign: TextAlign.center,)
+                    child:Text("Order Details", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: Colors.black54),textAlign: TextAlign.center,)
 
+                ),
+                Container(
+                  margin: EdgeInsets.all(0),
+                  width: double.infinity,
+                  padding: EdgeInsets.fromLTRB(3, 7, 5, 0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(1),
+                    color: ColorUtility().colorWhite,
+                  ),
+                  child: 
+                  titleValueView(context, "Name", (data.data?[index].customerName).toString()),
+                  //Text(""+data.data?[index].customerName,style: headerFieldStyle(context, Colors.black, 0.04),textAlign: TextAlign.center,maxLines: 2,),
+                ),
+
+
+
+                Container(
+                  margin: EdgeInsets.all(0),
+                  width: double.infinity,
+                  padding: EdgeInsets.fromLTRB(3, 3, 5, 2),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(1),
+                    color: ColorUtility().colorWhite,
+                  ),
+                  child: 
+                  
+                    titleValueView(context, "Address", " Manu Prabakar \n Near Manachira Squre, \n Calicut, \n Manachira PO."),
+                ),
+
+                Container(
+                  margin: EdgeInsets.all(0),
+                  width: double.infinity,
+                  padding: EdgeInsets.fromLTRB(3, 3, 5, 2),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(1),
+                    color: ColorUtility().colorWhite,
+                  ),
+                  child: 
+                  
+                    titleValueView(context, "Order ID", (data.data?[index].orderId).toString()),
+                ),
+
+
+
+                Container(
+                  margin: EdgeInsets.all(0),
+                  padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(1),
+                    color: ColorUtility().colorWhite,
+                  ),
+                  
+                  child: Container(
+                    margin: EdgeInsets.all(0),
+                    padding: EdgeInsets.fromLTRB(8, 0, 8, 4),
+                    child: Row(
+                      
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      
+                      children: <Widget>[
+                      
+                        Text("Status: "+ statusFomateString((data.data?[index].deliveryStatus).toString()),style: headerFieldStyle(context, Config.statusColor((data.data?[index].deliveryStatus).toString().replaceAll("\r\n", "")), 0.030),maxLines: 1,),
+                        Spacer(),
+                        Text(" "+"Date: " + Config.dateFormate((data.data?[index].createdAt).toString() + ""),style: headerFieldStyle(context, Colors.black, 0.030),maxLines: 1,)
+                      ],
+                    ),
+                  ),
                 ),
 
                 Container(
@@ -1478,7 +1635,7 @@ void showItemListing(BuildContext context ,List<Items>? items) {
                                   color: Colors.transparent,
                                   alignment: Alignment.centerLeft,
                                   padding: EdgeInsets.all(4),
-                                  child:Text("SI", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                                  child:Text("SI", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
                               )
                           ),
                           Expanded(
@@ -1487,7 +1644,7 @@ void showItemListing(BuildContext context ,List<Items>? items) {
                                   color: Colors.transparent,
                                   alignment: Alignment.centerLeft,
                                   padding: EdgeInsets.all(4),
-                                  child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                                  child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
                               )
                           ),
                           Expanded(
@@ -1496,7 +1653,7 @@ void showItemListing(BuildContext context ,List<Items>? items) {
                                   color: Colors.transparent,
                                   alignment: Alignment.center,
                                   padding: EdgeInsets.all(4),
-                                  child:Text("QTY", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                                  child:Text("QTY", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
                               )
                           ),
                           Expanded(
@@ -1505,7 +1662,7 @@ void showItemListing(BuildContext context ,List<Items>? items) {
                                   color: Colors.transparent,
                                   alignment: Alignment.center,
                                   padding: EdgeInsets.all(4),
-                                  child:Text("AMOUNT", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                                  child:Text("AMOUNT", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
                               )
                           )
 
@@ -1572,9 +1729,9 @@ void showItemListing(BuildContext context ,List<Items>? items) {
                                                   flex: 2,
                                                   child :Container(
                                                       color: Colors.white,
-                                                      alignment: Alignment.center,
-                                                      padding: EdgeInsets.all(4),
-                                                      child:Text(""+(items?[index].totalAmount).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,)
+                                                      alignment: Alignment.centerRight,
+                                                      padding: EdgeInsets.fromLTRB(4, 4, 8, 4),
+                                                      child:Text(""+Config.priceFormate((items?[index].totalAmount).toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.right,)
                                                   )
                                               )
 
@@ -1592,7 +1749,25 @@ void showItemListing(BuildContext context ,List<Items>? items) {
 
                       )
                   )
+                ),
+
+                Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  color: ColorUtility().colorAlertTop,
+                  margin: EdgeInsets.fromLTRB(0, 3, 7, 3),
+                  child: 
+                  
+                  titleValueView(context, "Grand Total", Config.priceFormate((data.data?[index].grandTotal).toString()),alignLeft: false)
+                  
+                  // ListTile(
+                    
+                  //   title: Text("Grand Total"),
+                    
+                  //   subtitle: Text(Config.priceFormate((data.data?[index].grandTotal).toString())),
+                  // ),
                 )
+                
               ]
           )
 

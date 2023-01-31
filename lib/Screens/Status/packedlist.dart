@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -108,7 +108,7 @@ class _PackedScreen extends State<PackedScreen>{
                           context,
                           MaterialPageRoute(
                               builder: (context) => DispatchDetails(
-                                  id: packedList[index]['id'].toString(),delivery_status: packedList[index]['delivery_status'].toString(),heading :'Packed Details'
+                                  id: packedList[index]['id'].toString(),delivery_status: packedList[index]['delivery_status'].toString(),heading :'Packed Details',from: "packed",
                               )),
                         );
 
@@ -493,7 +493,7 @@ class _PackedScreen extends State<PackedScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['grand_total'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+Config.priceFormate(item[index]['grand_total'].toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
                                                                   ),
@@ -537,7 +537,7 @@ class _PackedScreen extends State<PackedScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['created_at'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+Config.splitDateFormate(item[index]['created_at'].toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
                                                                   ),
@@ -661,6 +661,8 @@ class _PackedScreen extends State<PackedScreen>{
     }
 
   }
+
+  
 
   void checkOnlineAlert(context) {
     print('openCustomDialog  174   :');
@@ -840,7 +842,15 @@ class _PackedScreen extends State<PackedScreen>{
       onPressed: () {
         //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
       //  Navigator.pop(context,true);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
+         if (Platform.isAndroid) {
+       // Android-specific code
+       Navigator.of(context,rootNavigator: true).pop();
+       //Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
+      } else if (Platform.isIOS) {
+       // iOS-specific code
+       Navigator.of(context,rootNavigator: true).pop();
+      }
+       // Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
       },
     );
     AlertDialog alert = AlertDialog(
@@ -856,7 +866,7 @@ class _PackedScreen extends State<PackedScreen>{
       builder: (BuildContext context) {
         return alert;
       },
-    );
+    ).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),)));
   }
 
   Future<void> validateList(List packedSaveList) async {
@@ -942,6 +952,7 @@ class _PackedScreen extends State<PackedScreen>{
       child: Text("OK"),
       onPressed: () {
         Navigator.pop(context);
+        Navigator.of(context, rootNavigator: true).pop();//additionaly add for remove alert dialog
         setState(() {
           checkInterNet(context);
         });

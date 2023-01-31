@@ -46,7 +46,7 @@ dependencies:
   google_fonts: ^2.1.0
   connectivity_plus: ^2.0.2
   internet_connection_checker: ^0.0.1+4
-  connectivity: ^0.4.6+2
+# connectivity: ^0.4.6+2
   fluttertoast: ^8.0.9
   faker: ^1.2.1
   progress_dialog: ^1.2.4

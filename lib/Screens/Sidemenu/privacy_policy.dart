@@ -40,7 +40,7 @@ class _PrivacyPolicy extends State<PrivacyPolicy>{
     return Scaffold(
         body: SingleChildScrollView(
             child: Container(
-              height: MediaQuery.of(context).size.height,
+              // height: MediaQuery.of(context).size.height,
               color: ColorUtility().colorAboutsUs,
               child : FutureBuilder<PrivacyPolicyModel>(
                 future:  fetchPost(context),
@@ -65,26 +65,23 @@ class _PrivacyPolicy extends State<PrivacyPolicy>{
                                         Center(
                                           child: Container(
                                               padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height/25,MediaQuery.of(context).size.height/15,MediaQuery.of(context).size.height/25,MediaQuery.of(context).size.height/25),
-                                              child:Flexible(
-                                                child: new Container(
-                                                    padding: new EdgeInsets.only(right: 0),
-                                                    child: new Text("Privacy Policy",
-                                                        style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.03,
-                                                            letterSpacing: .1,color: Colors.black),textAlign: TextAlign.justify)
-                                                ),
+                                              child:new Container(
+                                                  padding: new EdgeInsets.only(right: 0),
+                                                  child: new Text("Privacy Policy",
+                                                      style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.03,
+                                                          letterSpacing: .1,color: Colors.black),textAlign: TextAlign.justify)
                                               )
                                           ),
                                         ),
                                         Center(
                                           child: Container(
                                               padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.height/25),
-                                              child:Flexible(
-                                                child: new Container(
-                                                    padding: new EdgeInsets.only(right: 0),
-                                                    child: new Text(""+(privacyPolicyModel.data?[0].description).toString(),
-                                                        style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,
-                                                            letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.justify)
-                                                ),
+                                              child:new Container(
+                                                  padding: new EdgeInsets.only(right: 0),
+                                                  //privacyPolicyModel.data?[0].description
+                                                  child: new Text(""+(largeTextModel.text).toString(),
+                                                      style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,
+                                                          letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.justify)
                                               )
                                           ),
                                         )

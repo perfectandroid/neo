@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -331,7 +332,7 @@ class _ReportStock extends State<ReportStock>{
                                                                   color: Colors.white,
                                                                   alignment: Alignment.centerLeft,
                                                                   padding: EdgeInsets.all(4),
-                                                                  child:Text(""+(stockModel.data?[index].stkMrp).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
+                                                                  child:Text(""+Config.priceFormate((stockModel.data?[index].stkMrp).toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                                 ),
                                                               ),
                                                               Expanded(
@@ -917,8 +918,11 @@ class _ReportStock extends State<ReportStock>{
                           child:  TextField(
                             readOnly: false,
                             controller: controller.InputSearch,
+                            
                             decoration: InputDecoration(
                               labelText: "Search",
+                              contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                              isDense: true,
                               labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -1064,6 +1068,8 @@ class _ReportStock extends State<ReportStock>{
                             controller: controller.InputCategory,
                             decoration: InputDecoration(
                               labelText: "Category",
+                              contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                              isDense: true,
                               labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -1096,9 +1102,13 @@ class _ReportStock extends State<ReportStock>{
                           height: 40,
                           child:  TextField(
                             readOnly: true,
+                            
                             controller: controller.InputSubCategory,
                             decoration: InputDecoration(
+                              //isDense: true,
                               labelText: "Sub category",
+                              contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                              isDense: true,
                               labelStyle: TextStyle(fontSize: 14,color: Colors.grey,fontWeight: FontWeight.w600),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -1198,10 +1208,10 @@ class _ReportStock extends State<ReportStock>{
                         child: MaterialButton(
                           onPressed: (){
 
-                           //  var availableStock = "";
-                            // var searchName = "";
-                            // var minQuantity ="";
-                            // var maxQuantity = "";
+                             availableStock = "";
+                             searchName = "";
+                             minQuantity ="";
+                             maxQuantity = "";
 
                             if(!controller.InputStatus.text.isEmpty){
                               availableStock = controller.InputStatus.text;
@@ -1217,7 +1227,7 @@ class _ReportStock extends State<ReportStock>{
                               maxQuantity = controller.InputMaxQuantity.text;
                             }
 
-
+                            FocusManager.instance.primaryFocus?.unfocus();
                             SearchStockreportReport(context,availableStock.toString(),searchName.toString(),minQuantity.toString(),maxQuantity.toString(),controller.categoryId,controller.subCategoryId);
 
                           },
@@ -1270,7 +1280,7 @@ class _ReportStock extends State<ReportStock>{
     controller.InputSubCategory.text = "";
     controller.categoryId = "";
     controller.subCategoryId = "";
-
+    print(controller.InputSearch.text);
     stockModel.data?.clear();
     setState(() {
 
@@ -1613,6 +1623,7 @@ class _ReportStock extends State<ReportStock>{
                             GestureDetector(
                                 onTap: (){
                                   controller.InputSubCategory.text = (subcategoryModel.data?[index].name).toString();
+                                
                                   controller.subCategoryId  =(subcategoryModel.data?[index].subCatId).toString();
                                   Navigator.pop(context);
                                 },

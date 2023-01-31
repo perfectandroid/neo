@@ -472,8 +472,9 @@ class _StockEdit extends State<StockEdit>{
       var category_id = (widget.model?.data?[widget.pos].categoryId).toString();
       var sub_category_id = (widget.model?.data?[widget.pos].subCategoryId).toString();
       var created_by = (widget.model?.data?[widget.pos].createdBy).toString();
+      var paymentMethod = (widget.model.data?[widget.pos].paymentMethod);
 
-      var bodyString = {"product":"$product_id","category":"$category_id","sub_category":"$sub_category_id",
+      var bodyString = {"product":"$product_id","category":"$category_id","sub_category":"$sub_category_id","payment_method":"$paymentMethod",
         "stk_mrp":"$stk_mrp","cur_qty":"$cur_qty","created_by":"$created_by","cancel_by":"$created_by","updated_by":"$created_by"};
      // print(bodyString);
       var request = http.Request('PUT', Uri.parse(Config().BASE_URL+'/seller_api/stock_purchase/'+'$stockId/'));
@@ -552,7 +553,8 @@ class _StockEdit extends State<StockEdit>{
     Widget okButton = TextButton(
       child: Text("OK",style: TextStyle(color: ColorUtility().colorAppbar,fontWeight: FontWeight.bold)),
       onPressed: () {
-        Navigator.pop(context);
+        //Navigator.pop(context);
+        Navigator.of(context,rootNavigator: true).pop(); // 25-01-2023 ==== 2:35
         controller.textQtyController.text = (controller?.stockModel!.data?[controller.index].curQty).toString();
         controller.textMrpController.text = (controller?.stockModel!.data?[controller.index].stkMrp).toString();
       },

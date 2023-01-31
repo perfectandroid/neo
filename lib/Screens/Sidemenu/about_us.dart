@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo/Model/AboutUsModel.dart';
+import 'package:neo/Screens/Home/home_activity.dart';
 
 import '../../helper/colorutility.dart';
 import '../../helper/config.dart';
@@ -168,7 +169,13 @@ class _AboutUs extends State<AboutUs>{
       final statuscode = status['success'] as bool;
       final errors = status['errors'] as String;
       if(statuscode==true){
-        return aboutUsModel = AboutUsModel.fromJson(status);
+        AboutUsModel aboutInfo = AboutUsModel.fromJson(status);
+        if (aboutInfo.data?.length == 0){
+            return showFaliureAlertDialog(context,"No data found");
+        }else{
+           return aboutUsModel = AboutUsModel.fromJson(status);
+        }
+        
       }else{
         return showFaliureAlertDialog(context,errors);
 
@@ -187,8 +194,11 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     onPressed: () {
       //Navigator.pop(context,true);
       //Navigator.pop(context);
-      Navigator.pop(context,true);
-      Navigator.pop(context,true);
+      // commented two pop and added 25/01/2023(today == 10:48 am )
+      Navigator.of(context,rootNavigator: true).pop();
+      //Navigator.pop(context,true);
+      //Navigator.pop(context,true);
+      
       // Navigator.push(context, MaterialPageRoute(builder: (context) => DeliveryScreen(),));
       // Navigator.push(context, MaterialPageRoute(builder: (_) => const HomePage()));
     },
@@ -206,5 +216,6 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     builder: (BuildContext context) {
       return alert;
     },
-  );
+  ).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),)));
+  // then is added 25/01/2023(today == 10:48 am )
 }

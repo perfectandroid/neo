@@ -85,6 +85,7 @@ class _ChangePassword extends State<ChangePassword>{
                     height: MediaQuery.of(context).size.height/16,
                     child:  TextFormField(
                       cursorColor: ColorUtility().colorAppbar,
+                      inputFormatters: [LengthLimitingTextInputFormatter(15)],
                       decoration: InputDecoration(
                         labelText: "Old Password",
                         labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
@@ -131,6 +132,7 @@ class _ChangePassword extends State<ChangePassword>{
                       height: MediaQuery.of(context).size.height/16,
                       child:  TextFormField(
                         cursorColor: ColorUtility().colorAppbar,
+                        inputFormatters: [LengthLimitingTextInputFormatter(15)],
                         decoration: InputDecoration(
                           labelText: "New Password",
                           labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),
@@ -174,6 +176,7 @@ class _ChangePassword extends State<ChangePassword>{
                       height: MediaQuery.of(context).size.height/16,
                       child:  TextField(
                         cursorColor: ColorUtility().colorAppbar,
+                        inputFormatters: [LengthLimitingTextInputFormatter(15)],
                         decoration: InputDecoration(
                           labelText: "Confirm Password",
                           labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.035,color: Colors.grey.shade400),

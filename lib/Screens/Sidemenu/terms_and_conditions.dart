@@ -41,8 +41,9 @@ class _TermsConditions extends State<TermsConditions>{
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
+
             child: Container(
-                height: MediaQuery.of(context).size.height,
+              
                 color: ColorUtility().colorAboutsUs,
                 child : FutureBuilder<TermsConditionModel>(
                     future:  fetchPost(context),
@@ -67,26 +68,23 @@ class _TermsConditions extends State<TermsConditions>{
                                               Center(
                                                 child: Container(
                                                     padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height/25,MediaQuery.of(context).size.height/15,MediaQuery.of(context).size.height/25,MediaQuery.of(context).size.height/25),
-                                                    child:Flexible(
-                                                      child: new Container(
-                                                          padding: new EdgeInsets.only(right: 0),
-                                                          child: new Text("Terms & Conditions",
-                                                              style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.03,
-                                                                  letterSpacing: .1,color: Colors.black),textAlign: TextAlign.justify)
-                                                      ),
+                                                    child:new Container(
+                                                        padding: new EdgeInsets.only(right: 0),
+                                                        child: new Text("Terms & Conditions",
+                                                            style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.03,
+                                                                letterSpacing: .1,color: Colors.black),textAlign: TextAlign.justify)
                                                     )
                                                 ),
                                               ),
                                               Center(
                                                 child: Container(
                                                     padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.height/25),
-                                                    child:Flexible(
-                                                      child: new Container(
-                                                          padding: new EdgeInsets.only(right: 0),
-                                                          child: new Text(""+(_termsConditionModel?.data?.content).toString(),
-                                                              style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,
-                                                                  letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.justify)
-                                                      ),
+                                                    child:new Container(
+                                                        padding: new EdgeInsets.only(right: 0),
+                                          
+                                                        child: new Text(""+(_termsConditionModel.data?.content).toString(),
+                                                            style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,
+                                                                letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.justify)
                                                     )
                                                 ),
                                               )

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -471,7 +472,7 @@ class _DeliveryScreen extends State<DeliveryScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['grand_total'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+Config.priceFormate(item[index]['grand_total'].toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
                                                                   ),
@@ -515,7 +516,7 @@ class _DeliveryScreen extends State<DeliveryScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['created_at'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+Config.splitDateFormate(item[index]['created_at'].toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
                                                                   ),
@@ -823,8 +824,16 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     child: Text("OK"),
     onPressed: () {
       //Navigator.pop(context,true);
-      //Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
+       
+       if (Platform.isAndroid) {
+       // Android-specific code
+      //  Navigator.pop(context);
+      //  Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
+          Navigator.of(context,rootNavigator: true).pop();
+      } else if (Platform.isIOS) {
+       // iOS-specific code
+       Navigator.of(context,rootNavigator: true).pop();
+      }
       // Navigator.push(context, MaterialPageRoute(builder: (_) => const HomePage()));
     },
   );
@@ -841,5 +850,5 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     builder: (BuildContext context) {
       return alert;
     },
-  );
+  ).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),)));
 }

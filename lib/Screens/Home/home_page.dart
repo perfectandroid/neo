@@ -1,3 +1,7 @@
+
+import 'dart:io';
+
+
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
@@ -758,16 +762,17 @@ class _HomePageState extends State<HomePage> {
     }
     else if(index=="1")
     {
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          fullscreenDialog: true,
-          builder: (BuildContext context) => Dashboard(
-            //  liste: album,
-          ),
-        ),
-      );
+      // home dashboard navigation hide 
+      showDashBoardAlert(context, "Coming Soon");
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     fullscreenDialog: true,
+      //     builder: (BuildContext context) => Dashboard(
+      //       //  liste: album,
+      //     ),
+      //   ),
+      // );
     }
     else if(index=="2")
     {
@@ -836,7 +841,7 @@ class _HomePageState extends State<HomePage> {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.fromLTRB(10,20,10,20),
                         child:SizedBox(
-                          child: Text("Are you sure you want to quit ?",textAlign: TextAlign.center,),
+                          child: Text("Are you sure you want to logout ?",textAlign: TextAlign.center,),
                         )
 
                     ),
@@ -946,10 +951,39 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+void showDashBoardAlert(BuildContext context,String messages){
 
+
+Widget okButton = TextButton(onPressed: (){
+   if (Platform.isAndroid){
+       //Navigator.of(context).pop();
+        Navigator.of(context,rootNavigator: true).pop();
+   }else if (Platform.isIOS){
+       Navigator.of(context,rootNavigator: true).pop();
+   }
+  
+}, child: Text("Ok"));
+
+  AlertDialog alert = AlertDialog(
+    title: Text(""),
+    content: Text(messages,textAlign: TextAlign.center,),
+    
+    actions: [okButton],
+    actionsAlignment: MainAxisAlignment.center,
+  );
+
+  showDialog(
+    barrierDismissible: false,
+    context: context, 
+    builder: (BuildContext context){
+    return alert;
+  }).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),)));
+}
 
 
 }
+
+
 
 
 void quitAlert(BuildContext context) {
@@ -1041,7 +1075,15 @@ void quitAlert(BuildContext context) {
                                       child: TextButton(
                                         onPressed: () {
                                           //action
-                                          SystemNavigator.pop();
+                              if (Platform.isAndroid) {
+                              // Android-specific code
+                                 SystemNavigator.pop();
+                              } else if (Platform.isIOS) {
+                               // iOS-specific code
+                                  exit(0);
+                                  
+                              }
+                                          
                                           // exit(0);
                                           //  window.close();
                                         },

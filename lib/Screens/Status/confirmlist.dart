@@ -118,7 +118,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                          context,
                          MaterialPageRoute(
                              builder: (context) => DispatchDetails(
-                                 id: confirmList[index]['id'].toString(),delivery_status: confirmList[index]['delivery_status'].toString(),heading :'Confirm Details'
+                                 id: confirmList[index]['id'].toString(),delivery_status: confirmList[index]['delivery_status'].toString(),heading :'Confirm Details',from: "confirm",
                              )),
                        );
 
@@ -343,7 +343,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                               )
                                           )
                                       )
-
+//end
 
 
 
@@ -357,6 +357,10 @@ class _ConfirmScreen extends State<ConfirmScreen>{
 
                         )
                     ),
+
+
+
+
 
                     Center(
                       child: Container(
@@ -616,7 +620,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['grand_total'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+Config.priceFormate(item[index]['grand_total'].toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
                                                                   ),
@@ -660,7 +664,7 @@ class _ConfirmScreen extends State<ConfirmScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['created_at'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+Config.splitDateFormate(item[index]['created_at'].toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
                                                                   ),
@@ -903,7 +907,9 @@ class _ConfirmScreen extends State<ConfirmScreen>{
     Widget okButton = TextButton(
       child: Text("OK"),
       onPressed: () {
-        Navigator.pop(context);
+        //change for popup view cant remove from screen
+       Navigator.pop(context);
+       Navigator.of(context, rootNavigator: true).pop();//additionaly add for remove alert dialog
         setState(() {
           checkInterNet(context);
         });
@@ -1057,7 +1063,18 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     onPressed: () {
      // Navigator.pop(context,true);
       //   Navigator.push(context, MaterialPageRoute(builder: (_) => const Login()));
-      Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
+    
+      if (Platform.isAndroid) {
+       // Android-specific code
+       Navigator.of(context,rootNavigator: true).pop();
+       //Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
+      } else if (Platform.isIOS) {
+       // iOS-specific code
+       Navigator.of(context,rootNavigator: true).pop();
+      }
+      
+     
+      
     },
   );
   AlertDialog alert = AlertDialog(
@@ -1073,7 +1090,7 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     builder: (BuildContext context) {
       return alert;
     },
-  );
+  ).then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),)));
 }
 
 // showProgress(BuildContext context, String message, bool isDismissible) async {

@@ -2,6 +2,180 @@
 /// data : {"id":19,"address":{"id":1,"country_name":"India","state_name":"Kerala","city_name":"Kozhikode","shipping_charge":null,"name":"shibin","email":null,"address":"kozhikode","phone":"8281440386","address_category":null,"pin":"673601","is_active":true,"is_billing":false,"fk_country":1,"fk_state":1,"fk_city":1},"items":[{"id":21,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1}],"status":[{"id":1,"status_message":"order is yet to be dispacthed","delivery_status":"pending","updated_at":"2022-10-21T05:08:23.963746Z"},{"id":4,"status_message":"order is yet to be packed","delivery_status":"verified","updated_at":"2022-10-21T05:17:25.183809Z"},{"id":5,"status_message":"order is yet to be verified","delivery_status":"packed","updated_at":"2022-10-21T05:17:45.665042Z"},{"id":6,"status_message":"order is item has been verified","delivery_status":"dispatched","updated_at":"2022-10-21T05:18:07.649965Z"},{"id":7,"status_message":"order is yet to be dispacthed","delivery_status":"delivered","updated_at":"2022-10-21T05:18:41.172471Z"}],"order_id":"order35W15EKIF5BV4DU","payment_order_id":null,"payment_amount":null,"transaction_id":null,"delivery_status":"packed","description":null,"payment_method":"cash","coupon_amount":0.0,"shipping_charge":0.0,"customer_name":null,"quantity":null,"total_amount":100.0,"grand_total":100.0,"status_update_time":null,"pending_time":null,"verified_time":null,"packed_time":null,"dispacthed_time":null,"delivered_time":null,"fk_shipping_address":1}
 /// errors : null
 
+
+class DeliveryFullDetailsModel{
+  bool success;
+  Datas? data;
+  dynamic errors;
+  DeliveryFullDetailsModel({
+     this.success = false,
+     this.data,
+     this.errors,
+    }){
+        success = success;
+        data = data;
+        errors = errors;
+    }
+
+  factory DeliveryFullDetailsModel.fromJson(Map<String,dynamic> json) => DeliveryFullDetailsModel(
+    success: json["success"],
+    data: Datas.fromJson(json["data"]),
+    errors: json["errors"]
+
+
+  );
+}
+
+class Datas{
+      num id;
+      Address address; 
+      List<ItemModel> items; 
+      List<StatusModel> status; 
+      String orderId;
+      dynamic paymentOrderId;
+      dynamic paymentAmount; 
+      dynamic transactionId; 
+      String deliveryStatus; 
+      dynamic description; 
+      String paymentMethod; 
+      num couponAmount; 
+      num shippingCharge; 
+      dynamic customerName; 
+      dynamic quantity; 
+      num totalAmount; 
+      num grandTotal; 
+      dynamic statusUpdateTime; 
+      dynamic pendingTime; 
+      dynamic verifiedTime; 
+      dynamic packedTime; 
+      dynamic dispacthedTime; 
+      dynamic deliveredTime;
+      String fk_user;
+      num fkShippingAddress;
+      Datas({ 
+          required this.id,
+          required this.address,
+          required this.items,
+          required this.status,
+          required this.orderId,
+          required this.paymentOrderId,
+          required this.paymentAmount, 
+          required this.transactionId, 
+          required this.deliveryStatus,
+          required this.description, 
+          required this.paymentMethod, 
+          required this.couponAmount, 
+          required this.shippingCharge,
+          required this.customerName, 
+          required this.quantity, 
+          required this.totalAmount, 
+          required this.grandTotal, 
+          required this.statusUpdateTime,
+          required this.pendingTime, 
+          required this.verifiedTime, 
+          required this.packedTime, 
+          required this.dispacthedTime, 
+          required this.deliveredTime,
+          required this.fk_user,
+          required this.fkShippingAddress, 
+  });
+
+  factory Datas.fromJson(Map<String,dynamic> json) => Datas(
+    id: json["id"] ?? 0,
+    orderId:  json["order_id"] ?? "",
+    
+    address: json["address"] == null && !json.containsKey("address") ? Address() : Address.fromJson(json['address']),
+     
+
+    items: json["items"] == null ? [] : json["items"].map<ItemModel>((each) => ItemModel.fromJson(each)).toList(),
+    
+
+    paymentOrderId: json["payment_order_id"] == null ?  "" : json["payment_order_id"],
+    paymentAmount: json["payment_amount"] == null ?  "" : json["payment_amount"],
+    transactionId: json["transaction_id"] == null ?  "" : json["transaction_id"],
+    status: json["status"]  == null ? [] : [],
+    //json["status"].map<StatusModel>((each) => StatusModel.fromJson(each)).toList()
+    deliveryStatus: json["delivery_status"] == null ? "" : json["delivery_status"],
+    description: json["description"] == null ? "" : json["description"],
+    paymentMethod: json["payment_method"] == null ? "" : json["payment_method"],
+    couponAmount: json["coupon_amount"] == null ? 0 : json["coupon_amount"],
+    shippingCharge: json["shipping_charge"] == null ? 0 : json["shipping_charge"],
+    customerName: json["customer_name"] == null ? "" : json["customer_name"],
+
+    quantity: json["quantity"] == null ? "0" : json["quantity"],
+    totalAmount: json["total_amount"] == null ? 0 : json["total_amount"],
+    grandTotal: json["grand_total"] == null ? 0 : json["grand_total"],
+    statusUpdateTime: json["status_update_time"] == null ? "" : json["status_update_time"],
+    pendingTime: json["pending_time"] == null ? "" : json["pending_time"],
+    
+    verifiedTime: json["verified_time"] == null ? "" : json["verified_time"],
+    packedTime: json["packed_time"] == null ? "" : json["packed_time"],
+    dispacthedTime: json["dispacthed_time"] == null ? "" : json["dispacthed_time"],
+    deliveredTime: json["delivered_time"] == null ? "" : json["order_id"],
+    fk_user: json["fk_user"] == null ? "" : json["fk_user"],
+    fkShippingAddress: json["fk_shipping_address"] == null ? 0 : json["fk_shipping_address"],
+  );
+
+}
+
+class ItemModel{
+  num id;
+  String product_name;
+  num quantity;
+  num coupon_percent;
+  num coupon_amount;
+  num total_amount;
+  num net_amount;
+  num sale_price;
+  num sale_tax;
+  dynamic status;
+  dynamic return_reason;
+  dynamic return_comment;
+  dynamic return_quantity;
+  dynamic return_amount;
+  num fk_product;
+  
+  ItemModel({
+    required this.id,
+    required this.product_name,
+    required this.quantity,
+    required this.coupon_percent,
+    required this.coupon_amount,
+    required this.total_amount,
+    required this.net_amount,
+    required this.sale_price,
+    required this.sale_tax,
+    this.status,
+    this.return_reason,
+    this.return_comment,
+    this.return_quantity,
+    this.return_amount,
+    required this.fk_product,
+  });
+
+ factory ItemModel.fromJson(Map<String,dynamic> json) => ItemModel(
+  id : json["id"] ?? 0,
+  product_name: json["product_name"] ?? "",
+  quantity: json["quantity"] ?? 0,
+  coupon_percent: json["coupon_percent"] ?? 0,
+  total_amount: json["total_amount"] ?? 0,
+  coupon_amount: json["coupon_amount"] ?? 0,
+  net_amount: json["net_amount"] == null ? 0 : json["net_amount"],
+  sale_price: json["sale_price"] == null ? 0 : json["sale_price"],
+  sale_tax: json["sale_tax"] == null ? 0 : json["sale_tax"],
+  status: json["status"] == null ? "" : json["status"],
+  return_reason: json["return_reason"] == null ? "" : json["return_reason"],
+  return_comment: json["return_comment"] == null ? "" : json["return_comment"],
+  return_quantity: json["return_quantity"] == null ? "" : json["return_quantity"],
+  return_amount: json["return_amount"] == null ? "0" : json["return_amount"],
+  fk_product: json["fk_product"] == null ? 0 : json["fk_product"],
+
+  );
+
+}
+
+
+
 class DeliveryDetailModel {
   DeliveryDetailModel({
       bool? success, 
@@ -296,6 +470,27 @@ Data copyWith({  num? id,
 /// delivery_status : "pending"
 /// updated_at : "2022-10-21T05:08:23.963746Z"
 
+class StatusModel{
+      num id; 
+      String statusMessage; 
+      String deliveryStatus; 
+      String updatedAt;
+
+      StatusModel({
+        required this.id,
+        required this.statusMessage,
+        required this.deliveryStatus,
+        required this.updatedAt,
+      });
+
+      factory StatusModel.fromJson(Map<String,dynamic> json) => StatusModel(
+        id: json["id"] == null ? 0 : json["id"],
+        statusMessage: json["status_message"] == null ? "" : json["status_message"],
+        deliveryStatus: json["delivery_status"] == null ? "" : json["delivery_status"],
+        updatedAt: json["updated_at"] == null ? "" : json["updated_at"],
+      );
+}
+
 class Status {
   Status({
       num? id, 
@@ -485,22 +680,22 @@ class Address {
 }
 
   Address.fromJson(dynamic json) {
-    _id = json['id'];
-    _countryName = json['country_name'];
-    _stateName = json['state_name'];
-    _cityName = json['city_name'];
-    _shippingCharge = json['shipping_charge'];
-    _name = json['name'];
+    _id = json['id'] ?? 0;
+    _countryName = json['country_name'] ?? "";
+    _stateName = json['state_name'] ?? "";
+    _cityName = json['city_name'] ?? "";
+    _shippingCharge = json['shipping_charge'] ?? "0.00";
+    _name = json['name'] ?? "";
     _email = json['email'];
-    _address = json['address'];
-    _phone = json['phone'];
-    _addressCategory = json['address_category'];
-    _pin = json['pin'];
-    _isActive = json['is_active'];
-    _isBilling = json['is_billing'];
-    _fkCountry = json['fk_country'];
-    _fkState = json['fk_state'];
-    _fkCity = json['fk_city'];
+    _address = json['address'] ?? "";
+    _phone = json['phone'] ?? "";
+    _addressCategory = json['address_category'] ?? "";
+    _pin = json['pin'] ?? "";
+    _isActive = json['is_active'] ?? false;
+    _isBilling = json['is_billing'] ?? false;
+    _fkCountry = json['fk_country'] ?? 0;
+    _fkState = json['fk_state'] ?? 0;
+    _fkCity = json['fk_city'] ?? 0;
   }
   num? _id;
   String? _countryName;
