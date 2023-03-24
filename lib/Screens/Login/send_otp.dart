@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:neo/Screens/Login/loginpage.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../helper/colorutility.dart';
@@ -46,8 +47,9 @@ class _SendOtp extends State<SendOtp>{
   @override
   void dispose() {
     final controller = Get.put(SendOtpController());
-    controller.userNameController.dispose();
-    controller.eMailController.dispose();
+    //controller.userNameController.dispose();
+   // controller.eMailController.dispose();
+    super.dispose();
   }
 
 
@@ -106,6 +108,22 @@ class _SendOtp extends State<SendOtp>{
                     ),
 
                     Positioned(
+                      top: 27,
+                      left: 15,
+
+                      child: IconButton(
+                        onPressed: (){
+                          print("clicked");
+                           Navigator.pop(context);
+                        }, 
+                        
+                        icon: Icon(Icons.arrow_back,color: ColorUtility().colorWhite,),
+                           
+                        )
+                       
+                      ),
+
+                    Positioned(
                       top: MediaQuery.of(context).size.height/10,
                       left: 0,
                       right: 0,
@@ -118,6 +136,7 @@ class _SendOtp extends State<SendOtp>{
                             child: Image.asset('assets/images/logo.png')),//Text
                       ),
                     ),
+                    
 
                     Positioned(
                       top: MediaQuery.of(context).size.height/3,
@@ -211,6 +230,7 @@ class _SendOtp extends State<SendOtp>{
                                               ),
                                               obscureText: false,
                                               controller: controller.userNameController,
+                                            
                                             )
                                         ),
 
@@ -234,10 +254,13 @@ class _SendOtp extends State<SendOtp>{
                                                       },
                                                     ),
                                                   ),
+                                                  
                                                 ]
                                             )
 
                                         )
+
+                                        
 
 
                                       ]

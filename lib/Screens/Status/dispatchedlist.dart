@@ -145,7 +145,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                           }
                           validateList(_dispatchedSaveList);
                         },
-                        child: Text('DISPATCHED'),
+                        child: Text('PROCEED TO DELIVERY'),
                       )
                   ),
 
@@ -325,7 +325,7 @@ class _DispatchedScreen extends State<DispatchedScreen>{
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['fk_shipping_address'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+item[index]['shipping_address']['address'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )

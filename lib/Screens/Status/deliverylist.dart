@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neo/Screens/Home/home_activity.dart';
+import 'package:neo/Screens/Report/order_report_model.dart';
 import 'package:neo/Screens/Status/deliverydetails.dart';
 
 import '../../helper/colorutility.dart';
@@ -29,6 +30,7 @@ class _DeliveryScreen extends State<DeliveryScreen>{
   @override
 
   List deliveryList = [];
+  
   late List<bool> _isChecked;
 
   initState(){
@@ -295,11 +297,12 @@ class _DeliveryScreen extends State<DeliveryScreen>{
                                                                       )
                                                                   ),
                                                                   Center(
+                                                                    
                                                                       child: Container(
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item[index]['fk_shipping_address'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+item[index]['shipping_address']['address'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                         //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )

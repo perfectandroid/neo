@@ -138,7 +138,7 @@ void getReseller(context) async{
       var items = status['data'] as List;
       await SharedPreferencesHelper.setId(items[0]['id']?? (throw ArgumentError("id is required")));
        await SharedPreferencesHelper.setdescription(items[0]['description']?? (throw ArgumentError("description is required")));
-       await SharedPreferencesHelper.setfacebook(items[0]['facebook']?? (throw ArgumentError("facebook is required")));
+      // await SharedPreferencesHelper.setfacebook(items[0]['facebook']?? (throw ArgumentError("facebook is required")));
       //
        await SharedPreferencesHelper.setinstagram(items[0]['instagram']?? (throw ArgumentError("instagram is required")));
       await SharedPreferencesHelper.setlogo(items[0]['logo']?? (throw ArgumentError("logo is required")));
@@ -228,7 +228,8 @@ void getMaintainance(context) async {
 
     final status =jsonDecode(res);
     final statuscode = status['success'] as bool;
-
+    //print(Config.dateCalcutateByMonth(2));
+      print(Config.dateCalculateFromDays(1));
     if(statuscode==true){
       var maintain = status['data'] as List;
       var image = maintain[0]['image']?? (throw ArgumentError("image is required"));

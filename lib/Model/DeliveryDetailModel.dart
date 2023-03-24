@@ -1,3 +1,5 @@
+import 'package:neo/helper/config.dart';
+
 /// success : true
 /// data : {"id":19,"address":{"id":1,"country_name":"India","state_name":"Kerala","city_name":"Kozhikode","shipping_charge":null,"name":"shibin","email":null,"address":"kozhikode","phone":"8281440386","address_category":null,"pin":"673601","is_active":true,"is_billing":false,"fk_country":1,"fk_state":1,"fk_city":1},"items":[{"id":21,"product_name":"salt","quantity":10,"coupon_percent":0.0,"coupon_amount":0.0,"total_amount":10.0,"net_amount":12.0,"fk_product":1}],"status":[{"id":1,"status_message":"order is yet to be dispacthed","delivery_status":"pending","updated_at":"2022-10-21T05:08:23.963746Z"},{"id":4,"status_message":"order is yet to be packed","delivery_status":"verified","updated_at":"2022-10-21T05:17:25.183809Z"},{"id":5,"status_message":"order is yet to be verified","delivery_status":"packed","updated_at":"2022-10-21T05:17:45.665042Z"},{"id":6,"status_message":"order is item has been verified","delivery_status":"dispatched","updated_at":"2022-10-21T05:18:07.649965Z"},{"id":7,"status_message":"order is yet to be dispacthed","delivery_status":"delivered","updated_at":"2022-10-21T05:18:41.172471Z"}],"order_id":"order35W15EKIF5BV4DU","payment_order_id":null,"payment_amount":null,"transaction_id":null,"delivery_status":"packed","description":null,"payment_method":"cash","coupon_amount":0.0,"shipping_charge":0.0,"customer_name":null,"quantity":null,"total_amount":100.0,"grand_total":100.0,"status_update_time":null,"pending_time":null,"verified_time":null,"packed_time":null,"dispacthed_time":null,"delivered_time":null,"fk_shipping_address":1}
 /// errors : null
@@ -84,7 +86,7 @@ class Datas{
     id: json["id"] ?? 0,
     orderId:  json["order_id"] ?? "",
     
-    address: json["address"] == null && !json.containsKey("address") ? Address() : Address.fromJson(json['address']),
+    address: json["shipping_address"] == null && !json.containsKey("shipping_address") ? Address() : Address.fromJson(json['shipping_address']),
      
 
     items: json["items"] == null ? [] : json["items"].map<ItemModel>((each) => ItemModel.fromJson(each)).toList(),
@@ -93,8 +95,8 @@ class Datas{
     paymentOrderId: json["payment_order_id"] == null ?  "" : json["payment_order_id"],
     paymentAmount: json["payment_amount"] == null ?  "" : json["payment_amount"],
     transactionId: json["transaction_id"] == null ?  "" : json["transaction_id"],
-    status: json["status"]  == null ? [] : [],
-    //json["status"].map<StatusModel>((each) => StatusModel.fromJson(each)).toList()
+    status: json["status"]  == null ? [] : [StatusModel.fromJson(json["status"])],
+    //json["status"].map<StatusModel>((each) => StatusModel.fromJson(each)).toList(),
     deliveryStatus: json["delivery_status"] == null ? "" : json["delivery_status"],
     description: json["description"] == null ? "" : json["description"],
     paymentMethod: json["payment_method"] == null ? "" : json["payment_method"],
@@ -471,23 +473,23 @@ Data copyWith({  num? id,
 /// updated_at : "2022-10-21T05:08:23.963746Z"
 
 class StatusModel{
-      num id; 
+      
       String statusMessage; 
       String deliveryStatus; 
       String updatedAt;
 
       StatusModel({
-        required this.id,
+        
         required this.statusMessage,
         required this.deliveryStatus,
         required this.updatedAt,
       });
 
       factory StatusModel.fromJson(Map<String,dynamic> json) => StatusModel(
-        id: json["id"] == null ? 0 : json["id"],
-        statusMessage: json["status_message"] == null ? "" : json["status_message"],
-        deliveryStatus: json["delivery_status"] == null ? "" : json["delivery_status"],
-        updatedAt: json["updated_at"] == null ? "" : json["updated_at"],
+        
+        statusMessage: json["statusMessage"] == null ? "" : json["statusMessage"],
+        deliveryStatus: json["deliveryStatus"] == null ? "" : json["deliveryStatus"],
+        updatedAt: json["updatedAt"] == null ? "" : Config.splitDateFormate(json["updatedAt"]),
       );
 }
 

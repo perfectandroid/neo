@@ -582,7 +582,7 @@ class PendingDetails extends StatefulWidget{
                                                                 )
                                                             ),
 
-                                                            Container(
+                                                           /* Container(
                                                                 width: MediaQuery.of(context).size.width * 9,
                                                                 padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
                                                                 child: Row(
@@ -772,7 +772,7 @@ class PendingDetails extends StatefulWidget{
                                                                     // Icon(Icons.add_shopping_cart),
                                                                   ],
                                                                 )
-                                                            ),
+                                                            ),*/
 
                                                             Container(
                                                                 width: MediaQuery.of(context).size.width,
@@ -810,7 +810,7 @@ class PendingDetails extends StatefulWidget{
                                                                           padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                           width: MediaQuery.of(context).size.width * 0.45,
                                                                           alignment: Alignment.centerLeft,
-                                                                          child:Text("No Value".toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                          child:Text(Config.priceFormate((pendingInfoModel.data?.totalAmount).toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                           // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                           //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
@@ -1128,8 +1128,8 @@ class PendingDetails extends StatefulWidget{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Text((pendingInfoModel.data?.status[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-            Text((pendingInfoModel.data?.status[index].statusMessage).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((pendingInfoModel.data?.status[index].deliveryStatus).toString().toCapitalized(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((pendingInfoModel.data?.status[index].statusMessage).toString().replaceAll('_', " ").toCapitalized(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
             Text((pendingInfoModel.data?.status[index].updatedAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
           ],

@@ -8,12 +8,12 @@ import '../../helper/colorutility.dart';
 
 class Config {
    
-   var BASE_URL = "http://202.164.150.222:8002";
+ // var BASE_URL = "http://202.164.150.222:8002";
  // var BASE_URL = "http://202.164.150.222:8000";
  // var BASE_URL = "http://202.164.150.222:8001";
- //  var BASE_URL = "http://10.1.11.151:8000";
+ // var BASE_URL = "http://10.1.11.151:8000";
 
- // var BASE_URL = "http://202.164.150.222:8001";
+  var BASE_URL = "https://neoecommerce.perfectlimited.com";
 
   var msg_check_internet = "No Internet Connection,make sure that Wi-fi or Mobile data is turned on ,then try again";
 
@@ -81,6 +81,56 @@ class Config {
       return currrntColor;              
 
   }
+
+  static List<String> dateCalculateFromDays(int ofDays){
+    
+    
+    DateTime currentDays = DateTime.now();
+    String toDay = DateFormat("dd-MM-yyyy").format(currentDays);
+    DateTime lastofDays = DateTime.now().subtract(Duration(days: ofDays));
+    String numberOfDays = DateFormat("dd-MM-yyyy").format(lastofDays);
+    List<String> daysArray = [];
+    daysArray.add(numberOfDays);
+    daysArray.add(toDay);
+    print(daysArray);
+    return daysArray;
+  }
+
+  static List<String> dateCalcutateByMonth(int ofMonth){
+
+    var now = DateTime.now();
+    String toDay = DateFormat("dd-MM-yyyy").format(now);
+    //var monthCalculate = DateTime(now.year,now.month - ofMonth,now.day);
+    var monthCalculate = DateTime(now.year,now.month - ofMonth,ofMonth == 0 ? 1 : now.day);
+    String monthCheck = DateFormat("dd-MM-yyyy").format(monthCalculate);
+    List<String> monthArray = [];
+    monthArray.add(monthCheck);
+    monthArray.add(toDay);
+    return monthArray;
+  }
+
+  static String apiConvertedDateFormate(String date){
+
+    //DateTime date_formate = new DateFormat("yyyy-MM-dd").parse(date);
+    
+    return convertDateFormat(date, "dd-MM-yyyy", "yyyy-MM-dd");
+
+
+  }
+
+  static String convertDateFormat(String dateTimeString, String oldFormat, String 
+           newFormat) {
+        DateFormat newDateFormat = DateFormat(newFormat);
+        DateTime dateTime = DateFormat(oldFormat).parse(dateTimeString);
+        String selectedDate = newDateFormat.format(dateTime);
+        return selectedDate;
+            
+        }
   
 
+}
+
+extension StringCasingExtension on String {
+  String toCapitalized() => length > 0 ?'${this[0].toUpperCase()}${substring(1).toLowerCase()}':'';
+  String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ');
 }

@@ -44,7 +44,7 @@ class _StockEdit extends State<StockEdit>{
     controller.index  = widget.pos;
 
     controller.textQtyController.text = (widget!.model?.data?[widget.pos].curQty).toString();
-    controller.textMrpController.text = (widget!.model?.data?[widget.pos].stkMrp).toString();
+    controller.textMrpController.text = Config.priceFormate((widget!.model?.data?[widget.pos].stkMrp).toString());
 
     super.initState();
   }
@@ -399,10 +399,11 @@ class _StockEdit extends State<StockEdit>{
                       ),
                       child: Text('RESET'),
                       onPressed: () {
+                        FocusScope.of(context).unfocus();
                         setState(() {
                           final controller = Get.put(StockEditController());
                           controller.textQtyController.text = (widget.model?.data?[widget.pos].curQty).toString();
-                          controller.textMrpController.text = (widget.model?.data?[widget.pos].stkMrp).toString();
+                          controller.textMrpController.text = Config.priceFormate((widget!.model?.data?[widget.pos].stkMrp).toString());
                         });
                       },
                     )
@@ -421,6 +422,7 @@ class _StockEdit extends State<StockEdit>{
                   ),
                   child: Text('SUBMIT'),
                   onPressed: () {
+                    FocusScope.of(context).unfocus();
                     validator();
                   },
                 )
@@ -490,6 +492,7 @@ class _StockEdit extends State<StockEdit>{
       final status =jsonDecode(res);
       final statuscode = status['success'] as bool;
       final errors = status['errors'] as String;
+      final message = status['message'] as String;
 
       ShowDialogs().showProgressDialog(context,"Loading....",false);
       if(statuscode==true){
@@ -503,7 +506,7 @@ class _StockEdit extends State<StockEdit>{
         //     ), (route) => false
         // );
 
-        showSuccesseAlertDialog(context, errors.toString());
+        showSuccesseAlertDialog(context, message.toString());
       }else{
 
         print(statuscode);
@@ -523,7 +526,8 @@ class _StockEdit extends State<StockEdit>{
     Widget okButton = TextButton(
       child: Text("OK",style: TextStyle(color: ColorUtility().colorAppbar,fontWeight: FontWeight.bold)),
       onPressed: () {
-        Navigator.pop(context);
+        //Navigator.pop(context);
+        Navigator.of(context,rootNavigator: true).pop();
         Navigator.push(
           context,
           MaterialPageRoute(

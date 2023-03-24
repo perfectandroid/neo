@@ -79,11 +79,12 @@ class Data {
   Data({
       num? id, 
       List<Items>? items, 
+      Address? address, 
       String? orderId, 
       dynamic paymentOrderId, 
       dynamic paymentAmount, 
       dynamic transactionId, 
-      String? status, 
+      Status? status, 
       String? deliveryStatus, 
       dynamic description, 
       String? paymentMethod, 
@@ -105,6 +106,7 @@ class Data {
       num? fkShippingAddress,}){
     _id = id;
     _items = items;
+    _address = address;
     _orderId = orderId;
     _paymentOrderId = paymentOrderId;
     _paymentAmount = paymentAmount;
@@ -139,11 +141,15 @@ class Data {
         _items?.add(Items.fromJson(v));
       });
     }
+
+    _address = json['shipping_address'] != null ? Address.fromJson(json['shipping_address']) : null;
     _orderId = json['order_id'];
     _paymentOrderId = json['payment_order_id'];
     _paymentAmount = json['payment_amount'];
     _transactionId = json['transaction_id'];
-    _status = json['status'];
+    
+    _status = json['status'] != null ? Status.fromJson(json['status']) : null;
+
     _deliveryStatus = json['delivery_status'];
     _description = json['description'];
     _paymentMethod = json['payment_method'];
@@ -165,12 +171,14 @@ class Data {
     _fkShippingAddress = json['fk_shipping_address'];
   }
   num? _id;
+  Address? _address;
   List<Items>? _items;
   String? _orderId;
   dynamic _paymentOrderId;
   dynamic _paymentAmount;
   dynamic _transactionId;
-  String? _status;
+  
+  Status? _status;
   String? _deliveryStatus;
   dynamic _description;
   String? _paymentMethod;
@@ -191,12 +199,14 @@ class Data {
   String? _fkUser;
   num? _fkShippingAddress;
 Data copyWith({  num? id,
+  Address? address,
   List<Items>? items,
   String? orderId,
   dynamic paymentOrderId,
   dynamic paymentAmount,
   dynamic transactionId,
-  String? status,
+  
+  Status? status,
   String? deliveryStatus,
   dynamic description,
   String? paymentMethod,
@@ -217,6 +227,7 @@ Data copyWith({  num? id,
   String? fkUser,
   num? fkShippingAddress,
 }) => Data(  id: id ?? _id,
+  address: address ?? _address, 
   items: items ?? _items,
   orderId: orderId ?? _orderId,
   paymentOrderId: paymentOrderId ?? _paymentOrderId,
@@ -244,12 +255,13 @@ Data copyWith({  num? id,
   fkShippingAddress: fkShippingAddress ?? _fkShippingAddress,
 );
   num? get id => _id;
+  Address? get address => _address;
   List<Items>? get items => _items;
   String? get orderId => _orderId;
   dynamic get paymentOrderId => _paymentOrderId;
   dynamic get paymentAmount => _paymentAmount;
   dynamic get transactionId => _transactionId;
-  String? get status => _status;
+  Status? get status => _status;
   String? get deliveryStatus => _deliveryStatus;
   dynamic get description => _description;
   String? get paymentMethod => _paymentMethod;
@@ -276,11 +288,21 @@ Data copyWith({  num? id,
     if (_items != null) {
       map['items'] = _items?.map((v) => v.toJson()).toList();
     }
+    
+    if (_address != null) {
+      map['shipping_address'] = _address?.toJson();
+    }
+    
+
+    if (_status != null) {
+      map['status'] = _status?.toJson();
+    }
+
     map['order_id'] = _orderId;
     map['payment_order_id'] = _paymentOrderId;
     map['payment_amount'] = _paymentAmount;
     map['transaction_id'] = _transactionId;
-    map['status'] = _status;
+    
     map['delivery_status'] = _deliveryStatus;
     map['description'] = _description;
     map['payment_method'] = _paymentMethod;
@@ -300,6 +322,55 @@ Data copyWith({  num? id,
     map['delivered_time'] = _deliveredTime;
     map['fk_user'] = _fkUser;
     map['fk_shipping_address'] = _fkShippingAddress;
+    return map;
+  }
+
+}
+
+
+
+class Status {
+  Status({
+     
+      String? statusMessage, 
+      String? deliveryStatus, 
+      String? updatedAt,}){
+    
+    _statusMessage = statusMessage;
+    _deliveryStatus = deliveryStatus;
+    _updatedAt = updatedAt;
+}
+
+  Status.fromJson(dynamic json) {
+   
+    _statusMessage = json['statusMessage'];
+    _deliveryStatus = json['deliveryStatus'];
+    _updatedAt = json['updatedAt'];
+  }
+  
+  String? _statusMessage;
+  String? _deliveryStatus;
+  String? _updatedAt;
+Status copyWith({  num? id,
+  String? statusMessage,
+  String? deliveryStatus,
+  String? updatedAt,
+}) => Status(  
+  statusMessage: statusMessage ?? _statusMessage,
+  deliveryStatus: deliveryStatus ?? _deliveryStatus,
+  updatedAt: updatedAt ?? _updatedAt,
+);
+  
+  String? get statusMessage => _statusMessage;
+  String? get deliveryStatus => _deliveryStatus;
+  String? get updatedAt => _updatedAt;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+   
+    map['statusMessage'] = _statusMessage;
+    map['deliveryStatus'] = _deliveryStatus;
+    map['updatedAt'] = _updatedAt;
     return map;
   }
 
@@ -388,6 +459,150 @@ Items copyWith({  num? id,
     map['total_amount'] = _totalAmount;
     map['net_amount'] = _netAmount;
     map['fk_product'] = _fkProduct;
+    return map;
+  }
+
+}
+
+
+class Address {
+  Address({
+      num? id, 
+      String? countryName, 
+      String? stateName, 
+      String? cityName, 
+      dynamic shippingCharge, 
+      String? name, 
+      dynamic email, 
+      String? address, 
+      String? phone, 
+      dynamic addressCategory, 
+      String? pin, 
+      bool? isActive, 
+      bool? isBilling, 
+      num? fkCountry, 
+      num? fkState, 
+      num? fkCity,}){
+    _id = id;
+    _countryName = countryName;
+    _stateName = stateName;
+    _cityName = cityName;
+    _shippingCharge = shippingCharge;
+    _name = name;
+    _email = email;
+    _address = address;
+    _phone = phone;
+    _addressCategory = addressCategory;
+    _pin = pin;
+    _isActive = isActive;
+    _isBilling = isBilling;
+    _fkCountry = fkCountry;
+    _fkState = fkState;
+    _fkCity = fkCity;
+}
+
+  Address.fromJson(dynamic json) {
+    _id = json['id'] ?? 0;
+    _countryName = json['country_name'] ?? "";
+    _stateName = json['state_name'] ?? "";
+    _cityName = json['city_name'] ?? "";
+    _shippingCharge = json['shipping_charge'] ?? "0.00";
+    _name = json['name'] ?? "";
+    _email = json['email'];
+    _address = json['address'] ?? "";
+    _phone = json['phone'] ?? "";
+    _addressCategory = json['address_category'] ?? "";
+    _pin = json['pin'] ?? "";
+    _isActive = json['is_active'] ?? false;
+    _isBilling = json['is_billing'] ?? false;
+    _fkCountry = json['fk_country'] ?? 0;
+    _fkState = json['fk_state'] ?? 0;
+    _fkCity = json['fk_city'] ?? 0;
+  }
+  num? _id;
+  String? _countryName;
+  String? _stateName;
+  String? _cityName;
+  dynamic _shippingCharge;
+  String? _name;
+  dynamic _email;
+  String? _address;
+  String? _phone;
+  dynamic _addressCategory;
+  String? _pin;
+  bool? _isActive;
+  bool? _isBilling;
+  num? _fkCountry;
+  num? _fkState;
+  num? _fkCity;
+Address copyWith({  num? id,
+  String? countryName,
+  String? stateName,
+  String? cityName,
+  dynamic shippingCharge,
+  String? name,
+  dynamic email,
+  String? address,
+  String? phone,
+  dynamic addressCategory,
+  String? pin,
+  bool? isActive,
+  bool? isBilling,
+  num? fkCountry,
+  num? fkState,
+  num? fkCity,
+}) => Address(  id: id ?? _id,
+  countryName: countryName ?? _countryName,
+  stateName: stateName ?? _stateName,
+  cityName: cityName ?? _cityName,
+  shippingCharge: shippingCharge ?? _shippingCharge,
+  name: name ?? _name,
+  email: email ?? _email,
+  address: address ?? _address,
+  phone: phone ?? _phone,
+  addressCategory: addressCategory ?? _addressCategory,
+  pin: pin ?? _pin,
+  isActive: isActive ?? _isActive,
+  isBilling: isBilling ?? _isBilling,
+  fkCountry: fkCountry ?? _fkCountry,
+  fkState: fkState ?? _fkState,
+  fkCity: fkCity ?? _fkCity,
+);
+  num? get id => _id;
+  String? get countryName => _countryName;
+  String? get stateName => _stateName;
+  String? get cityName => _cityName;
+  dynamic get shippingCharge => _shippingCharge;
+  String? get name => _name;
+  dynamic get email => _email;
+  String? get address => _address;
+  String? get phone => _phone;
+  dynamic get addressCategory => _addressCategory;
+  String? get pin => _pin;
+  bool? get isActive => _isActive;
+  bool? get isBilling => _isBilling;
+  num? get fkCountry => _fkCountry;
+  num? get fkState => _fkState;
+  num? get fkCity => _fkCity;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['id'] = _id;
+    map['country_name'] = _countryName;
+    map['state_name'] = _stateName;
+    map['city_name'] = _cityName;
+    map['shipping_charge'] = _shippingCharge;
+    map['name'] = _name;
+    map['email'] = _email;
+    map['address'] = _address;
+    map['phone'] = _phone;
+    map['address_category'] = _addressCategory;
+    map['pin'] = _pin;
+    map['is_active'] = _isActive;
+    map['is_billing'] = _isBilling;
+    map['fk_country'] = _fkCountry;
+    map['fk_state'] = _fkState;
+    map['fk_city'] = _fkCity;
     return map;
   }
 

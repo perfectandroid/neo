@@ -61,6 +61,7 @@ class _OTPVerification extends State<OTPVerification>{
 
     return Scaffold(
       body: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
           child :Container(
               height: MediaQuery.of(context).size.height,
               color: Colors.white,
@@ -365,7 +366,14 @@ class _OTPVerification extends State<OTPVerification>{
       }else{
         print(statuscode);
         //showSuccessAlertDialog(context, Username);
-        showFaliureAlertDialog(context, errors.toString());
+         Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MPINCREATION(text: Username)
+            ),
+                (route) => false
+        );
+        //showFaliureAlertDialog(context, errors.toString());
       }
     }catch(e){
       ShowDialogs().showProgressDialog(context,"Loading....",false);

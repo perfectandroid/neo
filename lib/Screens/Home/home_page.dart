@@ -763,16 +763,16 @@ class _HomePageState extends State<HomePage> {
     else if(index=="1")
     {
       // home dashboard navigation hide 
-      showDashBoardAlert(context, "Coming Soon");
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     fullscreenDialog: true,
-      //     builder: (BuildContext context) => Dashboard(
-      //       //  liste: album,
-      //     ),
-      //   ),
-      // );
+      //showDashBoardAlert(context, "Coming Soon");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (BuildContext context) => Dashboard(
+            //  liste: album,
+          ),
+        ),
+      );
     }
     else if(index=="2")
     {

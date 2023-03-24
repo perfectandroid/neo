@@ -2,6 +2,10 @@
 /// data : {"status":["initiated","success","failed","cancelled","order_cancelled","order_returned","pending"]}
 /// errors : null
 
+dynamic orderStatusDemoResponse = {"success" : true,
+ "data" : {"status":["initiated","success","failed","cancelled","order_cancelled","order_returned","pending"]},
+ "errors" : null};
+
 class OrderStatusModel {
   OrderStatusModel({
       bool? success, 

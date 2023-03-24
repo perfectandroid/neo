@@ -63,7 +63,11 @@ class _OrderReport extends State<OrderReport>{
     countys.add({"id": 1,"name": "Hellooo"});
     countys.add({"id": 2,"name": "grgde"});
     countys.add({"id": 3,"name": "ewrhfb"});
+    final controller = Get.put(OrderReportController());
+    controller.orderStatusInput.text = "";
+    controller.searchInput.text = "";
     getCuurentDate(context);
+    
   //  fetchData(context);
     super.initState();
   }
@@ -812,6 +816,7 @@ class _OrderReport extends State<OrderReport>{
                         child: MaterialButton(
                           onPressed: (){
                             setState(() {
+                              FocusScope.of(context).unfocus();
                               orderReportModel.data?.clear();
                               // controller.dateInputFrom.clear();
                               // controller.dateInputTo.clear();
@@ -860,6 +865,7 @@ class _OrderReport extends State<OrderReport>{
                         height: 40,
                         child: MaterialButton(
                           onPressed: (){
+                            FocusScope.of(context).unfocus();
                             // var fromdate = controller.dateInputFrom.text;
                             // var todate = controller.dateInputTo.text;
                             // var orderstat = controller.orderStatusInput.text;
@@ -879,7 +885,8 @@ class _OrderReport extends State<OrderReport>{
                             }
 
                             if(!controller.orderStatusInput.text.isEmpty){
-                              orderstat = controller.orderStatusInput.text;
+                              
+                              orderstat = (controller.orderStatusInput.text).replaceAll(" ", "_").toLowerCase();
                             }
 
                             if(!controller.searchInput.text.isEmpty){
@@ -1140,7 +1147,7 @@ class _OrderReport extends State<OrderReport>{
     try{
       ShowDialogs().showProgressDialog(context,"Loading....",true);
        String token = await SharedPreferencesHelper.getAgent_token();
-
+       final controller = Get.put(OrderReportController());
       var headers = {"Authorization": "Token "+token,"Content-Type": "application/json"};
    //   Object queryParameters = {'status': '$orderStatus', 'from_date': '$fromdate', 'to_date': '$toDate', 'search': "tt"};
       Object queryParameters = {'status=$orderStatus&from_date=$fromdate&to_date=$toDate&search=$searchUser'};
@@ -1171,13 +1178,14 @@ class _OrderReport extends State<OrderReport>{
       if(statuscode==true){
          orderReportModel = OrderReportModel.fromJson(status);
         setState(() {
-
+         
         });
         return  orderReportModel;
 
       }else{
 
         setState(() {
+          controller.orderStatusInput.text = "";
           orderReportModel.data?.clear();
         });
          return showFaliureAlertDialog(context,errors);
@@ -1231,10 +1239,13 @@ class _OrderReport extends State<OrderReport>{
       final res = await response.stream.bytesToString();
 
       print("fetchOrderStatus  69     "+res.toString());
-
-      final status =jsonDecode(res);
+      
+      //final status = jsonDecode(res);
+      final status = jsonDecode('{"success":true, "data" : {"status":["initiated","success","failed","cancelled","order_cancelled","order_returned","pending"]},"errors":null}');
+      
       final statuscode = status['success'] as bool;
       final errors = status['errors'] as String;
+
       if(statuscode==true){
         orderStatusModel = OrderStatusModel.fromJson(status);
         // final List<String> names = <String>[
@@ -1333,9 +1344,9 @@ class _OrderReport extends State<OrderReport>{
 
                           GestureDetector(
                               onTap: (){
-                                print((orderStatusModel?.data?.status?[index]).toString());
+                                print((((orderStatusModel?.data?.status?[index]).toString()).replaceAll("_", " ")).toTitleCase());
                                 Navigator.pop(context);
-                                controller.orderStatusInput.text = (orderStatusModel?.data?.status?[index]).toString();
+                                controller.orderStatusInput.text = (((orderStatusModel?.data?.status?[index]).toString()).replaceAll("_", " ")).toTitleCase();
                               },
                               child: new Container(
                                   width: double.infinity,
@@ -1352,7 +1363,7 @@ class _OrderReport extends State<OrderReport>{
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        new Text((orderStatusModel?.data?.status?[index]).toString(),textAlign: TextAlign.start),
+                                        new Text((((orderStatusModel?.data?.status?[index]).toString()).replaceAll("_", " ")).toTitleCase(),textAlign: TextAlign.start),
                                       ]
                                   )
 
@@ -1571,8 +1582,8 @@ void showItemListing(BuildContext context ,List<Items>? items,OrderReportModel d
                     color: ColorUtility().colorWhite,
                   ),
                   child: 
-                  
-                    titleValueView(context, "Address", " Manu Prabakar \n Near Manachira Squre, \n Calicut, \n Manachira PO."),
+                    //" Manu Prabakar \n Near Manachira Squre, \n Calicut, \n Manachira PO."
+                    titleValueView(context, "Address", (data.data?[index].address?.address).toString().replaceAll(',', ',\n') + " \n" + (data.data?[index].address?.stateName).toString()+ " \n" + (data.data?[index].address?.countryName).toString()),
                 ),
 
                 Container(

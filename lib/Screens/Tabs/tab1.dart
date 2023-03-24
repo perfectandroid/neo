@@ -344,7 +344,7 @@ Widget getCard(item,index){
                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                         width: MediaQuery.of(context).size.width * 0.52,
                                                                         alignment: Alignment.centerLeft,
-                                                                        child:Text(""+item['fk_shipping_address'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                        child:Text(""+item['shipping_address']['address'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                        //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
                                                                       )
@@ -750,7 +750,7 @@ Widget getCard(item,index){
                           
 
                         },
-                        child: Text('SAVE'),
+                        child: Text('PROCEED TO CONFIRM'),
                       )
                   ),
 

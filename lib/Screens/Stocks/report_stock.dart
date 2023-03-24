@@ -208,7 +208,8 @@ class _ReportStock extends State<ReportStock>{
                                               Expanded(
                                                 flex: 1,
                                                 child: Container(
-                                                  alignment: Alignment.centerLeft,
+                                                  
+                                                  alignment: Alignment.center,
                                                   padding: const EdgeInsets.fromLTRB(4,15,4,15),
                                                   child:Text("SN", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
@@ -216,15 +217,19 @@ class _ReportStock extends State<ReportStock>{
                                               Expanded(
                                                 flex: 3,
                                                 child: Container(
-                                                  alignment: Alignment.centerLeft,
-                                                  padding: const EdgeInsets.fromLTRB(4,15,4,15),
+                                                 
+                                                  
+                                                  alignment: Alignment.center,
+                                                  margin: EdgeInsets.only(left: 5,right: 5),
+                                                  padding: const EdgeInsets.fromLTRB(5,15,5,15),
                                                   child:Text("PRODUCT", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
                                               ),
                                               Expanded(
                                                 flex: 2,
                                                 child: Container(
-                                                  alignment: Alignment.centerLeft,
+                                                  
+                                                  alignment: Alignment.center,
                                                   padding: const EdgeInsets.fromLTRB(4,15,4,15),
                                                   child:Text("MRP", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
@@ -232,7 +237,7 @@ class _ReportStock extends State<ReportStock>{
                                               Expanded(
                                                 flex: 2,
                                                 child: Container(
-                                                  alignment: Alignment.centerLeft,
+                                                  alignment: Alignment.center,
                                                   padding: const EdgeInsets.fromLTRB(4,15,4,15),
                                                   child:Text("STOCK", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
@@ -240,7 +245,7 @@ class _ReportStock extends State<ReportStock>{
                                               Expanded(
                                                 flex: 3,
                                                 child: Container(
-                                                  alignment: Alignment.centerLeft,
+                                                  alignment: Alignment.center,
                                                   padding: const EdgeInsets.fromLTRB(4,15,4,15),
                                                   child:Text("STATUS", style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                 ),
@@ -278,7 +283,7 @@ class _ReportStock extends State<ReportStock>{
                                                     // elevation: 1,
                                                     // shadowColor: Colors.black,
                                                     // color: Colors.white,
-                                                    margin: EdgeInsets.fromLTRB(2,0,2,0),
+                                                    margin: EdgeInsets.fromLTRB(0,0,0,0),
                                                     color: Colors.white,
                                                     //color: ColorUtility().colorLightGrey,
                                                     shape: RoundedRectangleBorder(
@@ -304,8 +309,8 @@ class _ReportStock extends State<ReportStock>{
                                                                 fit: FlexFit.tight,
                                                                 child: Container(
                                                                   color: Colors.white,
-                                                                  alignment: Alignment.centerLeft,
-                                                                  padding: EdgeInsets.all(4),
+                                                                  alignment: Alignment.center,
+                                                                  padding: EdgeInsets.all(2),
                                                                   child:Text(""+(index+1).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),textAlign: TextAlign.center,),
                                                                 ),
                                                               ),
@@ -318,8 +323,9 @@ class _ReportStock extends State<ReportStock>{
                                                                           children: <Widget>[
                                                                             Container(
                                                                               color: Colors.white,
-                                                                              alignment: Alignment.centerLeft,
-                                                                              padding: EdgeInsets.all(4),
+                                                                              alignment: Alignment.center,
+                                                                              padding: EdgeInsets.only(left: 5,right: 5),
+                                                                              margin: EdgeInsets.only(left: 5,right: 5),
                                                                               child:Text(""+(stockModel.data?[index].product).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                                             )
                                                                           ]
@@ -330,7 +336,7 @@ class _ReportStock extends State<ReportStock>{
                                                                 flex: 2,
                                                                 child: Container(
                                                                   color: Colors.white,
-                                                                  alignment: Alignment.centerLeft,
+                                                                  alignment: Alignment.center,
                                                                   padding: EdgeInsets.all(4),
                                                                   child:Text(""+Config.priceFormate((stockModel.data?[index].stkMrp).toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                                 ),
@@ -339,7 +345,7 @@ class _ReportStock extends State<ReportStock>{
                                                                 flex: 2,
                                                                 child: Container(
                                                                   color: Colors.white,
-                                                                  alignment: Alignment.centerLeft,
+                                                                  alignment: Alignment.center,
                                                                   padding: EdgeInsets.all(4),
                                                                   child:Text(""+(stockModel.data?[index].curQty).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                                 ),
@@ -350,14 +356,14 @@ class _ReportStock extends State<ReportStock>{
                                                                   new
                                                                   Container(
                                                                     color: Colors.white,
-                                                                    alignment: Alignment.centerLeft,
+                                                                    alignment: Alignment.center,
                                                                     padding: EdgeInsets.all(4),
                                                                     child:Text("Out of stock", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.red),),
                                                                   )
                                                                       : new
                                                                   Container(
                                                                     color: Colors.white,
-                                                                    alignment: Alignment.centerLeft,
+                                                                    alignment: Alignment.center,
                                                                     padding: EdgeInsets.all(4),
                                                                     child:Text("In stock", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: Colors.black),),
                                                                   )
@@ -366,9 +372,11 @@ class _ReportStock extends State<ReportStock>{
                                                               Expanded(
                                                                 flex: 1,
                                                                 child: Container(
-                                                                  alignment: Alignment.centerLeft,
+                                                                 
+                                                                  alignment: Alignment.center,
                                                                   padding: EdgeInsets.fromLTRB(0,0,2,0),
                                                                   child :IconButton(
+                                                                    padding: EdgeInsets.only(right: 2),
                                                                     alignment: Alignment.centerLeft,
                                                                     icon: new Icon(Icons.border_color_outlined,color: ColorUtility().colorAppbar),
                                                                     highlightColor: Colors.grey,
@@ -1163,6 +1171,7 @@ class _ReportStock extends State<ReportStock>{
                         height: 40,
                         child: MaterialButton(
                           onPressed: (){
+                            FocusScope.of(context).unfocus();
                             setState(() {
 
                               resetData(context);

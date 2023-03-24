@@ -149,3 +149,70 @@ class DailySalesCount {
     return data;
   }
 }
+
+/*{
+    "success": true,
+    "final_data": {
+        "prod_name": [
+            "iphone",
+            "iphone",
+            "pen", 
+            "shirt",
+            "laptop",
+            "laptop",
+            "pen"
+        ],
+        "prod_sale": [
+            0.0,
+            0.0,
+            0.0,
+            88825.0,
+            0.0,
+            0.0,
+            0.0
+        ]
+    },
+    "errors": null
+}*/
+
+class ProfitWiseModel{
+
+  bool? success;
+  ProfitWiseDataModel? final_data;
+  dynamic error;
+
+  ProfitWiseModel({
+    this.success,this.final_data,this.error
+  }){
+    success = success;
+    final_data = final_data;
+    error = error;
+  }
+
+  factory ProfitWiseModel.fromJson(Map<String,dynamic> json) => ProfitWiseModel(
+    success: json["success"],
+    error: json["error"],
+    final_data: ProfitWiseDataModel.fromJson(json["final_data"]),
+    
+  );
+
+
+
+}
+ 
+class ProfitWiseDataModel{
+
+  List<dynamic> prod_name;
+  List<dynamic> prod_sale;
+
+  ProfitWiseDataModel({required this.prod_name,required this.prod_sale}){
+    prod_name = prod_name;
+    prod_sale = prod_sale;
+  }
+
+  factory ProfitWiseDataModel.fromJson(Map<String,dynamic> json) => ProfitWiseDataModel(
+    prod_name: json["prod_name"] == null ? [] : json["prod_name"].toList(),
+    prod_sale: json["prod_sale"] == null ? [] : json["prod_sale"].toList(),
+  );
+
+}

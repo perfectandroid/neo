@@ -587,7 +587,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                                                 )
                                                             ),
 
-                                                            Container(
+                                                           /* Container(
                                                                 width: MediaQuery.of(context).size.width * 9,
                                                                 padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
                                                                 child: Row(
@@ -777,7 +777,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                                                     // Icon(Icons.add_shopping_cart),
                                                                   ],
                                                                 )
-                                                            ),
+                                                            ),*/
 
                                                             Container(
                                                                 width: MediaQuery.of(context).size.width,
@@ -815,7 +815,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                                                           padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                           width: MediaQuery.of(context).size.width * 0.45,
                                                                           alignment: Alignment.centerLeft,
-                                                                          child:Text("No Value".toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+                                                                          child:Text(Config.priceFormate((deliveryModel.data?.totalAmount).toString()), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.035,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                           // child:Text(""+deliveryDetailList[1]['fk_user'].toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
                                                                           //  child:Text(""+index.toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
@@ -2326,8 +2326,8 @@ class _DeliveryDetails extends State<DeliveryDetails>{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Text((deliveryModel.data?.status[index].deliveryStatus).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
-            Text((deliveryModel.data?.status[index].statusMessage).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((deliveryModel.data?.status[index].deliveryStatus).toString().toCapitalized(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
+            Text((deliveryModel.data?.status[index].statusMessage).toString().replaceAll('_', " ").toCapitalized(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
             Text((deliveryModel.data?.status[index].updatedAt).toString(), style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.width * 0.03,letterSpacing: .1,color: ColorUtility().colorLightBlack),),
 
           ],

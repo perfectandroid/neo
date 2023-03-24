@@ -188,7 +188,7 @@ class _MPINCREATION extends State<MPINCREATION>{
                                               margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/20,0),
                                               padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                               alignment: Alignment.center,
-                                              child:Text("Please provide a 6 digit  numaric MPIN to protect your account", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.center),
+                                              child:Text("Please provide a 6 digit  numeric MPIN to protect your account", style: TextStyle(fontWeight: FontWeight.normal, fontSize: MediaQuery.of(context).size.height * 0.02,letterSpacing: .1,color: Colors.grey),textAlign: TextAlign.center),
 
                                             )
                                         ),

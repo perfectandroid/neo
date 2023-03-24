@@ -59,6 +59,7 @@ class _LoginPage extends State<LoginPage>{
 
   @override
   Widget build(BuildContext context) {
+    
     final controller = Get.put(LoginController());
     return SafeArea(
 
@@ -68,7 +69,7 @@ class _LoginPage extends State<LoginPage>{
             physics: ClampingScrollPhysics(),
             child :Container(
                     
-                    height: MediaQuery.of(context).size.height,
+                    height: MediaQuery.of(context).size.height <= 667 ? 720 : MediaQuery.of(context).size.height,
                     color: Colors.white,
                     child: Stack(
 
@@ -94,9 +95,10 @@ class _LoginPage extends State<LoginPage>{
                               top: MediaQuery.of(context).size.height/2,
                               left: 0,
                               right: 0,
+                              bottom: MediaQuery.of(context).padding.bottom,
                               child:  Container(
                                   width: MediaQuery.of(context).size.width,
-                                  height: MediaQuery.of(context).size.height/2,
+                                  //height: MediaQuery.of(context).size.height/2 ,
                                   margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                   padding: EdgeInsets.all(0),
                                   alignment: Alignment.topCenter,
@@ -311,12 +313,12 @@ class _LoginPage extends State<LoginPage>{
                                                       new GestureDetector(
                                                           onTap: () {
     
-                                                            Navigator.pushAndRemoveUntil(
+                                                            Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
                                                                     builder: (context) => SendOtp()
                                                                 ),
-                                                                    (route) => false
+                                                                    
                                                             );
     
                                                             //   confirmOtpPopup(context);
@@ -378,6 +380,10 @@ class _LoginPage extends State<LoginPage>{
 
   Future<void> validator() async {
     final controller = Get.put(LoginController());
+
+    double screenHeight = MediaQuery.of(context).size.height;
+    print("screen height === " + (screenHeight).toString());
+
     if(controller.eMailController.text.isEmpty){
      validateMessage(context,"Enter User Name");
     }else if(controller.passWordController.text.isEmpty){
@@ -392,6 +398,7 @@ class _LoginPage extends State<LoginPage>{
     try{
       ShowDialogs().showProgressDialog(context,"Loading....",true);
       var headers = {'Content-Type': 'application/json'};
+          
       var request = http.Request('POST', Uri.parse(Config().BASE_URL+'/customer_api/login/'));
       request.body = json.encode({"username": "$Username", "password": '$Password'});
       request.headers.addAll(headers);
@@ -410,9 +417,13 @@ class _LoginPage extends State<LoginPage>{
         print(status['data']['id']);
         String mobileNum = status['data']['mobile_number'];
         OtpPage(context, Username,status);
+
+        
       }else{
 
         print(statuscode);
+
+        
 
         // showSuccessAlertDialog(context, Username);
         showFaliureAlertDialog(context, errors.toString());
@@ -637,12 +648,12 @@ OtpPage(BuildContext context, String Username, status) async {
 
 
     await SharedPreferencesHelper.setAgent_id(status['data']["id"]?? (throw ArgumentError("id is required")));
-    await SharedPreferencesHelper.setAgent_name(status['data']["name"]?? (throw ArgumentError("name is required")));
-    await SharedPreferencesHelper.setAgent_mobile_number(status['data']["mobile_number"]?? (throw ArgumentError("mobile_number  is required")));
+    await SharedPreferencesHelper.setAgent_name(status['data']["name"] ?? "");
+    await SharedPreferencesHelper.setAgent_mobile_number(status['data']["mobile_number"]?? "");
     await SharedPreferencesHelper.setAgent_email(status['data']["email"] == null ? "" : status['data']["email"]);
     await SharedPreferencesHelper.setAgent_token(status['data']["token"]?? (throw ArgumentError("token is required")));
     await SharedPreferencesHelper.setAgent_user_type(status['data']["user_type"]?? (throw ArgumentError("user_type is required")));
-    await SharedPreferencesHelper.setAgent_image(status['data']["image"]?? (throw ArgumentError("image is required")));
+    await SharedPreferencesHelper.setAgent_image(status['data']["image"]?? "");
 
 
     var token = await SharedPreferencesHelper.getAgent_token();
@@ -666,6 +677,8 @@ OtpPage(BuildContext context, String Username, status) async {
         ),
             (route) => false
     );
+
+    
 
   }
   catch(e)
