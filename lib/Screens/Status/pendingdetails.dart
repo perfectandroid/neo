@@ -80,10 +80,10 @@ class PendingDetails extends StatefulWidget{
             physics: const AlwaysScrollableScrollPhysics(),
               children: <Widget>[
                 new Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: double.infinity,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    padding: EdgeInsets.fromLTRB(0,0,0,0),
+                    height: MediaQuery.of(context).size.height* 0.82,
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(0,0,0,0),
+                        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child : FutureBuilder<DeliveryFullDetailsModel>(
                         future:  fetchPost(context),
                         builder: (context, snapshot) {

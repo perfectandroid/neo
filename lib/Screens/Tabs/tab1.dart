@@ -893,15 +893,16 @@ Widget getCard(item,index){
         if (items.length == 0) {
           print('List is empty11.');
           print("4542  :$errors");
-          Fluttertoast.showToast(
-              msg: errors.toString(),
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.red,
-              textColor: Colors.yellow
-          );
-          // showAlertDialog(context, errors.toString());
+          // Fluttertoast.showToast(
+          //     msg: errors.toString(),
+          //     toastLength: Toast.LENGTH_SHORT,
+          //     gravity: ToastGravity.BOTTOM,
+          //     timeInSecForIosWeb: 1,
+          //     backgroundColor: Colors.red,
+          //     textColor: Colors.yellow
+          // );
+          showFaliureAlertDialog(context, errors.toString());
+           //showAlertDialog(context, errors.toString());
           setState(() {
             pendings1 = [];
           });
@@ -923,14 +924,16 @@ Widget getCard(item,index){
         setState(() {
           pendings1 = [];
         });
-        Fluttertoast.showToast(
-            msg: errors.toString(),
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.yellow
-        );
+        // Fluttertoast.showToast(
+        //     msg: errors.toString(),
+        //     toastLength: Toast.LENGTH_SHORT,
+        //     gravity: ToastGravity.BOTTOM,
+        //     timeInSecForIosWeb: 1,
+        //     backgroundColor: Colors.red,
+        //     textColor: Colors.yellow
+            
+        // );
+        showFaliureAlertDialog(context, errors.toString());
         //   showAlertDialog(context, errors.toString());
       }
     }catch(e) {
@@ -1061,7 +1064,7 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     
       if (Platform.isAndroid) {
        // Android-specific code
-       Navigator.push(context, MaterialPageRoute(builder: (context) => new DrawerActivity(),));
+       Navigator.of(context,rootNavigator: true).pop();
       } else if (Platform.isIOS) {
        // iOS-specific code
        Navigator.of(context,rootNavigator: true).pop();

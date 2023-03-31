@@ -366,14 +366,14 @@ class _OTPVerification extends State<OTPVerification>{
       }else{
         print(statuscode);
         //showSuccessAlertDialog(context, Username);
-         Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (context) => MPINCREATION(text: Username)
-            ),
-                (route) => false
-        );
-        //showFaliureAlertDialog(context, errors.toString());
+        //  Navigator.pushAndRemoveUntil(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => MPINCREATION(text: Username)
+        //     ),
+        //         (route) => false
+        // );
+        showFaliureAlertDialog(context, errors.toString());
       }
     }catch(e){
       ShowDialogs().showProgressDialog(context,"Loading....",false);
