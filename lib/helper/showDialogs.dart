@@ -16,7 +16,7 @@ class ShowDialogs {
     Widget okButton = TextButton(
       child: Text("OK"),
       onPressed: () {
-        Navigator.pop(context);
+        Navigator.of(context,rootNavigator: true).pop();
       },
     );
 

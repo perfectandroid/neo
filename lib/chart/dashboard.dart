@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token="Token "+_token;
     var headers = {'Content-Type': 'application/json', 'Authorization': token,};
-    var request = http.Request('POST', Uri.parse(Config().BASE_URL+'/date_range_post/'));
+    var request = http.Request('POST', Uri.parse(Config().BASE_URL+'/customer_api/date_range_post/'));
     request.body = json.encode({"start": "$start_date", "end": '$end_date'});
     print('{"start": $start_date, "end": $end_date}');
     // request.body = json.encode({});
@@ -363,7 +363,10 @@ class _MyHomePageState extends State<MyHomePage> {
       }
       else{
 
-        showFaliureAlertDialog(context, errors.toString());
+        //showFaliureAlertDialog(context, errors.toString());
+         ShowDialogs().showAlertDialog(context, errors.toString());
+         String errorUrl = Config().BASE_URL+'/prowise_sales/';
+         print("error url: $errorUrl");
       }
 
       

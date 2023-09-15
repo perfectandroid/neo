@@ -46,6 +46,7 @@ class _LoginPage extends State<LoginPage>{
   initState(){
 
     super.initState();
+    
   }
 
   // @override
@@ -61,20 +62,22 @@ class _LoginPage extends State<LoginPage>{
   Widget build(BuildContext context) {
     
     final controller = Get.put(LoginController());
-    return SafeArea(
-
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: SingleChildScrollView(
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SingleChildScrollView(
             physics: ClampingScrollPhysics(),
             child :Container(
                     
                     height: MediaQuery.of(context).size.height <= 667 ? 720 : MediaQuery.of(context).size.height,
                     color: Colors.white,
                     child: Stack(
-
+      
                         children: <Widget>[
-    
+          
                           Positioned(
                               top: 0,
                               left: 0,
@@ -95,7 +98,7 @@ class _LoginPage extends State<LoginPage>{
                               top: MediaQuery.of(context).size.height/2,
                               left: 0,
                               right: 0,
-                              bottom: MediaQuery.of(context).padding.bottom,
+                              bottom: MediaQuery.of(context).padding.bottom - 40,
                               child:  Container(
                                   width: MediaQuery.of(context).size.width,
                                   //height: MediaQuery.of(context).size.height/2 ,
@@ -116,7 +119,7 @@ class _LoginPage extends State<LoginPage>{
                                   )
                               )
                           ),
-    
+          
                           Positioned(
                               top: MediaQuery.of(context).size.height/10,
                               left: 0,
@@ -130,7 +133,7 @@ class _LoginPage extends State<LoginPage>{
                                     child: Image.asset('assets/images/logo.png')),//Text
                               ),
                           ),
-    
+          
                           Positioned(
                             top: MediaQuery.of(context).size.height/3,
                             left: MediaQuery.of(context).size.width/10,
@@ -151,7 +154,7 @@ class _LoginPage extends State<LoginPage>{
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-    
+          
                                             Container(
                                               margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/10,MediaQuery.of(context).size.width/20,0),
                                               width: MediaQuery.of(context).size.height/17,
@@ -161,7 +164,7 @@ class _LoginPage extends State<LoginPage>{
                                                   radius: 100,
                                                   child: Image.asset('assets/images/lock_login.png')),//Text
                                             ),
-    
+          
                                             Container(
                                                 margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/90,MediaQuery.of(context).size.width/20,0),
                                                 child: Column(
@@ -169,12 +172,12 @@ class _LoginPage extends State<LoginPage>{
                                                       Align(
                                                           alignment: Alignment.center,
                                                           child: new Text('Login Account', textAlign: TextAlign.center, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.06,color: Colors.black54,fontWeight: FontWeight.bold))
-    
+          
                                                       )
                                                     ]
                                                 )
                                             ),
-    
+          
                                             Container(
                                                 margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/25,MediaQuery.of(context).size.width/20,0),
                                                // height: MediaQuery.of(context).size.height/13,
@@ -188,29 +191,29 @@ class _LoginPage extends State<LoginPage>{
                                                         focusNode: emailFocusNode,
                           
                                                         onFieldSubmitted: (value) {
-    
+          
                                                         FocusScope.of(context).requestFocus(passwordFocusNode);
                             
                                                         },
-    
+          
                                                         decoration: InputDecoration(
                                                           labelText: "Username",
                                                           labelStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.045,color: ColorUtility().colorBorderBox),
                                                           prefixIcon: Icon(Icons.person, size: 24,color: ColorUtility().colorBorderBox),
-    
+          
                                                             enabledBorder: UnderlineInputBorder(
                                                                 borderSide: new BorderSide(
                                                                   color: ColorUtility().colorBorderBox,
                                                                 )
                                                             ),
-    
+          
                                                             focusedBorder: UnderlineInputBorder(
                                                                 borderSide: new BorderSide(
                                                                   color: ColorUtility().colorAppbar,
                                                                 )
                                                             )
-    
-    
+          
+          
                                                           // enabledBorder: OutlineInputBorder(
                                                           //   borderRadius: BorderRadius.circular(2),
                                                           //   borderSide: BorderSide(
@@ -229,9 +232,9 @@ class _LoginPage extends State<LoginPage>{
                                                       )
                                                     ]
                                                 )
-    
+          
                                             ),
-    
+          
                                             Container(
                                                 margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/50,MediaQuery.of(context).size.width/20,0),
                                                // height: MediaQuery.of(context).size.height/15,
@@ -239,7 +242,7 @@ class _LoginPage extends State<LoginPage>{
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
-    
+          
                                                       TextField(
                                                         maxLength: 15,
                                                         focusNode: passwordFocusNode,
@@ -261,22 +264,22 @@ class _LoginPage extends State<LoginPage>{
                                                                     boolPass = true;
                                                                   });
                                                                 }
-    
+          
                                                               }
                                                           ),
-    
+          
                                                             enabledBorder: UnderlineInputBorder(
                                                                 borderSide: new BorderSide(
                                                                   color: ColorUtility().colorBorderBox,
                                                                 )
                                                             ),
-    
+          
                                                             focusedBorder: UnderlineInputBorder(
                                                                 borderSide: new BorderSide(
                                                                   color: ColorUtility().colorAppbar,
                                                                 )
                                                             )
-    
+          
                                                           // enabledBorder: OutlineInputBorder(
                                                           //   borderRadius: BorderRadius.circular(2),
                                                           //   borderSide: BorderSide(
@@ -300,10 +303,10 @@ class _LoginPage extends State<LoginPage>{
                                                       // )
                                                     ]
                                                 )
-    
-    
+          
+          
                                             ),
-    
+          
                                             Container(
                                                 margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/50,MediaQuery.of(context).size.width/10,0),
                                                 child: Column(
@@ -312,7 +315,7 @@ class _LoginPage extends State<LoginPage>{
                                                           alignment: Alignment.centerLeft, child:
                                                       new GestureDetector(
                                                           onTap: () {
-    
+          
                                                             Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
@@ -320,18 +323,18 @@ class _LoginPage extends State<LoginPage>{
                                                                 ),
                                                                     
                                                             );
-    
+          
                                                             //   confirmOtpPopup(context);
                                                           },
                                                           child: new Text('Forgot Password ?', textAlign: TextAlign.left, style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04,color: ColorUtility().colorAppbar))
                                                       )
-    
+          
                                                       )
                                                     ]
                                                 )
                                             ),
-    
-    
+          
+          
                                             Container(
                                                 margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.height/20,MediaQuery.of(context).size.width/20,MediaQuery.of(context).size.width/10),
                                                 child: Column(
@@ -353,28 +356,28 @@ class _LoginPage extends State<LoginPage>{
                                                       ),
                                                     ]
                                                 )
-    
+          
                                             ),
-    
-    
+          
+          
                                           ]
                                       )
                                   )
-    
+          
                               )
                             ),
                           ),
-    
-    
-    
-    
+          
+          
+          
+          
                         ]
                     )
                )
-    
+          
           ),
-    
       ),
+    
     );
   }
 

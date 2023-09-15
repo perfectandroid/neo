@@ -128,8 +128,8 @@ class ItemModel{
   num coupon_amount;
   num total_amount;
   num net_amount;
-  num sale_price;
-  num sale_tax;
+  dynamic sale_price;
+  dynamic sale_tax;
   dynamic status;
   dynamic return_reason;
   dynamic return_comment;

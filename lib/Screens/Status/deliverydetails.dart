@@ -60,12 +60,12 @@ class _DeliveryDetails extends State<DeliveryDetails>{
           toolbarHeight: MediaQuery.of(context).size.height * 0.07,
           automaticallyImplyLeading: true,
           backgroundColor: ColorUtility().colorAppbar,
-          title: Text("Delivery Details"),
+          title: const Text("Delivery Details"),
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context,true);
             },
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
           ),
 
         ),
@@ -87,8 +87,8 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                 new Container(
                     height: MediaQuery.of(context).size.height,
                     width: double.infinity,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    padding: EdgeInsets.fromLTRB(0,0,0,0),
+                    margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    padding: const EdgeInsets.fromLTRB(0,0,0,0),
                     child : FutureBuilder<DeliveryFullDetailsModel>(
                         future:  fetchPost(context),
                         builder: (context, snapshot) {
@@ -101,14 +101,14 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                             Container(
                                                 width: MediaQuery.of(context).size.width,
-                                                margin: EdgeInsets.fromLTRB(2, 10, 2, 5),
+                                                margin: const EdgeInsets.fromLTRB(2, 10, 2, 5),
                                                 // Order Summary
                                                 decoration: BoxDecoration(
                                                     border: Border.all(
                                                         color: Colors.black12,
                                                         width: 0.9
                                                     ),
-                                                    borderRadius: BorderRadius.all(Radius.circular(5))
+                                                    borderRadius: const BorderRadius.all(Radius.circular(5))
                                                 ),
                                                 child:   Container(
                                                     color: ColorUtility().colorDroptab,
@@ -169,7 +169,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                                                                                                                     padding: const EdgeInsets.all(5),
                                                                                                                                     alignment: Alignment.centerLeft,
                                                                                                                                     decoration: BoxDecoration(
-                                                                                                                                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                                                                                                                      borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                                                                                                                                       color: ColorUtility().colorVerified,
                                                                                                                                     ),
                                                                                                                                     child: Row(
@@ -207,7 +207,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                                                                             Center(
                                                                                                 child: Container(
-                                                                                                    margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                                                                                    margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                                                                                                     child: Padding(
                                                                                                         padding: const EdgeInsets.fromLTRB(0,0,0,0),
                                                                                                         child: Row(
@@ -355,14 +355,14 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                             Container(
                                               width: MediaQuery.of(context).size.width,
-                                              margin: EdgeInsets.fromLTRB(2, 10, 2, 2),
-                                              padding:EdgeInsets.all(0),
+                                              margin: const EdgeInsets.fromLTRB(2, 10, 2, 2),
+                                              padding:const EdgeInsets.all(0),
                                               decoration: BoxDecoration(
                                                   border: Border.all(
                                                       color: Colors.black12,
                                                       width: 0.9
                                                   ),
-                                                  borderRadius: BorderRadius.all(Radius.circular(5))
+                                                  borderRadius: const BorderRadius.all(Radius.circular(5))
                                               ),
                                               // Order Summary
                                               child:   ExpansionTile(
@@ -391,7 +391,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                                   Container(
                                                     color: ColorUtility().colorDetailBottom,
-                                                    padding:EdgeInsets.all(10),
+                                                    padding:const EdgeInsets.all(10),
                                                     width: double.infinity,
                                                     child:   Column(
                                                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -400,7 +400,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                                           Container(
                                                               width: MediaQuery.of(context).size.width,
-                                                              padding: EdgeInsets.fromLTRB(3, 10, 3, 3),
+                                                              padding: const EdgeInsets.fromLTRB(3, 10, 3, 3),
                                                               child: Row(
                                                                 children: <Widget>[
                                                                   Center(
@@ -447,7 +447,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                                           Container(
                                                               width: MediaQuery.of(context).size.width,
-                                                              padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                              padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
                                                               child: Row(
                                                                 children: <Widget>[
                                                                   Center(
@@ -502,13 +502,13 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                             // Customer Details
                                             Container(
                                               width: MediaQuery.of(context).size.width,
-                                              margin: EdgeInsets.fromLTRB(2, 5, 2, 2),
+                                              margin: const EdgeInsets.fromLTRB(2, 5, 2, 2),
                                               decoration: BoxDecoration(
                                                   border: Border.all(
                                                       color: Colors.black12,
                                                       width: 0.9
                                                   ),
-                                                  borderRadius: BorderRadius.all(Radius.circular(5))
+                                                  borderRadius: const BorderRadius.all(Radius.circular(5))
                                               ),
                                               // Order Summary
                                               child: ExpansionTile(
@@ -532,7 +532,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                                 children: [
                                                   Container(
                                                       color: ColorUtility().colorDetailBottom,
-                                                      padding:EdgeInsets.all(10),
+                                                      padding:const EdgeInsets.all(10),
                                                       width: double.infinity,
                                                       child: Column(
                                                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -541,7 +541,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                                             Container(
                                                                 width: MediaQuery.of(context).size.width * 9,
-                                                                padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                                padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
                                                                 child: Row(
                                                                   children: <Widget>[
                                                                     Center(
@@ -781,7 +781,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                                             Container(
                                                                 width: MediaQuery.of(context).size.width,
-                                                                padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                                padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
                                                                 child: Row(
                                                                   children: <Widget>[
                                                                     Center(
@@ -837,13 +837,13 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                             Container(
                                               width: MediaQuery.of(context).size.width,
-                                              margin: EdgeInsets.fromLTRB(2, 5, 2, 2),
+                                              margin: const EdgeInsets.fromLTRB(2, 5, 2, 2),
                                               decoration: BoxDecoration(
                                                   border: Border.all(
                                                       color: Colors.black12,
                                                       width: 0.9
                                                   ),
-                                                  borderRadius: BorderRadius.all(Radius.circular(5))
+                                                  borderRadius: const BorderRadius.all(Radius.circular(5))
                                               ),
                                               // Order Summary
                                               child:  ExpansionTile(
@@ -867,7 +867,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                                 children: [
                                                   Container(
                                                     color: ColorUtility().colorDetailBottom,
-                                                    padding:EdgeInsets.all(10),
+                                                    padding:const EdgeInsets.all(10),
                                                     width: double.infinity,
                                                     child:   Column(
                                                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -875,7 +875,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                                           Container(
                                                               width: MediaQuery.of(context).size.width * 9,
-                                                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                                               child: Row(
                                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                                   children: <Widget>[
@@ -918,7 +918,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                                               )
                                                           ),
 
-                                                          Divider(color: Colors.grey),
+                                                          const Divider(color: Colors.grey),
 
                                                           ListView.builder(
                                                             // padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.04,0,MediaQuery.of(context).size.height * 0.04),
@@ -954,13 +954,13 @@ class _DeliveryDetails extends State<DeliveryDetails>{
 
                                             Container(
                                               width: MediaQuery.of(context).size.width,
-                                              margin: EdgeInsets.fromLTRB(2, 5, 2, 2),
+                                              margin: const EdgeInsets.fromLTRB(2, 5, 2, 2),
                                               decoration: BoxDecoration(
                                                   border: Border.all(
                                                       color: Colors.black12,
                                                       width: 0.9
                                                   ),
-                                                  borderRadius: BorderRadius.all(Radius.circular(5))
+                                                  borderRadius: const BorderRadius.all(Radius.circular(5))
                                               ),
                                               // Order Summary
                                               child:    ExpansionTile(
@@ -984,7 +984,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
                                                 children: [
                                                   Container(
                                                     color: ColorUtility().colorDetailBottom,
-                                                    padding:EdgeInsets.all(10),
+                                                    padding:const EdgeInsets.all(10),
                                                     width: double.infinity,
                                                     child:   Column(
                                                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -1808,7 +1808,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
     print(item);
     return Card(
       // margin: EdgeInsets.zero,
-        margin: EdgeInsets.fromLTRB(1,2,1,0),
+        margin: const EdgeInsets.fromLTRB(1,2,1,0),
         color: ColorUtility().colorLightGrey,
         shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0.0),),
@@ -2041,7 +2041,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
     return Container(
         color: Colors.transparent,
         width: MediaQuery.of(context).size.width * 9,
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -2092,7 +2092,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
     print(item);
     return Card(
       // margin: EdgeInsets.zero,
-        margin: EdgeInsets.fromLTRB(1,2,1,0),
+        margin: const EdgeInsets.fromLTRB(1,2,1,0),
         color: ColorUtility().colorLightGrey,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(0.0),),
@@ -2293,8 +2293,8 @@ class _DeliveryDetails extends State<DeliveryDetails>{
       isFirst: index == 0 ? true : false,
       isLast: index == 5 - 1 ? true : false,
       indicatorStyle: IndicatorStyle(width: 20, height: 20, indicator: _buildIndicator(),),
-      afterLineStyle: LineStyle(thickness: 1, color: Colors.green,),
-      beforeLineStyle: LineStyle(thickness: 1, color: Colors.green,),
+      afterLineStyle: const LineStyle(thickness: 1, color: Colors.green,),
+      beforeLineStyle: const LineStyle(thickness: 1, color: Colors.green,),
       // startChild: Container(
       //   padding: EdgeInsets.all(20),
       //   child: Column(
@@ -2321,7 +2321,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
       //   ),
       // ),
       endChild: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -2348,7 +2348,7 @@ class _DeliveryDetails extends State<DeliveryDetails>{
             color: Colors.green,
             borderRadius: BorderRadius.circular(5),
           ),
-          child: Center(
+          child: const Center(
             child: Icon(
               Icons.check,
               color: Colors.white,
@@ -2502,14 +2502,14 @@ void checkOnlineAlert(context) {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(
                 20.0,
               ),
             ),
           ),
-          contentPadding: EdgeInsets.only(
+          contentPadding: const EdgeInsets.only(
             top: 10.0,
           ),
 
@@ -2557,9 +2557,9 @@ void checkOnlineAlert(context) {
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary:ColorUtility().colorNo,
-                                    fixedSize: Size(100, 40),
+                                    fixedSize: const Size(100, 40),
                                   ),
-                                  child: Text(
+                                  child: const Text(
                                     "Close",
                                   ),
                                 ),
@@ -2581,9 +2581,9 @@ void checkOnlineAlert(context) {
                                         },
                                         style: ElevatedButton.styleFrom(
                                           primary: ColorUtility().colorYes,
-                                          fixedSize: Size(100, 40),
+                                          fixedSize: const Size(100, 40),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Retry",
                                         ),
                                       ))
@@ -2615,7 +2615,7 @@ void checkOnlineAlert(context) {
 
 showFaliureAlertDialog(BuildContext context, String errorMsg) {
   Widget okButton = TextButton(
-    child: Text("OK"),
+    child: const Text("OK"),
     onPressed: () {
       //Navigator.pop(context,true);
       //Navigator.pop(context);
@@ -2626,7 +2626,7 @@ showFaliureAlertDialog(BuildContext context, String errorMsg) {
     },
   );
   AlertDialog alert = AlertDialog(
-    title: Text("" ),
+    title: const Text("" ),
     content: Text(errorMsg),
     actions: [
       okButton,

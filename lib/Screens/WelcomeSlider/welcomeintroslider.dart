@@ -9,8 +9,8 @@ class IntroScreen extends StatelessWidget {
 
   final List<PageViewModel> pages = [
     PageViewModel(
-        title: 'Fast, Secure Online Orders',
-        body: 'Fast, Secure Online Ordering. We are constantly improving our online store to make ordering easy.',
+        title: 'Stock Management',
+        body: 'This app manages and tracks your product stock and control inventory',
         image: Center(
           child: Image.asset('assets/images/introslider2.png'),
         ),
@@ -39,8 +39,8 @@ class IntroScreen extends StatelessWidget {
 
     ),
     PageViewModel(
-        title: 'Online payment services',
-        body: 'The online payment services on the market all aim to offer easy and secure ways to pay. ',
+        title: 'Stock Report',
+        body: 'Stock report will helps sellers to know product sales and fast moving products',
 
      /*   footer: SizedBox(
           height: 45,
@@ -68,8 +68,8 @@ class IntroScreen extends StatelessWidget {
         )
     ),
     PageViewModel(
-        title: 'Product Diversification',
-        body: 'Consumers are likely to remember brands that offer more variety within their products or services.',
+        title: 'Stock Status',
+        body: 'Sellers can get the status of current stock once get an order',
        /* footer: SizedBox(
           height: 45,
           width: 300,

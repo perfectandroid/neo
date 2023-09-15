@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:neo/Screens/Login/mpin_verification_page.dart';
+import 'package:neo/Screens/Welcome/welcome_page.dart';
 import 'dart:convert';
 import 'package:neo/Screens/WelcomeSlider/welcomeintroslider.dart';
 import 'package:neo/helper/colorutility.dart';
@@ -78,7 +79,7 @@ class _SplashScreen extends State<SplashScreen>{
                   Container(
                     margin: EdgeInsets.only(top:20),
                     //margin top 20
-                    child:Text("Best shopping experience ever.", style: TextStyle(
+                    child:Text("Stock Management App", style: TextStyle(
                       color:Colors.white,
                       fontSize: 20,
                     ),),
@@ -236,13 +237,13 @@ void getMaintainance(context) async {
       var description = maintain[0]['description']?? (throw ArgumentError("description is required"));
       print('157   :  $statuscode');
       var maintain_type = maintain[0]['maintain_type']?? (throw ArgumentError("maintain_type is required"));
-      if(maintain_type == '0'){
+      if(maintain_type == '0' || maintain_type == 0){
         print("1671   : $maintain_type");
 
         getReseller(context);
 
       }
-      else if(maintain_type == 1) {
+      else if(maintain_type == 1 || maintain_type == "1") {
         print("1672   : $maintain_type");
         openCustomDialogClose(context,image,description,maintain_type);
       }
@@ -343,7 +344,7 @@ void openCustomDialog(context,image,description,maintain_type) {
                                  child: ElevatedButton(
                                onPressed: () {
                                //  Navigator.of(context).pop();
-                                 if(maintain_type == 2){
+                                 if(maintain_type == 2 || maintain_type == "2"){
                                    //Warning
                                    // Future.delayed(Duration(seconds: 1), () async {
                                    //   Navigator.pushReplacement(context, MaterialPageRoute(
@@ -355,7 +356,7 @@ void openCustomDialog(context,image,description,maintain_type) {
 
                                    getReseller(context);
                                  }
-                                 else if(maintain_type == 3){
+                                 else if(maintain_type == 3 || maintain_type == "3"){
                                     // Updation
                                    // Future.delayed(Duration(seconds: 1), () async {
                                    //   Navigator.pushReplacement(context, MaterialPageRoute(

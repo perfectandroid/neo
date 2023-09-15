@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -813,7 +814,14 @@ class _ReportStock extends State<ReportStock>{
       onPressed: () {
         //Navigator.pop(context,true);
         //Navigator.pop(context);
-        Navigator.pop(context,true);
+        
+        if (Platform.isAndroid){
+            //Navigator.pop(context,true);
+            Navigator.of(context,rootNavigator: true).pop();
+        }else if (Platform.isIOS){
+            //Navigator.of(context,rootNavigator: true).pop();
+            Navigator.pop(context,true);
+        }
       //  Navigator.pop(context,true);
         // Navigator.push(context, MaterialPageRoute(builder: (context) => DeliveryScreen(),));
         // Navigator.push(context, MaterialPageRoute(builder: (_) => const HomePage()));
@@ -887,7 +895,7 @@ class _ReportStock extends State<ReportStock>{
                     // ),
 
                       child : SizedBox(
-                          height: 40,
+                          height: 38,
                           child:  TextField(
                             readOnly: true,
                             controller: controller.InputStatus,
@@ -922,7 +930,7 @@ class _ReportStock extends State<ReportStock>{
                   child :Container(
                       margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
                       child : SizedBox(
-                          height: 40,
+                          height: 38,
                           child:  TextField(
                             readOnly: false,
                             controller: controller.InputSearch,
@@ -975,7 +983,7 @@ class _ReportStock extends State<ReportStock>{
                       margin: EdgeInsets.fromLTRB(0, 5, 2, 0),
 
                       child : SizedBox(
-                          height: 40,
+                          height: 38,
                           child:  TextField(
                             readOnly: false,
                             keyboardType: TextInputType.number,
@@ -1014,7 +1022,7 @@ class _ReportStock extends State<ReportStock>{
                   child :Container(
                       margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
                       child : SizedBox(
-                          height: 40,
+                          height: 38,
                           child:  TextField(
                             readOnly: false,
                             keyboardType: TextInputType.number,
@@ -1070,7 +1078,7 @@ class _ReportStock extends State<ReportStock>{
                       margin: EdgeInsets.fromLTRB(0, 5, 2, 0),
 
                       child : SizedBox(
-                          height: 40,
+                          height: 38,
                           child:  TextField(
                             readOnly: true,
                             controller: controller.InputCategory,
@@ -1107,7 +1115,7 @@ class _ReportStock extends State<ReportStock>{
                   child :Container(
                       margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
                       child : SizedBox(
-                          height: 40,
+                          height: 38,
                           child:  TextField(
                             readOnly: true,
                             
@@ -1255,7 +1263,7 @@ class _ReportStock extends State<ReportStock>{
                               //     Color(0xffffc371),
                               //   ],
                               // ),
-                              color: ColorUtility().colorButtonSearch,
+                              color: ColorUtility().colorAppbar,
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Container(

@@ -492,10 +492,10 @@ class _OrderReport extends State<OrderReport>{
 
               Expanded(
                 child :Container(
-                  margin: EdgeInsets.fromLTRB(0, 5, 2, 0),
+                  margin: EdgeInsets.fromLTRB(0, 4, 2, 0),
                   alignment: Alignment.center,
                   child : SizedBox(
-                    height: 40,
+                    height: 38,
                       child:  TextField(
                         readOnly: true,
                         textAlignVertical: TextAlignVertical.center,
@@ -545,9 +545,9 @@ class _OrderReport extends State<OrderReport>{
               Expanded(
 
                 child :Container(
-                    margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
+                    margin: EdgeInsets.fromLTRB(2, 4, 0, 0),
                     child : SizedBox(
-                      height: 40,
+                      height: 38,
                       child:  TextField(
                           readOnly: true,
                           controller: controller.dateInputTo,
@@ -723,7 +723,7 @@ class _OrderReport extends State<OrderReport>{
                   child :Container(
                       margin: EdgeInsets.fromLTRB(0, 5, 2, 0),
                       child : SizedBox(
-                        height: 40,
+                        height: 38,
                           child:  TextField(
                             readOnly: false,
                             controller: controller.searchInput,
@@ -758,7 +758,7 @@ class _OrderReport extends State<OrderReport>{
                   child :Container(
                       margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
                       child : SizedBox(
-                      height: 40,
+                      height: 38,
                           child:  TextField(
                             readOnly: true,
                             controller: controller.orderStatusInput,
@@ -810,9 +810,9 @@ class _OrderReport extends State<OrderReport>{
 
               Expanded(
                   child :Container(
-                      margin: EdgeInsets.fromLTRB(0, 5, 2, 0),
+                      margin: EdgeInsets.fromLTRB(0, 4, 2, 0),
                       child : SizedBox(
-                        height: 40,
+                        height: 39,
                         child: MaterialButton(
                           onPressed: (){
                             setState(() {
@@ -860,9 +860,9 @@ class _OrderReport extends State<OrderReport>{
               Expanded(
 
                   child :Container(
-                      margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
+                      margin: EdgeInsets.fromLTRB(2, 4, 0, 0),
                       child : SizedBox(
-                        height: 40,
+                        height: 39,
                         child: MaterialButton(
                           onPressed: (){
                             FocusScope.of(context).unfocus();
